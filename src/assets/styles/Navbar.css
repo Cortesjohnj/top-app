@@ -1,0 +1,125 @@
+.navBar {
+  background: #3e2f90;
+  height: 80px;
+  /* margin-top: -80px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+@media (max-width: 960px) {
+  .navBar {
+    transition: 0.8s all ease;
+  }
+}
+
+.navBar__container {
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  z-index: 1;
+  width: 100%;
+  padding: 0 24px;
+  /* max-width: 1100px; */
+}
+
+.navBar__container--logo {
+  color: #fff;
+  justify-self: flex-start;
+  cursor: pointer;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  margin-left: 24px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.navBar__container--pet {
+  margin-right: 10px;
+  font-size: 2em;
+}
+
+.navBar__container--mobileIcon {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .navBar__container--mobileIcon {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(-100%, 60%);
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #fff;
+  }
+}
+
+.navBar__container--navMenu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  text-align: center;
+  margin-right: -22px;
+}
+
+@media (max-width: 768px) {
+  .navBar__container--navMenu {
+    display: none;
+  }
+}
+
+.navBar__container--navItem {
+  height: 80px;
+}
+
+.navBar__container--navLinks {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0 1rem;
+  height: 100%;
+  cursor: pointer;
+}
+
+.navBar__container--navLinks:active {
+  border-bottom: 3px solid #d6c9c9;
+}
+
+.navBar__container--nav {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .navBar__container--nav {
+    display: none;
+  }
+}
+
+.navBar__container--navBtnLink {
+  border-radius: 50px;
+  background: #3e2f90;
+  white-space: nowrap;
+  padding: 10px 22px;
+  color: #fff;
+  font-size: 16px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+}
+
+.navBar__container--navBtnLink:hover {
+  transition: all 0.2s ease-in-out;
+  background: #e8eef2;
+  color: black;
+}
