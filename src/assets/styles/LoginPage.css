@@ -1,5 +1,3 @@
-@import url(https://fonts.googleapis.com/css?family=Muli&display=swap);
-
 :root {
   --blue-pigment: #3e2f90;
   --alice-blue: #e8eef2;
@@ -9,12 +7,6 @@
   --aero: #77b6ea;
   --warm-black: #464646;
   --border-color: #747474;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 }
 
 body {
@@ -34,11 +26,16 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  padding: 60px 68px 40px;
+  width: 80%;
+  min-width: 320px;
+  max-width: 600px;
+  padding: 60px 30px 40px;
   color: var(--warm-black);
   border: 1px solid var(--border-color);
   border-radius: 40px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  min-width: 320px;
+  max-width: 600px;
 }
 
 .login__container h2 {
