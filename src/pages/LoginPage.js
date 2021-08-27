@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import "../assets/styles/LoginPage.css";
 
 const LoginPage = () => {
   const form = useRef(null);
@@ -23,31 +24,29 @@ const LoginPage = () => {
   };
 
   return (
-    <section>
+    <section className="login">
       <section className="login__container">
-        <h2>Inicia sesión</h2>
+        <h2>Login</h2>
+        {emailError && <span>Invalid Email</span>}
         <form className="login__container--form" ref={form}>
           <input
             name="email"
             className="input"
             type="text"
-            placeholder="Correo"
+            placeholder="Email"
           />
           <input
             name="password"
             className="input"
             type="password"
-            placeholder="Contraseña"
+            placeholder="Password"
           />
           <button type="submit" className="button" onClick={handleSubmit}>
-            Iniciar sesión
+            Login
           </button>
-          <div className="login__container--remember-me">
-            <a href="/">Olvidé mi contraseña</a>
-          </div>
         </form>
         <p className="login__container--register">
-          No tienes ninguna cuenta <a href="/register">Regístrate</a>
+          Don't you have an account? <a href="/register">Register</a>
         </p>
       </section>
     </section>

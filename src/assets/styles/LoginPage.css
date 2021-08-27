@@ -1,0 +1,109 @@
+@import url(https://fonts.googleapis.com/css?family=Muli&display=swap);
+
+:root {
+  --blue-pigment: #3e2f90;
+  --alice-blue: #e8eef2;
+  --pale-silver: #d6c9c9;
+  --soft-blue: #e7f5ff;
+  --beau-blue: #c7d3dd;
+  --aero: #77b6ea;
+  --warm-black: #464646;
+  --border-color: #747474;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Multi", sans-serif;
+}
+
+.login {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0px 30px;
+  min-height: 100vh;
+}
+
+.login__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 60px 68px 40px;
+  color: var(--warm-black);
+  border: 1px solid var(--border-color);
+  border-radius: 40px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.login__container h2 {
+  margin-bottom: 20px;
+  color: var(--blue-pigment);
+}
+
+.login__container span {
+  font-size: 14px;
+}
+
+.login__container--form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login__container--form .input {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 2px solid var(--border-color);
+  border-radius: 25px;
+  color: var(--warm-black);
+  font-family: "Muli", sans-serif;
+  font-size: 16px;
+  height: 50px;
+  margin-bottom: 20px;
+  outline: none;
+  padding: 0px 20px;
+}
+
+.login__container--form label {
+  font-size: 14px;
+}
+
+.button {
+  background-color: var(--blue-pigment);
+  border: none;
+  border-radius: 25px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: "Muli", sans-serif;
+  height: 50px;
+  letter-spacing: 1px;
+  margin: 10px 0;
+}
+
+.login__container--remember-me {
+  color: var(--warm-black);
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.login__container--register {
+  font-size: 14px;
+}
+
+.login__container--register a {
+  color: var(--blue-pigment);
+  font-weight: bold;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.login__container--register a:hover {
+  text-decoration: underline;
+}
