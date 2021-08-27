@@ -1,27 +1,44 @@
 import { useState, useRef } from "react";
 import "../assets/styles/LoginPage.css";
+import MockData from "../MockData";
 
 const LoginPage = () => {
   const form = useRef(null);
 
+  const [formState, setFormState] = useState({});
   const [emailError, setEmailError] = useState(false);
   const [validatePassword, setValidatePassword] = useState(false);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const formData = new FormData(form.current);
+  const handleChange = (event) => {
+    setFormState((formState) => ({
+      ...formState,
+      [event.target.name]: event.target.value,
+    }));
+  };
+
+  const handleVerifyEmail = (event) => {
     if (
-      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
-        formData.get("email")
-      )
+      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(event.target.value)
     ) {
       setEmailError(false);
     } else {
       setEmailError(true);
     }
-    if (!emailError) {
+  };
+
+  const handleSubmit = (event) => {
+    console.log(MockData);
+    event.preventDefault();
+    const user = MockData.users.filter(
+      (user) => user.email === formState.email
+    )[0];
+
+    ////////////RHTTP REQUEST TO  API TO VALIDATE PASSWORD
+    console.log("VALIDATE PASSWORD");
+
+    if (!emailError && !validatePassword) {
       ////////////////////////
-      console.log("VALIDATE USER CREDENTIALS AND REDIRECT TO HOMEPAGE");
+      console.log("REDIRECT TO HOMEPAGE");
     }
   };
 
@@ -36,12 +53,15 @@ const LoginPage = () => {
             className="input"
             type="text"
             placeholder="Email"
+            onChange={handleChange}
+            onBlur={handleVerifyEmail}
           />
           <input
             name="password"
             className="input"
             type="password"
             placeholder="Password"
+            onChange={handleChange}
           />
           {validatePassword && (
             <span>*Invalid Credentials, please try again</span>
