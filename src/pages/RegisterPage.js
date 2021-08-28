@@ -8,10 +8,10 @@ function RegisterPage() {
     register,
     formState: { errors },
     handleSubmit,
-    getValues,
+    watch,
   } = useForm()
   const password = useRef({})
-  password.current = getValues('password', '')
+  password.current = watch('password', '')
 
   const onSubmit = (data, e) => {
     e.target.reset()
@@ -36,8 +36,8 @@ function RegisterPage() {
             <p>*Alphabetical characters only</p>
           )}
           <input
-            type='input'
-            name='name'
+            type='text'
+            name='firstName'
             placeholder='First name'
             className='form__field'
             {...register('firstName', {
