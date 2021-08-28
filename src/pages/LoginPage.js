@@ -5,9 +5,11 @@ import MockData from "../MockData";
 const LoginPage = () => {
   const form = useRef(null);
 
-  const [formState, setFormState] = useState({});
-  const [emailError, setEmailError] = useState(false);
-  const [validatePassword, setValidatePassword] = useState(false);
+  const [formState, setFormState] = useState({
+    isValid: false,
+    values: {},
+    errors: {},
+  });
 
   const handleChange = (event) => {
     setFormState((formState) => ({
@@ -17,36 +19,51 @@ const LoginPage = () => {
   };
 
   const handleVerifyEmail = (event) => {
-    if (
-      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(event.target.value)
-    ) {
-      setEmailError(false);
-    } else {
-      setEmailError(true);
-    }
+    const check = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
+      event.target.value
+    );
+    setFormState((formState) => ({
+      ...formState,
+      isValid: !check,
+    }));
   };
 
   const handleSubmit = (event) => {
-    console.log(MockData);
     event.preventDefault();
     const user = MockData.users.filter(
       (user) => user.email === formState.email
     )[0];
 
-    ////////////RHTTP REQUEST TO  API TO VALIDATE PASSWORD
-    console.log("VALIDATE PASSWORD");
-
-    if (!emailError && !validatePassword) {
-      ////////////////////////
-      console.log("REDIRECT TO HOMEPAGE");
-    }
+    /*
+      axios({
+        method: 'GET',
+        baseURL: 'https://APIURL,
+        url: `/authenticate`
+      })
+      .then(() => {
+        setValidatePassword(false);
+        console.log('authenticated')
+        props.history.push("/")
+      })
+      .catch(error =>{
+        setValidatePassword(true))
+        if (error.status === '401') ?
+          setFormState((formState) => {
+            ...formState,
+            errors : {code : error.status, message: '*Invalid Credentials, please try again'}
+          }) : setFormState((formState) => {
+            ...formState,
+            errors : {code : error.status, message:'*Unexpected error, please try again later'}
+          })
+      })
+    */
   };
 
   return (
     <section className="login">
       <section className="login__container">
         <h2>Login</h2>
-        {emailError && <span>*Invalid Email</span>}
+        {formState.isValid && <span>*Invalid Email</span>}
         <form className="login__container--form" ref={form}>
           <input
             name="email"
@@ -63,14 +80,12 @@ const LoginPage = () => {
             placeholder="Password"
             onChange={handleChange}
           />
-          {validatePassword && (
-            <span>*Invalid Credentials, please try again</span>
-          )}
+
           <button type="submit" className="button" onClick={handleSubmit}>
             Login
           </button>
         </form>
-
+        {!!formState.errors.code && <span>{formState.errors.message}</span>}
         <p className="login__container--register">
           Don't you have an account? <a href="/register">Register</a>
         </p>
