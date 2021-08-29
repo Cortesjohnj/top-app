@@ -1,12 +1,14 @@
 import { useState, useRef } from "react";
+//import { Link } from "react-router-dom";
+import axios from "axios";
 import "../assets/styles/LoginPage.css";
 import MockData from "../MockData";
 
-const LoginPage = () => {
+const LoginPage = (props) => {
   const form = useRef(null);
 
   const [formState, setFormState] = useState({
-    isValid: false,
+    isInvalid: false,
     values: {},
     errors: {},
   });
@@ -14,7 +16,7 @@ const LoginPage = () => {
   const handleChange = (event) => {
     setFormState((formState) => ({
       ...formState,
-      [event.target.name]: event.target.value,
+      values: { ...formState.values, [event.target.name]: event.target.value },
     }));
   };
 
@@ -24,46 +26,54 @@ const LoginPage = () => {
     );
     setFormState((formState) => ({
       ...formState,
-      isValid: !check,
+      isInvalid: !check,
     }));
   };
 
   const handleSubmit = (event) => {
+    console.log("done");
     event.preventDefault();
     const user = MockData.users.filter(
       (user) => user.email === formState.email
     )[0];
 
-    /*
-      axios({
-        method: 'GET',
-        baseURL: 'https://APIURL,
-        url: `/authenticate`
-      })
+    axios({
+      method: "POST",
+      baseURL: "https://jsonplaceholder.typicode.com",
+      url: `/posts`,
+      data: {
+        email: formState.values.email,
+        body: formState.values.password,
+      },
+    })
       .then(() => {
-        setValidatePassword(false);
-        console.log('authenticated')
-        props.history.push("/")
+        console.log("Authenticated! Now rediect to home page");
+        //props.history.push("/");
       })
-      .catch(error =>{
-        setValidatePassword(true))
-        if (error.status === '401') ?
-          setFormState((formState) => {
-            ...formState,
-            errors : {code : error.status, message: '*Invalid Credentials, please try again'}
-          }) : setFormState((formState) => {
-            ...formState,
-            errors : {code : error.status, message:'*Unexpected error, please try again later'}
-          })
-      })
-    */
+      .catch((error) => {
+        error.status === "401"
+          ? setFormState((formState) => ({
+              ...formState,
+              errors: {
+                code: error.status,
+                message: "*Invalid Credentials, please try again",
+              },
+            }))
+          : setFormState((formState) => ({
+              ...formState,
+              errors: {
+                code: error.status,
+                message: "*Unexpected error, please try again later",
+              },
+            }));
+      });
   };
 
   return (
     <section className="login">
       <section className="login__container">
         <h2>Login</h2>
-        {formState.isValid && <span>*Invalid Email</span>}
+        {formState.isInvalid && <span>*Invalid Email</span>}
         <form className="login__container--form" ref={form}>
           <input
             name="email"
@@ -81,7 +91,12 @@ const LoginPage = () => {
             onChange={handleChange}
           />
 
-          <button type="submit" className="button" onClick={handleSubmit}>
+          <button
+            type="submit"
+            className="button"
+            onClick={handleSubmit}
+            disabled={formState.isInvalid}
+          >
             Login
           </button>
         </form>
