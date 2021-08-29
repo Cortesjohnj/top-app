@@ -4,16 +4,14 @@ import { Link as LinkScroll } from 'react-scroll';
 import '../assets/styles/SideBar.css';
 import { FaTimes } from 'react-icons/fa';
 
-function SideBar() {
+function SideBar({ isOpen, toggle }) {
   return (
     <aside
-      className="sideBar__container"
-      style={
-        ({ opacity: ({ isOpen }) => (isOpen ? '100%' : '0') },
-        { top: ({ isOpen }) => (isOpen ? '0' : '-100%') })
-      }
+      className={`sideBar__container 
+      ${isOpen ? 'sideBar__container--show' : 'sideBar__container--hide'}`}
+      onClick={toggle}
     >
-      <div className="sideBar__container--icon">
+      <div className="sideBar__container--icon" onClick={toggle}>
         <div className="sideBar__container--closeIcon">
           <FaTimes />
         </div>

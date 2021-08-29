@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { Link as LinkScroll } from 'react-scroll';
 import '../assets/styles/Navbar.css';
 
-function Navbar() {
+function Navbar({ toggle }) {
   return (
     <>
       <nav className="navBar">
@@ -15,7 +15,7 @@ function Navbar() {
             ADOGTA
           </Link>
           <div className="navBar__container--mobileIcon">
-            <FaBars />
+            <FaBars onClick={toggle} />
           </div>
           <ul className="navBar__container--navMenu">
             <li className="navBar__container--navItem">
