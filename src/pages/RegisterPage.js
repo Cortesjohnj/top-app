@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { useForm } from "react-hook-form";
 import "../assets/styles/RegisterForm.css";
 import { PrimaryButton } from "../components/PrimaryButton";
+import axios from "axios";
 
 function RegisterPage() {
   const {
@@ -10,12 +11,17 @@ function RegisterPage() {
     handleSubmit,
     watch,
   } = useForm({ mode: "onBlur" });
+
   const password = useRef({});
   password.current = watch("password", "");
 
   const onSubmit = (data, e) => {
     e.target.reset();
     console.log(data);
+    axios
+      .post("https://jsonplaceholder.typicode.com/posts", data)
+      .then(response => console.log(response))
+      .catch(error => console.log(error));
   };
 
   return (
@@ -168,6 +174,7 @@ function RegisterPage() {
             Choose a profile picture:
           </label>
           <input type='file' name='profilePic' id='fileUpload' /> */}
+
           <PrimaryButton children={"Register"} />
         </form>
         <h4>
