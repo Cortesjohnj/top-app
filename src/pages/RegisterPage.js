@@ -174,7 +174,20 @@ function RegisterPage() {
             Choose a profile picture:
           </label>
           <input type='file' name='profilePic' id='fileUpload' /> */}
-
+          {errors?.terms?.type === "required" && (
+            <p>*You must agree to the terms & conditions</p>
+          )}
+          <label className="termsAndConditions">
+            <input
+              type="checkbox"
+              name="terms"
+              className="termsConditions"
+              {...register("terms", {
+                required: true,
+              })}
+            />
+            I agree to the <a href="/"> terms & conditions</a>
+          </label>
           <PrimaryButton children={"Register"} />
         </form>
         <h4>

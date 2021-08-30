@@ -102,6 +102,19 @@ h4 > a{
   margin-top: 20px;
 }
 
+.termsAndConditions {
+  display: flex;
+  justify-content: center;
+  align-items: center
+ 
+}
+.termsAndConditions input {
+  margin-right: 5px; 
+}
+.termsAndConditions a {
+  margin-left: 5px; 
+}
+
 #fileUpload {
   border: hidden;
   outline:none;
