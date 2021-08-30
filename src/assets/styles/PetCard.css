@@ -56,3 +56,14 @@ html {
   color: var(--alice-blue);
   border-radius: 15px;
 }
+
+.dialog {
+  box-shadow: 0 8px 6px -6px black;
+  position: static;
+  left: 20%;
+  top: 10%;
+}
+
+.image {
+  width: 300px;
+}

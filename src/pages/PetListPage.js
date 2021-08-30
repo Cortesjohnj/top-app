@@ -1,5 +1,5 @@
 import CardList from "../components/CardList";
-import Card from "../components/Card";
+import PetCard from "../components/PetCard";
 
 import MockData from "../MockData";
 
@@ -9,7 +9,7 @@ const PetListPage = () => {
   return (
     <CardList title="Are you looking for a new friend?">
       {pets.map((item) => (
-        <Card key={item._id} {...item} />
+        <PetCard key={item._id} {...item} />
       ))}
     </CardList>
   );
