@@ -8,6 +8,7 @@
 
 .card-list__title {
   width: 90%;
-  color: var(--blue-pigment);
   margin: 20px 0;
+  color: var(--blue-pigment);
+  font-size: 26px;
 }
