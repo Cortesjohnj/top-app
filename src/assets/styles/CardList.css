@@ -1,0 +1,13 @@
+.card-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.card-list__title {
+  width: 90%;
+  color: var(--blue-pigment);
+  margin: 20px 0;
+}
