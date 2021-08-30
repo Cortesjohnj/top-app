@@ -35,7 +35,7 @@ html {
 
 .login__container span {
   font-size: 1.4rem;
-  color: var(--blue-pigment);
+  color: red;
 }
 
 .login__container--form {

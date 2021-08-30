@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-//import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import "../assets/styles/LoginPage.css";
 import MockData from "../MockData";
@@ -48,7 +48,7 @@ const LoginPage = (props) => {
     })
       .then(() => {
         console.log("Authenticated! Now rediect to home page");
-        //props.history.push("/");
+        props.history.push("/");
       })
       .catch((error) => {
         error.status === "401"
@@ -102,7 +102,7 @@ const LoginPage = (props) => {
         </form>
         {!!formState.errors.code && <span>{formState.errors.message}</span>}
         <p className="login__container--register">
-          Don't you have an account? <a href="/register">Register</a>
+          Don't you have an account? <Link to="/register">Register</Link>
         </p>
       </section>
     </section>
