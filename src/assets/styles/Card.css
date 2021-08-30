@@ -3,6 +3,7 @@ html {
 }
 
 .card-list-item {
+  position: relative;
   display: inline-block;
   overflow: hidden;
   width: 300px;
@@ -33,4 +34,20 @@ html {
   color: var(--aero);
   font-size: 1.8rem;
   margin-bottom: 5px;
+}
+
+.card-list-message {
+  position: absolute;
+  top: calc(50% - 40px);
+  right: calc(50% - 100px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 80px;
+  background-color: var(--aero);
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--alice-blue);
+  border-radius: 15px;
 }
