@@ -12,6 +12,7 @@ html {
   border-radius: 20px;
   font-size: 1.6rem;
   cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.16);
 }
 
 .card-list-item__image {
@@ -26,14 +27,18 @@ html {
   height: 150px;
   background-color: var(--soft-blue);
   text-align: start;
-  padding-left: 10px;
-  padding-top: 10px;
+  padding: 10px;
 }
 
 .card-list-item__details--title {
   color: var(--aero);
   font-size: 1.8rem;
   margin-bottom: 5px;
+}
+
+.card-list-item__details a {
+  text-decoration: none;
+  color: var(--warm-black);
 }
 
 .card-list-message {

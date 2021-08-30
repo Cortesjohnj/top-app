@@ -21,7 +21,7 @@ const LoginPage = (props) => {
   };
 
   const handleVerifyEmail = (event) => {
-    const check = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
+    const check = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(
       event.target.value
     );
     setFormState((formState) => ({
