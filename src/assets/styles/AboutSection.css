@@ -10,13 +10,14 @@
 }
 
 .aboutContainer__wrapper {
+  position: absolute;
   display: grid;
   z-index: 1;
   height: 860px;
   width: 100%;
   margin-right: auto;
   margin-left: auto;
-  padding: 0 24px;
+  margin-bottom: 0;
   justify-content: center;
 }
 
@@ -147,4 +148,24 @@
   padding: 12px 30px;
   font-size: 16px;
   transition: all 2s ease-in-out;
+}
+
+.aboutContainer__wave {
+  position: relative;
+  top: 525px;
+  transition: all 2s ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .aboutContainer__wave {
+    display: none;
+    transition: all 2s ease-in-out;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1457px) {
+  .aboutContainer__wave {
+    top: 700px;
+    transition: all 2s ease-in-out;
+  }
 }

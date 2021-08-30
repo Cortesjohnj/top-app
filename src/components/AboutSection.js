@@ -1,11 +1,12 @@
 import React from 'react';
 import Dog from '../assets/images/Dog swimming-01.svg';
+import Wave from '../assets/images/wave.svg';
 import '../assets/styles/AboutSection.css';
 
 const AboutSection = () => {
   return (
     <>
-      <div className="aboutContainer" /*id={id}*/>
+      <div className="aboutContainer">
         <div className="aboutContainer__wrapper">
           <div className="aboutContainer__wrapper--row">
             <div className="aboutContainer__wrapper--column1">
@@ -40,6 +41,15 @@ const AboutSection = () => {
               </div>
             </div>
           </div>
+        </div>
+        <div className="aboutContainer__wave">
+          <object
+            className="aboutContainer__wave--img"
+            type="image/svg+xml"
+            data={Wave}
+          >
+            svg-animation
+          </object>
         </div>
       </div>
     </>
