@@ -8,7 +8,7 @@ import CardModal from './CardModal';
 
 import '../assets/styles/PetCard.css';
 
-const Card = (props) => {
+const PetCard = (props) => {
   const {
     _id,
     name,
@@ -89,4 +89,4 @@ const Card = (props) => {
   );
 };
 
-export default withRouter(Card);
+export default withRouter(PetCard);
