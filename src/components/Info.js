@@ -15,15 +15,14 @@ function Info() {
         </div>
         <div className="infoContainer__wrapper--textWrapper">
           <div className="infoContainer__wrapper--topLine">
-            Adopt your lifetime partner
+            We connect you with your dream pet
           </div>
           <h1 className="infoContainer__wrapper--heading">
-            Adopting is extremely easy
+            Just select a foundation, then select your favorite pet and you´re
+            ready to start the adoption process.
           </h1>
           <p className="infoContainer__wrapper--subtitle">
-            If you love spending time with a companion for life join us. We link
-            you with different foundations and pets that are waiting for you.
-            All you need to do is add your information
+            Your dream pet is waiting for you
           </p>
           {/* <div className="infoContainer__wrapper--btnWrap">
             <button className="infoContainer__wrapper--button" to="#">

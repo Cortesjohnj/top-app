@@ -97,9 +97,9 @@
 .infoContainer__wrapper--subtitle {
   max-width: 440px;
   margin-bottom: 35px;
-  font-size: 18px;
+  font-size: 22px;
   line-height: 24px;
-  color: white;
+  color: #3e2f90;
 }
 
 /* .infoContainer__wrapper--btnWrap {

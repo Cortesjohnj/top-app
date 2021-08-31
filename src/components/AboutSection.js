@@ -21,7 +21,7 @@ const AboutSection = () => {
             </p>
             <div className="aboutContainer__wrapper--btnWrap">
               <button className="aboutContainer__wrapper--button" to="home">
-                SIGN IN
+                ADOPT ME
               </button>
             </div>
           </div>
