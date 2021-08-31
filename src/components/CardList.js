@@ -1,5 +1,4 @@
 import "../assets/styles/CardList.css";
-import CardImage from "./CardImage";
 
 const CardList = ({ title, children }) => {
   return (
