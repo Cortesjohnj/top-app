@@ -15,7 +15,7 @@ const Card = (props) => {
   };
 
   const handleClick = () => {
-    !adopted && props.history.push("/request");
+    !adopted && props.history.push(`/request/${_id}`);
   };
 
   return (

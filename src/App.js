@@ -8,7 +8,7 @@ function App() {
       <Switch>
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/foundations/:id/pets" component={PetListPage} />
-        <Route exact path="/request" />
+        <Route exact path="/request/:id" />
       </Switch>
     </BrowserRouter>
   );
