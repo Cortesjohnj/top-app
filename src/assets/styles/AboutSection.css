@@ -1,6 +1,9 @@
 .aboutContainer {
   color: black;
-  background: #fff;
+  background-color: #fff;
+  background-image: url(../images/wave.svg);
+  background-repeat: no-repeat;
+  background-position: bottom;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,6 +13,7 @@
 @media (max-width: 768px) {
   .aboutContainer {
     padding: 100px 0;
+    background-image: none;
   }
 }
 
@@ -146,33 +150,4 @@
   padding: 12px 30px;
   font-size: 16px;
   transition: all 2s ease-in-out;
-}
-
-.aboutContainer__wave {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 594px;
-  transition: all 2s ease-in-out;
-}
-
-@media (max-width: 768px) {
-  .aboutContainer__wave {
-    display: none;
-    transition: all 2s ease-in-out;
-  }
-}
-
-@media (max-width: 1000px) {
-  .aboutContainer__wave {
-    top: 642px;
-    transition: all 2s ease-in-out;
-  }
-}
-
-@media (max-width: 843px) {
-  .aboutContainer__wave {
-    top: 679px;
-    transition: all 2s ease-in-out;
-  }
 }

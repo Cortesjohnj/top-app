@@ -1,6 +1,5 @@
 import React from 'react';
 import Dog from '../assets/images/Dog swimming-01.svg';
-import Wave from '../assets/images/wave.svg';
 import '../assets/styles/AboutSection.css';
 
 const AboutSection = () => {
@@ -36,15 +35,6 @@ const AboutSection = () => {
               svg-animation
             </object>
           </div>
-        </div>
-        <div className="aboutContainer__wave">
-          <object
-            className="aboutContainer__wave--img"
-            type="image/svg+xml"
-            data={Wave}
-          >
-            svg-animation
-          </object>
         </div>
       </div>
     </>
