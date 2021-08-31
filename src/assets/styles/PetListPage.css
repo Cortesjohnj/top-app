@@ -1,4 +1,27 @@
+html {
+  font-size: 10px;
+}
+
 .no-pets-message {
   margin-top: 40px;
   font-size: 26px;
+}
+
+.add-pets-icon {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  top: 85%;
+  right: 5%;
+}
+
+.add-pets-icon__icon {
+  font-size: 7rem;
+  color: var(--blue-pigment);
+  background-color: var(--soft-blue);
+  border-radius: 100%;
+  border: 5px solid var(--soft-blue);
 }
