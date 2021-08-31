@@ -8,7 +8,7 @@ import CardModal from "./CardModal";
 
 import "../assets/styles/PetCard.css";
 
-const Card = (props) => {
+const PetCard = (props) => {
   const {
     _id,
     name,
