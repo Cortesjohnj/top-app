@@ -1,6 +1,10 @@
 .aboutContainer {
   color: black;
   background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 @media (max-width: 768px) {
@@ -10,27 +14,17 @@
 }
 
 .aboutContainer__wrapper {
-  position: absolute;
-  display: grid;
+  position: relative;
   z-index: 1;
-  height: 860px;
+  min-height: 100vh;
   width: 100%;
-  margin-right: auto;
-  margin-left: auto;
-  margin-bottom: 0;
+  display: flex;
+  align-items: center;
   justify-content: center;
 }
 
-.aboutContainer__wrapper--row {
-  display: grid;
-  grid-auto-columns: 1fr;
-  align-items: center;
-  grid-template-areas: 'col2 col1';
-}
-
 @media (max-width: 768px) {
-  .aboutContainer__wrapper--row {
-    grid-template-areas: "'col2' 'col1";
+  .aboutContainer__wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -38,22 +32,11 @@
   }
 }
 
-.aboutContainer__wrapper--column1 {
-  margin-bottom: 15px;
-  padding: 0 15px;
-  grid-area: col1;
-}
-
-.aboutContainer__wrapper--column2 {
-  margin-bottom: 15px;
-  padding: 0 15px;
-  grid-area: col2;
-}
-
 .aboutContainer__wrapper--textWrapper {
   max-width: 540px;
   padding-top: 0;
   padding-bottom: 60px;
+  margin: 0 44px;
 }
 
 @media (max-width: 768px) {
@@ -110,14 +93,29 @@
 }
 
 .aboutContainer__wrapper--imgWrap {
-  max-width: 555px;
-  height: 100%;
+  max-width: 600px;
+  transition: all 0.2s ease-in-out;
 }
 
 .aboutContainer__wrapper--img {
-  width: 100%;
+  width: 600px;
+  height: 100%;
   margin: 0 0 10px 0;
   padding-right: 0;
+}
+
+@media (max-width: 768px) {
+  .aboutContainer__wrapper--img {
+    width: 400px;
+    transition: all 0.2s ease-in-out;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 899px) {
+  .aboutContainer__wrapper--img {
+    width: 400px;
+    transition: all 0.2s ease-in-out;
+  }
 }
 
 @media (max-width: 480px) {
@@ -151,8 +149,10 @@
 }
 
 .aboutContainer__wave {
-  position: relative;
-  top: 525px;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 594px;
   transition: all 2s ease-in-out;
 }
 
@@ -163,9 +163,16 @@
   }
 }
 
-@media (min-width: 768px) and (max-width: 1457px) {
+@media (max-width: 1000px) {
   .aboutContainer__wave {
-    top: 700px;
+    top: 642px;
+    transition: all 2s ease-in-out;
+  }
+}
+
+@media (max-width: 843px) {
+  .aboutContainer__wave {
+    top: 679px;
     transition: all 2s ease-in-out;
   }
 }

@@ -1,0 +1,10 @@
+.infoContainer {
+  background: #d6c9c9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 30px;
+  height: 860px;
+  width: 100%;
+  z-index: 1;
+}

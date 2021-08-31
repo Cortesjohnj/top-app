@@ -1,7 +1,7 @@
 .navBar {
   background: #3e2f90;
-  height: 80px;
-  /* margin-top: -80px; */
+  min-height: 8vh;
+  margin: auto;
   display: flex;
   justify-content: center;
   align-items: center;
