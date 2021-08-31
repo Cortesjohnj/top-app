@@ -6,7 +6,7 @@ import CardImage from "./CardImage";
 import "../assets/styles/PetCard.css";
 
 const Card = (props) => {
-  const { _id, name, description, photo_url, adopted } = props;
+  const { _id, name, description, photo_url, adopted, redirectUrl } = props;
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -15,7 +15,7 @@ const Card = (props) => {
   };
 
   const handleClick = () => {
-    !adopted && props.history.push(`/request/${_id}`);
+    !adopted && props.history.push(`${redirectUrl}${_id}`);
   };
 
   return (

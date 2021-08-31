@@ -9,7 +9,7 @@ const PetListPage = () => {
   return (
     <CardList title="Are you looking for a new friend?">
       {pets.map((item) => (
-        <PetCard key={item._id} {...item} />
+        <PetCard key={item._id} {...item} redirectUrl="/request/" />
       ))}
     </CardList>
   );
