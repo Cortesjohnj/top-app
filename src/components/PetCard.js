@@ -28,11 +28,16 @@ const Card = (props) => {
   };
 
   const handleOpenModal = () => {
-    setModalIsOpen(!modalIsOpen);
+    !adopted && setModalIsOpen(!modalIsOpen);
   };
 
   const handleClick = () => {
     !adopted && props.history.push(`${redirectUrl}${_id}`);
+  };
+
+  const handleDeletePet = (id) => () => {
+    console.log('Pet deleted!');
+    handleOpenModal();
   };
 
   return (
@@ -72,7 +77,13 @@ const Card = (props) => {
         <CardImage photo_url={photo_url} handleOpenImage={handleOpenImage} />
       )}
       {modalIsOpen && (
-        <CardModal photo_url={photo_url} handleOpenModal={handleOpenModal} />
+        <CardModal
+          photo_url={photo_url}
+          handleOpenModal={handleOpenModal}
+          id={_id}
+          name={name}
+          handleDeletePet={handleDeletePet}
+        />
       )}
     </>
   );
