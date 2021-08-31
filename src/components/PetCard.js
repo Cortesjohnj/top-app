@@ -1,11 +1,11 @@
-import { useState } from "react";
-import { withRouter } from "react-router-dom";
+import { useState } from 'react';
+import { withRouter } from 'react-router-dom';
 
-import CardImage from "./CardImage";
+import CardImage from './CardImage';
 
-import "../assets/styles/PetCard.css";
+import '../assets/styles/PetCard.css';
 
-const Card = (props) => {
+const PetCard = (props) => {
   const { _id, name, description, photo_url, adopted, redirectUrl } = props;
 
   const [isOpen, setIsOpen] = useState(false);
@@ -45,4 +45,4 @@ const Card = (props) => {
   );
 };
 
-export default withRouter(Card);
+export default withRouter(PetCard);
