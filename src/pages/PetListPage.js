@@ -15,14 +15,24 @@ const PetListPage = () => {
   const filteredPets = pets.filter(
     (item) => item.foundation_id === +foundation_id
   );
+  let redirectUrl = '';
+
+  //This variables comes from the user session, I will set it manually for testing purposes
   const isFoundation = true;
+
+  isFoundation ? (redirectUrl = '/pets/') : (redirectUrl = '/request/');
 
   return (
     <>
       <CardList title="Are you looking for a new friend?">
         {filteredPets.length > 0 ? (
           filteredPets.map((item) => (
-            <PetCard key={item._id} {...item} redirectUrl="/request/" />
+            <PetCard
+              key={item._id}
+              {...item}
+              redirectUrl={redirectUrl}
+              isFoundation={isFoundation}
+            />
           ))
         ) : (
           <h1 className="no-pets-message">
@@ -34,13 +44,13 @@ const PetListPage = () => {
         <IconContext.Provider
           value={{
             color: 'var(--blue-pigment)',
-            className: 'add-pets-icon__icon',
+            className: 'add-pets-container__icon',
           }}
         >
-          <Link to={`foundation/${foundation_id}/new-pet`}>
-            <div className="add-pets-icon">
+          <Link to={`/foundations/${foundation_id}/new-pet`}>
+            <div className="add-pets-container">
               {' '}
-              <FaPlusCircle className="add-pets-icon__icon" />
+              <FaPlusCircle />
             </div>
           </Link>
         </IconContext.Provider>

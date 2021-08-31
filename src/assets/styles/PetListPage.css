@@ -7,7 +7,7 @@ html {
   font-size: 26px;
 }
 
-.add-pets-icon {
+.add-pets-container {
   position: fixed;
   display: flex;
   align-items: center;
@@ -18,9 +18,8 @@ html {
   right: 5%;
 }
 
-.add-pets-icon__icon {
+.add-pets-container__icon {
   font-size: 7rem;
-  color: var(--blue-pigment);
   background-color: var(--soft-blue);
   border-radius: 100%;
   border: 5px solid var(--soft-blue);

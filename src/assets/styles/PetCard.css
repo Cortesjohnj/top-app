@@ -7,7 +7,7 @@ html {
   display: inline-block;
   overflow: hidden;
   width: 300px;
-  height: 350px;
+  height: 400px;
   margin: 10px;
   border-radius: 20px;
   font-size: 1.6rem;
@@ -24,7 +24,7 @@ html {
 }
 
 .card-list-item__details {
-  height: 150px;
+  height: 200px;
   background-color: var(--soft-blue);
   text-align: start;
   padding: 10px;
@@ -45,6 +45,7 @@ html {
   position: absolute;
   top: calc(50% - 40px);
   right: calc(50% - 100px);
+  z-index: 10;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -66,4 +67,17 @@ html {
 
 .image {
   width: 300px;
+}
+
+.delete-pets-container {
+  position: absolute;
+  top: calc(100% - 70px);
+  left: calc(100% - 90px);
+  z-index: 10;
+  width: 70px;
+  height: 70px;
+}
+
+.delete-pets-container__icon {
+  font-size: 7rem;
 }
