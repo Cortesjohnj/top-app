@@ -20,7 +20,7 @@ const AboutSection = () => {
               you. All you need to do is add your information
             </p>
             <div className="aboutContainer__wrapper--btnWrap">
-              <button className="aboutContainer__wrapper--button" to="home">
+              <button className="aboutContainer__wrapper--button" to="/signup">
                 ADOPT ME
               </button>
             </div>

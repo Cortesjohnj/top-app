@@ -1,8 +1,8 @@
-import React from 'react';
 import { FaBars } from 'react-icons/fa';
 import { MdPets } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { Link as LinkScroll } from 'react-scroll';
+import { animateScroll as ScrollToTop } from 'react-scroll';
 import '../assets/styles/Navbar.css';
 
 function Navbar({ toggle }) {
@@ -18,18 +18,29 @@ function Navbar({ toggle }) {
             <FaBars onClick={toggle} />
           </div>
           <ul className="navBar__container--navMenu">
-            <li className="navBar__container--navItem">
-              <LinkScroll className="navBar__container--navLinks" to="about">
-                ABOUT
-              </LinkScroll>
+            <li
+              className="navBar__container--navItem"
+              onClick={() => ScrollToTop.scrollToTop()}
+            >
+              <div className="navBar__container--navLinks">ABOUT</div>
             </li>
             <li className="navBar__container--navItem">
-              <LinkScroll className="navBar__container--navLinks" to="info">
+              <LinkScroll
+                className="navBar__container--navLinks"
+                to="info"
+                smooth={true}
+                duration={1000}
+              >
                 INFO
               </LinkScroll>
             </li>
             <li className="navBar__container--navItem">
-              <LinkScroll className="navBar__container--navLinks" to="helpUs">
+              <LinkScroll
+                className="navBar__container--navLinks"
+                to="helpUs"
+                smooth={true}
+                duration={1000}
+              >
                 HELP US
               </LinkScroll>
             </li>

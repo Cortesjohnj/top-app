@@ -5,7 +5,7 @@ import '../assets/styles/HelpUs.css';
 const HelpUsSection = () => {
   return (
     <>
-      <div className="joinUsContainer">
+      <div className="joinUsContainer" id="helpUs">
         <div className="joinUsContainer__wrapper">
           <div className="joinUsContainer__wrapper--imgWrap">
             <object
@@ -24,11 +24,11 @@ const HelpUsSection = () => {
               You can help our foundations
             </h1>
             <p className="joinUsContainer__wrapper--subtitle">
-              If you aren't interested inm adopting a pet, you can hel the
+              If you aren't interested in adopting a pet, you can help the
               foundations maintain their herd with a donation.
             </p>
             <div className="joinUsContainer__wrapper--btnWrap">
-              <button className="joinUsContainer__wrapper--button" to="home">
+              <button className="joinUsContainer__wrapper--button" to="/donate">
                 DONATE
               </button>
             </div>
