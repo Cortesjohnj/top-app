@@ -71,13 +71,22 @@ html {
 
 .delete-pets-container {
   position: absolute;
-  top: calc(100% - 70px);
-  left: calc(100% - 90px);
+  top: calc(100% - 55px);
+  left: calc(100% - 65px);
   z-index: 10;
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 45px;
+  vertical-align: middle;
+  border-radius: 5px;
+  transition: background-color 200ms;
+}
+
+.delete-pets-container:hover {
+  background-color: var(--blue-pigment);
 }
 
 .delete-pets-container__icon {
+  height: 100%;
+  width: 100%;
   font-size: 7rem;
 }

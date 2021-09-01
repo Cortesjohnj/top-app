@@ -1,4 +1,4 @@
-import '../assets/styles/CardImage.css';
+import "../assets/styles/CardImage.css";
 
 const CardImage = ({ photo_url, handleOpenImage }) => {
   return (

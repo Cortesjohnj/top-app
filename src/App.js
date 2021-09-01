@@ -1,6 +1,6 @@
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import LoginPage from './pages/LoginPage';
-import PetListPage from './pages/PetListPage';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import LoginPage from "./pages/LoginPage";
+import PetListPage from "./pages/PetListPage";
 
 function App() {
   return (
@@ -8,8 +8,8 @@ function App() {
       <Switch>
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/foundations/:id/pets" component={PetListPage} />
-        <Route exact path="/request/:id" />
-        <Route exact path="foundation/:id/new-pet" />
+        <Route exact path="/pets/:id/request" />
+        <Route exact path="foundations/:id/add-pet" />
       </Switch>
     </BrowserRouter>
   );
