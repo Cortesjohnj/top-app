@@ -31,7 +31,6 @@ const LoginPage = (props) => {
   };
 
   const handleSubmit = (event) => {
-    console.log("done");
     event.preventDefault();
     const user = MockData.users.filter(
       (user) => user.email === formState.email
