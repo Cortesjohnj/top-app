@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import AboutSection from '../components/AboutSection';
 import Info from '../components/Info';
-import JoinUsSection from '../components/JoinUs';
+import HelpUsSection from '../components/HelpUs';
 import Navbar from '../components/Navbar';
 import SideBar from '../components/SideBar';
+import Whastapp from '../components/Whastapp';
 
 function Home() {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,7 +19,8 @@ function Home() {
       <Navbar toggle={toggle} />
       <AboutSection />
       <Info />
-      <JoinUsSection />
+      <HelpUsSection />
+      <Whastapp />
     </>
   );
 }

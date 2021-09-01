@@ -21,16 +21,16 @@ function SideBar({ isOpen, toggle }) {
           <LinkScroll className="sideBar__container--link" to="about">
             ABOUT
           </LinkScroll>
-          <LinkScroll className="sideBar__container--link" to="services">
-            SERVICES
+          <LinkScroll className="sideBar__container--link" to="info">
+            INFO
           </LinkScroll>
-          <LinkScroll className="sideBar__container--link" to="signUp">
-            SIGN UP
+          <LinkScroll className="sideBar__container--link" to="helpUs">
+            HELP US
           </LinkScroll>
         </ul>
         <div className="sideBar__container--btnWrap">
-          <Link className="sideBar__container--route" to="/signIn">
-            SIGN IN
+          <Link className="sideBar__container--route" to="/signup">
+            SIGN UP
           </Link>
         </div>
       </div>

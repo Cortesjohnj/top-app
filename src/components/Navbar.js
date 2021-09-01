@@ -24,19 +24,19 @@ function Navbar({ toggle }) {
               </LinkScroll>
             </li>
             <li className="navBar__container--navItem">
-              <LinkScroll className="navBar__container--navLinks" to="services">
-                SERVICES
+              <LinkScroll className="navBar__container--navLinks" to="info">
+                INFO
               </LinkScroll>
             </li>
             <li className="navBar__container--navItem">
-              <LinkScroll className="navBar__container--navLinks" to="signUp">
-                SIGN UP
+              <LinkScroll className="navBar__container--navLinks" to="helpUs">
+                HELP US
               </LinkScroll>
             </li>
           </ul>
           <nav className="navBar__container--nav">
-            <Link className="navBar__container--navBtnLink" to="/signIn">
-              SIGN IN
+            <Link className="navBar__container--navBtnLink" to="/signup">
+              SIGN UP
             </Link>
           </nav>
         </div>

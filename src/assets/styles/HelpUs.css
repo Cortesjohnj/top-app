@@ -130,6 +130,13 @@
   .joinUsContainer__wrapper--imgWrap {
     display: flex;
     align-items: center;
+    justify-content: center;
+    width: 300px;
+    transition: all 0.2s ease-in-out;
+  }
+  .joinUsContainer__wrapper--img {
+    width: 300px;
+    transition: all 0.2s ease-in-out;
   }
 }
 
