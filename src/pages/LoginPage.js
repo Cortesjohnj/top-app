@@ -21,7 +21,7 @@ const LoginPage = (props) => {
   };
 
   const handleVerifyEmail = (event) => {
-    const check = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
+    const check = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(
       event.target.value
     );
     setFormState((formState) => ({
@@ -31,7 +31,6 @@ const LoginPage = (props) => {
   };
 
   const handleSubmit = (event) => {
-    console.log("done");
     event.preventDefault();
     const user = MockData.users.filter(
       (user) => user.email === formState.email
