@@ -8,7 +8,8 @@ function App() {
       <Switch>
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/foundations/:id/pets" component={PetListPage} />
-        <Route exact path="/request/:id" />
+        <Route exact path="/pets/:id/request" />
+        <Route exact path="foundations/:id/add-pet" />
       </Switch>
     </BrowserRouter>
   );
