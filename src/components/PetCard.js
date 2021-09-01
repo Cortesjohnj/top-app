@@ -7,6 +7,9 @@ import axios from "axios";
 import CardImage from "./CardImage";
 import CardModal from "./CardModal";
 
+//Testing with Mock Data
+import MockData from "../MockData";
+
 import "../assets/styles/PetCard.css";
 
 const PetCard = (props) => {
@@ -19,6 +22,11 @@ const PetCard = (props) => {
     redirectUrl,
     isFoundation,
   } = props;
+
+  //Using Mock Data to test the number box
+  const requests = MockData.adoptionRegistry.filter(
+    (item) => item.pet_id === _id
+  );
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -56,38 +64,43 @@ const PetCard = (props) => {
 
   return (
     <>
-      <div className="card-list-item">
-        {adopted && (
-          <div className="card-list-message">
-            <p>Adopted</p>
+      <div className="overflow--hidden">
+        {requests.length > 0 && (
+          <div className="card-list-number">
+            <p>{requests.length}</p>
           </div>
         )}
-        <img
-          className="card-list-item__image"
-          src={photo_url}
-          alt="Pet"
-          onClick={handleOpenImage}
-          href={photo_url}
-        />
-        <div className="card-list-item__details" onClick={handleClick}>
-          <h3 className="card-list-item__details--title">{name}</h3>
-          <p className="card-list-item__details--text">{description}</p>
-        </div>
-        {isFoundation && (
-          <IconContext.Provider
-            value={{
-              color: "red",
-              className: "delete-pets-container__icon",
-            }}
-          >
-            <div className="delete-pets-container" onClick={handleOpenModal}>
-              {" "}
-              <FaMinus />
+
+        <div className="card-list-item">
+          {adopted && (
+            <div className="card-list-message">
+              <p>Adopted</p>
             </div>
-          </IconContext.Provider>
-        )}
-        <div className="card-list-number">
-          <p>2</p>
+          )}
+          <img
+            className="card-list-item__image"
+            src={photo_url}
+            alt="Pet"
+            onClick={handleOpenImage}
+            href={photo_url}
+          />
+          <div className="card-list-item__details" onClick={handleClick}>
+            <h3 className="card-list-item__details--title">{name}</h3>
+            <p className="card-list-item__details--text">{description}</p>
+          </div>
+          {isFoundation && (
+            <IconContext.Provider
+              value={{
+                color: "red",
+                className: "delete-pets-container__icon",
+              }}
+            >
+              <div className="delete-pets-container" onClick={handleOpenModal}>
+                {" "}
+                <FaMinus />
+              </div>
+            </IconContext.Provider>
+          )}
         </div>
       </div>
 

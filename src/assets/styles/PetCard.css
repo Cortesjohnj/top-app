@@ -2,6 +2,10 @@ html {
   font-size: 10px;
 }
 
+.overflow--hidden {
+  position: relative;
+}
+
 .card-list-item {
   position: relative;
   display: inline-block;
@@ -101,12 +105,15 @@ html {
   align-items: center;
   width: 50px;
   height: 50px;
-  vertical-align: middle;
   border-radius: 100%;
-  background-color: var(--soft-blue);
+  background-color: var(--blue-pigment);
+  border: 5px solid var(--soft-blue);
 }
 
 .card-list-number p {
   display: inline-block;
   margin: auto;
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--soft-blue);
 }
