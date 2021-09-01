@@ -10,6 +10,7 @@ html {
 .add-pets-container {
   position: fixed;
   display: flex;
+  z-index: 20;
   align-items: center;
   justify-content: center;
   width: 80px;
