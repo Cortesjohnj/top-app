@@ -86,7 +86,11 @@ const PetCard = (props) => {
             </div>
           </IconContext.Provider>
         )}
+        <div className="card-list-number">
+          <p>2</p>
+        </div>
       </div>
+
       {isOpen && (
         <CardImage photo_url={photo_url} handleOpenImage={handleOpenImage} />
       )}
