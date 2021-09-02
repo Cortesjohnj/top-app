@@ -20,6 +20,7 @@ const PetCard = (props) => {
     photo_url,
     adopted,
     redirectUrl,
+    age,
     isFoundation,
   } = props;
 
@@ -65,7 +66,7 @@ const PetCard = (props) => {
   return (
     <>
       <div className="overflow--hidden">
-        {requests.length > 0 && (
+        {isFoundation && requests.length > 0 && (
           <div className="card-list-number">
             <p>{requests.length}</p>
           </div>
@@ -86,6 +87,9 @@ const PetCard = (props) => {
           />
           <div className="card-list-item__details" onClick={handleClick}>
             <h3 className="card-list-item__details--title">{name}</h3>
+            <p className="card-list-item__details--text">
+              <span>Age:</span> {age}
+            </p>
             <p className="card-list-item__details--text">{description}</p>
           </div>
           {isFoundation && (

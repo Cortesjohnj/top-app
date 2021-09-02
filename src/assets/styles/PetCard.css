@@ -4,6 +4,7 @@ html {
 
 .overflow--hidden {
   position: relative;
+  display: inline-block;
 }
 
 .card-list-item {
@@ -11,7 +12,7 @@ html {
   display: inline-block;
   overflow: hidden;
   width: 300px;
-  height: 400px;
+  height: 430px;
   margin: 10px;
   border-radius: 20px;
   font-size: 1.6rem;
@@ -28,7 +29,7 @@ html {
 }
 
 .card-list-item__details {
-  height: 200px;
+  height: 230px;
   background-color: var(--soft-blue);
   text-align: start;
   padding: 10px;
@@ -40,9 +41,12 @@ html {
   margin-bottom: 5px;
 }
 
-.card-list-item__details a {
-  text-decoration: none;
-  color: var(--warm-black);
+.card-list-item__details--text {
+  margin-bottom: 5px;
+}
+
+.card-list-item__details--text span {
+  font-weight: bold;
 }
 
 .card-list-message {
