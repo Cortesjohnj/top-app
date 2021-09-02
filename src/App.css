@@ -4,11 +4,16 @@
   font-family: "Muli", sans-serif;
 }
 
+.link {
+  color: inherit;
+  text-decoration: inherit;
+}
 .container {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  margin-top: -25px;
 }
 
 .photo {
@@ -22,12 +27,15 @@
 
 .text {
   margin: 5px;
-  font-size: 18px;
+  font-size: 14pt;
 }
 
 .title {
-  margin: 5px;
-  font-size: 20px;
+  margin-left: 5px;
+  margin-top: auto;
+  margin-bottom: -5px;
+  font-size: 18pt;
+  font-weight: bold;
   color: #3e2f90;
 }
 
@@ -35,5 +43,15 @@
   height: 150px;
   width: 100%;
   object-fit: cover;
-  border-radius: 10px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.main-title {
+  font-size: 35pt;
+  font-weight: bold;
+  text-align: center;
+  color: #3e2f90;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }

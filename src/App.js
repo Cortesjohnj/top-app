@@ -1,37 +1,30 @@
 import "./App.css"
 import MockData from "./MockData"
-import { useState } from "react";
-
+import {BrowserRouter, Link} from 'react-router-dom'
 
 const Image = (props) => {
-    let [isOpen, setIsOpen] = useState(false);
-    const handleOpenImage = () => {
-        setIsOpen(!isOpen);
-      };
-    return <figure className="photo" >
-      <img className="image" src={props.photo_url} alt="pet" onClick= {handleOpenImage} />
-      <h1 className="title"> {props.name} </h1>
-          <figcaption className="text"> <b>Dirección</b>: {props.address} <br/><b>Email</b>: {props.email} <br/>
-            <b>Teléfono</b>: {props.phone} </figcaption>
-       </figure>
+  return <Link to={"/foundations/:" + props.id + "/pets"} className = "link">
+          <figure className="photo">
+          <img className="image" src={props.photo_url} alt="pet" />
+          <h2 className="title"> {props.name} </h2>
+          <h2 className="text"> <b>Dirección</b>: {props.address} <br/><b>Email</b>: {props.email} <br/>
+          <b>Teléfono</b>: {props.phone} </h2>
+          </figure>
+      </Link>
 }
 
-const Menu = () =>{
-  let rows = []
-  for (let i = 0; i < MockData.foundations.length; i++){
-    let foundation = MockData.foundations[i]
-    rows.push(  <Image name={foundation.name} address={foundation.address}
-      email={foundation.email} phone={foundation.phone_number} photo_url={foundation.photo_url}> </Image>)
-    
-  }
+const Menu = () => {
+  const rows = MockData.foundations.map(foundation => <Image name={foundation.name} address={foundation.address}
+      email={foundation.email} phone={foundation.phone_number} photo_url={foundation.photo_url} id = {foundation._id}> </Image>)
   return <div className= "container">{rows} </div>
 }
 
-const App = () => {
+function App( ) {
   return (
-    <div className="App">
+    <BrowserRouter>
+        <h1 className= "main-title"> Fundaciones </h1>
         <Menu />
-    </div>
+    </BrowserRouter>
   )
 }
 
