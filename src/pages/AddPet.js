@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import "../assets/styles/AddPet.css";
 import { PrimaryButton } from "../components/PrimaryButton";
+import axios from "axios";
 
 function AddPet() {
   const [pet, setPet] = useState({
@@ -70,6 +71,10 @@ function AddPet() {
   const submit = event => {
     event.preventDefault();
     console.log(pet);
+    axios
+      .post("https://jsonplaceholder.typicode.com/posts", pet)
+      .then(response => console.log(response))
+      .catch(error => console.log(error));
   };
 
   const InputChange = event => {
