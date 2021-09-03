@@ -4,5 +4,19 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Muli';
+}
+
+:root {
+  --blue-pigment: #3e2f90;
+  --alice-blue: #e8eef2;
+  --pale-silver: #d6c9c9;
+  --soft-blue: #e7f5ff;
+  --beau-blue: #c7d3dd;
+  --aero: #77b6ea;
+  --warm-black: #464646;
+  --border-color: #747474;
+}
+
+body {
+  font-family: 'Muli', sans-serif;
 }

@@ -11,7 +11,7 @@ import { Link as LinkScroll } from 'react-scroll';
 import { animateScroll as ScrollToTop } from 'react-scroll';
 
 const Footer = () => {
-  let isUser = false;
+  let isUser = !false;
 
   return (
     <footer className="footer">

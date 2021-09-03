@@ -8,7 +8,7 @@ import '../assets/styles/Navbar.css';
 
 function Navbar({ toggle }) {
   //Establish the logic of user id with backend
-  let isUser = false;
+  let isUser = !false;
 
   return (
     <>

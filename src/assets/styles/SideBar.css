@@ -72,6 +72,7 @@
 .sideBar__container--btnWrap {
   display: flex;
   justify-content: center;
+  margin-top: 50px;
 }
 
 .sideBar__container--route {

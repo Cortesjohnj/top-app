@@ -33,6 +33,11 @@ function SideBar({ isOpen, toggle }) {
           </LinkScroll>
         </ul>
         <div className="sideBar__container--btnWrap">
+          <Link className="sideBar__container--route" to="/login">
+            LOG IN
+          </Link>
+        </div>
+        <div className="sideBar__container--btnWrap">
           <Link className="sideBar__container--route" to="/signup">
             SIGN UP
           </Link>
