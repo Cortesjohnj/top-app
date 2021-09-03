@@ -27,7 +27,6 @@ function AddPet() {
       const fileArray = Array.from(event.dataTransfer.files).map(file =>
         URL.createObjectURL(file)
       );
-      console.log(fileArray);
 
       setSelectedImages(prevImages => prevImages.concat(fileArray));
       Array.from(event.dataTransfer.files).map(file =>
@@ -48,14 +47,12 @@ function AddPet() {
       const fileArray = Array.from(event.target.files).map(file =>
         URL.createObjectURL(file)
       );
-      console.log(fileArray);
+
       setSelectedImages(prevImages => prevImages.concat(fileArray));
       Array.from(event.target.files).map(file => URL.revokeObjectURL(file));
     }
 
     let imageFile = event.target.files;
-    console.log(imageFile);
-
     setPet(prevState => ({
       ...prevState,
       petPhotos: [...prevState.petPhotos, ...imageFile],
