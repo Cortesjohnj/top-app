@@ -3,6 +3,7 @@ html {
 }
 
 .request-container {
+  position: relative;
   display: flex;
   flex-direction: column;
   height: auto;
@@ -27,11 +28,12 @@ html {
 .request-container__buttons {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
 }
 
 .request-container__buttons button {
   width: 70px;
-  margin: 5px 5px 0 5px;
+  margin: 0 5px;
   padding: 3px;
   font-weight: bold;
   border-radius: 5px;
@@ -46,4 +48,27 @@ html {
 .request-container__buttons .button-reject {
   background-color: red;
   color: var(--soft-blue);
+}
+
+.request-container__lower-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.request-container__lower-text p {
+  font-size: 1.4rem;
+}
+
+.request-container__lower-text span {
+  font-weight: bold;
+}
+
+.request-container__lower-text .status-green {
+  color: green;
+}
+
+.request-container__lower-text .status-red {
+  color: red;
 }

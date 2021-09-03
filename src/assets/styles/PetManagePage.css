@@ -18,14 +18,18 @@ html {
   width: 60%;
   min-width: 320px;
   max-width: 600px;
-  margin: 0 auto;
+  margin: 15px auto;
+  padding-bottom: 15px;
+  background-color: var(--soft-blue);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.16);
 }
 
 .pet-info__image {
   width: 90%;
   min-width: 288px;
   margin-bottom: 20px;
-  margin-top: 30px;
+  margin-top: 20px;
   object-fit: cover;
 }
 
