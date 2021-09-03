@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Link as LinkScroll } from 'react-scroll';
+import { animateScroll as ScrollToTop } from 'react-scroll';
 import '../assets/styles/SideBar.css';
 import { FaTimes } from 'react-icons/fa';
 
@@ -18,9 +19,12 @@ function SideBar({ isOpen, toggle }) {
       </div>
       <div className="sideBar__container--wrapper">
         <ul className="sideBar__container--menu">
-          <LinkScroll className="sideBar__container--link" to="about">
+          <li
+            className="sideBar__container--link"
+            onClick={() => ScrollToTop.scrollToTop()}
+          >
             ABOUT
-          </LinkScroll>
+          </li>
           <LinkScroll className="sideBar__container--link" to="info">
             INFO
           </LinkScroll>

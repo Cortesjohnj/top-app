@@ -97,6 +97,7 @@
 .joinUsContainer__wrapper--btnWrap {
   display: flex;
   justify-content: center;
+  text-decoration: none;
 }
 
 .joinUsContainer__wrapper--imgWrap {

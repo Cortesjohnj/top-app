@@ -43,8 +43,36 @@
   font-size: 2em;
 }
 
-.navBar__container--mobileIcon {
+.navBar__container--profilePicWrapper1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navBar__container--profilePicWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navBar__container--profilePic {
+  cursor: pointer;
+  border: 2px solid #fff;
+  border-radius: 50px;
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+}
+
+.navBar__container--profilePic1 {
   display: none;
+}
+
+.navBar__container--mobileIcon {
+  position: absolute;
+  display: none;
+  opacity: 0%;
+  top: -100%;
 }
 
 @media (max-width: 768px) {
@@ -53,10 +81,20 @@
     position: absolute;
     top: 0;
     right: 0;
+    opacity: 100%;
     transform: translate(-100%, 60%);
     font-size: 1.8rem;
     cursor: pointer;
     color: #fff;
+  }
+  .navBar__container--profilePic1 {
+    display: block;
+    cursor: pointer;
+    border: 2px solid #fff;
+    border-radius: 50px;
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
   }
 }
 
@@ -74,6 +112,10 @@
   }
 }
 
+.navBar__container--navMenu--hide {
+  display: none;
+}
+
 .navBar__container--navItem {
   height: 80px;
 }
@@ -89,6 +131,59 @@
 }
 
 .navBar__container--navLinks:active {
+  border-bottom: 3px solid #d6c9c9;
+}
+
+.navBar__container--navMenu2 {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  text-align: center;
+  margin-right: -22px;
+}
+
+@media (max-width: 768px) {
+  .navBar__container--navMenu2 {
+    display: none;
+  }
+}
+
+.navBar__container--navMenu2--hide {
+  display: none;
+}
+
+.navBar__container--navItem2 {
+  height: 80px;
+}
+
+.navBar__container--navLinks2 {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0 1rem;
+  height: 100%;
+  cursor: pointer;
+}
+
+.navBar__container--donate:hover {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  margin: 0.05rem;
+  height: 100%;
+  border-radius: 50px;
+  background: gold;
+  cursor: pointer;
+  color: black;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+}
+
+.navBar__container--navLinks2:active {
   border-bottom: 3px solid #d6c9c9;
 }
 

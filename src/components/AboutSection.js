@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Dog from '../assets/images/Dog swimming-01.svg';
 import '../assets/styles/AboutSection.css';
 
@@ -19,11 +20,11 @@ const AboutSection = () => {
               link you with different foundations and pets that are waiting for
               you. All you need to do is add your information
             </p>
-            <div className="aboutContainer__wrapper--btnWrap">
-              <button className="aboutContainer__wrapper--button" to="/signup">
+            <Link className="aboutContainer__wrapper--btnWrap" to="/signup">
+              <button className="aboutContainer__wrapper--button">
                 ADOPT ME
               </button>
-            </div>
+            </Link>
           </div>
 
           <div className="aboutContainer__wrapper--imgWrap">

@@ -6,10 +6,13 @@ import {
   FaInstagram,
   FaLinkedin,
 } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import { Link as LinkScroll } from 'react-scroll';
 import { animateScroll as ScrollToTop } from 'react-scroll';
 
 const Footer = () => {
+  let isUser = false;
+
   return (
     <footer className="footer">
       <div className="footer__wrapper">
@@ -56,31 +59,54 @@ const Footer = () => {
 
         <div className="footer__wrapper--quick-links">
           <ul>
-            <li
-              className="footer__wrapper--quick-items"
-              onClick={() => ScrollToTop.scrollToTop()}
-            >
-              <div className="footer__wrapper--navLinks">ABOUT</div>
+            <li className="footer__wrapper--quick-items">
+              {isUser ? (
+                <Link className="footer__wrapper--navLinks" to="/foundations">
+                  FOUNDATIONS
+                </Link>
+              ) : (
+                <div
+                  className="footer__wrapper--navLinks"
+                  onClick={() => ScrollToTop.scrollToTop()}
+                >
+                  ABOUT
+                </div>
+              )}
             </li>
             <li className="footer__wrapper--quick-items">
-              <LinkScroll
-                className="footer__wrapper--navLinks"
-                to="info"
-                smooth={true}
-                duration={1000}
-              >
-                INFO
-              </LinkScroll>
+              {isUser ? (
+                <Link
+                  className="footer__wrapper--navLinks"
+                  to="/foundations/:id/pets"
+                >
+                  PETS
+                </Link>
+              ) : (
+                <LinkScroll
+                  className="footer__wrapper--navLinks"
+                  to="info"
+                  smooth={true}
+                  duration={1000}
+                >
+                  INFO
+                </LinkScroll>
+              )}
             </li>
             <li className="footer__wrapper--quick-items">
-              <LinkScroll
-                className="footer__wrapper--navLinks"
-                to="helpUs"
-                smooth={true}
-                duration={1000}
-              >
-                HELP US
-              </LinkScroll>
+              {isUser ? (
+                <Link className="footer__wrapper--navLinks" to="/donate">
+                  DONATE
+                </Link>
+              ) : (
+                <LinkScroll
+                  className="footer__wrapper--navLinks"
+                  to="helpUs"
+                  smooth={true}
+                  duration={1000}
+                >
+                  HELP US
+                </LinkScroll>
+              )}
             </li>
           </ul>
         </div>

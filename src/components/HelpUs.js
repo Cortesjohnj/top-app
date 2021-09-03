@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Dog2 from '../assets/images/undraw_good_doggy_4wfq.svg';
 import '../assets/styles/HelpUs.css';
 
@@ -27,11 +28,11 @@ const HelpUsSection = () => {
               If you aren't interested in adopting a pet, you can help the
               foundations maintain their herd with a donation.
             </p>
-            <div className="joinUsContainer__wrapper--btnWrap">
-              <button className="joinUsContainer__wrapper--button" to="/donate">
+            <Link className="joinUsContainer__wrapper--btnWrap" to="/donate">
+              <button className="joinUsContainer__wrapper--button">
                 DONATE
               </button>
-            </div>
+            </Link>
           </div>
         </div>
       </div>

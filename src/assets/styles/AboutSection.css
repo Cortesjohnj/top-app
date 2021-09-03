@@ -93,6 +93,7 @@
 .aboutContainer__wrapper--btnWrap {
   display: flex;
   justify-content: flex-start;
+  text-decoration: none;
 }
 
 .aboutContainer__wrapper--imgWrap {

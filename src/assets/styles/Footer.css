@@ -39,6 +39,9 @@
 
 .footer__wrapper--quick-links {
   width: 410px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .footer__wrapper--quick-links > ul {
@@ -57,13 +60,15 @@
   list-style: none;
   padding: 5px 0;
   color: #e8eef2;
+  padding: 50px 20px;
+  font-size: 15px;
 }
 
 .footer__wrapper--navLinks {
   text-decoration: none;
   padding: 15px 20px;
-  font-size: 15px;
   cursor: pointer;
+  color: #e8eef2;
 }
 
 .footer__outer-footer {
