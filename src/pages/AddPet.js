@@ -35,7 +35,10 @@ function AddPet() {
     }
 
     let imageFile = event.dataTransfer.files;
-    setPet(() => [...pet, imageFile]);
+    setPet(prevState => ({
+      ...prevState,
+      petPhotos: [...prevState.petPhotos, ...imageFile],
+    }));
     setCounter(counter + imageFile.length);
   };
 
@@ -52,8 +55,10 @@ function AddPet() {
     let imageFile = event.target.files;
     console.log(imageFile);
 
-    setPet(() => [...pet, event.target.files]);
-
+    setPet(prevState => ({
+      ...prevState,
+      petPhotos: [...prevState.petPhotos, ...imageFile],
+    }));
     setCounter(counter + event.target.files.length);
   };
 
