@@ -1,4 +1,6 @@
 import React, { useRef, useState } from "react";
+import { FaCloudUploadAlt } from "react-icons/fa";
+import "../assets/styles/AddPet.css";
 import { PrimaryButton } from "../components/PrimaryButton";
 
 function AddPet() {
@@ -82,7 +84,9 @@ function AddPet() {
             multiple
           >
             <p>Click to select or drag and drop your Pet images here....</p>
-            <i className="container__dropzone--uploadIcon"></i>
+            <i className="container__dropzone--uploadIcon">
+              <FaCloudUploadAlt />
+            </i>
           </div>
           <div className="container__dropzone--inputs">
             <h3>{`Images uploaded: ${counter}`}</h3>
@@ -116,7 +120,7 @@ function AddPet() {
               placeholder="Write a pet's description"
               onChange={InputChange}
             />
-            <PrimaryButton name={"Add Pet"} color={"azul"} />
+            <PrimaryButton children={"Add Pet"} color={"azul"} />
           </div>
         </form>
         {selectedImages.map(photo => {

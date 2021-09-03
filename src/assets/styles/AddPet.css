@@ -1,0 +1,98 @@
+h2 {
+  color: var(--aero);
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+h3 {
+  margin-bottom: 10px;
+  color: var(--warm-black);
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
+}
+
+img {
+  width: 100px;
+  height: 100px;
+  border-radius: 4px;
+ display: inline-block;
+}
+
+.registerPets {
+  padding:15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+}
+
+.registerPets__container {
+  width: 50%;
+  min-width: 320px;
+  max-width: 600px;
+  padding: 30px 8px 40px;
+} 
+
+.container__dropzone{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  height: 180px;
+  width: 100%;
+  background: white;
+  background-repeat: no-repeat;
+  background-size: 100px;
+  background-position: center;
+  background-color: #ffffff;
+  cursor: pointer;
+  border: 2px dashed var(--beau-blue);
+  border-radius: 6px;
+  margin-bottom: 20px;
+  background-position: center 28px;
+}
+.container__dropzone > p {
+  font-size: 1.2rem;
+  text-align: center;
+  color:var(--aero);
+  font-weight: 600;
+}
+
+.container__dropzone--uploadIcon{
+  color:var(--aero);
+  font-size: 50px;
+  display: flex;
+  justify-content: center;  
+}
+
+.container__dropzone--inputs{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;  
+}
+
+
+.container__dropzone--inputs input {  
+  margin-bottom: 10px;
+  padding-top: 0px;  
+}
+
+.container__dropzone--inputs input, textarea {    
+  font-size: 1rem;
+  border: none;
+  background: var(--alice-blue);
+  padding: 12px;
+  border-radius: 3px;
+  padding-top: 5px;
+  margin-bottom: 10px;
+  resize: none;
+  text-align: center;
+}
+
+
+
+::-webkit-input-placeholder {
+  text-align: center;  
+}
