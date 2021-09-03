@@ -1,0 +1,26 @@
+.primaryButton{
+  background-color: var(--blue-pigment);
+  border: none;
+  border-radius: 25px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  height: 50px;
+  letter-spacing: 1px;
+  margin: 10px 0;
+  width: 80%;
+}
+
+.azul {  
+  background-color: var(--aero);
+  border: none;
+  border-radius: 25px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  height: 50px;
+  letter-spacing: 1px;
+  margin: 10px 0;  
+}
