@@ -1,17 +1,23 @@
 import "../assets/styles/AdoptionRequest.css";
 
-const AdoptionRequest = () => {
+const AdoptionRequest = ({ request, user_name, handleRequest }) => {
   return (
     <div className="request-container">
-      <div className="request-container__text">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A quam ab
-        placeat, nesciunt ipsum, voluptates nihil culpa beatae impedit tenetur
-        eius sunt suscipit facere totam consequuntur necessitatibus illum
-        corporis quidem?
-      </div>
+      <h2 className="request-container__name">{user_name}</h2>
+      <div className="request-container__text">{request.description}</div>
       <div className="request-container__buttons">
-        <button className="button-accept">Accept</button>
-        <button className="button-reject">Reject</button>
+        <button
+          className="button-accept"
+          onClick={handleRequest(request, "approved")}
+        >
+          Accept
+        </button>
+        <button
+          className="button-reject"
+          onClick={handleRequest(request, "rejected")}
+        >
+          Reject
+        </button>
       </div>
     </div>
   );

@@ -23,7 +23,7 @@ const PetListPage = () => {
   isFoundation ? (redirectUrl = "/manage") : (redirectUrl = "/request");
 
   return (
-    <>
+    <div className="background-container">
       <CardList title="Are you looking for a new friend?">
         {filteredPets.length > 0 ? (
           filteredPets.map((item) => (
@@ -55,7 +55,7 @@ const PetListPage = () => {
           </Link>
         </IconContext.Provider>
       )}
-    </>
+    </div>
   );
 };
 

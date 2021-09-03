@@ -1,5 +1,6 @@
 import { useParams } from "react-router";
 import AdoptionRequest from "../components/AdoptionRequest";
+import axios from "axios";
 
 import "../assets/styles/PetManagePage.css";
 
@@ -11,11 +12,26 @@ const PetManagePage = () => {
 
   //get info from MockData for testing purposes
   const pet = MockData.pets.filter((pet) => pet._id === +pet_id)[0];
+  const requests = MockData.adoptionRegistry.filter(
+    (request) => request.pet_id === +pet_id
+  );
+  const users = requests.map(
+    (request) =>
+      MockData.users.filter((user) => user._id === request.user_id)[0]
+  );
 
-  console.log(pet);
+  //add axios logic
+  const handleRequest = (request, state) => () => {
+    axios
+      .put("https://jsonplaceholder.typicode.com/posts/1", {
+        request: { ...request, response_status: state },
+      })
+      .then(() => console.log("Updated succesfully"))
+      .catch((err) => console.log(err));
+  };
 
   return (
-    <div>
+    <div className="background-container">
       <section className="pet-info">
         <img className="pet-info__image" src={pet.photo_url} alt={pet.name} />
         <article className="pet-info__text">
@@ -27,7 +43,15 @@ const PetManagePage = () => {
         </article>
       </section>
       <section className="requests-list">
-        <AdoptionRequest></AdoptionRequest>
+        {requests.length > 0 &&
+          requests.map((request, idx) => (
+            <AdoptionRequest
+              key={request._id}
+              request={request}
+              user_name={users[idx].name}
+              handleRequest={handleRequest}
+            ></AdoptionRequest>
+          ))}
       </section>
     </div>
   );
