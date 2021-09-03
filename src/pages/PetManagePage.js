@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import AdoptionRequest from "../components/AdoptionRequest";
 import axios from "axios";
@@ -9,26 +10,63 @@ import MockData from "../MockData";
 
 const PetManagePage = () => {
   const { id: pet_id } = useParams();
+  const [state, setState] = useState({
+    requests: [],
+    users: [],
+  });
 
-  //get info from MockData for testing purposes
+  //////////////////////get info from MockData for testing purposes
   const pet = MockData.pets.filter((pet) => pet._id === +pet_id)[0];
-  const requests = MockData.adoptionRegistry.filter(
-    (request) => request.pet_id === +pet_id
-  );
-  const users = requests.map(
-    (request) =>
-      MockData.users.filter((user) => user._id === request.user_id)[0]
-  );
 
-  //add axios logic
-  const handleRequest = (request, state) => () => {
-    axios
-      .put("https://jsonplaceholder.typicode.com/posts/1", {
-        request: { ...request, response_status: state },
-      })
-      .then(() => console.log("Updated succesfully"))
-      .catch((err) => console.log(err));
+  useEffect(() => {
+    const requests = MockData.adoptionRegistry.filter(
+      (req) => req.pet_id === +pet_id
+    );
+    setState((state) => {
+      return {
+        ...state,
+        requests: requests || {},
+      };
+    });
+
+    setState((state) => {
+      return {
+        ...state,
+        users: state.requests.map(
+          (request) =>
+            MockData.users.filter((user) => user._id === request.user_id)[0] ||
+            {}
+        ),
+      };
+    });
+  }, []);
+
+  const handleRequest = (request, status) => () => {
+    return setState((state) => ({
+      ...state,
+      requests: state.requests.map((r) =>
+        r._id === +request._id ? { ...request, response_status: status } : r
+      ),
+    }));
   };
+
+  //////////////////////add axios logic
+  //reading info
+  // useEffect(() => {
+  //   axios.get("https://jsonplaceholder.typicode.com/posts")
+  //   .then((response) => setRequests(response.data))
+  //   .catch((err) => console.log(err))
+  // }, [])
+
+  //Updating a state
+  // const handleRequest = (request, state) => () => {
+  //   axios
+  //     .put("https://jsonplaceholder.typicode.com/posts/1", {
+  //       request: { ...request, response_status: state },
+  //     })
+  //     .then(() => console.log("Updated succesfully"))
+  //     .catch((err) => console.log(err));
+  // };
 
   return (
     <div className="background-container">
@@ -43,12 +81,12 @@ const PetManagePage = () => {
         </article>
       </section>
       <section className="requests-list">
-        {requests.length > 0 &&
-          requests.map((request, idx) => (
+        {state.requests.length > 0 &&
+          state.requests.map((req, idx) => (
             <AdoptionRequest
-              key={request._id}
-              request={request}
-              user_name={users[idx].name}
+              key={req._id}
+              request={req}
+              user_name={state.users[idx].name}
               handleRequest={handleRequest}
             ></AdoptionRequest>
           ))}
