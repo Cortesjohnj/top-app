@@ -17,7 +17,6 @@ function RegisterPage() {
 
   const onSubmit = (data, e) => {
     e.target.reset();
-    console.log(data);
     axios
       .post("https://jsonplaceholder.typicode.com/posts", data)
       .then(response => console.log(response))
@@ -88,31 +87,6 @@ function RegisterPage() {
               pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
             })}
           />
-
-          {/* { {errors?.address?.type === 'required' && <p>*Address is required</p>}
-          <input
-            type='text'
-            placeholder='Address'
-            name='address'
-            {...register('address', {
-              required: true,
-            })}
-          /> } */}
-          {/* {errors?.phoneNumber?.type === 'required' && (
-            <p>*Phone number is required</p>
-          )}
-          {errors?.phoneNumber?.type === 'minLength' && (
-            <p>*Phone number must be 7 characters</p>
-          )}
-          <input
-            type='number'
-            placeholder='Phone number'
-            name='phoneNumber'
-            {...register('phoneNumber', {
-              required: true,
-              minLength: 7,
-            })}
-          /> */}
           {errors?.password?.type === "required" && (
             <p>*You must specify a password</p>
           )}
@@ -170,10 +144,6 @@ function RegisterPage() {
               />
             </label>
           </div>
-          {/* <label htmlFor='profilePic' id='fileUploadLabel'>
-            Choose a profile picture:
-          </label>
-          <input type='file' name='profilePic' id='fileUpload' /> */}
           {errors?.terms?.type === "required" && (
             <p>*You must agree to the terms & conditions</p>
           )}
