@@ -44,6 +44,13 @@
   .petFormContainer__content--left {
     display: none;
   }
+
+  .petform__successContainer--button {
+    top: 60%;
+    left: 35%;
+    width: 150px;
+    height: 50px;
+  }
 }
 
 .petFormContainer__content--left--hide {
@@ -175,4 +182,31 @@
     rgb(12, 99, 250) 100%
   );
   transition: all 0.4s ease-out;
+}
+
+.petform__successContainer--button {
+  cursor: pointer;
+  position: relative;
+  top: 70%;
+  left: 45%;
+  width: 150px;
+  height: 50px;
+  margin-top: 10px;
+  border-radius: 200px;
+  background: #3e2f90;
+  outline: none;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  transition: all 1s ease-out;
+}
+
+.petform__successContainer--button:hover {
+  cursor: pointer;
+  background: linear-gradient(
+    90deg,
+    rgb(39, 143, 255) 0%,
+    rgb(12, 99, 250) 100%
+  );
+  transition: all 1s ease-out;
 }
