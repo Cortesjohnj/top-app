@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const usePetForm = (callback, validate) => {
+const usePetForm = (submitForm, validateInfo) => {
   const [values, setValues] = useState({
     fullName: '',
     email: '',
@@ -20,16 +20,16 @@ const usePetForm = (callback, validate) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setErrors(validate(values));
+    setErrors(validateInfo(values));
 
     setIsSubmitting(true);
   };
 
   useEffect(() => {
     if (Object.keys(errors).length === 0 && isSubmitting) {
-      callback();
+      submitForm();
     }
-  }, [callback, errors, isSubmitting]);
+  }, [submitForm, errors, isSubmitting]);
 
   return { handleChange, values, handleSubmit, errors };
 };
