@@ -12,43 +12,45 @@
   max-width: 600px;
   padding: 30px 15px 40px;
   color: var(--warm-black);
-
   border-radius: 40px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   min-width: 320px;  
 }
 
-.register__container p{
+.register__container--form--errors{
   color: red;
+  font-size: 1.3rem;
 }
 
-h2 {
+.register__container--title {
   display: flex;
   justify-content: center;
   justify-items: center;
   color: var(--blue-pigment);
   margin-bottom: 15px;
+  font-size: 2rem;
 }
 
-h3{
+.register__container--subtitle{
   display: flex;
   justify-content: center;
   justify-items: center;
   color: var(--blue-pigment);
-  font-size: 1rem;
+  font-size: 1.5rem;
   padding-top: 24px;
 }
 
-h4{
+.register__container--Endtitle{
   display: flex;
   justify-content: center;
   align-items: center;
   color: var(--blue-pigment);
   font-size: 1rem;
   padding-top: 5px;
+  font-size: 1.5rem;
 }
 
-h4 > a{
+.register__container--Endtitle > a{
   padding-left: 8px;
   color: var(--blue-pigment);
 }
@@ -59,14 +61,13 @@ h4 > a{
   padding-bottom: 5px;    
 }
 
-.register__container--form >input{
+.form__field{
   outline: none;
   border-top-style: hidden;
   border-right-style: hidden;
   border-left-style: hidden;
   border-bottom-style: groove;
   border-color: var(--pale-silver);
-  font-size: 1rem;
   padding-top: 8px;
   padding-bottom: 14px;
   color:var(--blue-pigment)
@@ -83,20 +84,14 @@ h4 > a{
   padding-bottom: 10px;
   align-content: center;
 }
-.register__container--form--options label{
+.register__container--form--options--label{
   padding-right: 20px;
-
+  font-size: 1.3rem;
 }
-.register__container--form--options input{
+
+.register__container--form--options--input{
   margin-left: 5px;
-
 }
-.register__container--form a {
-  color: var(--blue-pigment);
-  font-weight: bold;
-  font-size: 16px;
-  text-decoration: none;
-} 
 
 .register__container--form .button {
   margin-top: 20px;
@@ -105,14 +100,18 @@ h4 > a{
 .termsAndConditions {
   display: flex;
   justify-content: center;
-  align-items: center
- 
+  align-items: center 
 }
-.termsAndConditions input {
+
+.termsAndConditions--input {
   margin-right: 5px; 
 }
-.termsAndConditions a {
-  margin-left: 5px; 
+.termsAndConditions--link {
+  color: var(--blue-pigment);
+  font-weight: bold;
+  font-size: 1.3rem;
+  text-decoration: none;
+  margin-left: 5px;
 }
 
 #fileUpload {
@@ -146,13 +145,13 @@ input[type=number] {
   font-size: 0.9rem;
 }
 
-::placeholder {
+.form__field::placeholder {
   color: var(--blue-pigment);
   font-weight: 700;
   opacity: 1; /* Firefox */
 }
 
-.register__container--form >input:focus{
+.form__field:focus{
   border-width: 2px;
   border-image: linear-gradient(to right, var(--blue-pigment), #b814e0);
   border-image-slice: 1;

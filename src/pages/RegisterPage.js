@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import "../assets/styles/RegisterForm.css";
 import { PrimaryButton } from "../components/PrimaryButton";
@@ -17,6 +18,7 @@ function RegisterPage() {
 
   const onSubmit = (data, e) => {
     e.target.reset();
+    console.log(data);
     axios
       .post("https://jsonplaceholder.typicode.com/posts", data)
       .then(response => console.log(response))
@@ -26,19 +28,25 @@ function RegisterPage() {
   return (
     <section className="register">
       <div className="register__container">
-        <h2>Sign up to continue:</h2>
+        <h2 className="register__container--title">Sign up to continue:</h2>
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="register__container--form"
         >
           {errors?.firstName?.type === "required" && (
-            <p>*First name is required</p>
+            <p className="register__container--form--errors">
+              *First name is required
+            </p>
           )}
           {errors?.firstName?.type === "maxLength" && (
-            <p>*First name cannot exceed 20 characters</p>
+            <p className="register__container--form--errors">
+              *First name cannot exceed 20 characters
+            </p>
           )}
           {errors?.firstName?.type === "pattern" && (
-            <p>*Alphabetical characters only</p>
+            <p className="register__container--form--errors">
+              *Alphabetical characters only
+            </p>
           )}
           <input
             type="text"
@@ -53,13 +61,19 @@ function RegisterPage() {
           />
 
           {errors?.lastName?.type === "required" && (
-            <p>*Last name is required</p>
+            <p className="register__container--form--errors">
+              *Last name is required
+            </p>
           )}
           {errors?.lastName?.type === "maxLength" && (
-            <p>*First name cannot exceed 20 characters</p>
+            <p className="register__container--form--errors">
+              *First name cannot exceed 20 characters
+            </p>
           )}
           {errors?.lastname?.type === "pattern" && (
-            <p>*Alphabetical characters only</p>
+            <p className="register__container--form--errors">
+              *Alphabetical characters only
+            </p>
           )}
           <input
             type="text"
@@ -73,9 +87,15 @@ function RegisterPage() {
             })}
           />
 
-          {errors?.email?.type === "required" && <p>*Email is required</p>}
+          {errors?.email?.type === "required" && (
+            <p className="register__container--form--errors">
+              *Email is required
+            </p>
+          )}
           {errors?.email?.type === "pattern" && (
-            <p>*Please enter a valid email.</p>
+            <p className="register__container--form--errors">
+              *Please enter a valid email.
+            </p>
           )}
           <input
             type="email"
@@ -87,11 +107,14 @@ function RegisterPage() {
               pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
             })}
           />
+
           {errors?.password?.type === "required" && (
-            <p>*You must specify a password</p>
+            <p className="register__container--form--errors">
+              *You must specify a password
+            </p>
           )}
           {errors?.password?.type === "pattern" && (
-            <p>
+            <p className="register__container--form--errors">
               *Password must be at least 8 characters, one uppercase with one
               lowercase & one numeric character
             </p>
@@ -100,44 +123,54 @@ function RegisterPage() {
             type="password"
             placeholder="Password"
             name="password"
+            className="form__field"
             {...register("password", {
               required: true,
               pattern: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/,
             })}
           />
           {errors?.confirmPassword?.type === "required" && (
-            <p>*You must confirm the password</p>
+            <p className="register__container--form--errors">
+              *You must confirm the password
+            </p>
           )}
           <input
             type="password"
             placeholder="Confirm password"
             name="confirmPassword"
+            className="form__field"
             {...register("confirmPassword", {
               required: true,
               validate: value =>
                 value === password.current || "The passwords do not match",
             })}
           />
-          <h3>Sign up as:</h3>
-          {errors?.rol?.type === "required" && <p>*You must select one</p>}
+          <h3 className="register__container--subtitle">Sign up as:</h3>
+          {errors?.rol?.type === "required" && (
+            <p className="register__container--form--errors">
+              *You must select one
+            </p>
+          )}
           <div className="register__container--form--options">
-            <label>
+            <label className="register__container--form--options--label">
               User
               <input
                 type="radio"
                 name="user"
                 value="User"
+                className="register__container--form--options--input"
                 {...register("rol", {
                   required: true,
                 })}
               />
             </label>
-            <label>
+            <label className="register__container--form--options--label">
               Foundation
               <input
                 type="radio"
                 name="foundation"
                 value="Foundation"
+                className="register__container--form--options--input"
                 {...register("rol", {
                   required: true,
                 })}
@@ -145,23 +178,29 @@ function RegisterPage() {
             </label>
           </div>
           {errors?.terms?.type === "required" && (
-            <p>*You must agree to the terms & conditions</p>
+            <p className="register__container--form--errors">
+              *You must agree to the terms & conditions
+            </p>
           )}
-          <label className="termsAndConditions">
+          <label className="termsAndConditions register__container--form--options--label">
             <input
               type="checkbox"
               name="terms"
-              className="termsConditions"
+              className="termsAndConditions--input"
               {...register("terms", {
                 required: true,
               })}
             />
-            I agree to the <a href="/"> terms & conditions</a>
+            I agree to the{" "}
+            <a className="termsAndConditions--link" href="/">
+              {" "}
+              terms & conditions
+            </a>
           </label>
-          <PrimaryButton children={"Register"} />
+          <PrimaryButton children={"Register"} color={"primaryButton"} />
         </form>
-        <h4>
-          Already a member? <a href="/">Sign in </a>
+        <h4 className="register__container--Endtitle">
+          Already a member? <Link to="/login">Sign in </Link>
         </h4>
       </div>
     </section>
