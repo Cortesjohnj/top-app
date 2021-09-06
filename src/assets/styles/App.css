@@ -4,11 +4,11 @@
   font-family: "Muli", sans-serif;
 }
 
-.link {
+.link-foundations {
   color: inherit;
   text-decoration: inherit;
 }
-.container {
+.container-foundations {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -16,7 +16,7 @@
   margin-top: -25px;
 }
 
-.photo {
+.photo-foundations {
   margin: 10px 10px;
   width: 300px;
   position: relative;
@@ -25,12 +25,12 @@
   border-radius: 10px;
 }
 
-.text {
+.text-foundations {
   margin: 5px;
   font-size: 14pt;
 }
 
-.title {
+.subtitle-foundations {
   margin-left: 5px;
   margin-top: auto;
   margin-bottom: -5px;
@@ -39,7 +39,7 @@
   color: #3e2f90;
 }
 
-.image {
+.image-foundations {
   height: 150px;
   width: 100%;
   object-fit: cover;
@@ -47,7 +47,7 @@
   border-top-left-radius: 10px;
 }
 
-.main-title {
+.title-foundations {
   font-size: 35pt;
   font-weight: bold;
   text-align: center;
