@@ -105,19 +105,6 @@ const PetCard = (props) => {
             </IconContext.Provider>
           )}
         </div>
-        {isFoundation && (
-          <IconContext.Provider
-            value={{
-              color: "red",
-              className: "delete-pets-container__icon",
-            }}
-          >
-            <div className="delete-pets-container" onClick={handleOpenModal}>
-              {" "}
-              <FaMinus />
-            </div>
-          </IconContext.Provider>
-        )}
       </div>
 
       {isOpen && (
