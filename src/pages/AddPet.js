@@ -81,7 +81,7 @@ function AddPet() {
   return (
     <section className="registerPets">
       <div className="registerPets__container">
-        <h2>Add Pet's</h2>
+        <h2 className="registerPets__container--title">Add Pet's</h2>
         <form onSubmit={submit}>
           <div
             className="container__dropzone"
@@ -90,13 +90,15 @@ function AddPet() {
             onClick={handleClick}
             multiple
           >
-            <p>Click to select or drag and drop your Pet images here....</p>
+            <p className="container__dropzone--text">
+              Click to select or drag and drop your Pet images here....
+            </p>
             <i className="container__dropzone--uploadIcon">
               <FaCloudUploadAlt />
             </i>
           </div>
           <div className="container__dropzone--inputs">
-            <h3>{`Images uploaded: ${counter}`}</h3>
+            <h3 className="container__dropzone--counter">{`Images uploaded: ${counter}`}</h3>
             <input
               type="file"
               ref={fileInput}
@@ -104,6 +106,7 @@ function AddPet() {
               name="file"
               multiple
               hidden
+              className="container__dropzone--input"
               onChange={handleInputChange}
             />
             <input
@@ -112,6 +115,7 @@ function AddPet() {
               id="name"
               placeholder="Pet's name"
               onChange={InputChange}
+              className="container__dropzone--input"
             />
             <input
               type="number"
@@ -119,6 +123,7 @@ function AddPet() {
               id="age"
               placeholder="Pet's age (Months)"
               onChange={InputChange}
+              className="container__dropzone--input"
             />
             <textarea
               rows="7"
@@ -126,12 +131,20 @@ function AddPet() {
               id="description"
               placeholder="Write a pet's description"
               onChange={InputChange}
+              className="container__dropzone--textArea"
             />
             <PrimaryButton children={"Add Pet"} color={"azul"} />
           </div>
         </form>
         {selectedImages.map(photo => {
-          return <img src={photo} key={photo} alt="" />;
+          return (
+            <img
+              className="registerPets__container--photos"
+              src={photo}
+              key={photo}
+              alt=""
+            />
+          );
         })}
       </div>
     </section>
