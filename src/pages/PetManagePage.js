@@ -54,7 +54,9 @@ const PetManagePage = () => {
     return setState((state) => ({
       ...state,
       requests: state.requests.map((r) =>
-        r._id === +id ? { ...r, response_status: "approved" } : r
+        r._id === +id
+          ? { ...r, response_status: "approved" }
+          : { ...r, response_status: "rejected" }
       ),
     }));
   };
@@ -67,22 +69,40 @@ const PetManagePage = () => {
   //   .catch((err) => console.log(err))
   // }, [])
 
-  //Updating a state
-  // const handleReject = () => {
+  // Updating a state
+  // const handleReject = (id) => {
   //   axios
   //     .put("https://jsonplaceholder.typicode.com/posts/1", {
   //       request: { ...request, response_status: 'rejected' },
   //     })
-  //     .then(() => console.log("Updated succesfully"))
+  //     .then(() => {
+  //       console.log("Updated succesfully");
+  //       setState((state) => ({
+  //         ...state,
+  //         requests: state.requests.map((r) =>
+  //           r._id === +id ? { ...r, response_status: "rejected" } : r
+  //         ),
+  //       }));
+  //     })
   //     .catch((err) => console.log(err));
   // };
 
-  // const handleApprove = () => {
+  // const handleApprove = (id) => {
   //   axios
   //     .put("https://jsonplaceholder.typicode.com/posts/1", {
-  //       request: { ...request, response_status: 'approved' },
+  //       request: { ...request, response_status: "approved" },
   //     })
-  //     .then(() => console.log("Updated succesfully"))
+  //     .then(() => {
+  //       console.log("Updated succesfully");
+  //       setState((state) => ({
+  //         ...state,
+  //         requests: state.requests.map((r) =>
+  //           r._id === +id
+  //             ? { ...r, response_status: "approved" }
+  //             : { ...r, response_status: "rejected" }
+  //         ),
+  //       }));
+  //     })
   //     .catch((err) => console.log(err));
   // };
 
