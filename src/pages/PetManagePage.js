@@ -41,11 +41,20 @@ const PetManagePage = () => {
     });
   }, []);
 
-  const handleRequest = (request, status) => () => {
+  const handleReject = (id) => () => {
     return setState((state) => ({
       ...state,
       requests: state.requests.map((r) =>
-        r._id === +request._id ? { ...request, response_status: status } : r
+        r._id === +id ? { ...r, response_status: "rejected" } : r
+      ),
+    }));
+  };
+
+  const handleApprove = (id) => {
+    return setState((state) => ({
+      ...state,
+      requests: state.requests.map((r) =>
+        r._id === +id ? { ...r, response_status: "approved" } : r
       ),
     }));
   };
@@ -59,10 +68,19 @@ const PetManagePage = () => {
   // }, [])
 
   //Updating a state
-  // const handleRequest = (request, state) => () => {
+  // const handleReject = () => {
   //   axios
   //     .put("https://jsonplaceholder.typicode.com/posts/1", {
-  //       request: { ...request, response_status: state },
+  //       request: { ...request, response_status: 'rejected' },
+  //     })
+  //     .then(() => console.log("Updated succesfully"))
+  //     .catch((err) => console.log(err));
+  // };
+
+  // const handleApprove = () => {
+  //   axios
+  //     .put("https://jsonplaceholder.typicode.com/posts/1", {
+  //       request: { ...request, response_status: 'approved' },
   //     })
   //     .then(() => console.log("Updated succesfully"))
   //     .catch((err) => console.log(err));
@@ -87,7 +105,8 @@ const PetManagePage = () => {
               key={req._id}
               request={req}
               user_name={state.users[idx].name}
-              handleRequest={handleRequest}
+              handleReject={handleReject}
+              handleApprove={handleApprove}
             ></AdoptionRequest>
           ))}
       </section>

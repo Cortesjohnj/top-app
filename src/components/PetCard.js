@@ -45,7 +45,7 @@ const PetCard = (props) => {
     !adopted && props.history.push(`/pets/${_id}${redirectUrl}`);
   };
 
-  const handleDeletePet = (_id) => () => {
+  const handleDeletePet = (_id) => {
     axios({
       method: "DELETE",
       baseURL: "https://jsonplaceholder.typicode.com",
@@ -60,7 +60,6 @@ const PetCard = (props) => {
       .catch((error) => {
         console.dir(error.message);
       });
-    handleOpenModal();
   };
 
   return (
@@ -113,12 +112,12 @@ const PetCard = (props) => {
       )}
       {modalIsOpen && (
         <CardModal
-          photo_url={photo_url}
           handleOpenModal={handleOpenModal}
           id={_id}
-          name={name}
-          handleDeletePet={handleDeletePet}
-        />
+          handleConfirm={handleDeletePet}
+        >
+          Are you sure you want to delete pet {name}
+        </CardModal>
       )}
     </>
   );
