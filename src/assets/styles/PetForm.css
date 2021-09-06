@@ -1,0 +1,178 @@
+.petFormContainer {
+  margin: 30px 30px;
+  min-width: 100vh;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
+  position: relative;
+  border-radius: 10px;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.petFormContainer2 {
+  margin: 30px 30px;
+  min-width: 100vh;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
+  position: relative;
+  border-radius: 10px;
+  min-height: 100vh;
+  display: grid;
+}
+
+@media (max-width: 768px) {
+  .petFormContainer {
+    margin: 30px 30px;
+    min-width: 30vh;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
+    position: relative;
+    border-radius: 10px;
+    min-height: 100vh;
+    grid-template-columns: 1fr;
+  }
+  .petFormContainer2 {
+    margin: 30px 30px;
+    min-width: 30vh;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
+    position: relative;
+    border-radius: 10px;
+    min-height: 100vh;
+  }
+
+  .petform__successContainer--success {
+    font-size: 12px;
+  }
+  .petFormContainer__content--left {
+    display: none;
+  }
+}
+
+.petFormContainer__content--left--hide {
+  display: none;
+}
+
+.petFormContainer__content--left {
+  background: #3e2f90;
+  border-radius: 10px 0 0 10px;
+  position: relative;
+}
+
+.petFormContainer__img {
+  width: 80%;
+  height: 80%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.petform__successContainer--img {
+  width: 60%;
+  height: 60%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.petform__successContainer--success {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin: 0 60px;
+  margin-top: 80px;
+  color: #fff;
+  text-align: center;
+}
+
+.petform__successContainer {
+  border-radius: 0 10px 10px 0;
+  position: relative;
+  background: linear-gradient(90deg, rgb(40, 40, 40) 0%, rgb(17, 17, 17) 100%);
+}
+
+.petform__rightContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 10px 10px 0;
+  position: relative;
+  background: linear-gradient(90deg, rgb(40, 40, 40) 0%, rgb(17, 17, 17) 100%);
+}
+
+.petform__rightContainerForm {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.petform__rightContainerForm h1 {
+  font-size: 2.5rem;
+  text-align: center;
+  align-items: center;
+  width: 80%;
+  margin-bottom: 2.7rem;
+  color: #fff;
+}
+
+.petform__rightContainerForm--inputs {
+  margin-bottom: 2rem;
+  width: 80%;
+}
+
+.petform__rightContainerForm--inputs p {
+  font-size: 1rem;
+  margin-top: 0.7rem;
+  color: #f00e0e;
+}
+
+.petform__rightContainerForm--label {
+  display: inline-block;
+  font-size: 1.2rem;
+  margin-bottom: 6px;
+  color: #fff;
+}
+
+.petform__rightContainerForm--input {
+  display: block;
+  padding-left: 10px;
+  outline: none;
+  border-radius: 2px;
+  height: 40px;
+  width: 100%;
+  border: none;
+}
+
+.petform__rightContainerForm--input::placeholder {
+  color: #595959;
+  font-size: 12px;
+}
+
+.petform__rightContainerForm--button {
+  width: 80%;
+  height: 50px;
+  margin-top: 10px;
+  border-radius: 2px;
+  background: #77b6ea;
+  outline: none;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.petform__rightContainerForm--button:hover {
+  cursor: pointer;
+  background: linear-gradient(
+    90deg,
+    rgb(39, 143, 255) 0%,
+    rgb(12, 99, 250) 100%
+  );
+  transition: all 0.4s ease-out;
+}
