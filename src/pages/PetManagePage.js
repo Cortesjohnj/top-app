@@ -9,37 +9,33 @@ import "../assets/styles/PetManagePage.css";
 import MockData from "../MockData";
 
 const PetManagePage = () => {
-  const { id: pet_id } = useParams();
+  const { id: petId } = useParams();
   const [state, setState] = useState({
     requests: [],
     users: [],
   });
 
   //////////////////////get info from MockData for testing purposes
-  const pet = MockData.pets.filter((pet) => pet._id === +pet_id)[0];
+  const pet = MockData.pets.filter((pet) => pet._id === +petId)[0];
 
   useEffect(() => {
+    console.log(`pet id: ${petId}`);
     const requests = MockData.adoptionRegistry.filter(
-      (req) => req.pet_id === +pet_id
+      (req) => req.pet_id === +petId
     );
+
     setState((state) => {
       return {
         ...state,
         requests: requests || {},
-      };
-    });
-
-    setState((state) => {
-      return {
-        ...state,
-        users: state.requests.map(
+        users: requests.map(
           (request) =>
             MockData.users.filter((user) => user._id === request.user_id)[0] ||
             {}
         ),
       };
     });
-  }, []);
+  }, [petId]);
 
   const handleReject = (id) => () => {
     return setState((state) => ({

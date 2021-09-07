@@ -20,7 +20,7 @@ const PetListPage = () => {
     setFilteredPets(() =>
       pets.filter((item) => item.foundation_id === +foundation_id)
     );
-  }, []);
+  }, [foundation_id, pets]);
 
   //This variables comes from the user session, I will set it manually for testing purposes
   const isFoundation = true;
