@@ -12,39 +12,7 @@ const PetFormSignUp = ({ submitForm }) => {
     <div className="petform__rightContainer">
       <form className="petform__rightContainerForm" onSubmit={handleSubmit}>
         <h1>You're one step closer to be with your dream companion</h1>
-        <div className="petform__rightContainerForm--inputs">
-          <label
-            className="petform__rightContainerForm--label"
-            htmlFor="fullName"
-          >
-            Full Name
-          </label>
-          <input
-            id="fullName"
-            type="text"
-            name="fullName"
-            className="petform__rightContainerForm--input"
-            placeholder="Enter your full name"
-            value={values.fullName}
-            onChange={handleChange}
-          />
-          {errors.fullName && <p>{errors.fullName}</p>}
-        </div>
-        <div className="petform__rightContainerForm--inputs">
-          <label className="petform__rightContainerForm--label" htmlFor="email">
-            Email
-          </label>
-          <input
-            id="email"
-            type="email"
-            name="email"
-            className="petform__rightContainerForm--input"
-            placeholder="Enter your email"
-            value={values.email}
-            onChange={handleChange}
-          />
-          {errors.email && <p>{errors.email}</p>}
-        </div>
+
         <div className="petform__rightContainerForm--inputs">
           <label
             className="petform__rightContainerForm--label"
@@ -77,6 +45,25 @@ const PetFormSignUp = ({ submitForm }) => {
             onChange={handleChange}
           />
           {errors.tel && <p>{errors.tel}</p>}
+        </div>
+        <div className="petform__rightContainerForm--inputs">
+          <label
+            className="petform__rightContainerForm--label"
+            htmlFor="textarea"
+          >
+            Description
+          </label>
+          <textarea
+            id="description"
+            name="description"
+            col="100"
+            row="200"
+            className="petform__rightContainerForm--textarea"
+            placeholder="Enter a complete description"
+            value={values.description}
+            onChange={handleChange}
+          />
+          {errors.description && <p>{errors.description}</p>}
         </div>
         <button className="petform__rightContainerForm--button" type="submit">
           ADOPT ME

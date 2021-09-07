@@ -1,10 +1,8 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Dog4 from '../../assets/images/security colored.svg';
 
 const PetFormSuccess = () => {
-  const history = useHistory();
-
   return (
     <div className="petform__successContainer">
       <h1 className="petform__successContainer--success">
@@ -17,12 +15,11 @@ const PetFormSuccess = () => {
       >
         svg-animation
       </object>
-      <button
-        className="petform__successContainer--button"
-        // onClick={history.push('/:id/profile')}
-      >
-        RETURN TO HOME
-      </button>
+      <Link to="/:id/profile">
+        <button className="petform__successContainer--button">
+          RETURN TO HOME
+        </button>
+      </Link>
     </div>
   );
 };

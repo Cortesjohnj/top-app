@@ -1,14 +1,8 @@
 export default function validateInfo(values) {
   let errors = {};
 
-  if (!values.fullName.trim()) {
-    errors.fullName = 'FullName required';
-  }
-
-  if (!values.email) {
-    errors.email = 'Email required';
-  } else if (!/\S+@\S+\.\S+/.test(values.email)) {
-    errors.email = 'Email address is invalid';
+  if (!values.description.trim()) {
+    errors.description = 'Description required';
   }
 
   if (!values.address) {
@@ -18,7 +12,7 @@ export default function validateInfo(values) {
   if (!values.tel) {
     errors.tel = 'Phone number required';
   } else if (
-    /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s./0-9]*$/g.test(values.email)
+    !RegExp(/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/).test(values.tel)
   ) {
     errors.tel = 'Phone number is invalid';
   }

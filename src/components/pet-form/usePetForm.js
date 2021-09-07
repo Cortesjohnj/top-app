@@ -2,10 +2,9 @@ import { useState, useEffect } from 'react';
 
 const usePetForm = (submitForm, validateInfo) => {
   const [values, setValues] = useState({
-    fullName: '',
-    email: '',
     address: '',
     tel: '',
+    description: '',
   });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);

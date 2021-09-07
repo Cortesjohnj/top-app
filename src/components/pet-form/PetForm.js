@@ -3,11 +3,13 @@ import PetFormSignUp from './PetFormSignUp';
 import PetFormSuccess from './PetFormSuccess';
 import Dog3 from '../../assets/images/Dog newspaper-01.svg';
 import '../../assets/styles/PetForm.css';
+import { SliderData2 } from '../slider2/SliderData2';
+import Slider2 from '../slider2/Slider2';
 
 const PetForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  function submitForm() {
+  function submitForm(e) {
     setIsSubmitted(true);
   }
 
@@ -17,13 +19,7 @@ const PetForm = () => {
         {!isSubmitted ? (
           <>
             <div className="petFormContainer__content--left">
-              <object
-                className="petFormContainer__img"
-                type="image/svg+xml"
-                data={Dog3}
-              >
-                svg-animation
-              </object>
+              <Slider2 slides2={SliderData2} />
             </div>
             <PetFormSignUp submitForm={submitForm} />
           </>
