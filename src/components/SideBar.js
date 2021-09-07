@@ -25,10 +25,22 @@ function SideBar({ isOpen, toggle }) {
           >
             ABOUT
           </li>
-          <LinkScroll className="sideBar__container--link" to="info">
+          <LinkScroll
+            onClick={toggle}
+            smooth={true}
+            duration={1000}
+            className="sideBar__container--link"
+            to="info"
+          >
             INFO
           </LinkScroll>
-          <LinkScroll className="sideBar__container--link" to="helpUs">
+          <LinkScroll
+            onClick={toggle}
+            smooth={true}
+            duration={1000}
+            className="sideBar__container--link"
+            to="helpUs"
+          >
             HELP US
           </LinkScroll>
         </ul>

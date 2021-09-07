@@ -24,11 +24,6 @@ function Info() {
           <p className="infoContainer__wrapper--subtitle">
             Your dream pet is waiting for you
           </p>
-          {/* <div className="infoContainer__wrapper--btnWrap">
-            <button className="infoContainer__wrapper--button" to="#">
-              CONTACT US
-            </button>
-          </div> */}
         </div>
       </div>
     </div>
