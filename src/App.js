@@ -1,21 +1,21 @@
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import LoginPage from './pages/LoginPage';
+import PetListPage from './pages/PetListPage';
+import { Suspense } from 'react';
+import Spinner from './components/Spinner';
+
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload. vamos a ver si carga
-          de nuevo?
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Suspense fallback={<Spinner />}>
+        <Switch>
+          <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/foundations/:id/pets" component={PetListPage} />
+          <Route exact path="/pets/:id/request" />
+          <Route exact path="foundations/:id/add-pet" />
+        </Switch>
+      </Suspense>
+    </BrowserRouter>
   );
 }
 
