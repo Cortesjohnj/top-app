@@ -1,0 +1,17 @@
+.card-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  min-width: 330px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.card-list__title {
+  width: 90%;
+  margin: 20px 0;
+  color: var(--blue-pigment);
+  font-size: 26px;
+}
