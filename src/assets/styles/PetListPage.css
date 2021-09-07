@@ -1,0 +1,27 @@
+html {
+  font-size: 10px;
+}
+
+.no-pets-message {
+  margin-top: 40px;
+  font-size: 26px;
+}
+
+.add-pets-container {
+  position: fixed;
+  display: flex;
+  z-index: 20;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  top: 85%;
+  right: 5%;
+}
+
+.add-pets-container__icon {
+  font-size: 7rem;
+  background-color: var(--soft-blue);
+  border-radius: 100%;
+  border: 5px solid var(--soft-blue);
+}
