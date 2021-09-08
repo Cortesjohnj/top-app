@@ -3,24 +3,30 @@ import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { FaPlusCircle } from "react-icons/fa";
 import { IconContext } from "react-icons";
+import axios from "../axios";
 
 import CardList from "../components/CardList";
 import PetCard from "../components/PetCard";
 import "../assets/styles/PetListPage.css";
 
-import MockData from "../MockData";
-
 const PetListPage = () => {
-  const { pets } = MockData;
-  const { id: foundation_id } = useParams();
+  const { id: foundationId } = useParams();
   let redirectUrl = "";
 
   const [filteredPets, setFilteredPets] = useState([]);
+
   useEffect(() => {
-    setFilteredPets(() =>
-      pets.filter((item) => item.foundation_id === +foundation_id)
-    );
-  }, [foundation_id, pets]);
+    async function fetchData() {
+      try {
+        let response = await axios.get(`/foundations/${foundationId}/pets`);
+        setFilteredPets(response.data);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
+    fetchData();
+  }, [foundationId]);
 
   //This variables comes from the user session, I will set it manually for testing purposes
   const isFoundation = true;
@@ -52,7 +58,7 @@ const PetListPage = () => {
             className: "add-pets-container__icon",
           }}
         >
-          <Link to={`/foundations/${foundation_id}/add-pet`}>
+          <Link to={`/foundations/${foundationId}/add-pet`}>
             <div className="add-pets-container">
               {" "}
               <FaPlusCircle />

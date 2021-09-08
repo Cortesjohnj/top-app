@@ -17,7 +17,7 @@ const PetCard = (props) => {
     _id,
     name,
     description,
-    photo_url,
+    photoUrl,
     adopted,
     redirectUrl,
     age,
@@ -79,10 +79,9 @@ const PetCard = (props) => {
           )}
           <img
             className="card-list-item__image"
-            src={photo_url}
+            src={photoUrl[0]}
             alt="Pet"
             onClick={handleOpenImage}
-            href={photo_url}
           />
           <div className="card-list-item__details" onClick={handleClick}>
             <h3 className="card-list-item__details--title">{name}</h3>
@@ -108,7 +107,7 @@ const PetCard = (props) => {
       </div>
 
       {isOpen && (
-        <CardImage photo_url={photo_url} handleOpenImage={handleOpenImage} />
+        <CardImage photo_url={photoUrl} handleOpenImage={handleOpenImage} />
       )}
       {modalIsOpen && (
         <CardModal
