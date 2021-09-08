@@ -1,9 +1,6 @@
 .footer {
   min-height: 20vh;
   width: 100%;
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
   flex-direction: column;
 }
 
@@ -53,6 +50,10 @@
 @media (max-width: 480px) {
   .footer__wrapper--quick-links {
     width: 310px;
+  }
+  .footer__wrapper--quick-items {
+    width: 150px;
+    margin: 0 -20px;
   }
 }
 

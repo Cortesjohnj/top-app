@@ -10,13 +10,6 @@
   flex-direction: column;
 }
 
-@media (max-width: 768px) {
-  .joinUsContainer {
-    padding: 100px 0;
-    background-image: none;
-  }
-}
-
 .joinUsContainer__wrapper {
   z-index: 1;
   min-height: 100vh;
@@ -24,15 +17,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-@media (max-width: 768px) {
-  .joinUsContainer__wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
 }
 
 .joinUsContainer__wrapper--textWrapper {
@@ -44,28 +28,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-@media (max-width: 768px) {
-  .joinUsContainer__wrapper--textWrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 0px;
-  }
-  .joinUsContainer__wrapper--textWrapper .joinUsContainer__wrapper--heading {
-    font-size: 34px;
-  }
-  .joinUsContainer__wrapper--topLine {
-    padding-bottom: 22px;
-  }
-  .joinUsContainer__wrapper--heading {
-    padding-bottom: 22px;
-  }
-  .joinUsContainer__wrapper--subtitle {
-    padding-bottom: 22px;
-  }
 }
 
 .joinUsContainer__wrapper--topLine {
@@ -114,6 +76,35 @@
 }
 
 @media (max-width: 768px) {
+  .joinUsContainer {
+    padding: 100px 0;
+    background-image: none;
+  }
+  .joinUsContainer__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .joinUsContainer__wrapper--textWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 0px;
+  }
+  .joinUsContainer__wrapper--textWrapper .joinUsContainer__wrapper--heading {
+    font-size: 32px;
+  }
+  .joinUsContainer__wrapper--topLine {
+    padding-bottom: 22px;
+  }
+  .joinUsContainer__wrapper--heading {
+    padding-bottom: 22px;
+  }
+  .joinUsContainer__wrapper--subtitle {
+    padding-bottom: 22px;
+  }
   .joinUsContainer__wrapper--img {
     width: 400px;
     transition: all 0.2s ease-in-out;
@@ -128,6 +119,9 @@
 }
 
 @media (max-width: 480px) {
+  .joinUsContainer__wrapper--textWrapper .joinUsContainer__wrapper--heading {
+    font-size: 26px;
+  }
   .joinUsContainer__wrapper--imgWrap {
     display: flex;
     align-items: center;

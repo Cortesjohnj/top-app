@@ -35,11 +35,6 @@ const AboutSection = () => {
             >
               svg-animation
             </object>
-            {/* <img
-              src={Dog}
-              alt="dog"
-              style={{ width: '600px', height: '600px' }}
-            /> */}
           </div>
         </div>
       </div>

@@ -7,7 +7,6 @@ import ProfilePic from '../assets/images/John.jpg';
 import '../assets/styles/Navbar.css';
 
 function Navbar({ toggle }) {
-  //Establish the logic of user id with backend
   let isUser = false;
 
   return (
@@ -19,7 +18,6 @@ function Navbar({ toggle }) {
             ADOGTA
           </Link>
           {isUser ? (
-            //Connect with backend//
             <Link
               className="navBar__container--profilePicWrapper1"
               to="/id/profile"
@@ -27,7 +25,7 @@ function Navbar({ toggle }) {
               <img
                 className="navBar__container--profilePic1"
                 src={ProfilePic}
-                /*{user.profilepic} import profile pic from backend*/ alt="profilePic"
+                alt="profilePic"
               />
             </Link>
           ) : (
@@ -111,7 +109,6 @@ function Navbar({ toggle }) {
 
           <nav className="navBar__container--nav">
             {isUser ? (
-              //Connect with backend//
               <Link
                 className="navBar__container--profilePicWrapper"
                 to="/id:/profile"
@@ -119,7 +116,7 @@ function Navbar({ toggle }) {
                 <img
                   className="navBar__container--profilePic"
                   src={ProfilePic}
-                  /*{user.profilepic} import profile pic from backend*/ alt="profilePic"
+                  alt="profilePic"
                 />
               </Link>
             ) : (
