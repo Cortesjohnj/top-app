@@ -2,6 +2,15 @@ html {
   font-size: 10px;
 }
 
+.background-container {
+  height: auto;
+  min-height: 100vh;
+  background-color: #fff;
+  background-image: url("../images/wave-2.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .no-pets-message {
   margin-top: 40px;
   font-size: 26px;

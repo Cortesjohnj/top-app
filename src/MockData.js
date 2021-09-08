@@ -106,6 +106,7 @@ const MockData = {
       photo_url: "http://dummyimage.com/300x300.png/ff4444/ffffff",
       foundation_id: 1,
       adopted: true,
+      age: 8,
     },
     {
       _id: 2,
@@ -114,6 +115,7 @@ const MockData = {
       photo_url: "http://dummyimage.com/450x300.png/dddddd/000000",
       foundation_id: 4,
       adopted: false,
+      age: 8,
     },
     {
       _id: 3,
@@ -122,6 +124,7 @@ const MockData = {
       photo_url: "http://dummyimage.com/350x250.png/ff4444/ffffff",
       foundation_id: 1,
       adopted: false,
+      age: 8,
     },
     {
       _id: 4,
@@ -130,6 +133,7 @@ const MockData = {
       photo_url: "http://dummyimage.com/194x100.png/5fa2dd/ffffff",
       foundation_id: 5,
       adopted: false,
+      age: 8,
     },
     {
       _id: 5,
@@ -138,6 +142,7 @@ const MockData = {
       photo_url: "http://dummyimage.com/119x100.png/cc0000/ffffff",
       foundation_id: 2,
       adopted: false,
+      age: 8,
     },
     {
       _id: 6,
@@ -146,6 +151,7 @@ const MockData = {
       photo_url: "http://dummyimage.com/141x100.png/cc0000/ffffff",
       foundation_id: 1,
       adopted: false,
+      age: 8,
     },
     {
       _id: 7,
@@ -154,6 +160,7 @@ const MockData = {
       photo_url: "http://dummyimage.com/110x100.png/cc0000/ffffff",
       foundation_id: 1,
       adopted: true,
+      age: 8,
     },
     {
       _id: 8,
@@ -162,6 +169,7 @@ const MockData = {
       photo_url: "http://dummyimage.com/184x100.png/5fa2dd/ffffff",
       foundation_id: 4,
       adopted: false,
+      age: 8,
     },
     {
       _id: 9,
@@ -170,6 +178,7 @@ const MockData = {
       photo_url: "http://dummyimage.com/135x100.png/ff4444/ffffff",
       foundation_id: 1,
       adopted: false,
+      age: 8,
     },
     {
       _id: 10,
@@ -178,6 +187,7 @@ const MockData = {
       photo_url: "http://dummyimage.com/145x100.png/dddddd/000000",
       foundation_id: 2,
       adopted: false,
+      age: 8,
     },
     {
       _id: 11,
@@ -186,6 +196,7 @@ const MockData = {
       photo_url: "http://dummyimage.com/131x100.png/5fa2dd/ffffff",
       foundation_id: 5,
       adopted: false,
+      age: 8,
     },
     {
       _id: 12,
@@ -194,6 +205,7 @@ const MockData = {
       photo_url: "http://dummyimage.com/101x100.png/ff4444/ffffff",
       foundation_id: 5,
       adopted: false,
+      age: 8,
     },
     {
       _id: 13,
@@ -202,6 +214,7 @@ const MockData = {
       photo_url: "http://dummyimage.com/110x100.png/cc0000/ffffff",
       foundation_id: 5,
       adopted: false,
+      age: 8,
     },
     {
       _id: 14,
@@ -210,6 +223,7 @@ const MockData = {
       photo_url: "http://dummyimage.com/148x100.png/cc0000/ffffff",
       foundation_id: 1,
       adopted: false,
+      age: 8,
     },
     {
       _id: 15,
@@ -218,6 +232,7 @@ const MockData = {
       photo_url: "http://dummyimage.com/242x100.png/dddddd/000000",
       foundation_id: 5,
       adopted: true,
+      age: 8,
     },
   ],
   adoptionRegistry: [

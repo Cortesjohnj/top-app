@@ -2,12 +2,17 @@ html {
   font-size: 10px;
 }
 
+.overflow--hidden {
+  position: relative;
+  display: inline-block;
+}
+
 .card-list-item {
   position: relative;
   display: inline-block;
   overflow: hidden;
   width: 300px;
-  height: 400px;
+  height: 430px;
   margin: 10px;
   border-radius: 20px;
   font-size: 1.6rem;
@@ -24,7 +29,7 @@ html {
 }
 
 .card-list-item__details {
-  height: 200px;
+  height: 230px;
   background-color: var(--soft-blue);
   text-align: start;
   padding: 10px;
@@ -36,9 +41,12 @@ html {
   margin-bottom: 5px;
 }
 
-.card-list-item__details a {
-  text-decoration: none;
-  color: var(--warm-black);
+.card-list-item__details--text {
+  margin-bottom: 5px;
+}
+
+.card-list-item__details--text span {
+  font-weight: bold;
 }
 
 .card-list-message {
@@ -58,15 +66,49 @@ html {
   border-radius: 15px;
 }
 
-.dialog {
-  box-shadow: 0 8px 6px -6px black;
-  position: static;
-  left: 20%;
-  top: 10%;
+.delete-pets-container {
+  position: absolute;
+  top: calc(100% - 55px);
+  left: calc(100% - 65px);
+  z-index: 10;
+  width: 50px;
+  height: 45px;
+  vertical-align: middle;
+  border-radius: 5px;
+  transition: background-color 200ms;
 }
 
-.image {
-  width: 300px;
+.delete-pets-container:hover {
+  background-color: var(--blue-pigment);
+}
+
+.delete-pets-container__icon {
+  height: 100%;
+  width: 100%;
+  font-size: 7rem;
+}
+
+.card-list-number {
+  position: absolute;
+  overflow: visible;
+  top: 0;
+  right: -10px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  background-color: var(--blue-pigment);
+  border: 5px solid var(--soft-blue);
+}
+
+.card-list-number p {
+  display: inline-block;
+  margin: auto;
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--soft-blue);
 }
 
 .delete-pets-container {

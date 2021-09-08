@@ -19,6 +19,7 @@ html {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  text-align: center;
   width: 280px;
   height: 200px;
   background-color: var(--beau-blue);
@@ -37,7 +38,7 @@ html {
 .class-modal__buttons button {
   width: 80px;
   height: 40px;
-  font-family: 'Muli', sans-serif;
+  font-family: "Muli", sans-serif;
   font-size: 1.4rem;
   font-weight: bold;
   background-color: var(--blue-pigment);
