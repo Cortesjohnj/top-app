@@ -1,0 +1,49 @@
+html {
+  font-size: 10px;
+}
+
+.card-modal {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100vw;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.class-modal__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+  width: 280px;
+  height: 200px;
+  background-color: var(--beau-blue);
+  border-radius: 5px;
+}
+
+.class-modal__container p {
+  font-size: 2rem;
+}
+
+.class-modal__buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.class-modal__buttons button {
+  width: 80px;
+  height: 40px;
+  font-family: "Muli", sans-serif;
+  font-size: 1.4rem;
+  font-weight: bold;
+  background-color: var(--blue-pigment);
+  color: white;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
