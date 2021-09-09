@@ -1,0 +1,70 @@
+html {
+  font-size: 10px;
+}
+
+.background-container {
+  height: auto;
+  min-height: 100vh;
+  background-color: #fff;
+  background-image: url("../images/wave-2.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.pet-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+  min-width: 320px;
+  max-width: 600px;
+  margin: 15px auto;
+  padding-bottom: 15px;
+  background-color: var(--soft-blue);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.16);
+}
+
+.pet-info__image {
+  width: 90%;
+  min-width: 288px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  object-fit: cover;
+}
+
+.pet-info__text {
+  width: 90%;
+  min-width: 288px;
+  text-align: start;
+}
+
+.pet-info__text h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: var(--blue-pigment);
+}
+
+.pet-info__text--label {
+  margin-bottom: 3px;
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+.pet-info__text--label span {
+  font-weight: bold;
+  color: var(--blue-pigment);
+}
+
+.pet-info__text--description {
+  height: auto;
+  font-size: 1.4rem;
+}
+
+.requests-list {
+  width: 80%;
+  min-width: 350px;
+  max-width: 650px;
+  margin: 0 auto;
+  margin-top: 30px;
+  padding-bottom: 30px;
+}
