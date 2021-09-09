@@ -2,7 +2,7 @@ import { useState } from "react";
 import { withRouter } from "react-router-dom";
 import { FaMinus } from "react-icons/fa";
 import { IconContext } from "react-icons";
-import axios from "axios";
+import axios from "../axios";
 
 import CardImage from "./CardImage";
 import CardModal from "./CardModal";
@@ -45,21 +45,13 @@ const PetCard = (props) => {
     !adopted && props.history.push(`/pets/${_id}${redirectUrl}`);
   };
 
-  const handleDeletePet = (_id) => {
-    axios({
-      method: "DELETE",
-      baseURL: "https://jsonplaceholder.typicode.com",
-      url: `/posts/1`,
-      data: {
-        id: _id,
-      },
-    })
-      .then(() => {
-        console.log("Pet deleted!");
-      })
-      .catch((error) => {
-        console.dir(error.message);
-      });
+  const handleDeletePet = async (_id) => {
+    try {
+      await axios.delete(`/pets/${_id}`);
+      console.log("Pet deleted!");
+    } catch (e) {
+      console.dir(e.message);
+    }
   };
 
   return (
