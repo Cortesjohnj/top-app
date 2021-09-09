@@ -18,7 +18,6 @@ function RegisterPage() {
 
   const onSubmit = (data, e) => {
     e.target.reset();
-    console.log(data);
     axios
       .post("https://jsonplaceholder.typicode.com/posts", data)
       .then(response => console.log(response))
