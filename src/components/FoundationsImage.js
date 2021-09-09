@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
 
-const Image = (props) => {
+const FoundationsImage = (props) => {
   return  <Link to={"/foundations/:" + props.id + "/pets"} className="link-foundations">
           <figure className="photo-foundations">
           <img className="image-foundations" src={props.photo_url} alt="pet" />
@@ -12,4 +12,4 @@ const Image = (props) => {
       </Link>
 }
 
-export default Image;
+export default FoundationsImage;
