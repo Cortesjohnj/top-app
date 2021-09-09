@@ -2,6 +2,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import PetListPage from "./pages/PetListPage";
 import { RegisterPage } from "./pages/RegisterPage";
+import UserProfile from "./pages/UserProfile";
 import { AddPet } from "./pages/AddPet";
 import PetManagePage from "./pages/PetManagePage";
 import { Suspense } from "react";
@@ -14,6 +15,7 @@ function App() {
         <Switch>
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/signup" component={RegisterPage} />
+          <Route exact path="/:id/profile" component={UserProfile} />
           <Route exact path="/foundations/:id/pets" component={PetListPage} />
           <Route exact path="/pets/:id/request" />
           <Route exact path="/foundations/:id/add-pet" component={AddPet} />
