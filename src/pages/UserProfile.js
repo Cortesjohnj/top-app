@@ -1,48 +1,113 @@
-import React from "react";
+import React, { useState } from "react";
+import { FaUserCircle } from "react-icons/fa";
 import { PrimaryButton } from "../components/PrimaryButton";
 
-function UserProfile() {
+function Profile() {
+  const [updateProfile, setUpdateProfile] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    address: "",
+    phoneNumber: "",
+    photoUrl: null,
+  });
+
+  const cleanup = () => {
+    URL.revokeObjectURL(updateProfile);
+  };
+
+  const setImage = newImage => {
+    if (updateProfile) {
+      cleanup();
+    }
+    setUpdateProfile(prevState => ({
+      ...prevState,
+      photoUrl: newImage,
+    }));
+  };
+
+  const handlePhoto = event => {
+    const newImage = event.target.files[0];
+    if (newImage) {
+      setImage(URL.createObjectURL(newImage));
+    }
+  };
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    setUpdateProfile(prevState => ({
+      ...prevState,
+      [event.target.name]: event.target.value,
+    }));
+  };
+  console.log(updateProfile);
+
   return (
     <section className="userProfile">
       <div className="userProfile__container">
-        <h2 className="userProfile__container--title"> Hello Name!</h2>
-        <form className="userProfile__container--form">
+        <h2 className="userProfile__container--title">
+          Hello {updateProfile.firstName}!
+        </h2>
+        <form className="userProfile__container--form" onSubmit={handleSubmit}>
+          <i className="userProfile__container--image">
+            {!!updateProfile.photoUrl ? (
+              <img
+                src={updateProfile.photoUrl}
+                alt="Profile"
+                className="userProfile__container--profileImg"
+              />
+            ) : (
+              <FaUserCircle className="userProfile__container--avatar" />
+            )}
+          </i>
           <label
             htmlFor="imageUpload"
             className="updateProfilePic userProfile__container--inputs"
           >
             Change profile picture
           </label>
-          <input type="file" id="imageUpload" accept="image/*" hidden />
+          <input
+            type="file"
+            id="imageUpload"
+            accept="image/*"
+            hidden
+            onChange={handlePhoto}
+          />
           <input
             type="text"
             name="firstName"
-            value="Pedro"
+            // value="Pedro"
+            placeholder="First name"
             className="userProfile__container--inputs"
+            onChange={handleSubmit}
           />
           <input
             type="text"
             name="lastName"
-            value="Perez"
+            placeholder="Last Name"
             className="userProfile__container--inputs"
+            onChange={handleSubmit}
           />
           <input
             type="email"
             name="email"
-            value="Example@test.com"
+            placeholder="Email"
             className="userProfile__container--inputs"
+            onChange={handleSubmit}
           />
           <input
             type="text"
             name="address"
-            value="Calle falsa 123"
+            placeholder="Address"
             className="userProfile__container--inputs"
+            onChange={handleSubmit}
           />
           <input
             type="number"
             name="phoneNumber"
-            value="3004127821"
+            placeholder="Phone number"
             className="userProfile__container--inputs"
+            onChange={handleSubmit}
           />
           <PrimaryButton
             children={"Update profile"}
@@ -55,4 +120,4 @@ function UserProfile() {
   );
 }
 
-export default UserProfile;
+export default Profile;
