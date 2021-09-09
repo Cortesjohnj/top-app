@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Dog from '../assets/images/Dog swimming-01.svg';
-import '../assets/styles/AboutSection.css';
+import React from "react";
+import { Link } from "react-router-dom";
+import Dog from "../assets/images/Dog swimming-01.svg";
+import "../assets/styles/AboutSection.css";
 
 const AboutSection = () => {
   return (

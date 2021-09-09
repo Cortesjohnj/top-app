@@ -1,6 +1,6 @@
-import React from 'react';
-import '../assets/styles/Whatsapp.css';
-import { IoLogoWhatsapp } from 'react-icons/io5';
+import React from "react";
+import "../assets/styles/Whatsapp.css";
+import { IoLogoWhatsapp } from "react-icons/io5";
 
 const Whastapp = () => {
   return (
@@ -10,7 +10,7 @@ const Whastapp = () => {
       className="whatsappfloat"
       target="_blank"
     >
-      {' '}
+      {" "}
       <IoLogoWhatsapp className="whatsappfloat__IoLogoWhatsapp" />
     </a>
   );

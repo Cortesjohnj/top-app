@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Dog2 from '../assets/images/undraw_good_doggy_4wfq.svg';
-import '../assets/styles/HelpUs.css';
+import React from "react";
+import { Link } from "react-router-dom";
+import Dog2 from "../assets/images/undraw_good_doggy_4wfq.svg";
+import "../assets/styles/HelpUs.css";
 
 const HelpUsSection = () => {
   return (

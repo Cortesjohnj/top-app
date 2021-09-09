@@ -1,15 +1,15 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Link as LinkScroll } from 'react-scroll';
-import { animateScroll as ScrollToTop } from 'react-scroll';
-import '../assets/styles/SideBar.css';
-import { FaTimes } from 'react-icons/fa';
+import React from "react";
+import { Link } from "react-router-dom";
+import { Link as LinkScroll } from "react-scroll";
+import { animateScroll as ScrollToTop } from "react-scroll";
+import "../assets/styles/SideBar.css";
+import { FaTimes } from "react-icons/fa";
 
 function SideBar({ isOpen, toggle }) {
   return (
     <aside
       className={`sideBar__container 
-      ${isOpen ? 'sideBar__container--show' : 'sideBar__container--hide'}`}
+      ${isOpen ? "sideBar__container--show" : "sideBar__container--hide"}`}
       onClick={toggle}
     >
       <div className="sideBar__container--icon" onClick={toggle}>

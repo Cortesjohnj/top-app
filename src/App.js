@@ -1,12 +1,12 @@
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import LoginPage from './pages/LoginPage';
-import PetListPage from './pages/PetListPage';
-import { RegisterPage } from './pages/RegisterPage';
-import { AddPet } from './pages/AddPet';
-import PetManagePage from './pages/PetManagePage';
-import { Suspense } from 'react';
-import Spinner from './components/Spinner';
-import Home from './pages/Home';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import LoginPage from "./pages/LoginPage";
+import PetListPage from "./pages/PetListPage";
+import { RegisterPage } from "./pages/RegisterPage";
+import { AddPet } from "./pages/AddPet";
+import PetManagePage from "./pages/PetManagePage";
+import { Suspense } from "react";
+import Spinner from "./components/Spinner";
+import Home from "./pages/Home";
 
 function App() {
   return (

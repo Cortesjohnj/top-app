@@ -1,14 +1,14 @@
-import React from 'react';
-import '../assets/styles/Footer.css';
+import React from "react";
+import "../assets/styles/Footer.css";
 import {
   FaFacebook,
   FaTwitterSquare,
   FaInstagram,
   FaLinkedin,
-} from 'react-icons/fa';
-import { Link } from 'react-router-dom';
-import { Link as LinkScroll } from 'react-scroll';
-import { animateScroll as ScrollToTop } from 'react-scroll';
+} from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { Link as LinkScroll } from "react-scroll";
+import { animateScroll as ScrollToTop } from "react-scroll";
 
 const Footer = () => {
   let isUser = false;

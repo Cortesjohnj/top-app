@@ -1,10 +1,10 @@
-import { FaBars } from 'react-icons/fa';
-import { MdPets } from 'react-icons/md';
-import { Link } from 'react-router-dom';
-import { Link as LinkScroll } from 'react-scroll';
-import { animateScroll as ScrollToTop } from 'react-scroll';
-import ProfilePic from '../assets/images/John.jpg';
-import '../assets/styles/Navbar.css';
+import { FaBars } from "react-icons/fa";
+import { MdPets } from "react-icons/md";
+import { Link } from "react-router-dom";
+import { Link as LinkScroll } from "react-scroll";
+import { animateScroll as ScrollToTop } from "react-scroll";
+import ProfilePic from "../assets/images/John.jpg";
+import "../assets/styles/Navbar.css";
 
 function Navbar({ toggle }) {
   let isUser = false;
@@ -36,8 +36,8 @@ function Navbar({ toggle }) {
           <ul
             className={
               isUser
-                ? 'navBar__container--navMenu--hide'
-                : 'navBar__container--navMenu'
+                ? "navBar__container--navMenu--hide"
+                : "navBar__container--navMenu"
             }
           >
             <li
@@ -72,8 +72,8 @@ function Navbar({ toggle }) {
             <li
               className={
                 isUser
-                  ? 'navBar__container--navMenu2--hide'
-                  : 'navBar__container--navItem2'
+                  ? "navBar__container--navMenu2--hide"
+                  : "navBar__container--navItem2"
               }
             >
               <Link className="navBar__container--navLinks2" to="login">
@@ -83,8 +83,8 @@ function Navbar({ toggle }) {
             <li
               className={
                 isUser
-                  ? 'navBar__container--navItem2'
-                  : 'navBar__container--navMenu2--hide'
+                  ? "navBar__container--navItem2"
+                  : "navBar__container--navMenu2--hide"
               }
             >
               <Link
@@ -97,8 +97,8 @@ function Navbar({ toggle }) {
             <li
               className={
                 isUser
-                  ? 'navBar__container--navItem2'
-                  : 'navBar__container--navMenu2--hide'
+                  ? "navBar__container--navItem2"
+                  : "navBar__container--navMenu2--hide"
               }
             >
               <Link className="navBar__container--navLinks2" to="/">

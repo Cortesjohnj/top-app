@@ -1,7 +1,7 @@
-import React from 'react';
-import Slider from '../components/slider/Slider';
-import '../assets/styles/Info.css';
-import { SliderData } from './slider/SliderData';
+import React from "react";
+import Slider from "../components/slider/Slider";
+import "../assets/styles/Info.css";
+import { SliderData } from "./slider/SliderData";
 
 function Info() {
   return (
