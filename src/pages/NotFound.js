@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import '../assets/styles/NotFound.css';
-import Dog3 from '../assets/images/Error Naughty Dog.svg';
+import React from "react";
+import { Link } from "react-router-dom";
+import "../assets/styles/NotFound.css";
+import Dog3 from "../assets/images/Error Naughty Dog.svg";
 
 const NotFound = () => {
   return (
