@@ -2,12 +2,22 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { Provider } from "react-redux";
+import { createStore, compose } from "redux";
 import "./assets/styles/GeneralStyles.css";
+import reducer from "./reducer";
+
+const initialState = {
+  user: {},
+  filteredPets: [],
+};
+
+const store = createStore(reducer, initialState, compose);
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById("root")
 );
 
