@@ -1,8 +1,7 @@
 import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import axios from "../axios";
 import "../assets/styles/LoginPage.css";
-import MockData from "../MockData";
 
 const LoginPage = (props) => {
   const form = useRef(null);
@@ -30,42 +29,22 @@ const LoginPage = (props) => {
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const user = MockData.users.filter(
-      (user) => user.email === formState.email
-    )[0];
-
-    axios({
-      method: "POST",
-      baseURL: "https://jsonplaceholder.typicode.com",
-      url: `/posts`,
-      data: {
+    try {
+      const response = await axios.post("/login", {
         email: formState.values.email,
-        body: formState.values.password,
-      },
-    })
-      .then(() => {
-        console.log("Authenticated! Now rediect to home page");
-        props.history.push("/");
-      })
-      .catch((error) => {
-        error.status === "401"
-          ? setFormState((formState) => ({
-              ...formState,
-              errors: {
-                code: error.status,
-                message: "*Invalid Credentials, please try again",
-              },
-            }))
-          : setFormState((formState) => ({
-              ...formState,
-              errors: {
-                code: error.status,
-                message: "*Unexpected error, please try again later",
-              },
-            }));
+        password: formState.values.password,
       });
+      localStorage.setItem("Authorization", response.data.token);
+      console.log(response.data);
+      //props.history.push("/");
+    } catch (e) {
+      setFormState((formState) => ({
+        ...formState,
+        errors: { code: e.response.status, message: e.response.data.error },
+      }));
+    }
   };
 
   return (
