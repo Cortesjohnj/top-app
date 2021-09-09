@@ -3,8 +3,8 @@ import { withRouter } from "react-router-dom";
 import { FaMinus } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import axios from "../axios";
-import { connect } from "react-redux";
 import { deletePet } from "../actions";
+import { useDispatch } from "react-redux";
 
 import CardImage from "./CardImage";
 import CardModal from "./CardModal";
@@ -25,6 +25,7 @@ const PetCard = (props) => {
     age,
     isFoundation,
   } = props;
+  const dispatch = useDispatch();
 
   //Using Mock Data to test the number box
   const requests = MockData.adoptionRegistry.filter(
@@ -50,7 +51,7 @@ const PetCard = (props) => {
   const handleDeletePet = async (_id) => {
     try {
       await axios.delete(`/pets/${_id}`);
-      props.deletePet(_id);
+      dispatch(deletePet(_id));
     } catch (e) {
       console.dir(e.message);
     }
@@ -116,8 +117,4 @@ const PetCard = (props) => {
   );
 };
 
-const mapDispatchToProps = {
-  deletePet,
-};
-
-export default connect(null, mapDispatchToProps)(withRouter(PetCard));
+export default withRouter(PetCard);

@@ -4,32 +4,32 @@ import { Link } from "react-router-dom";
 import { FaPlusCircle } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import axios from "../axios";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { setFilteredPets } from "../actions";
 
 import CardList from "../components/CardList";
 import PetCard from "../components/PetCard";
 import "../assets/styles/PetListPage.css";
 
-const PetListPage = ({ filteredPets, setFilteredPets }) => {
+const PetListPage = () => {
   const { id: foundationId } = useParams();
   let redirectUrl = "";
-
-  //const [filteredPets, setFilteredPets] = useState([]);
+  const dispatch = useDispatch();
+  const { filteredPets } = useSelector((state) => state);
 
   useEffect(() => {
     async function fetchData() {
       try {
         let response = await axios.get(`/foundations/${foundationId}/pets`);
         //setFilteredPets(response.data);
-        setFilteredPets(response.data);
+        dispatch(setFilteredPets(response.data));
       } catch (e) {
         console.log(e);
       }
     }
 
     fetchData();
-  }, [foundationId, setFilteredPets]);
+  }, [foundationId, dispatch]);
 
   //This variables comes from the user session, I will set it manually for testing purposes
   const isFoundation = true;
@@ -73,12 +73,4 @@ const PetListPage = ({ filteredPets, setFilteredPets }) => {
   );
 };
 
-const mapDispatchToProps = {
-  setFilteredPets,
-};
-
-const mapStateToProps = (state) => {
-  return { filteredPets: state.filteredPets };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(PetListPage);
+export default PetListPage;
