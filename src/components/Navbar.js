@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { FaBars } from "react-icons/fa";
 import { MdPets } from "react-icons/md";
 import { Link } from "react-router-dom";
@@ -9,6 +10,19 @@ import "../assets/styles/Navbar.css";
 function Navbar({ toggle }) {
   let isUser = false;
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    window.addEventListener(
+      "resize",
+      () => {
+        const ismobile = window.innerWidth < 768;
+        if (ismobile !== isMobile) setIsMobile(ismobile);
+      },
+      false
+    );
+  }, [isMobile]);
+
   return (
     <>
       <nav className="navBar">
@@ -17,12 +31,14 @@ function Navbar({ toggle }) {
             <MdPets className="navBar__container--pet" />
             ADOGTA
           </Link>
+
           {isUser ? (
             <Link
               className="navBar__container--profilePicWrapper1"
-              to="/id/profile"
+              to={isMobile ? "" : "/id/profile"}
             >
               <img
+                onClick={toggle}
                 className="navBar__container--profilePic1"
                 src={ProfilePic}
                 alt="profilePic"
@@ -33,13 +49,7 @@ function Navbar({ toggle }) {
               <FaBars onClick={toggle} />
             </div>
           )}
-          <ul
-            className={
-              isUser
-                ? "navBar__container--navMenu--hide"
-                : "navBar__container--navMenu"
-            }
-          >
+          <ul className="navBar__container--navMenu">
             <li
               className="navBar__container--navItem"
               onClick={() => ScrollToTop.scrollToTop()}

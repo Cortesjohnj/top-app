@@ -6,6 +6,7 @@ import "../assets/styles/SideBar.css";
 import { FaTimes } from "react-icons/fa";
 
 function SideBar({ isOpen, toggle }) {
+  let isUser = false;
   return (
     <aside
       className={`sideBar__container 
@@ -45,14 +46,33 @@ function SideBar({ isOpen, toggle }) {
           </LinkScroll>
         </ul>
         <div className="sideBar__container--btnWrap">
-          <Link className="sideBar__container--route" to="/login">
-            LOG IN
-          </Link>
+          {isUser && (
+            <Link className="sideBar__container--route" to="/id:/profile">
+              PROFILE
+            </Link>
+          )}
         </div>
         <div className="sideBar__container--btnWrap">
-          <Link className="sideBar__container--route" to="/signup">
-            SIGN UP
-          </Link>
+          {isUser ? (
+            <Link className="sideBar__container--route" to="/donate">
+              DONATE
+            </Link>
+          ) : (
+            <Link className="sideBar__container--route" to="/login">
+              LOG IN
+            </Link>
+          )}
+        </div>
+        <div className="sideBar__container--btnWrap">
+          {isUser ? (
+            <Link className="sideBar__container--route" to="">
+              LOG OUT
+            </Link>
+          ) : (
+            <Link className="sideBar__container--route" to="/signup">
+              SIGN UP
+            </Link>
+          )}
         </div>
       </div>
     </aside>
