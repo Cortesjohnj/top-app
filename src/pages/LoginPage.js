@@ -38,7 +38,6 @@ const LoginPage = (props) => {
       authUser({
         email: formState.values.email || "",
         password: formState.values.password || "",
-        history: props.history,
       })
     );
   };

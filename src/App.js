@@ -1,4 +1,4 @@
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Router, Switch, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import PetListPage from "./pages/PetListPage";
 import { RegisterPage } from "./pages/RegisterPage";
@@ -9,11 +9,12 @@ import Spinner from "./components/Spinner";
 import Foundations from "./pages/Foundations";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
+import history from "./history";
 
 function App() {
   return (
     <Provider store={store}>
-      <BrowserRouter>
+      <Router history={history}>
         <Suspense fallback={<Spinner />}>
           <Switch>
             <Route exact path="/login" component={LoginPage} />
@@ -25,7 +26,7 @@ function App() {
             <Route exact path="/foundations" component={Foundations} />
           </Switch>
         </Suspense>
-      </BrowserRouter>
+      </Router>
     </Provider>
   );
 }

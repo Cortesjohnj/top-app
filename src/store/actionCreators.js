@@ -1,7 +1,8 @@
 import axios from "../axios";
 import { ERROR, LOGIN_USER } from "./actions";
+import history from "../history";
 
-export const authUser = ({ email, password, history }) => {
+export const authUser = ({ email, password }) => {
   return async function (dispatch) {
     try {
       const response = await axios.post("/login", {
