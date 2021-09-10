@@ -6,6 +6,7 @@ import { AddPet } from "./pages/AddPet";
 import PetManagePage from "./pages/PetManagePage";
 import { Suspense } from "react";
 import Spinner from "./components/Spinner";
+import Foundations from "./pages/Foundations";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 
@@ -21,6 +22,7 @@ function App() {
             <Route exact path="/pets/:id/request" />
             <Route exact path="/foundations/:id/add-pet" component={AddPet} />
             <Route exact path="/pets/:id/manage" component={PetManagePage} />
+            <Route exact path="/foundations" component={Foundations} />
           </Switch>
         </Suspense>
       </BrowserRouter>
