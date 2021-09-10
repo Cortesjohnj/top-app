@@ -1,9 +1,18 @@
+import { LOGIN_USER, ERROR } from "./actions";
+
 const reducer = (state, action) => {
   switch (action.type) {
-    case "ADD_USER":
+    case LOGIN_USER:
       return {
         ...state,
         user: action.payload,
+        error: "",
+      };
+
+    case ERROR:
+      return {
+        ...state,
+        error: action.payload,
       };
 
     default:

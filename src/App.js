@@ -6,16 +6,8 @@ import { AddPet } from "./pages/AddPet";
 import PetManagePage from "./pages/PetManagePage";
 import { Suspense } from "react";
 import Spinner from "./components/Spinner";
-import reducer from "./reducer";
-import { createStore, compose } from "redux";
 import { Provider } from "react-redux";
-
-const initialState = {
-  user: {},
-};
-
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(reducer, initialState, composeEnhancers());
+import { store } from "./store/store";
 
 function App() {
   return (
