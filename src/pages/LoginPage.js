@@ -2,9 +2,12 @@ import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import axios from "../axios";
 import "../assets/styles/LoginPage.css";
+import { useDispatch } from "react-redux";
+import { addUser } from "../actions";
 
 const LoginPage = (props) => {
   const form = useRef(null);
+  const dispatch = useDispatch();
 
   const [formState, setFormState] = useState({
     isInvalid: false,
@@ -37,8 +40,8 @@ const LoginPage = (props) => {
         password: formState.values.password,
       });
       localStorage.setItem("Authorization", response.data.token);
-      console.log(response.data);
-      //props.history.push("/");
+      dispatch(addUser(response.data.user));
+      props.history.push("/");
     } catch (e) {
       setFormState((formState) => ({
         ...formState,
