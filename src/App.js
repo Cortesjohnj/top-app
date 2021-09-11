@@ -1,4 +1,4 @@
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Router, Switch, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import PetListPage from "./pages/PetListPage";
 import { RegisterPage } from "./pages/RegisterPage";
@@ -6,21 +6,15 @@ import { AddPet } from "./pages/AddPet";
 import PetManagePage from "./pages/PetManagePage";
 import { Suspense } from "react";
 import Spinner from "./components/Spinner";
+import Foundations from "./pages/Foundations";
 import { Provider } from "react-redux";
-import reducer from "./reducer";
-import { createStore, compose } from "redux";
-
-const initialState = {
-  user: {},
-  filteredPets: [],
-};
-
-const store = createStore(reducer, initialState, compose);
+import { store } from "./store/store";
+import history from "./history";
 
 function App() {
   return (
     <Provider store={store}>
-      <BrowserRouter>
+      <Router history={history}>
         <Suspense fallback={<Spinner />}>
           <Switch>
             <Route exact path="/login" component={LoginPage} />
@@ -29,9 +23,10 @@ function App() {
             <Route exact path="/pets/:id/request" />
             <Route exact path="/foundations/:id/add-pet" component={AddPet} />
             <Route exact path="/pets/:id/manage" component={PetManagePage} />
+            <Route exact path="/foundations" component={Foundations} />
           </Switch>
         </Suspense>
-      </BrowserRouter>
+      </Router>
     </Provider>
   );
 }
