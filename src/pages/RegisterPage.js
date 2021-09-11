@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import "../assets/styles/RegisterForm.css";
 import { PrimaryButton } from "../components/PrimaryButton";
-import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { registerUser } from "../store/actionCreators";
 
 function RegisterPage() {
   const {
@@ -13,16 +14,13 @@ function RegisterPage() {
     watch,
   } = useForm({ mode: "onBlur" });
 
+  const dispatch = useDispatch();
   const password = useRef({});
   password.current = watch("password", "");
 
   const onSubmit = (data, e) => {
-    e.target.reset();
-    console.log(data);
-    axios
-      .post("https://jsonplaceholder.typicode.com/posts", data)
-      .then(response => console.log(response))
-      .catch(error => console.log(error));
+    e.preventDefault();
+    dispatch(registerUser(data));
   };
 
   return (
