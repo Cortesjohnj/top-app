@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import { FaMinus } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import axios from "../axios";
-import { deletePet } from "../actions";
+import { deletePet } from "../store/actionCreators";
 import { useDispatch } from "react-redux";
 
 import CardImage from "./CardImage";

@@ -1,4 +1,4 @@
-import { LOGIN_USER, ERROR } from "./actions";
+import { LOGIN_USER, ERROR, SET_PETS, DELETE_PET } from "./actions";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -7,6 +7,18 @@ const reducer = (state, action) => {
         ...state,
         user: action.payload,
         error: "",
+      };
+
+    case SET_PETS:
+      return {
+        ...state,
+        pets: action.payload,
+      };
+
+    case DELETE_PET:
+      return {
+        ...state,
+        pets: state.pets.filter((pet) => pet._id !== action.payload),
       };
 
     case ERROR:
