@@ -2,7 +2,6 @@ import { useState } from "react";
 import { withRouter } from "react-router-dom";
 import { FaMinus } from "react-icons/fa";
 import { IconContext } from "react-icons";
-import axios from "../axios";
 import { deletePet } from "../store/actionCreators";
 import { useDispatch } from "react-redux";
 
@@ -49,12 +48,7 @@ const PetCard = (props) => {
   };
 
   const handleDeletePet = async (_id) => {
-    try {
-      await axios.delete(`/pets/${_id}`);
-      dispatch(deletePet(_id));
-    } catch (e) {
-      console.dir(e.message);
-    }
+    dispatch(deletePet(_id));
   };
 
   return (
