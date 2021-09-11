@@ -43,11 +43,6 @@ function RegisterPage() {
               *First name cannot exceed 20 characters
             </p>
           )}
-          {errors?.firstName?.type === "pattern" && (
-            <p className="register__container--form--errors">
-              *Alphabetical characters only
-            </p>
-          )}
           <input
             type="text"
             name="firstName"
@@ -56,23 +51,12 @@ function RegisterPage() {
             {...register("firstName", {
               required: true,
               maxLength: 20,
-              pattern: /^[A-Za-z]+$/i,
             })}
           />
 
-          {errors?.lastName?.type === "required" && (
-            <p className="register__container--form--errors">
-              *Last name is required
-            </p>
-          )}
           {errors?.lastName?.type === "maxLength" && (
             <p className="register__container--form--errors">
               *First name cannot exceed 20 characters
-            </p>
-          )}
-          {errors?.lastname?.type === "pattern" && (
-            <p className="register__container--form--errors">
-              *Alphabetical characters only
             </p>
           )}
           <input
@@ -81,9 +65,8 @@ function RegisterPage() {
             name="lastName"
             className="form__field"
             {...register("lastName", {
-              required: true,
+              required: false,
               maxLength: 20,
-              pattern: /^[A-Za-z]+$/i,
             })}
           />
 
@@ -146,7 +129,7 @@ function RegisterPage() {
             })}
           />
           <h3 className="register__container--subtitle">Sign up as:</h3>
-          {errors?.rol?.type === "required" && (
+          {errors?.role?.type === "required" && (
             <p className="register__container--form--errors">
               *You must select one
             </p>
@@ -157,9 +140,9 @@ function RegisterPage() {
               <input
                 type="radio"
                 name="user"
-                value="User"
+                value="user"
                 className="register__container--form--options--input"
-                {...register("rol", {
+                {...register("role", {
                   required: true,
                 })}
               />
@@ -169,9 +152,9 @@ function RegisterPage() {
               <input
                 type="radio"
                 name="foundation"
-                value="Foundation"
+                value="foundation"
                 className="register__container--form--options--input"
-                {...register("rol", {
+                {...register("role", {
                   required: true,
                 })}
               />
