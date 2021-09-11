@@ -29,12 +29,11 @@ export const registerUser = ({
     try {
       const response = await axios.post("/signup", {
         name: firstName,
-        // lastName: lastName,
         email: email,
         password: password,
         role: role,
       });
-      // localStorage.setItem("Authorization", response.data.token);
+
       dispatch({ type: REGISTER_USER, payload: response.data.user });
       history.push("/login");
     } catch (e) {
