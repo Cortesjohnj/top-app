@@ -1,9 +1,18 @@
 import FoundationsImage from "../components/FoundationsImage"
-import MockData from "../MockData"
+import axios from "axios";
+import React from "react"
 
 const FoundationsMenu = () => {
-  return <div className= "container-foundations ">{ MockData.foundations.map(foundation => <FoundationsImage name={foundation.name} address={foundation.address}
-      email={foundation.email} phone={foundation.phone_number} photo_url={foundation.photo_url} id = {foundation._id}> </FoundationsImage>)} </div>
+
+  const [foundations, setFoundations] = React.useState([])
+  React.useEffect(() => {
+      axios.get("http://localhost:8080/foundations")
+      .then(response => setFoundations(response.data))
+      .catch(error => console.log(error))
+  }, [])
+  if (!foundations) return null
+  return <div className= "container-foundations ">{ foundations.map(foundation => <FoundationsImage name={foundation.name} address={foundation.address}
+      email={foundation.email} phone={foundation.phoneNumber} photo_url={foundation.photoUrl} id = {foundation._id} key= {foundation._id}> </FoundationsImage>)} </div>
 }
 
-export default FoundationsMenu;
+export default FoundationsMenu
