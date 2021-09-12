@@ -1,12 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Link as LinkScroll } from "react-scroll";
 import { animateScroll as ScrollToTop } from "react-scroll";
 import "../assets/styles/SideBar.css";
 import { FaTimes } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { ISUSER } from "../store/actions";
 
 function SideBar({ isOpen, toggle }) {
-  let isUser = false;
+  const dispatch = useDispatch();
+
+  const activeUser = useSelector((state) => state.isUser);
+
+  const recentUser = useSelector((state) => state.user);
+  const { name, _id } = recentUser;
+
+  useEffect(() => {
+    if (localStorage.getItem("Authorization")) {
+      dispatch({ type: ISUSER, payload: true });
+    }
+  }, [dispatch]);
+
+  const handleLogOut = () => {
+    dispatch({ type: ISUSER, payload: false });
+    localStorage.removeItem("Authorization");
+  };
+
   return (
     <aside
       className={`sideBar__container 
@@ -46,14 +65,14 @@ function SideBar({ isOpen, toggle }) {
           </LinkScroll>
         </ul>
         <div className="sideBar__container--btnWrap">
-          {isUser && (
-            <Link className="sideBar__container--route" to="/id:/profile">
+          {activeUser && (
+            <Link className="sideBar__container--route" to={`/${_id}/${name}`}>
               PROFILE
             </Link>
           )}
         </div>
         <div className="sideBar__container--btnWrap">
-          {isUser ? (
+          {activeUser ? (
             <Link className="sideBar__container--route" to="/donate">
               DONATE
             </Link>
@@ -64,8 +83,12 @@ function SideBar({ isOpen, toggle }) {
           )}
         </div>
         <div className="sideBar__container--btnWrap">
-          {isUser ? (
-            <Link className="sideBar__container--route" to="">
+          {activeUser ? (
+            <Link
+              className="sideBar__container--route"
+              to=""
+              onClick={handleLogOut}
+            >
               LOG OUT
             </Link>
           ) : (

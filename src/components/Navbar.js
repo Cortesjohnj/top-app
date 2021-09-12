@@ -4,11 +4,26 @@ import { MdPets } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { Link as LinkScroll } from "react-scroll";
 import { animateScroll as ScrollToTop } from "react-scroll";
-import ProfilePic from "../assets/images/John.jpg";
+// import ProfilePic from "../assets/images/John.jpg";
 import "../assets/styles/Navbar.css";
+import { useDispatch, useSelector } from "react-redux";
+import { ISUSER } from "../store/actions";
 
 function Navbar({ toggle }) {
-  let isUser = false;
+  // const [isUser, setIsUser] = useState(false);
+  const dispatch = useDispatch();
+
+  const activeUser = useSelector((state) => state.isUser);
+
+  const recentUser = useSelector((state) => state.user);
+
+  useEffect(() => {
+    if (localStorage.getItem("Authorization")) {
+      dispatch({ type: ISUSER, payload: true });
+    }
+  }, [dispatch]);
+
+  const { photoUrl, name, _id } = recentUser;
 
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
@@ -23,6 +38,11 @@ function Navbar({ toggle }) {
     );
   }, [isMobile]);
 
+  const handleLogOut = () => {
+    dispatch({ type: ISUSER, payload: false });
+    localStorage.removeItem("Authorization");
+  };
+
   return (
     <>
       <nav className="navBar">
@@ -32,16 +52,16 @@ function Navbar({ toggle }) {
             ADOGTA
           </Link>
 
-          {isUser ? (
+          {activeUser ? (
             <Link
               className="navBar__container--profilePicWrapper1"
-              to={isMobile ? "" : "/id/profile"}
+              to={isMobile ? "" : `/${_id}/${name}`}
             >
               <img
                 onClick={toggle}
                 className="navBar__container--profilePic1"
-                src={ProfilePic}
-                alt="profilePic"
+                src={photoUrl}
+                alt={name}
               />
             </Link>
           ) : (
@@ -81,7 +101,7 @@ function Navbar({ toggle }) {
           <ul className="navBar__container--navMenu2">
             <li
               className={
-                isUser
+                activeUser
                   ? "navBar__container--navMenu2--hide"
                   : "navBar__container--navItem2"
               }
@@ -92,7 +112,7 @@ function Navbar({ toggle }) {
             </li>
             <li
               className={
-                isUser
+                activeUser
                   ? "navBar__container--navItem2"
                   : "navBar__container--navMenu2--hide"
               }
@@ -106,27 +126,31 @@ function Navbar({ toggle }) {
             </li>
             <li
               className={
-                isUser
+                activeUser
                   ? "navBar__container--navItem2"
                   : "navBar__container--navMenu2--hide"
               }
             >
-              <Link className="navBar__container--navLinks2" to="/">
+              <Link
+                className="navBar__container--navLinks2"
+                to="/"
+                onClick={handleLogOut}
+              >
                 LOG OUT
               </Link>
             </li>
           </ul>
 
           <nav className="navBar__container--nav">
-            {isUser ? (
+            {activeUser ? (
               <Link
                 className="navBar__container--profilePicWrapper"
-                to="/id:/profile"
+                to={`/${_id}/${name}`}
               >
                 <img
                   className="navBar__container--profilePic"
-                  src={ProfilePic}
-                  alt="profilePic"
+                  src={photoUrl}
+                  alt={name}
                 />
               </Link>
             ) : (

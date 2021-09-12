@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../assets/styles/Footer.css";
 import {
   FaFacebook,
@@ -9,9 +9,10 @@ import {
 import { Link } from "react-router-dom";
 import { Link as LinkScroll } from "react-scroll";
 import { animateScroll as ScrollToTop } from "react-scroll";
+import { useSelector } from "react-redux";
 
 const Footer = () => {
-  let isUser = false;
+  const activeUser = useSelector((state) => state.isUser);
 
   return (
     <footer className="footer">
@@ -60,7 +61,7 @@ const Footer = () => {
         <div className="footer__wrapper--quick-links">
           <ul>
             <li className="footer__wrapper--quick-items">
-              {isUser ? (
+              {activeUser ? (
                 <Link className="footer__wrapper--navLinks" to="/foundations">
                   FOUNDATIONS
                 </Link>
@@ -74,7 +75,7 @@ const Footer = () => {
               )}
             </li>
             <li className="footer__wrapper--quick-items">
-              {isUser ? (
+              {activeUser ? (
                 <Link
                   className="footer__wrapper--navLinks"
                   to="/foundations/:id/pets"
@@ -93,7 +94,7 @@ const Footer = () => {
               )}
             </li>
             <li className="footer__wrapper--quick-items">
-              {isUser ? (
+              {activeUser ? (
                 <Link className="footer__wrapper--navLinks" to="/donate">
                   DONATE
                 </Link>
