@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Link as LinkScroll } from "react-scroll";
 import { animateScroll as ScrollToTop } from "react-scroll";
@@ -86,7 +86,7 @@ function SideBar({ isOpen, toggle }) {
           {activeUser ? (
             <Link
               className="sideBar__container--route"
-              to=""
+              to="/"
               onClick={handleLogOut}
             >
               LOG OUT
