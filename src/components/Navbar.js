@@ -4,13 +4,11 @@ import { MdPets } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { Link as LinkScroll } from "react-scroll";
 import { animateScroll as ScrollToTop } from "react-scroll";
-// import ProfilePic from "../assets/images/John.jpg";
 import "../assets/styles/Navbar.css";
 import { useDispatch, useSelector } from "react-redux";
 import { ISUSER } from "../store/actions";
 
 function Navbar({ toggle }) {
-  // const [isUser, setIsUser] = useState(false);
   const dispatch = useDispatch();
 
   const activeUser = useSelector((state) => state.isUser);
