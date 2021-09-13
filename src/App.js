@@ -10,6 +10,7 @@ import Foundations from "./pages/Foundations";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 import history from "./history";
+import PrivateRoute from "./pages/PrivateRoute";
 
 function App() {
   return (
@@ -19,7 +20,11 @@ function App() {
           <Switch>
             <Route exact path="/login" component={LoginPage} />
             <Route exact path="/signup" component={RegisterPage} />
-            <Route exact path="/foundations/:id/pets" component={PetListPage} />
+            <PrivateRoute
+              exact
+              path="/foundations/:id/pets"
+              component={PetListPage}
+            />
             <Route exact path="/pets/:id/request" />
             <Route exact path="/foundations/:id/add-pet" component={AddPet} />
             <Route exact path="/pets/:id/manage" component={PetManagePage} />

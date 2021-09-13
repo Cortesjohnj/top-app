@@ -21,7 +21,8 @@ const PetListPage = () => {
   }, [foundationId, dispatch]);
 
   //This variables comes from the user session, I will set it manually for testing purposes
-  const isFoundation = true;
+  const isFoundation =
+    useSelector((state) => state).user.role === "foundation" ? true : false;
 
   isFoundation ? (redirectUrl = "/manage") : (redirectUrl = "/request");
 
@@ -37,6 +38,10 @@ const PetListPage = () => {
               isFoundation={isFoundation}
             />
           ))
+        ) : isFoundation ? (
+          <h1 className="no-pets-message">
+            You don't have any pets registered
+          </h1>
         ) : (
           <h1 className="no-pets-message">
             No pets available for this foundation
