@@ -3,9 +3,12 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import "../assets/styles/RegisterForm.css";
 import { PrimaryButton } from "../components/PrimaryButton";
-import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { registerUser } from "../store/actionCreators";
 
 function RegisterPage() {
+  const error = useSelector(state => state.error);
+
   const {
     register,
     formState: { errors },
@@ -13,15 +16,13 @@ function RegisterPage() {
     watch,
   } = useForm({ mode: "onBlur" });
 
+  const dispatch = useDispatch();
   const password = useRef({});
   password.current = watch("password", "");
 
   const onSubmit = (data, e) => {
-    e.target.reset();
-    axios
-      .post("https://jsonplaceholder.typicode.com/posts", data)
-      .then(response => console.log(response))
-      .catch(error => console.log(error));
+    e.preventDefault();
+    dispatch(registerUser(data));
   };
 
   return (
@@ -42,11 +43,6 @@ function RegisterPage() {
               *First name cannot exceed 20 characters
             </p>
           )}
-          {errors?.firstName?.type === "pattern" && (
-            <p className="register__container--form--errors">
-              *Alphabetical characters only
-            </p>
-          )}
           <input
             type="text"
             name="firstName"
@@ -55,23 +51,12 @@ function RegisterPage() {
             {...register("firstName", {
               required: true,
               maxLength: 20,
-              pattern: /^[A-Za-z]+$/i,
             })}
           />
 
-          {errors?.lastName?.type === "required" && (
-            <p className="register__container--form--errors">
-              *Last name is required
-            </p>
-          )}
           {errors?.lastName?.type === "maxLength" && (
             <p className="register__container--form--errors">
               *First name cannot exceed 20 characters
-            </p>
-          )}
-          {errors?.lastname?.type === "pattern" && (
-            <p className="register__container--form--errors">
-              *Alphabetical characters only
             </p>
           )}
           <input
@@ -80,9 +65,8 @@ function RegisterPage() {
             name="lastName"
             className="form__field"
             {...register("lastName", {
-              required: true,
+              required: false,
               maxLength: 20,
-              pattern: /^[A-Za-z]+$/i,
             })}
           />
 
@@ -145,7 +129,7 @@ function RegisterPage() {
             })}
           />
           <h3 className="register__container--subtitle">Sign up as:</h3>
-          {errors?.rol?.type === "required" && (
+          {errors?.role?.type === "required" && (
             <p className="register__container--form--errors">
               *You must select one
             </p>
@@ -156,9 +140,9 @@ function RegisterPage() {
               <input
                 type="radio"
                 name="user"
-                value="User"
+                value="user"
                 className="register__container--form--options--input"
-                {...register("rol", {
+                {...register("role", {
                   required: true,
                 })}
               />
@@ -168,9 +152,9 @@ function RegisterPage() {
               <input
                 type="radio"
                 name="foundation"
-                value="Foundation"
+                value="foundation"
                 className="register__container--form--options--input"
-                {...register("rol", {
+                {...register("role", {
                   required: true,
                 })}
               />
@@ -201,6 +185,9 @@ function RegisterPage() {
         <h4 className="register__container--Endtitle">
           Already a member? <Link to="/login">Sign in </Link>
         </h4>
+        {!!error && (
+          <span className="register__container--handleError">{error}</span>
+        )}
       </div>
     </section>
   );
