@@ -15,11 +15,10 @@ function Navbar({ toggle }) {
 
   const recentUser = useSelector((state) => state.user);
 
-  useEffect(() => {
-    if (localStorage.getItem("Authorization")) {
-      dispatch({ type: ISUSER, payload: true });
-    }
-  }, [dispatch]);
+  if (localStorage.getItem("Authorization")) {
+    dispatch({ type: ISUSER, payload: true });
+    console.log(dispatch);
+  }
 
   const { photoUrl, name, _id } = recentUser;
 
