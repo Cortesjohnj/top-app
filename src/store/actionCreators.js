@@ -1,5 +1,5 @@
 import axios from "../axios";
-import { ERROR, LOGIN_USER } from "./actions";
+import { ERROR, ISUSER, LOGIN_USER } from "./actions";
 import history from "../history";
 
 export const authUser = ({ email, password }) => {
@@ -10,6 +10,7 @@ export const authUser = ({ email, password }) => {
         password: password,
       });
       localStorage.setItem("Authorization", response.data.token);
+      dispatch({ type: ISUSER, payload: true });
       dispatch({ type: LOGIN_USER, payload: response.data.user });
       history.push("/");
     } catch (e) {

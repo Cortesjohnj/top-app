@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { Link as LinkScroll } from "react-scroll";
 import { animateScroll as ScrollToTop } from "react-scroll";
@@ -14,12 +14,6 @@ function SideBar({ isOpen, toggle }) {
 
   const recentUser = useSelector((state) => state.user);
   const { name, _id } = recentUser;
-
-  useEffect(() => {
-    if (localStorage.getItem("Authorization")) {
-      dispatch({ type: ISUSER, payload: true });
-    }
-  }, [dispatch]);
 
   const handleLogOut = () => {
     dispatch({ type: ISUSER, payload: false });
