@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
+import "../assets/styles/UserProfile.css";
 import { PrimaryButton } from "../components/PrimaryButton";
 
 function Profile() {
