@@ -75,14 +75,7 @@ const Footer = () => {
               )}
             </li>
             <li className="footer__wrapper--quick-items">
-              {activeUser ? (
-                <Link
-                  className="footer__wrapper--navLinks"
-                  to="/foundations/:id/pets"
-                >
-                  PETS
-                </Link>
-              ) : (
+              {activeUser ? null : (
                 <LinkScroll
                   className="footer__wrapper--navLinks"
                   to="info"

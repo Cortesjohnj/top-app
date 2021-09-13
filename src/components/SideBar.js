@@ -66,6 +66,13 @@ function SideBar({ isOpen, toggle }) {
           )}
         </div>
         <div className="sideBar__container--btnWrap">
+          {activeUser && (
+            <Link className="sideBar__container--route" to="/foundations">
+              FOUNDATIONS
+            </Link>
+          )}
+        </div>
+        <div className="sideBar__container--btnWrap">
           {activeUser ? (
             <Link className="sideBar__container--route" to="/donate">
               DONATE

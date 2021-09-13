@@ -101,6 +101,17 @@ function Navbar({ toggle }) {
               <Link className="navBar__container--navLinks2" to="login">
                 LOG IN
               </Link>
+            </li>{" "}
+            <li
+              className={
+                activeUser
+                  ? "navBar__container--navItem2"
+                  : "navBar__container--navMenu2--hide"
+              }
+            >
+              <Link className="navBar__container--navLinks2" to="/foundations">
+                FOUNDATIONS
+              </Link>
             </li>
             <li
               className={
