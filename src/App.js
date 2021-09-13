@@ -4,7 +4,7 @@ import PetListPage from "./pages/PetListPage";
 import { RegisterPage } from "./pages/RegisterPage";
 import { AddPet } from "./pages/AddPet";
 import PetManagePage from "./pages/PetManagePage";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Spinner from "./components/Spinner";
 import Foundations from "./pages/Foundations";
 import Home from "./pages/Home";
@@ -12,6 +12,8 @@ import history from "./history";
 import SideBar from "./components/SideBar";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import { useDispatch } from "react-redux";
+import { ISUSER } from "./store/actions";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,6 +21,15 @@ function App() {
   const toggle = () => {
     setIsOpen(!isOpen);
   };
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (localStorage.getItem("Authorization")) {
+      dispatch({ type: ISUSER, payload: true });
+    }
+  }, [dispatch]);
+
   return (
     <Router history={history}>
       <Suspense fallback={<Spinner />}>

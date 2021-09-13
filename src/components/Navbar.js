@@ -15,11 +15,6 @@ function Navbar({ toggle }) {
 
   const recentUser = useSelector((state) => state.user);
 
-  if (localStorage.getItem("Authorization")) {
-    dispatch({ type: ISUSER, payload: true });
-    console.log(dispatch);
-  }
-
   const { photoUrl, name, _id } = recentUser;
 
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);

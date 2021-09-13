@@ -15,10 +15,6 @@ function SideBar({ isOpen, toggle }) {
   const recentUser = useSelector((state) => state.user);
   const { name, _id } = recentUser;
 
-  if (localStorage.getItem("Authorization")) {
-    dispatch({ type: ISUSER, payload: true });
-  }
-
   const handleLogOut = () => {
     dispatch({ type: ISUSER, payload: false });
     localStorage.removeItem("Authorization");

@@ -5,6 +5,7 @@ import {
   REGISTER_USER,
   SET_PETS,
   DELETE_PET,
+  ISUSER,
 } from "./actions";
 import history from "../history";
 
@@ -16,6 +17,7 @@ export const authUser = ({ email, password }) => {
         password: password,
       });
       localStorage.setItem("Authorization", response.data.token);
+      dispatch({ type: ISUSER, payload: true });
       dispatch({ type: LOGIN_USER, payload: response.data.user });
       history.push("/");
     } catch (e) {
