@@ -7,10 +7,7 @@ import PetManagePage from "./pages/PetManagePage";
 import { Suspense } from "react";
 import Spinner from "./components/Spinner";
 import Foundations from "./pages/Foundations";
-<<<<<<< HEAD
 import Home from "./pages/Home";
-=======
->>>>>>> a49ccf3b129361becd2bf5d387dc1465d67b9a5b
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 import history from "./history";
@@ -21,10 +18,7 @@ function App() {
       <Router history={history}>
         <Suspense fallback={<Spinner />}>
           <Switch>
-<<<<<<< HEAD
             <Route exact path="/" component={Home} />
-=======
->>>>>>> a49ccf3b129361becd2bf5d387dc1465d67b9a5b
             <Route exact path="/login" component={LoginPage} />
             <Route exact path="/signup" component={RegisterPage} />
             <Route exact path="/foundations/:id/pets" component={PetListPage} />

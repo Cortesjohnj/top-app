@@ -2,7 +2,8 @@ import { useState } from "react";
 import { withRouter } from "react-router-dom";
 import { FaMinus } from "react-icons/fa";
 import { IconContext } from "react-icons";
-import axios from "axios";
+import { deletePet } from "../store/actionCreators";
+import { useDispatch } from "react-redux";
 
 import CardImage from "./CardImage";
 import CardModal from "./CardModal";
@@ -17,12 +18,13 @@ const PetCard = (props) => {
     _id,
     name,
     description,
-    photo_url,
+    photoUrl,
     adopted,
     redirectUrl,
     age,
     isFoundation,
   } = props;
+  const dispatch = useDispatch();
 
   //Using Mock Data to test the number box
   const requests = MockData.adoptionRegistry.filter(
@@ -45,21 +47,8 @@ const PetCard = (props) => {
     !adopted && props.history.push(`/pets/${_id}${redirectUrl}`);
   };
 
-  const handleDeletePet = (_id) => {
-    axios({
-      method: "DELETE",
-      baseURL: "https://jsonplaceholder.typicode.com",
-      url: `/posts/1`,
-      data: {
-        id: _id,
-      },
-    })
-      .then(() => {
-        console.log("Pet deleted!");
-      })
-      .catch((error) => {
-        console.dir(error.message);
-      });
+  const handleDeletePet = async (_id) => {
+    dispatch(deletePet(_id));
   };
 
   return (
@@ -79,10 +68,9 @@ const PetCard = (props) => {
           )}
           <img
             className="card-list-item__image"
-            src={photo_url}
+            src={photoUrl[0]}
             alt="Pet"
             onClick={handleOpenImage}
-            href={photo_url}
           />
           <div className="card-list-item__details" onClick={handleClick}>
             <h3 className="card-list-item__details--title">{name}</h3>
@@ -108,7 +96,7 @@ const PetCard = (props) => {
       </div>
 
       {isOpen && (
-        <CardImage photo_url={photo_url} handleOpenImage={handleOpenImage} />
+        <CardImage photo_url={photoUrl} handleOpenImage={handleOpenImage} />
       )}
       {modalIsOpen && (
         <CardModal
