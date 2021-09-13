@@ -1,4 +1,4 @@
-import { LOGIN_USER, ERROR, ISUSER } from "./actions";
+import { LOGIN_USER, ERROR, REGISTER_USER, ISUSER } from "./actions";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -9,20 +9,27 @@ const reducer = (state, action) => {
         error: "",
       };
 
+    case REGISTER_USER:
+      return {
+        ...state,
+        user: action.payload,
+        error: "",
+      };
+
+    case ISUSER: 
+      return {
+        ...state,
+        isUser: action.payload,
+      };
+
     case ERROR:
       return {
         ...state,
         error: action.payload,
       };
 
-    case ISUSER: {
-      return {
-        ...state,
-        isUser: action.payload,
-      };
-    }
 
-    default:
+    default: 
       return state;
   }
 };
