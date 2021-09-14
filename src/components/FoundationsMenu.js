@@ -1,16 +1,25 @@
-import FoundationsImage from "../components/FoundationsImage";
-import customAxios from "../axios";
-import { useState, useEffect } from "react";
+import FoundationsImage from "../components/FoundationsImage"
+import customAxios from "../axios"
+import { useState, useEffect } from "react"
 
 const FoundationsMenu = () => {
-  const [foundations, setFoundations] = useState([]);
+  const [foundations, setFoundations] = useState([])
   useEffect(() => {
     customAxios
       .get("http://localhost:8080/foundations")
       .then((response) => setFoundations(response.data))
-      .catch((error) => console.log(error));
-  }, []);
-  if (!foundations) return null;
+      .catch((error) => setFoundations(null))
+  }, [])
+
+  if (foundations === null) {
+    return (
+      <p className="error-foundations">
+        {" "}
+        There is an unexpected error, please try again later{" "}
+      </p>
+    )
+  }
+
   return (
     <div className="container-foundations ">
       {foundations.map((foundation) => (
@@ -27,7 +36,7 @@ const FoundationsMenu = () => {
         </FoundationsImage>
       ))}{" "}
     </div>
-  );
-};
+  )
+}
 
-export default FoundationsMenu;
+export default FoundationsMenu
