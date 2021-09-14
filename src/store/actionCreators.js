@@ -1,5 +1,11 @@
 import axios from "../axios";
-import { ERROR, LOGIN_USER, REGISTER_USER } from "./actions";
+import {
+  ERROR,
+  LOGIN_USER,
+  SET_PETS,
+  DELETE_PET,
+  REGISTER_USER,
+} from "./actions";
 import history from "../history";
 
 export const authUser = ({ email, password }) => {
@@ -12,6 +18,30 @@ export const authUser = ({ email, password }) => {
       localStorage.setItem("Authorization", response.data.token);
       dispatch({ type: LOGIN_USER, payload: response.data.user });
       history.push("/");
+    } catch (e) {
+      dispatch({ type: ERROR, payload: e.response.data.error });
+    }
+  };
+};
+
+export const listPets = (foundationId) => {
+  return async function (dispatch) {
+    try {
+      let response = await axios.get(`/foundations/${foundationId}/pets`);
+      //setFilteredPets(response.data);
+      dispatch({ type: SET_PETS, payload: response.data });
+    } catch (e) {
+      dispatch({ type: ERROR, payload: e.response.data.error });
+    }
+  };
+};
+
+export const deletePet = (petId) => {
+  return async function (dispatch) {
+    try {
+      await axios.delete(`/pets/${petId}`);
+      //setFilteredPets(response.data);
+      dispatch({ type: DELETE_PET, payload: petId });
     } catch (e) {
       dispatch({ type: ERROR, payload: e.response.data.error });
     }
