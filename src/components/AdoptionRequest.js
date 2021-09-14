@@ -12,19 +12,19 @@ const AdoptionRequest = ({ request, handleReject, handleApprove }) => {
     setModalIsOpen(!modalIsOpen);
   };
 
-  request.response_status === "approved" && (classStatus = "status-green");
+  request.responseStatus === "approved" && (classStatus = "status-green");
 
-  request.response_status === "rejected" && (classStatus = "status-red");
+  request.responseStatus === "rejected" && (classStatus = "status-red");
 
   return (
     <>
       <div className="request-container">
-        <h2 className="request-container__name">{request.userInfo[0].name}</h2>
+        <h2 className="request-container__name">{request.userId.name}</h2>
         <div className="request-container__text">{request.description}</div>
         <div className="request-container__lower-text">
           <p>
             STATUS:{" "}
-            <span className={classStatus}>{request.response_status}</span>
+            <span className={classStatus}>{request.responseStatus}</span>
           </p>
           <div className="request-container__buttons">
             <button className="button-accept" onClick={handleOpenModal}>

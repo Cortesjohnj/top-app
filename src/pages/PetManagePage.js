@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import AdoptionRequest from "../components/AdoptionRequest";
 import { useSelector, useDispatch } from "react-redux";
-import { selectPet } from "../store/actionCreators";
+import { selectPet, updateRequest } from "../store/actionCreators";
 
 import "../assets/styles/PetManagePage.css";
 
@@ -39,14 +39,14 @@ const PetManagePage = () => {
   //   });
   // }, [petId]);
 
-  const handleReject = (id) => () => {
-    return setState((state) => ({
-      ...state,
-      requests: state.requests.map((r) =>
-        r._id === +id ? { ...r, response_status: "rejected" } : r
-      ),
-    }));
-  };
+  // const handleReject = (id) => () => {
+  //   return setState((state) => ({
+  //     ...state,
+  //     requests: state.requests.map((r) =>
+  //       r._id === +id ? { ...r, response_status: "rejected" } : r
+  //     ),
+  //   }));
+  // };
 
   const handleApprove = (id) => {
     return setState((state) => ({
@@ -69,22 +69,9 @@ const PetManagePage = () => {
   const requests = useSelector((state) => state.adoptionRequests) || [];
 
   // Updating a state
-  // const handleReject = (id) => {
-  //   axios
-  //     .put("https://jsonplaceholder.typicode.com/posts/1", {
-  //       request: { ...request, response_status: 'rejected' },
-  //     })
-  //     .then(() => {
-  //       console.log("Updated succesfully");
-  //       setState((state) => ({
-  //         ...state,
-  //         requests: state.requests.map((r) =>
-  //           r._id === +id ? { ...r, response_status: "rejected" } : r
-  //         ),
-  //       }));
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
+  const handleReject = (id) => () => {
+    dispatch(updateRequest(petId, id, "rejected"));
+  };
 
   // const handleApprove = (id) => {
   //   axios

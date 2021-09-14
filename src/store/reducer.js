@@ -5,6 +5,7 @@ import {
   DELETE_PET,
   SELECT_PET,
   LIST_REQUESTS,
+  UPDATE_REQUEST,
 } from "./actions";
 
 const reducer = (state, action) => {
@@ -38,6 +39,16 @@ const reducer = (state, action) => {
       return {
         ...state,
         adoptionRequests: action.payload,
+      };
+
+    case UPDATE_REQUEST:
+      return {
+        ...state,
+        adoptionRequests: state.adoptionRequests.map((req) =>
+          req._id === action.payload._id
+            ? { ...req, responseStatus: action.payload.responseStatus }
+            : req
+        ),
       };
 
     case ERROR:

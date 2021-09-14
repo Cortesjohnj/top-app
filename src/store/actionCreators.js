@@ -6,6 +6,7 @@ import {
   DELETE_PET,
   SELECT_PET,
   LIST_REQUESTS,
+  UPDATE_REQUEST,
 } from "./actions";
 import history from "../history";
 
@@ -54,9 +55,23 @@ export const selectPet = (petId) => {
     try {
       let response = await axios.get(`/pets/${petId}`);
 
-      let requests = await axios.get(`/pets/${petId}/manage`);
+      let requests = await axios.get(`/pets/${petId}/requests`);
+      console.log(requests.data);
       dispatch({ type: SELECT_PET, payload: response.data });
       dispatch({ type: LIST_REQUESTS, payload: requests.data });
+    } catch (e) {
+      dispatch({ type: ERROR, payload: e.response.data.error });
+    }
+  };
+};
+
+export const updateRequest = (petId, requestId, status) => {
+  return async function (dispatch) {
+    try {
+      let response = await axios.put(`/pets/${petId}/requests/${requestId}`, {
+        responseStatus: status,
+      });
+      dispatch({ type: UPDATE_REQUEST, payload: response.data });
     } catch (e) {
       dispatch({ type: ERROR, payload: e.response.data.error });
     }
