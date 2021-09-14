@@ -1,19 +1,20 @@
 import { Router, Switch, Route } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
-import PetListPage from "./pages/PetListPage";
-import { RegisterPage } from "./pages/RegisterPage";
-import { AddPet } from "./pages/AddPet";
-import PetManagePage from "./pages/PetManagePage";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import Spinner from "./components/Spinner";
-import Foundations from "./pages/Foundations";
-import Home from "./pages/Home";
 import history from "./history";
-import SideBar from "./components/SideBar";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 import { useDispatch } from "react-redux";
 import { ISUSER } from "./store/actions";
+
+const LoginPage = lazy(() => import("./pages/LoginPage"));
+const PetListPage = lazy(() => import("./pages/PetListPage"));
+const RegisterPage = lazy(() => import("./pages/RegisterPage"));
+const AddPet = lazy(() => import("./pages/AddPet"));
+const PetManagePage = lazy(() => import("./pages/PetManagePage"));
+const Foundations = lazy(() => import("./pages/Foundations"));
+const Home = lazy(() => import("./pages/Home"));
+const SideBar = lazy(() => import("./components/SideBar"));
+const Navbar = lazy(() => import("./components/Navbar"));
+const Footer = lazy(() => import("./components/Footer"));
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
