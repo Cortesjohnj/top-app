@@ -1,17 +1,19 @@
 import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import "../assets/styles/LoginPage.css";
-import MockData from "../MockData";
+import { useSelector, useDispatch } from "react-redux";
+import { authUser } from "../store/actionCreators";
 
 const LoginPage = (props) => {
   const form = useRef(null);
+  const dispatch = useDispatch();
 
   const [formState, setFormState] = useState({
     isInvalid: false,
     values: {},
-    errors: {},
   });
+
+  const error = useSelector((state) => state.error);
 
   const handleChange = (event) => {
     setFormState((formState) => ({
@@ -32,40 +34,12 @@ const LoginPage = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const user = MockData.users.filter(
-      (user) => user.email === formState.email
-    )[0];
-
-    axios({
-      method: "POST",
-      baseURL: "https://jsonplaceholder.typicode.com",
-      url: `/posts`,
-      data: {
-        email: formState.values.email,
-        body: formState.values.password,
-      },
-    })
-      .then(() => {
-        console.log("Authenticated! Now rediect to home page");
-        props.history.push("/");
+    dispatch(
+      authUser({
+        email: formState.values.email || "",
+        password: formState.values.password || "",
       })
-      .catch((error) => {
-        error.status === "401"
-          ? setFormState((formState) => ({
-              ...formState,
-              errors: {
-                code: error.status,
-                message: "*Invalid Credentials, please try again",
-              },
-            }))
-          : setFormState((formState) => ({
-              ...formState,
-              errors: {
-                code: error.status,
-                message: "*Unexpected error, please try again later",
-              },
-            }));
-      });
+    );
   };
 
   return (
@@ -99,7 +73,7 @@ const LoginPage = (props) => {
             Login
           </button>
         </form>
-        {!!formState.errors.code && <span>{formState.errors.message}</span>}
+        {!!error && <span>{error}</span>}
         <p className="login__container--register">
           Don't you have an account? <Link to="/signup">Register</Link>
         </p>

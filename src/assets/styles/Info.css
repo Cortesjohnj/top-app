@@ -1,0 +1,101 @@
+.infoContainer {
+  background: #d6c9c9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.infoContainer__wrapper {
+  z-index: 1;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.infoContainer__wrapper--slider {
+  width: auto;
+  height: 100%;
+  margin: 0 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
+}
+
+.infoContainer__wrapper--textWrapper {
+  max-width: 540px;
+  padding-top: 0;
+  padding-bottom: 60px;
+  margin: 0 44px;
+}
+
+@media (max-width: 952px) {
+  .infoContainer__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .infoContainer__wrapper--textWrapper {
+    margin-top: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .infoContainer {
+    padding: 100px 0;
+    background-image: none;
+  }
+  .infoContainer__wrapper--textWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 0px;
+  }
+  .infoContainer__wrapper--textWrapper .infoContainer__wrapper--heading {
+    font-size: 34px;
+  }
+  .infoContainer__wrapper--topLine {
+    padding-bottom: 22px;
+  }
+  .infoContainer__wrapper--heading {
+    padding-bottom: 22px;
+  }
+  .infoContainer__wrapper--subtitle {
+    padding-bottom: 22px;
+  }
+}
+
+.infoContainer__wrapper--topLine {
+  color: #3e2f90;
+  font-size: 16px;
+  line-height: 16px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.infoContainer__wrapper--heading {
+  margin-bottom: 24px;
+  font-size: 38px;
+  line-height: 1.1;
+  font-weight: 600;
+  color: black;
+}
+
+.infoContainer__wrapper--subtitle {
+  max-width: 440px;
+  margin-bottom: 35px;
+  font-size: 22px;
+  line-height: 24px;
+  color: #3e2f90;
+}
