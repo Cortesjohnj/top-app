@@ -11,6 +11,7 @@ import { Provider } from "react-redux";
 import { store } from "./store/store";
 import history from "./history";
 import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route exact path="/foundations/:id/add-pet" component={AddPet} />
             <Route exact path="/pets/:id/manage" component={PetManagePage} />
             <Route exact path="/foundations" component={Foundations} />
+            <Route component={NotFound} />
           </Switch>
         </Suspense>
       </Router>
