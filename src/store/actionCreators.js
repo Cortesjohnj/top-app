@@ -5,7 +5,6 @@ import {
   SET_PETS,
   DELETE_PET,
   REGISTER_USER,
-  LOADING,
   AUTHORIZATION,
   LOGOUT,
 } from "./actions";
@@ -32,6 +31,7 @@ export const loadUser = () => {
     try {
       const response = await axios.get("/me");
       dispatch({ type: LOGIN_USER, payload: response.data });
+      console.log(response.data);
     } catch (e) {
       localStorage.removeItem(AUTHORIZATION);
       dispatch({ type: ERROR, payload: e.response.data.error });
@@ -40,15 +40,9 @@ export const loadUser = () => {
 };
 
 export const logOut = () => {
-  return async function (dispatch) {
-    try {
-      localStorage.removeItem(AUTHORIZATION);
-      dispatch({ type: LOGOUT });
-      history.push("/");
-    } catch (e) {
-      dispatch({ type: ERROR, payload: e.response.data.error });
-    }
-  };
+  history.push("/");
+  localStorage.removeItem(AUTHORIZATION);
+  return { type: LOGOUT };
 };
 
 export const listPets = foundationId => {
