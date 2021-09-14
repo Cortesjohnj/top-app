@@ -10,6 +10,7 @@ import Foundations from "./pages/Foundations";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 import history from "./history";
+import Home from "./pages/Home";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Router history={history}>
         <Suspense fallback={<Spinner />}>
           <Switch>
+            <Route exact path="/" component={Home} />
             <Route exact path="/login" component={LoginPage} />
             <Route exact path="/signup" component={RegisterPage} />
             <Route exact path="/foundations/:id/pets" component={PetListPage} />
