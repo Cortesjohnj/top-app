@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import AdoptionRequest from "../components/AdoptionRequest";
-import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { selectPet } from "../store/actionCreators";
 
 import "../assets/styles/PetManagePage.css";
 
@@ -14,28 +15,29 @@ const PetManagePage = () => {
     requests: [],
     users: [],
   });
+  const dispatch = useDispatch();
 
   //////////////////////get info from MockData for testing purposes
-  const pet = MockData.pets.filter((pet) => pet._id === +petId)[0];
+  //const pet = MockData.pets.filter((pet) => pet._id === +petId)[0];
 
-  useEffect(() => {
-    console.log(`pet id: ${petId}`);
-    const requests = MockData.adoptionRegistry.filter(
-      (req) => req.pet_id === +petId
-    );
+  // useEffect(() => {
+  //   console.log(`pet id: ${petId}`);
+  //   const requests = MockData.adoptionRegistry.filter(
+  //     (req) => req.pet_id === +petId
+  //   );
 
-    setState((state) => {
-      return {
-        ...state,
-        requests: requests || {},
-        users: requests.map(
-          (request) =>
-            MockData.users.filter((user) => user._id === request.user_id)[0] ||
-            {}
-        ),
-      };
-    });
-  }, [petId]);
+  //   setState((state) => {
+  //     return {
+  //       ...state,
+  //       requests: requests || {},
+  //       users: requests.map(
+  //         (request) =>
+  //           MockData.users.filter((user) => user._id === request.user_id)[0] ||
+  //           {}
+  //       ),
+  //     };
+  //   });
+  // }, [petId]);
 
   const handleReject = (id) => () => {
     return setState((state) => ({
@@ -59,11 +61,11 @@ const PetManagePage = () => {
 
   //////////////////////add axios logic
   //reading info
-  // useEffect(() => {
-  //   axios.get("https://jsonplaceholder.typicode.com/posts")
-  //   .then((response) => setRequests(response.data))
-  //   .catch((err) => console.log(err))
-  // }, [])
+  useEffect(() => {
+    dispatch(selectPet(petId));
+  }, [dispatch, petId]);
+
+  const pet = useSelector((state) => state.selectedPet);
 
   // Updating a state
   // const handleReject = (id) => {
@@ -104,28 +106,36 @@ const PetManagePage = () => {
 
   return (
     <div className="background-container">
-      <section className="pet-info">
-        <img className="pet-info__image" src={pet.photo_url} alt={pet.name} />
-        <article className="pet-info__text">
-          <h2>{pet.name}</h2>
-          <p className="pet-info__text--label">
-            <span>Age:</span> {pet.age}
-          </p>
-          <p className="pet-info__text--description">{pet.description}</p>
-        </article>
-      </section>
-      <section className="requests-list">
-        {state.requests.length > 0 &&
-          state.requests.map((req, idx) => (
-            <AdoptionRequest
-              key={req._id}
-              request={req}
-              user_name={state.users[idx].name}
-              handleReject={handleReject}
-              handleApprove={handleApprove}
-            ></AdoptionRequest>
-          ))}
-      </section>
+      {!!pet.photoUrl && (
+        <>
+          <section className="pet-info">
+            <img
+              className="pet-info__image"
+              src={pet.photoUrl[0]}
+              alt={pet.name}
+            />
+            <article className="pet-info__text">
+              <h2>{pet.name}</h2>
+              <p className="pet-info__text--label">
+                <span>Age:</span> {pet.age}
+              </p>
+              <p className="pet-info__text--description">{pet.description}</p>
+            </article>
+          </section>
+          <section className="requests-list">
+            {state.requests.length > 0 &&
+              state.requests.map((req, idx) => (
+                <AdoptionRequest
+                  key={req._id}
+                  request={req}
+                  user_name={state.users[idx].name}
+                  handleReject={handleReject}
+                  handleApprove={handleApprove}
+                ></AdoptionRequest>
+              ))}
+          </section>
+        </>
+      )}
     </div>
   );
 };

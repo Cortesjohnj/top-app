@@ -1,5 +1,12 @@
 import axios from "../axios";
-import { ERROR, LOGIN_USER, SET_PETS, DELETE_PET } from "./actions";
+import {
+  ERROR,
+  LOGIN_USER,
+  SET_PETS,
+  DELETE_PET,
+  SELECT_PET,
+  LIST_REQUESTS,
+} from "./actions";
 import history from "../history";
 
 export const authUser = ({ email, password }) => {
@@ -36,6 +43,20 @@ export const deletePet = (petId) => {
       await axios.delete(`/pets/${petId}`);
       //setFilteredPets(response.data);
       dispatch({ type: DELETE_PET, payload: petId });
+    } catch (e) {
+      dispatch({ type: ERROR, payload: e.response.data.error });
+    }
+  };
+};
+
+export const selectPet = (petId) => {
+  return async function (dispatch) {
+    try {
+      let response = await axios.get(`/pets/${petId}`);
+
+      let requests = await axios.get(`/pets/${petId}/manage`);
+      dispatch({ type: SELECT_PET, payload: response.data });
+      dispatch({ type: LIST_REQUESTS, payload: requests.data });
     } catch (e) {
       dispatch({ type: ERROR, payload: e.response.data.error });
     }

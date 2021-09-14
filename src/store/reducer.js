@@ -1,4 +1,11 @@
-import { LOGIN_USER, ERROR, SET_PETS, DELETE_PET } from "./actions";
+import {
+  LOGIN_USER,
+  ERROR,
+  SET_PETS,
+  DELETE_PET,
+  SELECT_PET,
+  LIST_REQUESTS,
+} from "./actions";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -19,6 +26,18 @@ const reducer = (state, action) => {
       return {
         ...state,
         pets: state.pets.filter((pet) => pet._id !== action.payload),
+      };
+
+    case SELECT_PET:
+      return {
+        ...state,
+        selectedPet: action.payload,
+      };
+
+    case LIST_REQUESTS:
+      return {
+        ...state,
+        adoptionRequests: action.payload,
       };
 
     case ERROR:
