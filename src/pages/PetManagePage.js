@@ -66,6 +66,7 @@ const PetManagePage = () => {
   }, [dispatch, petId]);
 
   const pet = useSelector((state) => state.selectedPet);
+  const requests = useSelector((state) => state.adoptionRequests) || [];
 
   // Updating a state
   // const handleReject = (id) => {
@@ -123,12 +124,11 @@ const PetManagePage = () => {
             </article>
           </section>
           <section className="requests-list">
-            {state.requests.length > 0 &&
-              state.requests.map((req, idx) => (
+            {requests.length > 0 &&
+              requests.map((req, idx) => (
                 <AdoptionRequest
                   key={req._id}
                   request={req}
-                  user_name={state.users[idx].name}
                   handleReject={handleReject}
                   handleApprove={handleApprove}
                 ></AdoptionRequest>

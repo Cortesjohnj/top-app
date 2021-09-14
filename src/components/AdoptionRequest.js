@@ -4,12 +4,7 @@ import CardModal from "./CardModal";
 
 import "../assets/styles/AdoptionRequest.css";
 
-const AdoptionRequest = ({
-  request,
-  user_name,
-  handleReject,
-  handleApprove,
-}) => {
+const AdoptionRequest = ({ request, handleReject, handleApprove }) => {
   let classStatus = "";
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -24,7 +19,7 @@ const AdoptionRequest = ({
   return (
     <>
       <div className="request-container">
-        <h2 className="request-container__name">{user_name}</h2>
+        <h2 className="request-container__name">{request.userInfo[0].name}</h2>
         <div className="request-container__text">{request.description}</div>
         <div className="request-container__lower-text">
           <p>
