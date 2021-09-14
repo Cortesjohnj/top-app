@@ -20,6 +20,7 @@
 .register__container--form--errors{
   color: red;
   font-size: 1.3rem;
+  padding-top: 15px;
 }
 
 .register__container--title {
@@ -68,7 +69,7 @@
   border-left-style: hidden;
   border-bottom-style: groove;
   border-color: var(--pale-silver);
-  padding-top: 8px;
+  margin-top: 8px;
   padding-bottom: 14px;
   color:var(--blue-pigment)
 }
@@ -112,6 +113,15 @@
   font-size: 1.3rem;
   text-decoration: none;
   margin-left: 5px;
+}
+
+.register__container--handleError{
+  font-size: 1.5rem;
+  color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 15px;
 }
 
 #fileUpload {
