@@ -5,7 +5,6 @@ import { AUTHENTICATED, LOADING } from "../store/actions";
 
 function PrivateRoute({ component: Component, ...rest }) {
   const status = useSelector(state => state.status);
-  console.log(status);
 
   if (status === LOADING) return <p>Loading ....</p>;
 
