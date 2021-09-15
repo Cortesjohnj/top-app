@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { FaPlusCircle } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import { useSelector, useDispatch } from "react-redux";
-import { listPets } from "../store/actionCreators";
+import { listPets, listFoundationRequests } from "../store/actionCreators";
 
 import CardList from "../components/CardList";
 import PetCard from "../components/PetCard";
@@ -18,6 +18,7 @@ const PetListPage = () => {
 
   useEffect(() => {
     dispatch(listPets(foundationId));
+    dispatch(listFoundationRequests(foundationId));
   }, [foundationId, dispatch]);
 
   //This variables comes from the user session, I will set it manually for testing purposes

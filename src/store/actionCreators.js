@@ -7,6 +7,7 @@ import {
   SELECT_PET,
   LIST_REQUESTS,
   UPDATE_REQUEST,
+  LIST_FOUNDATION_REQUESTS,
 } from "./actions";
 import history from "../history";
 
@@ -86,6 +87,17 @@ export const bulkReject = (petId, ids) => {
         });
         dispatch({ type: UPDATE_REQUEST, payload: response.data });
       });
+    } catch (e) {
+      dispatch({ type: ERROR, payload: e.response.data.error });
+    }
+  };
+};
+
+export const listFoundationRequests = (foundationId) => {
+  return async function (dispatch) {
+    try {
+      let response = await axios.get(`/foundations/${foundationId}/requests`);
+      dispatch({ type: LIST_FOUNDATION_REQUESTS, payload: response.data });
     } catch (e) {
       dispatch({ type: ERROR, payload: e.response.data.error });
     }

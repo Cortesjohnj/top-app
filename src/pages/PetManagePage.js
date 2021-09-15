@@ -6,9 +6,6 @@ import { selectPet, updateRequest, bulkReject } from "../store/actionCreators";
 
 import "../assets/styles/PetManagePage.css";
 
-//Using MOckData for testing purposes
-//import MockData from "../MockData";
-
 const PetManagePage = () => {
   const { id: petId } = useParams();
   const dispatch = useDispatch();

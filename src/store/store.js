@@ -7,6 +7,7 @@ const initialState = {
   foundations: [],
   pets: [],
   adoptionRequests: [],
+  foundationRequests: [],
   selectedPet: {},
   error: "",
 };

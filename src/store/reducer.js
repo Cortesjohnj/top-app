@@ -6,6 +6,7 @@ import {
   SELECT_PET,
   LIST_REQUESTS,
   UPDATE_REQUEST,
+  LIST_FOUNDATION_REQUESTS,
 } from "./actions";
 
 const reducer = (state, action) => {
@@ -39,6 +40,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         adoptionRequests: action.payload,
+      };
+
+    case LIST_FOUNDATION_REQUESTS:
+      return {
+        ...state,
+        foundationRequests: action.payload,
       };
 
     case UPDATE_REQUEST:
