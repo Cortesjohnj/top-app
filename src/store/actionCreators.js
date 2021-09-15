@@ -5,6 +5,8 @@ import {
   SET_PETS,
   DELETE_PET,
   REGISTER_USER,
+  AUTHORIZATION,
+  LOGOUT,
 } from "./actions";
 import history from "../history";
 
@@ -15,7 +17,7 @@ export const authUser = ({ email, password }) => {
         email: email,
         password: password,
       });
-      localStorage.setItem("Authorization", response.data.token);
+      localStorage.setItem(AUTHORIZATION, response.data.token);
       dispatch({ type: LOGIN_USER, payload: response.data.user });
       history.push("/");
     } catch (e) {
@@ -24,7 +26,26 @@ export const authUser = ({ email, password }) => {
   };
 };
 
-export const listPets = (foundationId) => {
+export const loadUser = () => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get("/me");
+      dispatch({ type: LOGIN_USER, payload: response.data });
+      console.log(response.data);
+    } catch (e) {
+      localStorage.removeItem(AUTHORIZATION);
+      dispatch({ type: ERROR, payload: e.response.data.error });
+    }
+  };
+};
+
+export const logOut = () => {
+  history.push("/");
+  localStorage.removeItem(AUTHORIZATION);
+  return { type: LOGOUT };
+};
+
+export const listPets = foundationId => {
   return async function (dispatch) {
     try {
       let response = await axios.get(`/foundations/${foundationId}/pets`);
@@ -36,7 +57,7 @@ export const listPets = (foundationId) => {
   };
 };
 
-export const deletePet = (petId) => {
+export const deletePet = petId => {
   return async function (dispatch) {
     try {
       await axios.delete(`/pets/${petId}`);
