@@ -8,6 +8,9 @@ import {
   LIST_REQUESTS,
   UPDATE_REQUEST,
   LIST_FOUNDATION_REQUESTS,
+  REGISTER_USER,
+  AUTHORIZATION,
+  LOGOUT,
 } from "./actions";
 import history from "../history";
 
@@ -18,13 +21,32 @@ export const authUser = ({ email, password }) => {
         email: email,
         password: password,
       });
-      localStorage.setItem("Authorization", response.data.token);
+      localStorage.setItem(AUTHORIZATION, response.data.token);
       dispatch({ type: LOGIN_USER, payload: response.data.user });
       history.push("/");
     } catch (e) {
       dispatch({ type: ERROR, payload: e.response.data.error });
     }
   };
+};
+
+export const loadUser = () => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get("/me");
+      dispatch({ type: LOGIN_USER, payload: response.data });
+      console.log(response.data);
+    } catch (e) {
+      localStorage.removeItem(AUTHORIZATION);
+      dispatch({ type: ERROR, payload: e.response.data.error });
+    }
+  };
+};
+
+export const logOut = () => {
+  history.push("/");
+  localStorage.removeItem(AUTHORIZATION);
+  return { type: LOGOUT };
 };
 
 export const listPets = (foundationId) => {
@@ -98,6 +120,24 @@ export const listFoundationRequests = (foundationId) => {
     try {
       let response = await axios.get(`/foundations/${foundationId}/requests`);
       dispatch({ type: LIST_FOUNDATION_REQUESTS, payload: response.data });
+    } catch (e) {
+      dispatch({ type: ERROR, payload: e.response.data.error });
+    }
+  };
+};
+
+export const registerUser = ({ firstName, email, password, role }) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.post("/signup", {
+        name: firstName,
+        email: email,
+        password: password,
+        role: role,
+      });
+
+      dispatch({ type: REGISTER_USER, payload: response.data.user });
+      history.push("/login");
     } catch (e) {
       dispatch({ type: ERROR, payload: e.response.data.error });
     }

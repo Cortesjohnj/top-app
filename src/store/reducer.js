@@ -7,6 +7,10 @@ import {
   LIST_REQUESTS,
   UPDATE_REQUEST,
   LIST_FOUNDATION_REQUESTS,
+  REGISTER_USER,
+  AUTHENTICATED,
+  LOGOUT,
+  NOT_AUTHENTICATED,
 } from "./actions";
 
 const reducer = (state, action) => {
@@ -15,6 +19,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         user: action.payload,
+        status: AUTHENTICATED,
         error: "",
       };
 
@@ -28,6 +33,20 @@ const reducer = (state, action) => {
       return {
         ...state,
         pets: state.pets.filter((pet) => pet._id !== action.payload),
+      };
+
+    case REGISTER_USER:
+      return {
+        ...state,
+        user: action.payload,
+        error: "",
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        user: null,
+        status: NOT_AUTHENTICATED,
+        error: "",
       };
 
     case SELECT_PET:

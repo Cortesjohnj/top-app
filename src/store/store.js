@@ -1,6 +1,7 @@
 import reducer from "./reducer";
 import { createStore, compose, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
+import { LOADING } from "./actions";
 
 const initialState = {
   user: {},
@@ -10,6 +11,7 @@ const initialState = {
   foundationRequests: [],
   selectedPet: {},
   error: "",
+  status: LOADING,
 };
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
