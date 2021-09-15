@@ -1,65 +1,18 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router";
 import AdoptionRequest from "../components/AdoptionRequest";
 import { useSelector, useDispatch } from "react-redux";
-import { selectPet, updateRequest } from "../store/actionCreators";
+import { selectPet, updateRequest, bulkReject } from "../store/actionCreators";
 
 import "../assets/styles/PetManagePage.css";
 
 //Using MOckData for testing purposes
-import MockData from "../MockData";
+//import MockData from "../MockData";
 
 const PetManagePage = () => {
   const { id: petId } = useParams();
-  const [state, setState] = useState({
-    requests: [],
-    users: [],
-  });
   const dispatch = useDispatch();
 
-  //////////////////////get info from MockData for testing purposes
-  //const pet = MockData.pets.filter((pet) => pet._id === +petId)[0];
-
-  // useEffect(() => {
-  //   console.log(`pet id: ${petId}`);
-  //   const requests = MockData.adoptionRegistry.filter(
-  //     (req) => req.pet_id === +petId
-  //   );
-
-  //   setState((state) => {
-  //     return {
-  //       ...state,
-  //       requests: requests || {},
-  //       users: requests.map(
-  //         (request) =>
-  //           MockData.users.filter((user) => user._id === request.user_id)[0] ||
-  //           {}
-  //       ),
-  //     };
-  //   });
-  // }, [petId]);
-
-  // const handleReject = (id) => () => {
-  //   return setState((state) => ({
-  //     ...state,
-  //     requests: state.requests.map((r) =>
-  //       r._id === +id ? { ...r, response_status: "rejected" } : r
-  //     ),
-  //   }));
-  // };
-
-  const handleApprove = (id) => {
-    return setState((state) => ({
-      ...state,
-      requests: state.requests.map((r) =>
-        r._id === +id
-          ? { ...r, response_status: "approved" }
-          : { ...r, response_status: "rejected" }
-      ),
-    }));
-  };
-
-  //////////////////////add axios logic
   //reading info
   useEffect(() => {
     dispatch(selectPet(petId));
@@ -73,24 +26,11 @@ const PetManagePage = () => {
     dispatch(updateRequest(petId, id, "rejected"));
   };
 
-  // const handleApprove = (id) => {
-  //   axios
-  //     .put("https://jsonplaceholder.typicode.com/posts/1", {
-  //       request: { ...request, response_status: "approved" },
-  //     })
-  //     .then(() => {
-  //       console.log("Updated succesfully");
-  //       setState((state) => ({
-  //         ...state,
-  //         requests: state.requests.map((r) =>
-  //           r._id === +id
-  //             ? { ...r, response_status: "approved" }
-  //             : { ...r, response_status: "rejected" }
-  //         ),
-  //       }));
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
+  const handleApprove = (id) => {
+    dispatch(updateRequest(petId, id, "approved"));
+    const ids = requests.filter((req) => req._id !== id).map((req) => req._id);
+    dispatch(bulkReject(petId, ids));
+  };
 
   return (
     <div className="background-container">

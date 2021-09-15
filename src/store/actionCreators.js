@@ -56,7 +56,6 @@ export const selectPet = (petId) => {
       let response = await axios.get(`/pets/${petId}`);
 
       let requests = await axios.get(`/pets/${petId}/requests`);
-      console.log(requests.data);
       dispatch({ type: SELECT_PET, payload: response.data });
       dispatch({ type: LIST_REQUESTS, payload: requests.data });
     } catch (e) {
@@ -72,6 +71,21 @@ export const updateRequest = (petId, requestId, status) => {
         responseStatus: status,
       });
       dispatch({ type: UPDATE_REQUEST, payload: response.data });
+    } catch (e) {
+      dispatch({ type: ERROR, payload: e.response.data.error });
+    }
+  };
+};
+
+export const bulkReject = (petId, ids) => {
+  return function (dispatch) {
+    try {
+      ids.forEach(async (id) => {
+        let response = await axios.put(`/pets/${petId}/requests/${id}`, {
+          responseStatus: "rejected",
+        });
+        dispatch({ type: UPDATE_REQUEST, payload: response.data });
+      });
     } catch (e) {
       dispatch({ type: ERROR, payload: e.response.data.error });
     }
