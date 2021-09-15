@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
 import "../assets/styles/UserProfile.css";
 import { PrimaryButton } from "../components/PrimaryButton";
 
 function Profile() {
+  const { name, email, address, phoneNumber } = useSelector(
+    state => state.user
+  );
+  const dispatch = useDispatch();
+
   const [updateProfile, setUpdateProfile] = useState({
     firstName: "",
     lastName: "",
@@ -41,14 +47,11 @@ function Profile() {
       [event.target.name]: event.target.value,
     }));
   };
-  console.log(updateProfile);
 
   return (
     <section className="userProfile">
       <div className="userProfile__container">
-        <h2 className="userProfile__container--title">
-          Hello {updateProfile.firstName}!
-        </h2>
+        <h2 className="userProfile__container--title">Hello {name}!</h2>
         <form className="userProfile__container--form" onSubmit={handleSubmit}>
           <i className="userProfile__container--image">
             {!!updateProfile.photoUrl ? (
@@ -76,16 +79,9 @@ function Profile() {
           />
           <input
             type="text"
-            name="firstName"
-            // value="Pedro"
+            name="Name"
+            value={name}
             placeholder="First name"
-            className="userProfile__container--inputs"
-            onChange={handleSubmit}
-          />
-          <input
-            type="text"
-            name="lastName"
-            placeholder="Last Name"
             className="userProfile__container--inputs"
             onChange={handleSubmit}
           />
@@ -93,6 +89,8 @@ function Profile() {
             type="email"
             name="email"
             placeholder="Email"
+            value={email}
+            disabled
             className="userProfile__container--inputs"
             onChange={handleSubmit}
           />
@@ -100,12 +98,14 @@ function Profile() {
             type="text"
             name="address"
             placeholder="Address"
+            value={address}
             className="userProfile__container--inputs"
             onChange={handleSubmit}
           />
           <input
             type="number"
             name="phoneNumber"
+            value={phoneNumber}
             placeholder="Phone number"
             className="userProfile__container--inputs"
             onChange={handleSubmit}

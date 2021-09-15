@@ -39,6 +39,7 @@ function App() {
             path="/foundations/:id/pets"
             component={PetListPage}
           />
+          <PrivateRoute exact path="/:id/profile" component={UserProfile} />
           <Route exact path="/pets/:id/request" />
           <Route exact path="/foundations/:id/add-pet" component={AddPet} />
           <Route exact path="/pets/:id/manage" component={PetManagePage} />
