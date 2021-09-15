@@ -34,7 +34,7 @@ const PetManagePage = () => {
 
   return (
     <div className="background-container">
-      {!!pet.photoUrl && (
+      {!!pet.photoUrl ? (
         <>
           <section className="pet-info">
             <img
@@ -62,6 +62,8 @@ const PetManagePage = () => {
               ))}
           </section>
         </>
+      ) : (
+        <h1 className="no-pets-message">This pet doesn't exist</h1>
       )}
     </div>
   );
