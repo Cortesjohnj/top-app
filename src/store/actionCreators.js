@@ -35,7 +35,6 @@ export const loadUser = () => {
     try {
       const response = await axios.get("/me");
       dispatch({ type: LOGIN_USER, payload: response.data });
-      console.log(response.data);
     } catch (e) {
       localStorage.removeItem(AUTHORIZATION);
       dispatch({ type: ERROR, payload: e.response.data.error });

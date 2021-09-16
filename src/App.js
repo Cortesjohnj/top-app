@@ -12,17 +12,19 @@ import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import { useDispatch } from "react-redux";
 import { loadUser, logOut } from "./store/actionCreators";
-import { AUTHORIZATION } from "./store/actions";
+import { AUTHORIZATION, UNAUTH_PAGES } from "./store/actions";
 import PrivateRoute from "./pages/PrivateRoute";
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (localStorage.getItem(AUTHORIZATION)) {
-      dispatch(loadUser());
-    } else {
-      dispatch(logOut());
+    if (!UNAUTH_PAGES.includes(window.location.pathname)) {
+      if (localStorage.getItem(AUTHORIZATION)) {
+        dispatch(loadUser());
+      } else {
+        dispatch(logOut());
+      }
     }
   }, [dispatch]);
 
@@ -40,7 +42,11 @@ function App() {
           />
           <Route exact path="/pets/:id/request" />
           <Route exact path="/foundations/:id/add-pet" component={AddPet} />
-          <Route exact path="/pets/:id/manage" component={PetManagePage} />
+          <PrivateRoute
+            exact
+            path="/pets/:id/manage"
+            component={PetManagePage}
+          />
           <Route exact path="/foundations" component={Foundations} />
           <Route component={NotFound} />
         </Switch>
