@@ -1,4 +1,13 @@
-import { LOGIN_USER, ERROR, ISUSER } from "./actions";
+import {
+  LOGIN_USER,
+  ERROR,
+  SET_PETS,
+  DELETE_PET,
+  REGISTER_USER,
+  AUTHENTICATED,
+  LOGOUT,
+  NOT_AUTHENTICATED,
+} from "./actions";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -6,6 +15,33 @@ const reducer = (state, action) => {
       return {
         ...state,
         user: action.payload,
+        status: AUTHENTICATED,
+        error: "",
+      };
+
+    case SET_PETS:
+      return {
+        ...state,
+        pets: action.payload,
+      };
+
+    case DELETE_PET:
+      return {
+        ...state,
+        pets: state.pets.filter((pet) => pet._id !== action.payload),
+      };
+
+    case REGISTER_USER:
+      return {
+        ...state,
+        user: action.payload,
+        error: "",
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        user: null,
+        status: NOT_AUTHENTICATED,
         error: "",
       };
 
@@ -14,13 +50,6 @@ const reducer = (state, action) => {
         ...state,
         error: action.payload,
       };
-
-    case ISUSER: {
-      return {
-        ...state,
-        isUser: action.payload,
-      };
-    }
 
     default:
       return state;

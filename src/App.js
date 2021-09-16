@@ -3,7 +3,9 @@ import { Suspense, lazy, useEffect, useState } from "react";
 import Spinner from "./components/Spinner";
 import history from "./history";
 import { useDispatch } from "react-redux";
-import { ISUSER } from "./store/actions";
+import { loadUser, logOut } from "./store/actionCreators";
+import { AUTHORIZATION } from "./store/actions";
+import PrivateRoute from "./pages/PrivateRoute";
 
 const LoginPage = lazy(() => import("./pages/LoginPage"));
 const PetListPage = lazy(() => import("./pages/PetListPage"));
@@ -15,6 +17,7 @@ const Home = lazy(() => import("./pages/Home"));
 const SideBar = lazy(() => import("./components/SideBar"));
 const Navbar = lazy(() => import("./components/Navbar"));
 const Footer = lazy(() => import("./components/Footer"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,8 +29,10 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (localStorage.getItem("Authorization")) {
-      dispatch({ type: ISUSER, payload: true });
+    if (localStorage.getItem(AUTHORIZATION)) {
+      dispatch(loadUser());
+    } else {
+      dispatch(logOut());
     }
   }, [dispatch]);
 
@@ -40,11 +45,16 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/signup" component={RegisterPage} />
-          <Route exact path="/foundations/:id/pets" component={PetListPage} />
+          <PrivateRoute
+            exact
+            path="/foundations/:id/pets"
+            component={PetListPage}
+          />
           <Route exact path="/pets/:id/request" />
           <Route exact path="/foundations/:id/add-pet" component={AddPet} />
           <Route exact path="/pets/:id/manage" component={PetManagePage} />
           <Route exact path="/foundations" component={Foundations} />
+          <Route component={NotFound} />
         </Switch>
         <Footer />
       </Suspense>

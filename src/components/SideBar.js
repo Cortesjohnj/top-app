@@ -5,19 +5,22 @@ import { animateScroll as ScrollToTop } from "react-scroll";
 import "../assets/styles/SideBar.css";
 import { FaTimes } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { ISUSER } from "../store/actions";
+import { logOut } from "../store/actionCreators";
+import { AUTHENTICATED } from "../store/actions";
 
 function SideBar({ isOpen, toggle }) {
   const dispatch = useDispatch();
 
-  const activeUser = useSelector((state) => state.isUser);
+  const status = useSelector((state) => state.status);
 
-  const recentUser = useSelector((state) => state.user);
+  let recentUser = useSelector((state) => state.user);
+  if (recentUser === null) {
+    recentUser = {};
+  }
   const { name, _id } = recentUser;
 
   const handleLogOut = () => {
-    dispatch({ type: ISUSER, payload: false });
-    localStorage.removeItem("Authorization");
+    dispatch(logOut());
   };
 
   return (
@@ -59,21 +62,21 @@ function SideBar({ isOpen, toggle }) {
           </LinkScroll>
         </ul>
         <div className="sideBar__container--btnWrap">
-          {activeUser && (
+          {status === AUTHENTICATED && (
             <Link className="sideBar__container--route" to={`/${_id}/${name}`}>
               PROFILE
             </Link>
           )}
         </div>
         <div className="sideBar__container--btnWrap">
-          {activeUser && (
+          {status === AUTHENTICATED && (
             <Link className="sideBar__container--route" to="/foundations">
               FOUNDATIONS
             </Link>
           )}
         </div>
         <div className="sideBar__container--btnWrap">
-          {activeUser ? (
+          {status === AUTHENTICATED ? (
             <Link className="sideBar__container--route" to="/donate">
               DONATE
             </Link>
@@ -84,7 +87,7 @@ function SideBar({ isOpen, toggle }) {
           )}
         </div>
         <div className="sideBar__container--btnWrap">
-          {activeUser ? (
+          {status === AUTHENTICATED ? (
             <Link
               className="sideBar__container--route"
               to="/"

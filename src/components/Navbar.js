@@ -6,14 +6,18 @@ import { Link as LinkScroll } from "react-scroll";
 import { animateScroll as ScrollToTop } from "react-scroll";
 import "../assets/styles/Navbar.css";
 import { useDispatch, useSelector } from "react-redux";
-import { ISUSER } from "../store/actions";
+import { logOut } from "../store/actionCreators";
+import { AUTHENTICATED } from "../store/actions";
 
 function Navbar({ toggle }) {
   const dispatch = useDispatch();
 
-  const activeUser = useSelector((state) => state.isUser);
+  let recentUser = useSelector((state) => state.user);
+  if (recentUser === null) {
+    recentUser = {};
+  }
 
-  const recentUser = useSelector((state) => state.user);
+  const status = useSelector((state) => state.status);
 
   const { photoUrl, name, _id } = recentUser;
 
@@ -31,8 +35,7 @@ function Navbar({ toggle }) {
   }, [isMobile]);
 
   const handleLogOut = () => {
-    dispatch({ type: ISUSER, payload: false });
-    localStorage.removeItem("Authorization");
+    dispatch(logOut());
   };
 
   return (
@@ -44,7 +47,7 @@ function Navbar({ toggle }) {
             ADOGTA
           </Link>
 
-          {activeUser ? (
+          {status === AUTHENTICATED ? (
             <Link
               className="navBar__container--profilePicWrapper1"
               to={isMobile ? "" : `/${_id}/${name}`}
@@ -93,7 +96,7 @@ function Navbar({ toggle }) {
           <ul className="navBar__container--navMenu2">
             <li
               className={
-                activeUser
+                status === AUTHENTICATED
                   ? "navBar__container--navMenu2--hide"
                   : "navBar__container--navItem2"
               }
@@ -104,7 +107,7 @@ function Navbar({ toggle }) {
             </li>{" "}
             <li
               className={
-                activeUser
+                status === AUTHENTICATED
                   ? "navBar__container--navItem2"
                   : "navBar__container--navMenu2--hide"
               }
@@ -115,7 +118,7 @@ function Navbar({ toggle }) {
             </li>
             <li
               className={
-                activeUser
+                status === AUTHENTICATED
                   ? "navBar__container--navItem2"
                   : "navBar__container--navMenu2--hide"
               }
@@ -129,7 +132,7 @@ function Navbar({ toggle }) {
             </li>
             <li
               className={
-                activeUser
+                status === AUTHENTICATED
                   ? "navBar__container--navItem2"
                   : "navBar__container--navMenu2--hide"
               }
@@ -145,7 +148,7 @@ function Navbar({ toggle }) {
           </ul>
 
           <nav className="navBar__container--nav">
-            {activeUser ? (
+            {status === AUTHENTICATED ? (
               <Link
                 className="navBar__container--profilePicWrapper"
                 to={`/${_id}/${name}`}
