@@ -7,6 +7,7 @@ import {
   REGISTER_USER,
   AUTHORIZATION,
   LOGOUT,
+  UPDATE_PROFILE,
 } from "./actions";
 import history from "../history";
 
@@ -31,7 +32,6 @@ export const loadUser = () => {
     try {
       const response = await axios.get("/me");
       dispatch({ type: LOGIN_USER, payload: response.data });
-      console.log(response.data);
     } catch (e) {
       localStorage.removeItem(AUTHORIZATION);
       dispatch({ type: ERROR, payload: e.response.data.error });
@@ -69,13 +69,7 @@ export const deletePet = petId => {
   };
 };
 
-export const registerUser = ({
-  firstName,
-  lastName,
-  email,
-  password,
-  role,
-}) => {
+export const registerUser = ({ firstName, email, password, role }) => {
   return async function (dispatch) {
     try {
       const response = await axios.post("/signup", {
@@ -87,6 +81,36 @@ export const registerUser = ({
 
       dispatch({ type: REGISTER_USER, payload: response.data.user });
       history.push("/login");
+    } catch (e) {
+      dispatch({ type: ERROR, payload: e.response.data.error });
+    }
+  };
+};
+
+export const updateUserProfile = ({
+  _id,
+  name,
+  role,
+  adress,
+  email,
+  phoneNumber,
+  photoUrl,
+}) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.put(`/${_id}/profile`, {
+        _id,
+        name,
+        role,
+        adress,
+        email,
+        phoneNumber,
+        photoUrl,
+      });
+
+      dispatch({ type: UPDATE_PROFILE, payload: response.data });
+
+      // history.go(0);
     } catch (e) {
       dispatch({ type: ERROR, payload: e.response.data.error });
     }

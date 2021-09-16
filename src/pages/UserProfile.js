@@ -3,49 +3,64 @@ import { FaUserCircle } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import "../assets/styles/UserProfile.css";
 import { PrimaryButton } from "../components/PrimaryButton";
+import { updateUserProfile } from "../store/actionCreators";
 
 function Profile() {
-  const { name, email, address, phoneNumber } = useSelector(
+  const { name, email, address, phoneNumber, _id, role } = useSelector(
     state => state.user
   );
+
+  // console.log(name, email, address, phoneNumber, _id);
+
   const dispatch = useDispatch();
 
   const [updateProfile, setUpdateProfile] = useState({
-    firstName: "",
-    lastName: "",
+    _id: _id,
+    name: "",
     email: "",
     address: "",
     phoneNumber: "",
     photoUrl: null,
+    role: role,
   });
 
-  const cleanup = () => {
-    URL.revokeObjectURL(updateProfile);
-  };
+  // const cleanup = () => {
+  //   URL.revokeObjectURL(updateProfile);
+  // };
 
-  const setImage = newImage => {
-    if (updateProfile) {
-      cleanup();
-    }
+  // const setImage = newImage => {
+  //   if (updateProfile) {
+  //     cleanup();
+  //   }
+  //   setUpdateProfile(prevState => ({
+  //     ...prevState,
+  //     photoUrl: newImage,
+  //   }));
+  // };
+
+  // const handlePhoto = event => {
+  //   const newImage = event.target.files[0];
+  //   if (newImage) {
+  //     setImage(URL.createObjectURL(newImage));
+  //   }
+  // };
+
+  const onChange = event => {
+    event.preventDefault();
     setUpdateProfile(prevState => ({
       ...prevState,
-      photoUrl: newImage,
+      name: event.target.value,
     }));
-  };
-
-  const handlePhoto = event => {
-    const newImage = event.target.files[0];
-    if (newImage) {
-      setImage(URL.createObjectURL(newImage));
-    }
   };
 
   const handleSubmit = event => {
     event.preventDefault();
-    setUpdateProfile(prevState => ({
-      ...prevState,
-      [event.target.name]: event.target.value,
-    }));
+
+    dispatch(updateUserProfile(updateProfile));
+    // setUpdateProfile(prevState => ({
+    //   ...prevState,
+    //   [event.target.name]: event.target.value,
+    // }));
   };
 
   return (
@@ -75,15 +90,15 @@ function Profile() {
             id="imageUpload"
             accept="image/*"
             hidden
-            onChange={handlePhoto}
+            // onChange={handlePhoto}
           />
           <input
             type="text"
-            name="Name"
-            value={name}
-            placeholder="First name"
+            name="name"
+            // value={name}
+            placeholder={name}
             className="userProfile__container--inputs"
-            onChange={handleSubmit}
+            onChange={onChange}
           />
           <input
             type="email"
@@ -92,7 +107,7 @@ function Profile() {
             value={email}
             disabled
             className="userProfile__container--inputs"
-            onChange={handleSubmit}
+            // onChange={handleSubmit}
           />
           <input
             type="text"
@@ -100,7 +115,7 @@ function Profile() {
             placeholder="Address"
             value={address}
             className="userProfile__container--inputs"
-            onChange={handleSubmit}
+            // onChange={handleSubmit}
           />
           <input
             type="number"
@@ -108,7 +123,7 @@ function Profile() {
             value={phoneNumber}
             placeholder="Phone number"
             className="userProfile__container--inputs"
-            onChange={handleSubmit}
+            // onChange={handleSubmit}
           />
           <PrimaryButton
             children={"Update profile"}
