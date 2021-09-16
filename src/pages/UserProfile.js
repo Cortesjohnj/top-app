@@ -52,12 +52,7 @@ function Profile() {
 
   const handleSubmit = event => {
     event.preventDefault();
-
     dispatch(updateUserProfile(updateProfile));
-    // setUpdateProfile(prevState => ({
-    //   ...prevState,
-    //   [event.target.name]: event.target.value,
-    // }));
   };
 
   return (
@@ -92,9 +87,10 @@ function Profile() {
           <input
             type="text"
             name="name"
-            placeholder={name}
+            placeholder={name || "Name"}
             className="userProfile__container--inputs"
             onChange={onChange}
+            required
           />
           <input
             type="email"
@@ -107,16 +103,18 @@ function Profile() {
           <input
             type="text"
             name="address"
-            placeholder={address}
+            placeholder={address || "Address"}
             className="userProfile__container--inputs"
             onChange={onChange}
+            required={address ? true : false}
           />
           <input
             type="number"
             name="phoneNumber"
-            placeholder={phoneNumber}
+            placeholder={phoneNumber || "Phone Number"}
             className="userProfile__container--inputs"
             onChange={onChange}
+            required={phoneNumber ? true : false}
           />
           <PrimaryButton
             children={"Update profile"}
