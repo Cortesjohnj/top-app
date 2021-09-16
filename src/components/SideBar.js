@@ -14,7 +14,7 @@ function SideBar({ isOpen, toggle }) {
   const status = useSelector((state) => state.status);
 
   let recentUser = useSelector((state) => state.user);
-  if (recentUser === null) {
+  if (recentUser === null || recentUser === undefined) {
     recentUser = {};
   }
   const { name, _id } = recentUser;

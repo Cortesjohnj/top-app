@@ -13,7 +13,7 @@ function Navbar({ toggle }) {
   const dispatch = useDispatch();
 
   let recentUser = useSelector((state) => state.user);
-  if (recentUser === null) {
+  if (recentUser === null || recentUser === undefined) {
     recentUser = {};
   }
 
