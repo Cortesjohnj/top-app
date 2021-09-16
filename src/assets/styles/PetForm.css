@@ -88,14 +88,14 @@
   font-size: 24px;
   margin: 0 60px;
   margin-top: 80px;
-  color: #fff;
+  color: black;
   text-align: center;
 }
 
 .petform__successContainer {
   border-radius: 0 10px 10px 0;
   position: relative;
-  background: linear-gradient(90deg, rgb(40, 40, 40) 0%, rgb(17, 17, 17) 100%);
+  background: var(--aero);
 }
 
 .petform__rightContainer {
@@ -104,7 +104,7 @@
   justify-content: center;
   border-radius: 0 10px 10px 0;
   position: relative;
-  background: linear-gradient(90deg, rgb(40, 40, 40) 0%, rgb(17, 17, 17) 100%);
+  background: var(--aero);
 }
 
 .petform__rightContainerForm {
@@ -126,7 +126,7 @@
   align-items: center;
   width: 80%;
   margin-bottom: 2.7rem;
-  color: #fff;
+  color: black;
 }
 
 .petform__rightContainerForm--inputs {
@@ -144,7 +144,7 @@
   display: inline-block;
   font-size: 1.2rem;
   margin-bottom: 6px;
-  color: #fff;
+  color: black;
 }
 
 .petform__rightContainerForm--input {
@@ -170,7 +170,7 @@
 
 .petform__rightContainerForm--input::placeholder,
 .petform__rightContainerForm--textarea::placeholder {
-  color: #595959;
+  color: black;
   font-family: sans-serif;
   font-size: 12px;
   position: absolute;
@@ -193,8 +193,8 @@
 .petform__rightContainerForm--button:hover {
   cursor: pointer;
   background: var(--aero);
-  color: black;
   transition: all 0.4s ease-out;
+  background: black;
 }
 
 .petform__successContainer--button {
@@ -216,7 +216,7 @@
 
 .petform__successContainer--button:hover {
   cursor: pointer;
-  background: var(--aero);
-  color: black;
+  background: black;
+  color: white;
   transition: all 1s ease-out;
 }
