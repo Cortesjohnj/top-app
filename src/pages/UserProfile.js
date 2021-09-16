@@ -9,47 +9,44 @@ function Profile() {
   const { name, email, address, phoneNumber, _id, role } = useSelector(
     state => state.user
   );
-
-  // console.log(name, email, address, phoneNumber, _id);
-
   const dispatch = useDispatch();
 
   const [updateProfile, setUpdateProfile] = useState({
     _id: _id,
     name: "",
-    email: "",
+    email: email,
     address: "",
     phoneNumber: "",
     photoUrl: null,
     role: role,
   });
 
-  // const cleanup = () => {
-  //   URL.revokeObjectURL(updateProfile);
-  // };
+  const cleanup = () => {
+    URL.revokeObjectURL(updateProfile);
+  };
 
-  // const setImage = newImage => {
-  //   if (updateProfile) {
-  //     cleanup();
-  //   }
-  //   setUpdateProfile(prevState => ({
-  //     ...prevState,
-  //     photoUrl: newImage,
-  //   }));
-  // };
+  const setImage = newImage => {
+    if (updateProfile) {
+      cleanup();
+    }
+    setUpdateProfile(prevState => ({
+      ...prevState,
+      photoUrl: newImage,
+    }));
+  };
 
-  // const handlePhoto = event => {
-  //   const newImage = event.target.files[0];
-  //   if (newImage) {
-  //     setImage(URL.createObjectURL(newImage));
-  //   }
-  // };
+  const handlePhoto = event => {
+    const newImage = event.target.files[0];
+    if (newImage) {
+      setImage(URL.createObjectURL(newImage));
+    }
+  };
 
   const onChange = event => {
     event.preventDefault();
     setUpdateProfile(prevState => ({
       ...prevState,
-      name: event.target.value,
+      [event.target.name]: event.target.value,
     }));
   };
 
@@ -90,12 +87,11 @@ function Profile() {
             id="imageUpload"
             accept="image/*"
             hidden
-            // onChange={handlePhoto}
+            onChange={handlePhoto}
           />
           <input
             type="text"
             name="name"
-            // value={name}
             placeholder={name}
             className="userProfile__container--inputs"
             onChange={onChange}
@@ -107,23 +103,20 @@ function Profile() {
             value={email}
             disabled
             className="userProfile__container--inputs"
-            // onChange={handleSubmit}
           />
           <input
             type="text"
             name="address"
-            placeholder="Address"
-            value={address}
+            placeholder={address}
             className="userProfile__container--inputs"
-            // onChange={handleSubmit}
+            onChange={onChange}
           />
           <input
             type="number"
             name="phoneNumber"
-            value={phoneNumber}
-            placeholder="Phone number"
+            placeholder={phoneNumber}
             className="userProfile__container--inputs"
-            // onChange={handleSubmit}
+            onChange={onChange}
           />
           <PrimaryButton
             children={"Update profile"}
