@@ -12,7 +12,7 @@ import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import { useDispatch } from "react-redux";
 import { loadUser, logOut } from "./store/actionCreators";
-import { AUTHORIZATION, UNAUTH_PAGES } from "./store/actions";
+import { AUTHORIZATION } from "./store/actions";
 import PrivateRoute from "./pages/PrivateRoute";
 
 function App() {
@@ -22,9 +22,7 @@ function App() {
     if (localStorage.getItem(AUTHORIZATION)) {
       dispatch(loadUser());
     } else {
-      if (!UNAUTH_PAGES.includes(window.location.pathname)) {
-        dispatch(logOut());
-      }
+      dispatch(logOut());
     }
   }, [dispatch]);
 

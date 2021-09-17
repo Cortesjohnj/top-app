@@ -43,7 +43,6 @@ export const loadUser = () => {
 };
 
 export const logOut = () => {
-  history.push("/");
   localStorage.removeItem(AUTHORIZATION);
   return { type: LOGOUT };
 };
