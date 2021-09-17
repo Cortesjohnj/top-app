@@ -19,10 +19,10 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!UNAUTH_PAGES.includes(window.location.pathname)) {
-      if (localStorage.getItem(AUTHORIZATION)) {
-        dispatch(loadUser());
-      } else {
+    if (localStorage.getItem(AUTHORIZATION)) {
+      dispatch(loadUser());
+    } else {
+      if (!UNAUTH_PAGES.includes(window.location.pathname)) {
         dispatch(logOut());
       }
     }
