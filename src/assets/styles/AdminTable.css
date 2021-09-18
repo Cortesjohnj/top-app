@@ -1,0 +1,37 @@
+* {
+  font-size: medium;
+}
+
+.photos {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+  height: 100px;
+  border-radius: 5%;
+}
+.div-table {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.td {
+  padding: 3px;
+  border-right: 1px solid black;
+  border-top: 1px solid black;
+  justify-content: center;
+}
+
+.table {
+  border: 1px solid black;
+}
+
+.check {
+  text-align: center;
+}
+
+.delete {
+  padding: 5px;
+  margin-top: 5px;
+}
