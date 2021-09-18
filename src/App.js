@@ -1,32 +1,34 @@
-import { Router, Switch, Route } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
-import PetListPage from "./pages/PetListPage";
-import { RegisterPage } from "./pages/RegisterPage";
-import { AddPet } from "./pages/AddPet";
-import PetManagePage from "./pages/PetManagePage";
-import { Suspense, useEffect } from "react";
-import Spinner from "./components/Spinner";
-import Foundations from "./pages/Foundations";
-import history from "./history";
-import Home from "./pages/Home";
-import NotFound from "./pages/NotFound";
-import { useDispatch } from "react-redux";
-import { loadUser, logOut } from "./store/actionCreators";
-import { AUTHORIZATION } from "./store/actions";
-import PrivateRoute from "./pages/PrivateRoute";
+import { Router, Switch, Route } from "react-router-dom"
+import LoginPage from "./pages/LoginPage"
+import PetListPage from "./pages/PetListPage"
+import { RegisterPage } from "./pages/RegisterPage"
+import { AddPet } from "./pages/AddPet"
+import PetManagePage from "./pages/PetManagePage"
+import { Suspense, useEffect } from "react"
+import Spinner from "./components/Spinner"
+import Foundations from "./pages/Foundations"
+import AdminFoundations from "./pages/AdminFoundations"
+import history from "./history"
+import Home from "./pages/Home"
+import NotFound from "./pages/NotFound"
+import { useDispatch } from "react-redux"
+import { loadUser, logOut } from "./store/actionCreators"
+import { AUTHORIZATION } from "./store/actions"
+import PrivateRoute from "./pages/PrivateRoute"
 
 function App() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   useEffect(() => {
     if (localStorage.getItem(AUTHORIZATION)) {
-      dispatch(loadUser());
+      dispatch(loadUser())
     } else {
-      dispatch(logOut());
+      dispatch(logOut())
     }
-  }, [dispatch]);
+  }, [dispatch])
 
   return (
+    /** 
     <Router history={history}>
       <Suspense fallback={<Spinner />}>
         <Switch>
@@ -46,7 +48,9 @@ function App() {
         </Switch>
       </Suspense>
     </Router>
-  );
+    */
+    <AdminFoundations> </AdminFoundations>
+  )
 }
 
-export default App;
+export default App
