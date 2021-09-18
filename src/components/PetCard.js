@@ -2,7 +2,8 @@ import { useState } from "react";
 import { withRouter } from "react-router-dom";
 import { FaMinus } from "react-icons/fa";
 import { IconContext } from "react-icons";
-import axios from "axios";
+import { deletePet } from "../store/actionCreators";
+import { useDispatch, useSelector } from "react-redux";
 
 import CardImage from "./CardImage";
 import CardModal from "./CardModal";
@@ -14,11 +15,17 @@ const PetCard = (props) => {
     _id,
     name,
     description,
-    photo_url,
+    photoUrl,
     adopted,
     redirectUrl,
+    age,
     isFoundation,
   } = props;
+  const dispatch = useDispatch();
+
+  const requests = useSelector((state) => state.foundationRequests).filter(
+    (item) => item.petId._id === _id
+  );
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -36,68 +43,65 @@ const PetCard = (props) => {
     !adopted && props.history.push(`/pets/${_id}${redirectUrl}`);
   };
 
-  const handleDeletePet = (_id) => () => {
-    axios({
-      method: "DELETE",
-      baseURL: "https://jsonplaceholder.typicode.com",
-      url: `/posts/1`,
-      data: {
-        id: _id,
-      },
-    })
-      .then(() => {
-        console.log("Pet deleted!");
-      })
-      .catch((error) => {
-        console.dir(error.message);
-      });
-    handleOpenModal();
+  const handleDeletePet = async (_id) => {
+    dispatch(deletePet(_id));
   };
 
   return (
     <>
-      <div className="card-list-item">
-        {adopted && (
-          <div className="card-list-message">
-            <p>Adopted</p>
+      <div className="overflow--hidden">
+        {isFoundation && requests.length > 0 && (
+          <div className="card-list-number">
+            <p>{requests.length}</p>
           </div>
         )}
-        <img
-          className="card-list-item__image"
-          src={photo_url}
-          alt="Pet"
-          onClick={handleOpenImage}
-          href={photo_url}
-        />
-        <div className="card-list-item__details" onClick={handleClick}>
-          <h3 className="card-list-item__details--title">{name}</h3>
-          <p className="card-list-item__details--text">{description}</p>
-        </div>
-        {isFoundation && (
-          <IconContext.Provider
-            value={{
-              color: "red",
-              className: "delete-pets-container__icon",
-            }}
-          >
-            <div className="delete-pets-container" onClick={handleOpenModal}>
-              {" "}
-              <FaMinus />
+
+        <div className="card-list-item">
+          {adopted && (
+            <div className="card-list-message">
+              <p>Adopted</p>
             </div>
-          </IconContext.Provider>
-        )}
+          )}
+          <img
+            className="card-list-item__image"
+            src={photoUrl[0]}
+            alt="Pet"
+            onClick={handleOpenImage}
+          />
+          <div className="card-list-item__details" onClick={handleClick}>
+            <h3 className="card-list-item__details--title">{name}</h3>
+            <p className="card-list-item__details--text">
+              <span>Age:</span> {age}
+            </p>
+            <p className="card-list-item__details--text">{description}</p>
+          </div>
+          {isFoundation && (
+            <IconContext.Provider
+              value={{
+                color: "red",
+                className: "delete-pets-container__icon",
+              }}
+            >
+              <div className="delete-pets-container" onClick={handleOpenModal}>
+                {" "}
+                <FaMinus />
+              </div>
+            </IconContext.Provider>
+          )}
+        </div>
       </div>
+
       {isOpen && (
-        <CardImage photo_url={photo_url} handleOpenImage={handleOpenImage} />
+        <CardImage photo_url={photoUrl} handleOpenImage={handleOpenImage} />
       )}
       {modalIsOpen && (
         <CardModal
-          photo_url={photo_url}
           handleOpenModal={handleOpenModal}
           id={_id}
-          name={name}
-          handleDeletePet={handleDeletePet}
-        />
+          handleConfirm={handleDeletePet}
+        >
+          Are you sure you want to delete pet {name}
+        </CardModal>
       )}
     </>
   );

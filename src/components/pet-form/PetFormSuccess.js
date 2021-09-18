@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Dog4 from '../../assets/images/security colored.svg';
+import React from "react";
+import { Link } from "react-router-dom";
+import Dog4 from "../../assets/images/security colored.svg";
 
 const PetFormSuccess = () => {
   return (
@@ -15,7 +15,7 @@ const PetFormSuccess = () => {
       >
         svg-animation
       </object>
-      <Link to="/:id/profile">
+      <Link to="/">
         <button className="petform__successContainer--button">
           RETURN TO HOME
         </button>

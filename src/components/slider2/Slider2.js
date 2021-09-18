@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
-import '../../assets/styles/Slider2.css';
-import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
+import React, { useState } from "react";
+import "../../assets/styles/Slider2.css";
+import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 const Slider2 = ({ slides2 }) => {
+  const pet = useSelector((state) => state.selectedPet);
   const [current, setCurrent] = useState(0);
   const length = slides2.length;
 
@@ -31,7 +33,7 @@ const Slider2 = ({ slides2 }) => {
       {slides2.map((slide, index) => {
         return (
           <div
-            className={index === current ? 'slider__active' : 'slider__slide'}
+            className={index === current ? "slider__active" : "slider__slide"}
             key={index}
           >
             {index === current && (

@@ -1,0 +1,76 @@
+.whatsappfloat {
+  position: fixed;
+  width: 70px;
+  height: 70px;
+  bottom: 40px;
+  right: 40px;
+  background-color: #25d366;
+  color: #fff;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 40px;
+  box-shadow: 2px 2px 3px #999;
+  z-index: 100;
+  animation: myAnim 2s ease 0s 3 alternate-reverse both;
+  transition: all 0.2s ease-in-out;
+}
+
+@keyframes myAnim {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70% {
+    transform: translateX(-10px);
+  }
+
+  20%,
+  40%,
+  60% {
+    transform: translateX(10px);
+  }
+
+  80% {
+    transform: translateX(8px);
+  }
+
+  90% {
+    transform: translateX(-8px);
+  }
+}
+
+.whatsappfloat__IoLogoWhatsapp {
+  margin-top: 16px;
+}
+
+@media (max-width: 767px) {
+  .whatsappfloat__IoLogoWhatsapp {
+    margin-top: 10px;
+  }
+  .whatsappfloat {
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: 10px;
+    font-size: 37px;
+    transition: all 0.2s ease-in-out;
+  }
+}
+
+@media (max-width: 360px) {
+  .whatsappfloat__IoLogoWhatsapp {
+    margin-top: 10px;
+  }
+  .whatsappfloat {
+    width: 40px;
+    height: 40px;
+    bottom: 20px;
+    right: 32px;
+    font-size: 22px;
+    transition: all 0.2s ease-in-out;
+  }
+}

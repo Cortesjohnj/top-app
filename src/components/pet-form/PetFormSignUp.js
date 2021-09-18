@@ -1,12 +1,14 @@
-import React from 'react';
-import usePetForm from './usePetForm';
-import validateInfo from './validateInfo';
+import React from "react";
+import { useSelector } from "react-redux";
+import usePetForm from "./usePetForm";
+import validateInfo from "./validateInfo";
 
 const PetFormSignUp = ({ submitForm }) => {
   const { handleChange, values, handleSubmit, errors } = usePetForm(
     submitForm,
     validateInfo
   );
+  const error = useSelector((state) => state.error);
 
   return (
     <div className="petform__rightContainer">
@@ -32,19 +34,22 @@ const PetFormSignUp = ({ submitForm }) => {
           {errors.address && <p>{errors.address}</p>}
         </div>
         <div className="petform__rightContainerForm--inputs">
-          <label className="petform__rightContainerForm--label" htmlFor="tel">
+          <label
+            className="petform__rightContainerForm--label"
+            htmlFor="phoneNumber"
+          >
             Phone Number
           </label>
           <input
-            id="tel"
-            type="tel"
-            name="tel"
+            id="phoneNumber"
+            type="phoneNumber"
+            name="phoneNumber"
             className="petform__rightContainerForm--input"
             placeholder="Enter your phone number"
-            value={values.tel}
+            value={values.phoneNumber}
             onChange={handleChange}
           />
-          {errors.tel && <p>{errors.tel}</p>}
+          {errors.phoneNumber && <p>{errors.phoneNumber}</p>}
         </div>
         <div className="petform__rightContainerForm--inputs">
           <label
@@ -65,6 +70,7 @@ const PetFormSignUp = ({ submitForm }) => {
           />
           {errors.description && <p>{errors.description}</p>}
         </div>
+        {error && <p>{error}</p>}
         <button className="petform__rightContainerForm--button" type="submit">
           ADOPT ME
         </button>
