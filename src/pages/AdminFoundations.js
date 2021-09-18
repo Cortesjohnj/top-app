@@ -1,9 +1,26 @@
 import MockData from "../MockData"
 import "../assets/styles/AdminTable.css"
 import FoundationsTable from "../components/FoundationsTable"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import customAxios from "../axios"
+
+function eliminate(arrData, arrCheck, setData, setArrCheck) {
+  var newData = []
+  var newCheck = []
+  for (let i = 0; i < arrCheck.length; i++) {
+    if (!arrCheck[i]) {
+      newData.push(arrData[i])
+      newCheck.push(false)
+    }
+  }
+  setData(newData)
+  setArrCheck(newCheck)
+}
 
 const AdminFoundations = () => {
+  const [arrData, setData] = useState(null)
+  const [arrCheck, setArrCheck] = useState(null)
+
   const columns = [
     { Header: "ID", accessor: "id" },
     { Header: "Name", accessor: "name" },
@@ -25,25 +42,39 @@ const AdminFoundations = () => {
     check: "check",
   }))
 
-  const [arrCheck, setArrCheck] = useState(
+  setData(clone)
+  setArrCheck(
     clone.map(() => {
       return false
     })
   )
-  const [arrData, setData] = useState(clone)
 
-  function eliminate() {
-    var newData = []
-    var newCheck = []
-    for (let i = 0; i < arrCheck.length; i++) {
-      if (!arrCheck[i]) {
-        newData.push(clone[i])
-        newCheck.push(false)
-      }
-    }
-    setData(newData)
-    setArrCheck(newCheck)
+  /** 
+  useEffect(() => {
+    console.log(customAxios)
+    customAxios
+      .get("http://localhost:8080/admin")
+      .then((response) => setData(response.data))
+      .catch((error) => {
+        console.log(error)
+      })
+  }, [])
+
+  if (arrData === null) {
+    return (
+      <p className="error-foundations">
+        {" "}
+        There is an unexpected error, please try again later{" "}
+      </p>
+    )
   }
+
+  setArrCheck(
+    arrData.map(() => {
+      return false
+    })
+  )
+  */
 
   return (
     <div>
@@ -60,7 +91,7 @@ const AdminFoundations = () => {
           type="submit"
           className="delete"
           value="Delete"
-          onClick={() => eliminate()}
+          onClick={() => eliminate(arrData, arrCheck, setData, setArrCheck)}
         />
       </div>
     </div>
