@@ -1,6 +1,6 @@
 import { useTable } from "react-table"
 
-function FoundationsTable({ columns, data, state, setState }) {
+function Table({ columns, data, state, setState }) {
   // Use the state and functions returned from useTable to build your UI
   function handleChange(position) {
     const updateState = state.map((item, index) =>
@@ -66,4 +66,4 @@ function FoundationsTable({ columns, data, state, setState }) {
   )
 }
 
-export default FoundationsTable
+export default Table

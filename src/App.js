@@ -7,7 +7,7 @@ import PetManagePage from "./pages/PetManagePage"
 import { Suspense, useEffect } from "react"
 import Spinner from "./components/Spinner"
 import Foundations from "./pages/Foundations"
-import AdminFoundations from "./pages/AdminFoundations"
+import Admin from "./pages/Admin"
 import history from "./history"
 import Home from "./pages/Home"
 import NotFound from "./pages/NotFound"
@@ -49,7 +49,7 @@ function App() {
       </Suspense>
     </Router>
     */
-    <AdminFoundations> </AdminFoundations>
+    <Admin isFoundation={false}> </Admin>
   )
 }
 
