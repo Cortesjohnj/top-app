@@ -8,6 +8,7 @@ import { listPets } from "../store/actionCreators";
 
 import CardList from "../components/CardList";
 import PetCard from "../components/PetCard";
+import PaginationButtons from "../components/PaginationButtons";
 import "../assets/styles/PetListPage.css";
 
 const PetListPage = () => {
@@ -60,14 +61,14 @@ const PetListPage = () => {
           </h1>
         )}
       </CardList>
-      <div className="list-buttons">
-        <button disabled={previousButton} onClick={handlePreviousPage}>
-          Previous
-        </button>
-        <button disabled={nextButton} onClick={handleNextPage}>
-          Next
-        </button>
-      </div>
+      {petListInfo.count > 10 && (
+        <PaginationButtons
+          previousButton={previousButton}
+          nextButton={nextButton}
+          handleNextPage={handleNextPage}
+          handlePreviousPage={handlePreviousPage}
+        />
+      )}
       {isFoundation && (
         <IconContext.Provider
           value={{
