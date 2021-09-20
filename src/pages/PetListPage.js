@@ -14,16 +14,33 @@ const PetListPage = () => {
   const { id: foundationId } = useParams();
   let redirectUrl = "";
   const dispatch = useDispatch();
-  const { pets } = useSelector((state) => state);
+  const { pets, petListInfo } = useSelector((state) => state);
 
   useEffect(() => {
-    dispatch(listPets(foundationId));
+    dispatch(listPets(foundationId, 1));
   }, [foundationId, dispatch]);
 
   //This variables comes from the user session, I will set it manually for testing purposes
   const isFoundation = true;
 
   isFoundation ? (redirectUrl = "/manage") : (redirectUrl = "/request");
+
+  //List buttons
+  let nextButton = "";
+  let previousButton = "";
+
+  petListInfo.page === 1 ? (previousButton = true) : (previousButton = false);
+  petListInfo.page === Math.ceil(petListInfo.count / 10)
+    ? (nextButton = true)
+    : (nextButton = false);
+
+  const handleNextPage = () => {
+    dispatch(listPets(foundationId, petListInfo.page + 1));
+  };
+
+  const handlePreviousPage = () => {
+    dispatch(listPets(foundationId, petListInfo.page - 1));
+  };
 
   return (
     <div className="background-container">
@@ -43,6 +60,14 @@ const PetListPage = () => {
           </h1>
         )}
       </CardList>
+      <div className="list-buttons">
+        <button disabled={previousButton} onClick={handlePreviousPage}>
+          Previous
+        </button>
+        <button disabled={nextButton} onClick={handleNextPage}>
+          Next
+        </button>
+      </div>
       {isFoundation && (
         <IconContext.Provider
           value={{

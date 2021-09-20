@@ -22,13 +22,17 @@ const reducer = (state, action) => {
     case SET_PETS:
       return {
         ...state,
-        pets: action.payload,
+        pets: action.payload.pets,
+        petListInfo: {
+          count: action.payload.count,
+          page: +action.payload.page,
+        },
       };
 
     case DELETE_PET:
       return {
         ...state,
-        pets: state.pets.filter(pet => pet._id !== action.payload),
+        pets: state.pets.filter((pet) => pet._id !== action.payload),
       };
 
     case REGISTER_USER:

@@ -7,6 +7,7 @@ const initialState = {
   user: {},
   foundations: [],
   pets: [],
+  petListInfo: {},
   adoptionRequests: [],
   error: "",
   status: LOADING,
