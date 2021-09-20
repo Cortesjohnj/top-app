@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import usePetForm from "./usePetForm";
 import validateInfo from "./validateInfo";
 
@@ -8,7 +7,6 @@ const PetFormSignUp = ({ submitForm }) => {
     submitForm,
     validateInfo
   );
-  const error = useSelector((state) => state.error);
 
   return (
     <div className="petform__rightContainer">
@@ -70,7 +68,6 @@ const PetFormSignUp = ({ submitForm }) => {
           />
           {errors.description && <p>{errors.description}</p>}
         </div>
-        {error && <p>{error}</p>}
         <button className="petform__rightContainerForm--button" type="submit">
           ADOPT ME
         </button>

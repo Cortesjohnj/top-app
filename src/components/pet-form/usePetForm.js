@@ -1,18 +1,12 @@
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { createAdoption } from "../../store/actionCreators";
 
 const usePetForm = (submitForm, validateInfo) => {
   const { id: petId } = useParams();
 
-  const error = useSelector((state) => state.error);
-
-  const dispatch = useDispatch();
-
   const [values, setValues] = useState({
     address: "",
-    PhoneNumber: "",
+    phoneNumber: "",
     description: "",
   });
   const [errors, setErrors] = useState({});
