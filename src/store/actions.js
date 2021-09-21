@@ -1,6 +1,7 @@
 export const LOGIN_USER = "LOGIN_USER";
 export const ERROR = "ERROR";
 export const SET_PETS = "SET_PETS";
+export const ADD_PETS = "ADD_PETS";
 export const DELETE_PET = "DELETE_PET";
 export const SELECT_PET = "SELECT_PET";
 export const LIST_REQUESTS = "LIST_REQUESTS";
@@ -12,3 +13,4 @@ export const AUTHENTICATED = "AUTHENTICATED";
 export const NOT_AUTHENTICATED = "NOT_AUTHENTICATED";
 export const AUTHORIZATION = "Authorization";
 export const LOGOUT = "LOGOUT";
+export const UPDATE_PROFILE = "UPDATE_PROFILE";
