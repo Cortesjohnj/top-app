@@ -28,7 +28,7 @@ const reducer = (state, action) => {
     case DELETE_PET:
       return {
         ...state,
-        pets: state.pets.filter(pet => pet._id !== action.payload),
+        pets: state.pets.filter((pet) => pet._id !== action.payload),
       };
 
     case REGISTER_USER:

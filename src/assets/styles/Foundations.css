@@ -63,3 +63,15 @@
   display: flex;
   justify-content: center;
 }
+
+.buttons-Foundation {
+  padding: 5px;
+  margin: 5px;
+}
+
+.container-buttons-foundations {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}

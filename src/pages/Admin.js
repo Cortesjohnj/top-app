@@ -1,14 +1,14 @@
 //import MockData from "../MockData"
-import "../assets/styles/AdminTable.css"
-import Table from "../components/Table"
-import { useEffect, useState } from "react"
-import customAxios from "../axios"
+import "../assets/styles/AdminTable.css";
+import Table from "../components/Table";
+import { useEffect, useState } from "react";
+import customAxios from "../axios";
 
 function eliminate(arrData, arrCheck, setData, setArrCheck, URL) {
-  var deleteID = []
+  var deleteID = [];
   for (let i = 0; i < arrCheck.length; i++) {
     if (arrCheck[i]) {
-      deleteID.push(arrData[i].id)
+      deleteID.push(arrData[i].id);
     }
   }
   if (deleteID.length > 0) {
@@ -17,18 +17,18 @@ function eliminate(arrData, arrCheck, setData, setArrCheck, URL) {
       method: "delete",
       data: { _id: deleteID },
     }).catch((error) => {
-      console.log(error)
-    })
-    var newData = []
-    var newCheck = []
+      console.log(error);
+    });
+    var newData = [];
+    var newCheck = [];
     for (let i = 0; i < arrCheck.length; i++) {
       if (!arrCheck[i]) {
-        newData.push(arrData[i])
-        newCheck.push(false)
+        newData.push(arrData[i]);
+        newCheck.push(false);
       }
     }
-    setData(newData)
-    setArrCheck(newCheck)
+    setData(newData);
+    setArrCheck(newCheck);
   }
 }
 
@@ -41,15 +41,70 @@ function handleData(data) {
     phone: user.phoneNumber,
     photo: user.photoUrl,
     check: "check",
-  }))
+  }));
 }
 
-const Admin = (isFoundation) => {
-  const [arrData, setData] = useState([])
-  const [arrCheck, setArrCheck] = useState([])
-  const URL = isFoundation.isFoundation
-    ? "http://localhost:8080/admin"
-    : "http://localhost:8080/admin/users"
+function nextPage(
+  url,
+  page,
+  setPage,
+  setData,
+  setArrCheck,
+  setDisableNext,
+  setDisablePrev
+) {
+  setNewData(url + (page + 1), setData, setArrCheck, true, setDisableNext);
+  setPage(page + 1);
+  setDisablePrev(false);
+}
+
+function previousPage(
+  url,
+  page,
+  setPage,
+  setData,
+  setArrCheck,
+  setDisablePrev,
+  setDisableNext
+) {
+  setNewData(url + (page - 1), setData, setArrCheck);
+  if (page - 1 === 1) setDisablePrev(true);
+  setPage(page - 1);
+  setDisableNext(false);
+}
+
+function setNewData(url, setData, setArrCheck, isNext, setDisableNext) {
+  customAxios
+    .get(url)
+    .then((response) => {
+      setData(handleData(response.data));
+      setArrCheck(
+        response.data.map(() => {
+          return false;
+        })
+      );
+      if (isNext) {
+        if (response.data.length < 5) {
+          setDisableNext(true);
+        }
+      }
+    })
+    .catch((error) => {
+      setData(null);
+      setArrCheck(null);
+    });
+}
+
+const Admin = (isF) => {
+  const [arrData, setData] = useState([]);
+  const [arrCheck, setArrCheck] = useState([]);
+  const [page, setPage] = useState(1);
+  const tempUrl = isF.isFoundation
+    ? "http://localhost:8080/admin?page="
+    : "http://localhost:8080/admin/users?page=";
+  const [url, setUrl] = useState(tempUrl);
+  const [disablePrev, setDisablePrev] = useState(true);
+  const [disableNext, setDisableNext] = useState(false);
 
   const columns = [
     { Header: "ID", accessor: "id" },
@@ -59,28 +114,23 @@ const Admin = (isFoundation) => {
     { Header: "Phone", accessor: "phone" },
     { Header: "Photo", accessor: "photo" },
     { Header: "Delete", accessor: "check" },
-  ]
+  ];
   useEffect(() => {
-    customAxios
-      .get(URL)
-      .then((response) => {
-        setData(handleData(response.data))
-        setArrCheck(
-          response.data.map(() => {
-            return false
-          })
-        )
-      })
-      .catch((error) => {
-        console.log(error)
-        setData(null)
-        setArrCheck(null)
-      })
-  }, [])
+    setNewData(url + 1, setData, setArrCheck);
+  }, [url]);
+
+  if (arrData === null) {
+    return (
+      <p className="error-foundations">
+        {" "}
+        There is an unexpected error, please try again later{" "}
+      </p>
+    );
+  }
 
   return (
     <div>
-      <div className="div-table">
+      <div className="AdminTable__divTable">
         <Table
           columns={columns}
           data={arrData}
@@ -88,18 +138,52 @@ const Admin = (isFoundation) => {
           setState={setArrCheck}
         />
       </div>
-      <div className="check">
+      <div className="AdminTable__bottomDiv">
         <input
           type="submit"
-          className="delete"
+          value="Previous"
+          className="AdminTable__bottomButtons"
+          onClick={() =>
+            previousPage(
+              url,
+              page,
+              setPage,
+              setData,
+              setArrCheck,
+              setDisablePrev,
+              setDisableNext
+            )
+          }
+          disabled={disablePrev}
+        />
+        <input
+          type="submit"
+          value="Next"
+          className="AdminTable__bottomButtons"
+          onClick={() =>
+            nextPage(
+              url,
+              page,
+              setPage,
+              setData,
+              setArrCheck,
+              setDisableNext,
+              setDisablePrev
+            )
+          }
+          disabled={disableNext}
+        />
+        <input
+          type="submit"
+          className="AdminTable__bottomButtons"
           value="Delete"
           onClick={() =>
-            eliminate(arrData, arrCheck, setData, setArrCheck, URL)
+            eliminate(arrData, arrCheck, setData, setArrCheck, url + page)
           }
         />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Admin
+export default Admin;

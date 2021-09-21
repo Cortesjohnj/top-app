@@ -1,34 +1,33 @@
-import { Router, Switch, Route } from "react-router-dom"
-import LoginPage from "./pages/LoginPage"
-import PetListPage from "./pages/PetListPage"
-import { RegisterPage } from "./pages/RegisterPage"
-import { AddPet } from "./pages/AddPet"
-import PetManagePage from "./pages/PetManagePage"
-import { Suspense, useEffect } from "react"
-import Spinner from "./components/Spinner"
-import Foundations from "./pages/Foundations"
-import Admin from "./pages/Admin"
-import history from "./history"
-import Home from "./pages/Home"
-import NotFound from "./pages/NotFound"
-import { useDispatch } from "react-redux"
-import { loadUser, logOut } from "./store/actionCreators"
-import { AUTHORIZATION } from "./store/actions"
-import PrivateRoute from "./pages/PrivateRoute"
+import { Router, Switch, Route } from "react-router-dom";
+import LoginPage from "./pages/LoginPage";
+import PetListPage from "./pages/PetListPage";
+import { RegisterPage } from "./pages/RegisterPage";
+import { AddPet } from "./pages/AddPet";
+import PetManagePage from "./pages/PetManagePage";
+import { Suspense, useEffect } from "react";
+import Spinner from "./components/Spinner";
+import Foundations from "./pages/Foundations";
+import Admin from "./pages/Admin";
+import history from "./history";
+import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
+import { useDispatch } from "react-redux";
+import { loadUser, logOut } from "./store/actionCreators";
+import { AUTHORIZATION } from "./store/actions";
+import PrivateRoute from "./pages/PrivateRoute";
 
 function App() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (localStorage.getItem(AUTHORIZATION)) {
-      dispatch(loadUser())
+      dispatch(loadUser());
     } else {
-      dispatch(logOut())
+      dispatch(logOut());
     }
-  }, [dispatch])
+  }, [dispatch]);
 
   return (
-    /** 
     <Router history={history}>
       <Suspense fallback={<Spinner />}>
         <Switch>
@@ -44,13 +43,33 @@ function App() {
           <Route exact path="/foundations/:id/add-pet" component={AddPet} />
           <Route exact path="/pets/:id/manage" component={PetManagePage} />
           <Route exact path="/foundations" component={Foundations} />
+          <Route exact path="/admin">
+            <Admin isFoundation={true} />
+          </Route>
+          <Route exact path="/admin/users">
+            <Admin isFoundation={false} />
+          </Route>
           <Route component={NotFound} />
         </Switch>
       </Suspense>
     </Router>
+
+    /** 
+    <Router history={history}>
+      <Suspense fallback={<Spinner />}>
+        <Switch>
+          <Route exact path="/admin">
+            <Admin isFoundation={true} />
+          </Route>
+          <Route exact path="/admin/users">
+            <Admin isFoundation={false} />
+          </Route>
+          <Route exact path="/foundations" component={Foundations} />
+        </Switch>
+      </Suspense>
+    </Router>
     */
-    <Admin isFoundation={false}> </Admin>
-  )
+  );
 }
 
-export default App
+export default App;
