@@ -9,6 +9,8 @@ const initialState = {
   pets: [],
   petListInfo: {},
   adoptionRequests: [],
+  foundationRequests: [],
+  selectedPet: {},
   error: "",
   status: LOADING,
 };

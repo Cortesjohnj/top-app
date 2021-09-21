@@ -14,6 +14,7 @@ html {
 .no-pets-message {
   margin-top: 40px;
   font-size: 26px;
+  text-align: center;
 }
 
 .add-pets-container {
