@@ -1,15 +1,21 @@
 import React, { useRef, useState } from "react";
 import { FaCloudUploadAlt } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router";
 import "../assets/styles/AddPet.css";
 import { PrimaryButton } from "../components/PrimaryButton";
-import axios from "axios";
+import { addPets } from "../store/actionCreators";
 
 function AddPet() {
+  const { id: foundationId } = useParams();
+  const dispatch = useDispatch();
+
   const [pet, setPet] = useState({
     petName: "",
     petAge: "",
     petDescription: "",
-    petPhotos: [],
+    photoUrl: [],
+    foundationId: foundationId,
   });
   const [counter, setCounter] = useState(0);
   const [selectedImages, setSelectedImages] = useState([]);
@@ -37,7 +43,7 @@ function AddPet() {
     let imageFile = event.dataTransfer.files;
     setPet(prevState => ({
       ...prevState,
-      petPhotos: [...prevState.petPhotos, ...imageFile],
+      photoUrl: [...prevState.photoUrl, ...imageFile],
     }));
     setCounter(counter + imageFile.length);
   };
@@ -55,7 +61,7 @@ function AddPet() {
     let imageFile = event.target.files;
     setPet(prevState => ({
       ...prevState,
-      petPhotos: [...prevState.petPhotos, ...imageFile],
+      photoUrl: [...prevState.photoUrl, ...imageFile],
     }));
     setCounter(counter + event.target.files.length);
   };
@@ -68,10 +74,7 @@ function AddPet() {
   const submit = event => {
     event.preventDefault();
     console.log(pet);
-    axios
-      .post("https://jsonplaceholder.typicode.com/posts", pet)
-      .then(response => console.log(response))
-      .catch(error => console.log(error));
+    dispatch(addPets(pet));
   };
 
   const InputChange = event => {
@@ -133,6 +136,7 @@ function AddPet() {
               onChange={InputChange}
               className="container__dropzone--textArea"
             />
+
             <PrimaryButton children={"Add Pet"} color={"azul"} />
           </div>
         </form>

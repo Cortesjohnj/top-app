@@ -3,10 +3,16 @@ import {
   ERROR,
   SET_PETS,
   DELETE_PET,
+  SELECT_PET,
+  LIST_REQUESTS,
+  UPDATE_REQUEST,
+  LIST_FOUNDATION_REQUESTS,
   REGISTER_USER,
   AUTHENTICATED,
   LOGOUT,
   NOT_AUTHENTICATED,
+  ADD_PETS,
+  UPDATE_PROFILE,
 } from "./actions";
 
 const reducer = (state, action) => {
@@ -18,7 +24,11 @@ const reducer = (state, action) => {
         status: AUTHENTICATED,
         error: "",
       };
-
+    case ADD_PETS:
+      return {
+        ...state,
+        pets: action.payload,
+      };
     case SET_PETS:
       return {
         ...state,
@@ -28,10 +38,16 @@ const reducer = (state, action) => {
     case DELETE_PET:
       return {
         ...state,
-        pets: state.pets.filter(pet => pet._id !== action.payload),
+        pets: state.pets.filter((pet) => pet._id !== action.payload),
       };
 
     case REGISTER_USER:
+      return {
+        ...state,
+        user: action.payload,
+        error: "",
+      };
+    case UPDATE_PROFILE:
       return {
         ...state,
         user: action.payload,
@@ -43,6 +59,34 @@ const reducer = (state, action) => {
         user: null,
         status: NOT_AUTHENTICATED,
         error: "",
+      };
+
+    case SELECT_PET:
+      return {
+        ...state,
+        selectedPet: action.payload,
+      };
+
+    case LIST_REQUESTS:
+      return {
+        ...state,
+        adoptionRequests: action.payload,
+      };
+
+    case LIST_FOUNDATION_REQUESTS:
+      return {
+        ...state,
+        foundationRequests: action.payload,
+      };
+
+    case UPDATE_REQUEST:
+      return {
+        ...state,
+        adoptionRequests: state.adoptionRequests.map((req) =>
+          req._id === action.payload._id
+            ? { ...req, responseStatus: action.payload.responseStatus }
+            : req
+        ),
       };
 
     case ERROR:

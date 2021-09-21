@@ -1,9 +1,9 @@
 import React from "react";
 import "../assets/styles/PrimaryButton.css";
 
-function PrimaryButton({ children, color }) {
+function PrimaryButton({ children, color, id }) {
   return (
-    <button type="submit" className={color}>
+    <button type="submit" className={color} id={id}>
       {children}
     </button>
   );

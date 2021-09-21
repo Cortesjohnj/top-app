@@ -4,7 +4,7 @@ import "../assets/styles/LoginPage.css";
 import { useSelector, useDispatch } from "react-redux";
 import { authUser } from "../store/actionCreators";
 
-const LoginPage = (props) => {
+const LoginPage = () => {
   const form = useRef(null);
   const dispatch = useDispatch();
 

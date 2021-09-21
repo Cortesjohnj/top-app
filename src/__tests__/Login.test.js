@@ -15,7 +15,7 @@ beforeEach(() => {
 });
 
 test("allows user to login", async () => {
-  //preparacion
+  //prepare
   axios.post.mockResolvedValueOnce({
     data: {
       token:
@@ -30,7 +30,7 @@ test("allows user to login", async () => {
 
   history.push("/login");
 
-  //ejecucion
+  //execution
   render(
     <Provider store={store}>
       <MemoryRouter>
@@ -39,7 +39,7 @@ test("allows user to login", async () => {
     </Provider>
   );
 
-  //validaciones
+  //validations
   await waitFor(() => screen.getAllByText(/Login/i));
   fireEvent.change(screen.getByTestId("email"), {
     target: { name: "email", value: "found@gmail.com" },
@@ -51,11 +51,14 @@ test("allows user to login", async () => {
   const spy = jest.spyOn(history, "push");
   fireEvent.click(screen.getByTestId("loginButton"));
 
-  await waitFor(() => expect(spy).toHaveBeenCalledWith("/"));
+  await waitFor(() => {
+    expect(localStorage.getItem("Authorization")).not.toBeFalsy();
+    expect(spy).toHaveBeenCalledWith("/");
+  });
 });
 
 test("shows error when user enters invalid credentials", async () => {
-  // preparación
+  // prepare
   const error = new Error();
   error.response = {
     data: { error: "Invalid credentials" },
@@ -66,7 +69,7 @@ test("shows error when user enters invalid credentials", async () => {
 
   history.push("/login");
 
-  // ejecución
+  // execution
   render(
     <Provider store={store}>
       <MemoryRouter>
@@ -75,7 +78,7 @@ test("shows error when user enters invalid credentials", async () => {
     </Provider>
   );
 
-  // validaciones
+  // validations
   await waitFor(() => screen.getAllByText(/Login/i));
   fireEvent.change(screen.getByTestId("email"), {
     target: { name: "email", value: "fail@gmail.com" },
@@ -88,8 +91,31 @@ test("shows error when user enters invalid credentials", async () => {
 
   await waitFor(() => {
     expect(localStorage.getItem("Authorization")).toBeFalsy();
-
-    // verificar que aparezca el error
     expect(screen.getByText(/Invalid credentials/i)).toBeInTheDocument();
+  });
+});
+
+test("shows error when user enters an invalid email", async () => {
+  history.push("/login");
+
+  // execution
+  render(
+    <Provider store={store}>
+      <MemoryRouter>
+        <LoginPage />
+      </MemoryRouter>
+    </Provider>
+  );
+
+  // validations
+  await waitFor(() => screen.getAllByText(/Login/i));
+  fireEvent.change(screen.getByTestId("email"), {
+    target: { name: "email", value: "failgmail.com" },
+  });
+  fireEvent.blur(screen.getByTestId("email"));
+
+  await waitFor(() => {
+    expect(localStorage.getItem("Authorization")).toBeFalsy();
+    expect(screen.getByText(/Invalid Email/i)).toBeInTheDocument();
   });
 });
