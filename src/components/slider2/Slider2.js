@@ -12,7 +12,6 @@ const Slider2 = () => {
   const [pet, setPet] = useState({
     name: "",
     photoUrl: "",
-    age: 0,
   });
 
   useEffect(() => {

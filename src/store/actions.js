@@ -13,3 +13,5 @@ export const NOT_AUTHENTICATED = "NOT_AUTHENTICATED";
 export const AUTHORIZATION = "Authorization";
 export const LOGOUT = "LOGOUT";
 export const CREATE_ADOPTION_REQUEST = "CREATE_ADOPTION_REQUEST";
+export const INITIALIZED = "INITIALIZED";
+export const FINISHED = "FINISHED";

@@ -12,6 +12,7 @@ import {
   LOGOUT,
   NOT_AUTHENTICATED,
   CREATE_ADOPTION_REQUEST,
+  FINISHED,
 } from "./actions";
 
 const reducer = (state, action) => {
@@ -83,12 +84,14 @@ const reducer = (state, action) => {
         ...state,
         adoptionRequests: action.payload,
         error: "",
+        errStatus: FINISHED,
       };
 
     case ERROR:
       return {
         ...state,
         error: action.payload,
+        errStatus: FINISHED,
       };
 
     default:

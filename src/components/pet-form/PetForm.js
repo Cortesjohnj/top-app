@@ -6,10 +6,11 @@ import "../../assets/styles/PetForm.css";
 import Slider2 from "../slider2/Slider2";
 import { useDispatch, useSelector } from "react-redux";
 import { createAdoption } from "../../store/actionCreators";
+import { FINISHED, INITIALIZED } from "../../store/actions";
+import Spinner from "../../components/Spinner";
 
 const PetForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [loading, setLoading] = useState(true);
 
   const dispatch = useDispatch();
 
@@ -18,12 +19,30 @@ const PetForm = () => {
     dispatch(createAdoption(values));
   }
 
-  const error = useSelector((state) => state.error);
+  const { error, errStatus } = useSelector((state) => ({
+    error: state.error,
+    errStatus: state.errStatus,
+  }));
   const [err, setError] = useState(error);
 
   useEffect(() => {
     setError(error);
   }, [error]);
+
+  function renderSubmitted() {
+    if (errStatus === INITIALIZED) {
+      return <Spinner />;
+    }
+    return (
+      <>
+        {err.length >= 1 && errStatus === FINISHED ? (
+          <PetFormRepeat />
+        ) : (
+          err.length === 0 && <PetFormSuccess />
+        )}
+      </>
+    );
+  }
 
   return (
     <>
@@ -36,13 +55,7 @@ const PetForm = () => {
             <PetFormSignUp submitForm={submitForm} />
           </>
         ) : (
-          <>
-            {err.length >= 1 ? (
-              <PetFormRepeat />
-            ) : (
-              err.length === 0 && <PetFormSuccess />
-            )}
-          </>
+          renderSubmitted()
         )}
       </div>
     </>
