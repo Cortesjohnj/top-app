@@ -50,10 +50,12 @@ export const logOut = () => {
   return { type: LOGOUT };
 };
 
-export const listPets = (foundationId) => {
+export const listPets = (foundationId, page) => {
   return async function (dispatch) {
     try {
-      let response = await axios.get(`/foundations/${foundationId}/pets`);
+      let response = await axios.get(
+        `/foundations/${foundationId}/pets?page=${page}`
+      );
       //setFilteredPets(response.data);
       dispatch({ type: SET_PETS, payload: response.data });
     } catch (e) {
