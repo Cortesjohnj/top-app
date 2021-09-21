@@ -10,6 +10,7 @@ import PrivateRoute from "./pages/PrivateRoute";
 const LoginPage = lazy(() => import("./pages/LoginPage"));
 const PetListPage = lazy(() => import("./pages/PetListPage"));
 const RegisterPage = lazy(() => import("./pages/RegisterPage"));
+const UserProfile = lazy(() => import("./pages/UserProfile"));
 const AddPet = lazy(() => import("./pages/AddPet"));
 const PetManagePage = lazy(() => import("./pages/PetManagePage"));
 const Foundations = lazy(() => import("./pages/Foundations"));
@@ -50,9 +51,14 @@ function App() {
             path="/foundations/:id/pets"
             component={PetListPage}
           />
+          <PrivateRoute exact path="/:id/profile" component={UserProfile} />
           <Route exact path="/pets/:id/request" />
           <Route exact path="/foundations/:id/add-pet" component={AddPet} />
-          <Route exact path="/pets/:id/manage" component={PetManagePage} />
+          <PrivateRoute
+            exact
+            path="/pets/:id/manage"
+            component={PetManagePage}
+          />
           <Route exact path="/foundations" component={Foundations} />
           <Route component={NotFound} />
         </Switch>
