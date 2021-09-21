@@ -1,0 +1,93 @@
+.userProfile {
+  padding:15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url('../images/wave-profileUser.svg');
+  background-repeat: no-repeat;
+  background-position: bottom;
+
+}
+
+.userProfile__container--title {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  color: var(--blue-pigment)
+}
+
+.userProfile__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  min-width: 320px;
+  max-width: 600px;
+  padding: 30px 8px 40px;
+}
+
+.userProfile__container--form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+
+.userProfile__container--profileImg{
+  width: 18rem;
+  height: 18rem;
+  border-radius: 50%;
+
+}
+
+.userProfile__container--avatar {
+  font-size: 18rem;
+  color: var(--beau-blue);
+  margin-bottom: 15px;
+}
+
+.updateProfilePic{
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  padding: 5px;
+  background-color: var(--alice-blue);
+  color: var(--blue-pigment);
+}
+
+.userProfile__container--inputs {
+  font-size: 1.7rem;
+  border: none;
+  background: var(--alice-blue);
+  padding: 12px;
+  border-radius: 3px;
+  padding-top: 5px;
+  margin-bottom: 10px;
+  resize: none;
+  text-align: center;
+  width: 100%;
+}
+
+
+
+@media (min-width:800px) {
+  .userProfile__container--inputs {
+    font-size: 1.7rem;
+    border: none;
+    background: var(--alice-blue);
+    padding: 12px;
+    border-radius: 3px;
+    padding-top: 5px;
+    margin-bottom: 10px;
+    resize: none;
+    text-align: center;
+    max-width: 70%;
+  }
+  #submitButton{
+    width: 60%;
+    }
+}
