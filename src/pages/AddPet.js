@@ -22,62 +22,62 @@ function AddPet() {
 
   const fileInput = useRef(null);
 
-  const handleOndragOver = event => {
+  const handleOndragOver = (event) => {
     event.preventDefault();
   };
 
-  const handleOndrop = event => {
+  const handleOndrop = (event) => {
     event.preventDefault();
     event.stopPropagation();
     if (event.dataTransfer.files) {
-      const fileArray = Array.from(event.dataTransfer.files).map(file =>
+      const fileArray = Array.from(event.dataTransfer.files).map((file) =>
         URL.createObjectURL(file)
       );
 
-      setSelectedImages(prevImages => prevImages.concat(fileArray));
-      Array.from(event.dataTransfer.files).map(file =>
+      setSelectedImages((prevImages) => prevImages.concat(fileArray));
+      Array.from(event.dataTransfer.files).map((file) =>
         URL.revokeObjectURL(file)
       );
     }
 
     let imageFile = event.dataTransfer.files;
-    setPet(prevState => ({
+    setPet((prevState) => ({
       ...prevState,
       photoUrl: [...prevState.photoUrl, ...imageFile],
     }));
     setCounter(counter + imageFile.length);
   };
 
-  const handleInputChange = event => {
+  const handleInputChange = (event) => {
     if (event.target.files) {
-      const fileArray = Array.from(event.target.files).map(file =>
+      const fileArray = Array.from(event.target.files).map((file) =>
         URL.createObjectURL(file)
       );
 
-      setSelectedImages(prevImages => prevImages.concat(fileArray));
-      Array.from(event.target.files).map(file => URL.revokeObjectURL(file));
+      setSelectedImages((prevImages) => prevImages.concat(fileArray));
+      Array.from(event.target.files).map((file) => URL.revokeObjectURL(file));
     }
 
     let imageFile = event.target.files;
-    setPet(prevState => ({
+    setPet((prevState) => ({
       ...prevState,
       photoUrl: [...prevState.photoUrl, ...imageFile],
     }));
     setCounter(counter + event.target.files.length);
   };
 
-  const handleClick = event => {
+  const handleClick = (event) => {
     event.stopPropagation();
     fileInput.current.click();
   };
 
-  const submit = event => {
+  const submit = (event) => {
     event.preventDefault();
     console.log(pet);
     dispatch(addPets(pet));
   };
 
-  const InputChange = event => {
+  const InputChange = (event) => {
     setPet({ ...pet, [event.target.name]: event.target.value });
   };
 
@@ -140,7 +140,7 @@ function AddPet() {
             <PrimaryButton children={"Add Pet"} color={"azul"} />
           </div>
         </form>
-        {selectedImages.map(photo => {
+        {selectedImages.map((photo) => {
           return (
             <img
               className="registerPets__container--photos"
@@ -155,4 +155,4 @@ function AddPet() {
   );
 }
 
-export { AddPet };
+export default AddPet;

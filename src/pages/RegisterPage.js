@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { registerUser } from "../store/actionCreators";
 
 function RegisterPage() {
-  const error = useSelector(state => state.error);
+  const error = useSelector((state) => state.error);
 
   const {
     register,
@@ -107,7 +107,7 @@ function RegisterPage() {
             className="form__field"
             {...register("confirmPassword", {
               required: true,
-              validate: value =>
+              validate: (value) =>
                 value === password.current || "The passwords do not match",
             })}
           />
@@ -176,4 +176,4 @@ function RegisterPage() {
   );
 }
 
-export { RegisterPage };
+export default RegisterPage;

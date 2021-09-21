@@ -4,11 +4,22 @@ import { MdPets } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { Link as LinkScroll } from "react-scroll";
 import { animateScroll as ScrollToTop } from "react-scroll";
-import ProfilePic from "../assets/images/John.jpg";
 import "../assets/styles/Navbar.css";
+import { useDispatch, useSelector } from "react-redux";
+import { logOut } from "../store/actionCreators";
+import { AUTHENTICATED } from "../store/actions";
 
 function Navbar({ toggle }) {
-  let isUser = false;
+  const dispatch = useDispatch();
+
+  let recentUser = useSelector((state) => state.user);
+  if (recentUser === null || recentUser === undefined) {
+    recentUser = {};
+  }
+
+  const status = useSelector((state) => state.status);
+
+  const { photoUrl, name, _id } = recentUser;
 
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
@@ -23,6 +34,10 @@ function Navbar({ toggle }) {
     );
   }, [isMobile]);
 
+  const handleLogOut = () => {
+    dispatch(logOut());
+  };
+
   return (
     <>
       <nav className="navBar">
@@ -32,16 +47,16 @@ function Navbar({ toggle }) {
             ADOGTA
           </Link>
 
-          {isUser ? (
+          {status === AUTHENTICATED ? (
             <Link
               className="navBar__container--profilePicWrapper1"
-              to={isMobile ? "" : "/id/profile"}
+              to={isMobile ? "" : `/${_id}/${name}`}
             >
               <img
                 onClick={toggle}
                 className="navBar__container--profilePic1"
-                src={ProfilePic}
-                alt="profilePic"
+                src={photoUrl}
+                alt={name}
               />
             </Link>
           ) : (
@@ -81,7 +96,7 @@ function Navbar({ toggle }) {
           <ul className="navBar__container--navMenu2">
             <li
               className={
-                isUser
+                status === AUTHENTICATED
                   ? "navBar__container--navMenu2--hide"
                   : "navBar__container--navItem2"
               }
@@ -89,10 +104,21 @@ function Navbar({ toggle }) {
               <Link className="navBar__container--navLinks2" to="login">
                 LOG IN
               </Link>
+            </li>{" "}
+            <li
+              className={
+                status === AUTHENTICATED
+                  ? "navBar__container--navItem2"
+                  : "navBar__container--navMenu2--hide"
+              }
+            >
+              <Link className="navBar__container--navLinks2" to="/foundations">
+                FOUNDATIONS
+              </Link>
             </li>
             <li
               className={
-                isUser
+                status === AUTHENTICATED
                   ? "navBar__container--navItem2"
                   : "navBar__container--navMenu2--hide"
               }
@@ -106,27 +132,31 @@ function Navbar({ toggle }) {
             </li>
             <li
               className={
-                isUser
+                status === AUTHENTICATED
                   ? "navBar__container--navItem2"
                   : "navBar__container--navMenu2--hide"
               }
             >
-              <Link className="navBar__container--navLinks2" to="/">
+              <Link
+                className="navBar__container--navLinks2"
+                to="/"
+                onClick={handleLogOut}
+              >
                 LOG OUT
               </Link>
             </li>
           </ul>
 
           <nav className="navBar__container--nav">
-            {isUser ? (
+            {status === AUTHENTICATED ? (
               <Link
                 className="navBar__container--profilePicWrapper"
-                to="/id:/profile"
+                to={`/${_id}/${name}`}
               >
                 <img
                   className="navBar__container--profilePic"
-                  src={ProfilePic}
-                  alt="profilePic"
+                  src={photoUrl}
+                  alt={name}
                 />
               </Link>
             ) : (
