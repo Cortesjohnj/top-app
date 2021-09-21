@@ -53,22 +53,6 @@ function App() {
         </Switch>
       </Suspense>
     </Router>
-
-    /** 
-    <Router history={history}>
-      <Suspense fallback={<Spinner />}>
-        <Switch>
-          <Route exact path="/admin">
-            <Admin isFoundation={true} />
-          </Route>
-          <Route exact path="/admin/users">
-            <Admin isFoundation={false} />
-          </Route>
-          <Route exact path="/foundations" component={Foundations} />
-        </Switch>
-      </Suspense>
-    </Router>
-    */
   );
 }
 

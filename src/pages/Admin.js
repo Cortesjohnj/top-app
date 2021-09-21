@@ -3,6 +3,7 @@ import "../assets/styles/AdminTable.css";
 import Table from "../components/Table";
 import { useEffect, useState } from "react";
 import customAxios from "../axios";
+import NotFound from "./NotFound";
 
 function eliminate(arrData, arrCheck, setData, setArrCheck, URL) {
   var deleteID = [];
@@ -100,8 +101,8 @@ const Admin = (isF) => {
   const [arrCheck, setArrCheck] = useState([]);
   const [page, setPage] = useState(1);
   const tempUrl = isF.isFoundation
-    ? "http://localhost:8080/admin?page="
-    : "http://localhost:8080/admin/users?page=";
+    ? customAxios.defaults.baseURL + "/admin?page="
+    : customAxios.defaults.baseURL + "/admin/users?page=";
   const [url, setUrl] = useState(tempUrl);
   const [disablePrev, setDisablePrev] = useState(true);
   const [disableNext, setDisableNext] = useState(false);
@@ -120,12 +121,7 @@ const Admin = (isF) => {
   }, [url]);
 
   if (arrData === null) {
-    return (
-      <p className="error-foundations">
-        {" "}
-        There is an unexpected error, please try again later{" "}
-      </p>
-    );
+    return <NotFound></NotFound>;
   }
 
   return (

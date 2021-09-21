@@ -1,6 +1,7 @@
 import FoundationsImage from "../components/FoundationsImage";
 import customAxios from "../axios";
 import { useState, useEffect } from "react";
+import NotFound from "../pages/NotFound";
 
 function NextPage(
   route,
@@ -45,7 +46,9 @@ const FoundationsMenu = () => {
   const [disablePrev, setDisablePrev] = useState(true);
   const [disableNext, setDisableNext] = useState(false);
   const [page, setPage] = useState(1);
-  const [route, setRoute] = useState("http://localhost:8080/foundations?page=");
+  const [route, setRoute] = useState(
+    customAxios.defaults.baseURL + "/foundations?page="
+  );
 
   useEffect(() => {
     customAxios
@@ -58,12 +61,7 @@ const FoundationsMenu = () => {
   }, []);
 
   if (foundations === null) {
-    return (
-      <p className="error-foundations">
-        {" "}
-        There is an unexpected error, please try again later{" "}
-      </p>
-    );
+    return <NotFound></NotFound>;
   }
 
   return (
