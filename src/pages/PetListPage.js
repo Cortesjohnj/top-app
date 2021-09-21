@@ -15,15 +15,14 @@ const PetListPage = () => {
   let redirectUrl = "";
   const dispatch = useDispatch();
   const { pets } = useSelector((state) => state);
+  const { user } = useSelector((state) => state);
 
   useEffect(() => {
     dispatch(listPets(foundationId));
     dispatch(listFoundationRequests(foundationId));
   }, [foundationId, dispatch]);
 
-  //This variables comes from the user session, I will set it manually for testing purposes
-  const isFoundation = true;
-  //useSelector((state) => state).user.role === "foundation" ? true : false;
+  const isFoundation = user.role === "foundation" && user._id === foundationId;
 
   isFoundation ? (redirectUrl = "/manage") : (redirectUrl = "/request");
 

@@ -13,6 +13,7 @@ import {
   LOGOUT,
   ADD_PETS,
   UPDATE_PROFILE,
+  BULK_REJECT_REQUESTS,
 } from "./actions";
 import history from "../history";
 
@@ -45,7 +46,6 @@ export const loadUser = () => {
 };
 
 export const logOut = () => {
-  history.push("/");
   localStorage.removeItem(AUTHORIZATION);
   return { type: LOGOUT };
 };
@@ -124,15 +124,11 @@ export const updateRequest = (petId, requestId, status) => {
   };
 };
 
-export const bulkReject = (petId, ids) => {
-  return function (dispatch) {
+export const bulkReject = (petId, _id) => {
+  return async function (dispatch) {
     try {
-      ids.forEach(async (id) => {
-        let response = await axios.put(`/pets/${petId}/requests/${id}`, {
-          responseStatus: "rejected",
-        });
-        dispatch({ type: UPDATE_REQUEST, payload: response.data });
-      });
+      await axios.put(`/pets/${petId}/requests`, { _id });
+      dispatch({ type: BULK_REJECT_REQUESTS, payload: _id });
     } catch (e) {
       dispatch({ type: ERROR, payload: e.response.data.error });
     }

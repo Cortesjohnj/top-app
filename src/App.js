@@ -42,7 +42,11 @@ function App() {
           <PrivateRoute exact path="/:id/profile" component={UserProfile} />
           <Route exact path="/pets/:id/request" />
           <Route exact path="/foundations/:id/add-pet" component={AddPet} />
-          <Route exact path="/pets/:id/manage" component={PetManagePage} />
+          <PrivateRoute
+            exact
+            path="/pets/:id/manage"
+            component={PetManagePage}
+          />
           <Route exact path="/foundations" component={Foundations} />
           <Route component={NotFound} />
         </Switch>
