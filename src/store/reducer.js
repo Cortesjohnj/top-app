@@ -19,9 +19,10 @@ import {
 const reducer = (state, action) => {
   switch (action.type) {
     case LOGIN_USER:
+      const { _id, name, email, role } = action.payload;
       return {
         ...state,
-        user: action.payload,
+        user: { _id, name, email, role },
         status: AUTHENTICATED,
         error: "",
       };
