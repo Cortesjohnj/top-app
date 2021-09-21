@@ -7,6 +7,7 @@ import {
   AUTHENTICATED,
   LOGOUT,
   NOT_AUTHENTICATED,
+  ADD_PETS,
   UPDATE_PROFILE,
 } from "./actions";
 
@@ -19,7 +20,11 @@ const reducer = (state, action) => {
         status: AUTHENTICATED,
         error: "",
       };
-
+    case ADD_PETS:
+      return {
+        ...state,
+        pets: action.payload,
+      };
     case SET_PETS:
       return {
         ...state,
