@@ -6,7 +6,7 @@ function PetFormRepeat() {
   return (
     <div className="petform__successContainer">
       <h1 className="petform__successContainer--success">
-        We have received your request!
+        You have already sent a request to adopt this pet
       </h1>
       <object
         className="petform__successContainer--img"

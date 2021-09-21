@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PetFormSignUp from "./PetFormSignUp";
 import PetFormSuccess from "./PetFormSuccess";
 import PetFormRepeat from "./PetFormRepeatjs";
@@ -9,9 +9,9 @@ import { createAdoption } from "../../store/actionCreators";
 
 const PetForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
 
-  //Pendiente no me aparece el string
+  const dispatch = useDispatch();
 
   function submitForm(values) {
     setIsSubmitted(true);
@@ -19,10 +19,12 @@ const PetForm = () => {
   }
 
   const error = useSelector((state) => state.error);
-  console.log(error);
+  const [err, setError] = useState(error);
 
-  const [err] = useState(error);
-  console.log("error", err);
+  useEffect(() => {
+    setError(error);
+  }, [error]);
+
   return (
     <>
       <div className={isSubmitted ? "petFormContainer2" : "petFormContainer"}>
@@ -34,7 +36,13 @@ const PetForm = () => {
             <PetFormSignUp submitForm={submitForm} />
           </>
         ) : (
-          <>{err ? <PetFormRepeat /> : <PetFormSuccess />}</>
+          <>
+            {err.length >= 1 ? (
+              <PetFormRepeat />
+            ) : (
+              err.length === 0 && <PetFormSuccess />
+            )}
+          </>
         )}
       </div>
     </>
