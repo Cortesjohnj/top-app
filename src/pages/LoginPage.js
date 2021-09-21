@@ -47,7 +47,11 @@ const LoginPage = (props) => {
       <section className="login__container">
         <h2>Login</h2>
         {formState.isInvalid && <span>*Invalid Email</span>}
-        <form className="login__container--form" ref={form}>
+        <form
+          className="login__container--form"
+          ref={form}
+          data-testid="loginForm"
+        >
           <input
             name="email"
             className="input"
@@ -55,6 +59,7 @@ const LoginPage = (props) => {
             placeholder="Email"
             onChange={handleChange}
             onBlur={handleVerifyEmail}
+            data-testid="email"
           />
           <input
             name="password"
@@ -62,6 +67,7 @@ const LoginPage = (props) => {
             type="password"
             placeholder="Password"
             onChange={handleChange}
+            data-testid="password"
           />
 
           <button
@@ -69,6 +75,7 @@ const LoginPage = (props) => {
             className="button"
             onClick={handleSubmit}
             disabled={formState.isInvalid}
+            data-testid="loginButton"
           >
             Login
           </button>
