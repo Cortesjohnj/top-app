@@ -27,8 +27,8 @@ const PetListPage = () => {
   isFoundation ? (redirectUrl = "/manage") : (redirectUrl = "/request");
 
   //List buttons
-  let nextButton = "";
-  let previousButton = "";
+  let nextButton = false;
+  let previousButton = false;
 
   petListInfo.page === 1 ? (previousButton = true) : (previousButton = false);
   petListInfo.page === Math.ceil(petListInfo.count / 10)
