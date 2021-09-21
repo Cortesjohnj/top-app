@@ -8,6 +8,7 @@ import {
   AUTHORIZATION,
   LOGOUT,
   ADD_PETS,
+  UPDATE_PROFILE,
 } from "./actions";
 import history from "../history";
 
@@ -92,13 +93,7 @@ export const deletePet = petId => {
   };
 };
 
-export const registerUser = ({
-  firstName,
-  lastName,
-  email,
-  password,
-  role,
-}) => {
+export const registerUser = ({ firstName, email, password, role }) => {
   return async function (dispatch) {
     try {
       const response = await axios.post("/signup", {
@@ -110,6 +105,36 @@ export const registerUser = ({
 
       dispatch({ type: REGISTER_USER, payload: response.data.user });
       history.push("/login");
+    } catch (e) {
+      dispatch({ type: ERROR, payload: e.response.data.error });
+    }
+  };
+};
+
+export const updateUserProfile = ({
+  _id,
+  name,
+  role,
+  address,
+  email,
+  phoneNumber,
+  photoUrl,
+}) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.put(`/${_id}/profile`, {
+        _id,
+        name,
+        role,
+        address,
+        email,
+        phoneNumber,
+        photoUrl,
+      });
+
+      dispatch({ type: UPDATE_PROFILE, payload: response.data });
+
+      // history.go(0);
     } catch (e) {
       dispatch({ type: ERROR, payload: e.response.data.error });
     }

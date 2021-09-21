@@ -8,6 +8,7 @@ import {
   LOGOUT,
   NOT_AUTHENTICATED,
   ADD_PETS,
+  UPDATE_PROFILE,
 } from "./actions";
 
 const reducer = (state, action) => {
@@ -37,6 +38,12 @@ const reducer = (state, action) => {
       };
 
     case REGISTER_USER:
+      return {
+        ...state,
+        user: action.payload,
+        error: "",
+      };
+    case UPDATE_PROFILE:
       return {
         ...state,
         user: action.payload,

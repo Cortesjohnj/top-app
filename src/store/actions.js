@@ -9,3 +9,4 @@ export const AUTHENTICATED = "AUTHENTICATED";
 export const NOT_AUTHENTICATED = "NOT_AUTHENTICATED";
 export const AUTHORIZATION = "Authorization";
 export const LOGOUT = "LOGOUT";
+export const UPDATE_PROFILE = "UPDATE_PROFILE";
