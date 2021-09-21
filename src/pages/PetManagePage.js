@@ -25,8 +25,7 @@ const PetManagePage = () => {
 
   const handleApprove = (id) => {
     dispatch(updateRequest(petId, id, "approved"));
-    const ids = requests.filter((req) => req._id !== id).map((req) => req._id);
-    dispatch(bulkReject(petId, ids));
+    dispatch(bulkReject(petId, id));
   };
 
   return (
