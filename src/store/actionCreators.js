@@ -11,6 +11,8 @@ import {
   REGISTER_USER,
   AUTHORIZATION,
   LOGOUT,
+  ADD_PETS,
+  UPDATE_PROFILE,
 } from "./actions";
 import history from "../history";
 
@@ -35,7 +37,6 @@ export const loadUser = () => {
     try {
       const response = await axios.get("/me");
       dispatch({ type: LOGIN_USER, payload: response.data });
-      console.log(response.data);
     } catch (e) {
       localStorage.removeItem(AUTHORIZATION);
       dispatch({ type: ERROR, payload: e.response.data.error });
@@ -55,6 +56,29 @@ export const listPets = (foundationId) => {
       let response = await axios.get(`/foundations/${foundationId}/pets`);
       //setFilteredPets(response.data);
       dispatch({ type: SET_PETS, payload: response.data });
+    } catch (e) {
+      dispatch({ type: ERROR, payload: e.response.data.error });
+    }
+  };
+};
+
+export const addPets = ({
+  foundationId,
+  photoUrl,
+  petName,
+  petAge,
+  petDescription,
+}) => {
+  return async function (dispatch) {
+    try {
+      let response = await axios.post(`/foundations/${foundationId}/pets`, {
+        name: petName,
+        age: petAge,
+        description: petDescription,
+      });
+
+      dispatch({ type: ADD_PETS, payload: response.data });
+      history.push(`/foundations/${foundationId}/pets`);
     } catch (e) {
       dispatch({ type: ERROR, payload: e.response.data.error });
     }
@@ -138,6 +162,36 @@ export const registerUser = ({ firstName, email, password, role }) => {
 
       dispatch({ type: REGISTER_USER, payload: response.data.user });
       history.push("/login");
+    } catch (e) {
+      dispatch({ type: ERROR, payload: e.response.data.error });
+    }
+  };
+};
+
+export const updateUserProfile = ({
+  _id,
+  name,
+  role,
+  address,
+  email,
+  phoneNumber,
+  photoUrl,
+}) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.put(`/${_id}/profile`, {
+        _id,
+        name,
+        role,
+        address,
+        email,
+        phoneNumber,
+        photoUrl,
+      });
+
+      dispatch({ type: UPDATE_PROFILE, payload: response.data });
+
+      // history.go(0);
     } catch (e) {
       dispatch({ type: ERROR, payload: e.response.data.error });
     }
