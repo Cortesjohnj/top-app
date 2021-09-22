@@ -13,6 +13,7 @@ import {
   NOT_AUTHENTICATED,
   ADD_PETS,
   UPDATE_PROFILE,
+  BULK_REJECT_REQUESTS,
 } from "./actions";
 
 const reducer = (state, action) => {
@@ -32,7 +33,11 @@ const reducer = (state, action) => {
     case SET_PETS:
       return {
         ...state,
-        pets: action.payload,
+        pets: action.payload.pets,
+        petListInfo: {
+          count: action.payload.count,
+          page: +action.payload.page,
+        },
       };
 
     case DELETE_PET:
@@ -85,6 +90,16 @@ const reducer = (state, action) => {
         adoptionRequests: state.adoptionRequests.map((req) =>
           req._id === action.payload._id
             ? { ...req, responseStatus: action.payload.responseStatus }
+            : req
+        ),
+      };
+
+    case BULK_REJECT_REQUESTS:
+      return {
+        ...state,
+        adoptionRequests: state.adoptionRequests.map((req) =>
+          req._id !== action.payload
+            ? { ...req, responseStatus: "rejected" }
             : req
         ),
       };

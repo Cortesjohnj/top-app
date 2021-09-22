@@ -8,24 +8,41 @@ import { listPets, listFoundationRequests } from "../store/actionCreators";
 
 import CardList from "../components/CardList";
 import PetCard from "../components/PetCard";
+import PaginationButtons from "../components/PaginationButtons";
 import "../assets/styles/PetListPage.css";
 
 const PetListPage = () => {
   const { id: foundationId } = useParams();
   let redirectUrl = "";
   const dispatch = useDispatch();
-  const { pets } = useSelector((state) => state);
+  const { pets, petListInfo } = useSelector((state) => state);
+  const { user } = useSelector((state) => state);
 
   useEffect(() => {
-    dispatch(listPets(foundationId));
+    dispatch(listPets(foundationId, 1));
     dispatch(listFoundationRequests(foundationId));
   }, [foundationId, dispatch]);
 
-  //This variables comes from the user session, I will set it manually for testing purposes
-  const isFoundation = true;
-  //useSelector((state) => state).user.role === "foundation" ? true : false;
+  const isFoundation = user.role === "foundation" && user._id === foundationId;
 
   isFoundation ? (redirectUrl = "/manage") : (redirectUrl = "/request");
+
+  //List buttons
+  let nextButton = false;
+  let previousButton = false;
+
+  petListInfo.page === 1 ? (previousButton = true) : (previousButton = false);
+  petListInfo.page === Math.ceil(petListInfo.count / 10)
+    ? (nextButton = true)
+    : (nextButton = false);
+
+  const handleNextPage = () => {
+    dispatch(listPets(foundationId, petListInfo.page + 1));
+  };
+
+  const handlePreviousPage = () => {
+    dispatch(listPets(foundationId, petListInfo.page - 1));
+  };
 
   return (
     <div className="background-container">
@@ -49,6 +66,14 @@ const PetListPage = () => {
           </h1>
         )}
       </CardList>
+      {petListInfo.count > 10 && (
+        <PaginationButtons
+          previousButton={previousButton}
+          nextButton={nextButton}
+          handleNextPage={handleNextPage}
+          handlePreviousPage={handlePreviousPage}
+        />
+      )}
       {isFoundation && (
         <IconContext.Provider
           value={{
