@@ -19,7 +19,7 @@ function Navbar({ toggle }) {
 
   const status = useSelector((state) => state.status);
 
-  const { photoUrl, name, _id } = recentUser;
+  const { photoUrl, name, _id, role } = recentUser;
 
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
@@ -50,7 +50,7 @@ function Navbar({ toggle }) {
           {status === AUTHENTICATED ? (
             <Link
               className="navBar__container--profilePicWrapper1"
-              to={isMobile ? "" : `/${_id}/${name}`}
+              to={isMobile ? "" : `/${_id}/profile`}
             >
               <img
                 onClick={toggle}
@@ -107,7 +107,21 @@ function Navbar({ toggle }) {
             </li>{" "}
             <li
               className={
-                status === AUTHENTICATED
+                status === AUTHENTICATED && role === "foundation"
+                  ? "navBar__container--navItem2"
+                  : "navBar__container--navMenu2--hide"
+              }
+            >
+              <Link
+                className="navBar__container--navLinks2"
+                to={`/foundations/${_id}/pets`}
+              >
+                PETS
+              </Link>
+            </li>
+            <li
+              className={
+                status === AUTHENTICATED && role === "user"
                   ? "navBar__container--navItem2"
                   : "navBar__container--navMenu2--hide"
               }
@@ -118,7 +132,7 @@ function Navbar({ toggle }) {
             </li>
             <li
               className={
-                status === AUTHENTICATED
+                status === AUTHENTICATED && role === "user"
                   ? "navBar__container--navItem2"
                   : "navBar__container--navMenu2--hide"
               }
@@ -151,7 +165,7 @@ function Navbar({ toggle }) {
             {status === AUTHENTICATED ? (
               <Link
                 className="navBar__container--profilePicWrapper"
-                to={`/${_id}/${name}`}
+                to={`/${_id}/profile`}
               >
                 <img
                   className="navBar__container--profilePic"

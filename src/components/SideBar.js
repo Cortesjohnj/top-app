@@ -6,7 +6,7 @@ import "../assets/styles/SideBar.css";
 import { FaTimes } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../store/actionCreators";
-import { AUTHENTICATED } from "../store/actions";
+import { AUTHENTICATED, NOT_AUTHENTICATED } from "../store/actions";
 
 function SideBar({ isOpen, toggle }) {
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ function SideBar({ isOpen, toggle }) {
   if (recentUser === null || recentUser === undefined) {
     recentUser = {};
   }
-  const { name, _id } = recentUser;
+  const { _id, role } = recentUser;
 
   const handleLogOut = () => {
     dispatch(logOut());
@@ -63,23 +63,42 @@ function SideBar({ isOpen, toggle }) {
         </ul>
         <div className="sideBar__container--btnWrap">
           {status === AUTHENTICATED && (
-            <Link className="sideBar__container--route" to={`/${_id}/${name}`}>
+            <Link className="sideBar__container--route" to={`/${_id}/profile`}>
               PROFILE
             </Link>
           )}
         </div>
         <div className="sideBar__container--btnWrap">
-          {status === AUTHENTICATED && (
+          {status === AUTHENTICATED && role === "user" ? (
             <Link className="sideBar__container--route" to="/foundations">
               FOUNDATIONS
             </Link>
+          ) : (
+            status === AUTHENTICATED && (
+              <Link
+                className="sideBar__container--route"
+                to={`/foundations/${_id}/pets`}
+              >
+                PETS
+              </Link>
+            )
           )}
         </div>
         <div className="sideBar__container--btnWrap">
           {status === AUTHENTICATED ? (
-            <Link className="sideBar__container--route" to="/donate">
-              DONATE
-            </Link>
+            role === "user" ? (
+              <Link className="sideBar__container--route" to="/donate">
+                DONATE
+              </Link>
+            ) : (
+              <Link
+                className="sideBar__container--route"
+                to="/"
+                onClick={handleLogOut}
+              >
+                LOG OUT
+              </Link>
+            )
           ) : (
             <Link className="sideBar__container--route" to="/login">
               LOG IN
@@ -87,7 +106,7 @@ function SideBar({ isOpen, toggle }) {
           )}
         </div>
         <div className="sideBar__container--btnWrap">
-          {status === AUTHENTICATED ? (
+          {status === AUTHENTICATED && role === "user" ? (
             <Link
               className="sideBar__container--route"
               to="/"
@@ -96,9 +115,11 @@ function SideBar({ isOpen, toggle }) {
               LOG OUT
             </Link>
           ) : (
-            <Link className="sideBar__container--route" to="/signup">
-              SIGN UP
-            </Link>
+            status === NOT_AUTHENTICATED && (
+              <Link className="sideBar__container--route" to="/signup">
+                SIGN UP
+              </Link>
+            )
           )}
         </div>
       </div>
