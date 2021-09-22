@@ -7,7 +7,7 @@ import { animateScroll as ScrollToTop } from "react-scroll";
 import "../assets/styles/Navbar.css";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../store/actionCreators";
-import { AUTHENTICATED } from "../store/actions";
+import { AUTHENTICATED, NOT_AUTHENTICATED } from "../store/actions";
 
 function Navbar({ toggle }) {
   const dispatch = useDispatch();
@@ -132,7 +132,7 @@ function Navbar({ toggle }) {
             </li>
             <li
               className={
-                status === AUTHENTICATED && role === "user"
+                status === NOT_AUTHENTICATED || role === "user"
                   ? "navBar__container--navItem2"
                   : "navBar__container--navMenu2--hide"
               }
