@@ -12,12 +12,14 @@ beforeEach(() => {
   store = createStore();
 });
 
-test("renders login component", () => {
+test("renders login component", async () => {
   history.push("/login");
   render(
     <Provider store={store}>
       <App />
     </Provider>
   );
-  expect(screen.getAllByText(/Login/i)[0]).toBeInTheDocument();
+  await waitFor(() =>
+    expect(screen.getAllByText(/Login/i)[0]).toBeInTheDocument()
+  );
 });
