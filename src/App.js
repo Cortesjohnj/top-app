@@ -1,22 +1,33 @@
 import { Router, Switch, Route } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
-import PetListPage from "./pages/PetListPage";
-import { RegisterPage } from "./pages/RegisterPage";
-import { AddPet } from "./pages/AddPet";
-import PetManagePage from "./pages/PetManagePage";
-import { Suspense, useEffect } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import Spinner from "./components/Spinner";
-import Foundations from "./pages/Foundations";
 import history from "./history";
-import Home from "./pages/Home";
-import NotFound from "./pages/NotFound";
 import { useDispatch } from "react-redux";
 import { loadUser, logOut } from "./store/actionCreators";
 import { AUTHORIZATION } from "./store/actions";
 import PrivateRoute from "./pages/PrivateRoute";
 import AdoptionPetRequest from "./pages/AdoptionPetRequest";
 
+const LoginPage = lazy(() => import("./pages/LoginPage"));
+const PetListPage = lazy(() => import("./pages/PetListPage"));
+const RegisterPage = lazy(() => import("./pages/RegisterPage"));
+const UserProfile = lazy(() => import("./pages/UserProfile"));
+const AddPet = lazy(() => import("./pages/AddPet"));
+const PetManagePage = lazy(() => import("./pages/PetManagePage"));
+const Foundations = lazy(() => import("./pages/Foundations"));
+const Home = lazy(() => import("./pages/Home"));
+const SideBar = lazy(() => import("./components/SideBar"));
+const Navbar = lazy(() => import("./components/Navbar"));
+const Footer = lazy(() => import("./components/Footer"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+
 function App() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => {
+    setIsOpen(!isOpen);
+  };
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -30,6 +41,8 @@ function App() {
   return (
     <Router history={history}>
       <Suspense fallback={<Spinner />}>
+        <SideBar isOpen={isOpen} toggle={toggle} />
+        <Navbar toggle={toggle} />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={LoginPage} />
@@ -39,6 +52,7 @@ function App() {
             path="/foundations/:id/pets"
             component={PetListPage}
           />
+          <PrivateRoute exact path="/:id/profile" component={UserProfile} />
           <PrivateRoute
             exact
             path="/pets/:id/request"
@@ -53,6 +67,7 @@ function App() {
           <Route exact path="/foundations" component={Foundations} />
           <Route component={NotFound} />
         </Switch>
+        <Footer />
       </Suspense>
     </Router>
   );

@@ -4,9 +4,25 @@ import { Link as LinkScroll } from "react-scroll";
 import { animateScroll as ScrollToTop } from "react-scroll";
 import "../assets/styles/SideBar.css";
 import { FaTimes } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { logOut } from "../store/actionCreators";
+import { AUTHENTICATED } from "../store/actions";
 
 function SideBar({ isOpen, toggle }) {
-  let isUser = false;
+  const dispatch = useDispatch();
+
+  const status = useSelector((state) => state.status);
+
+  let recentUser = useSelector((state) => state.user);
+  if (recentUser === null || recentUser === undefined) {
+    recentUser = {};
+  }
+  const { name, _id } = recentUser;
+
+  const handleLogOut = () => {
+    dispatch(logOut());
+  };
+
   return (
     <aside
       className={`sideBar__container 
@@ -46,14 +62,21 @@ function SideBar({ isOpen, toggle }) {
           </LinkScroll>
         </ul>
         <div className="sideBar__container--btnWrap">
-          {isUser && (
-            <Link className="sideBar__container--route" to="/id:/profile">
+          {status === AUTHENTICATED && (
+            <Link className="sideBar__container--route" to={`/${_id}/${name}`}>
               PROFILE
             </Link>
           )}
         </div>
         <div className="sideBar__container--btnWrap">
-          {isUser ? (
+          {status === AUTHENTICATED && (
+            <Link className="sideBar__container--route" to="/foundations">
+              FOUNDATIONS
+            </Link>
+          )}
+        </div>
+        <div className="sideBar__container--btnWrap">
+          {status === AUTHENTICATED ? (
             <Link className="sideBar__container--route" to="/donate">
               DONATE
             </Link>
@@ -64,8 +87,12 @@ function SideBar({ isOpen, toggle }) {
           )}
         </div>
         <div className="sideBar__container--btnWrap">
-          {isUser ? (
-            <Link className="sideBar__container--route" to="">
+          {status === AUTHENTICATED ? (
+            <Link
+              className="sideBar__container--route"
+              to="/"
+              onClick={handleLogOut}
+            >
               LOG OUT
             </Link>
           ) : (

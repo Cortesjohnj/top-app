@@ -23,3 +23,7 @@
   letter-spacing: 1px;
   margin: 10px 0;  
 }
+
+#submitButton {
+  width: 80%;
+}

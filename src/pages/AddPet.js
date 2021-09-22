@@ -1,80 +1,83 @@
 import React, { useRef, useState } from "react";
 import { FaCloudUploadAlt } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router";
 import "../assets/styles/AddPet.css";
 import { PrimaryButton } from "../components/PrimaryButton";
-import axios from "axios";
+import { addPets } from "../store/actionCreators";
 
 function AddPet() {
+  const { id: foundationId } = useParams();
+  const dispatch = useDispatch();
+
   const [pet, setPet] = useState({
     petName: "",
     petAge: "",
     petDescription: "",
-    petPhotos: [],
+    photoUrl: [],
+    foundationId: foundationId,
   });
   const [counter, setCounter] = useState(0);
   const [selectedImages, setSelectedImages] = useState([]);
 
   const fileInput = useRef(null);
 
-  const handleOndragOver = event => {
+  const handleOndragOver = (event) => {
     event.preventDefault();
   };
 
-  const handleOndrop = event => {
+  const handleOndrop = (event) => {
     event.preventDefault();
     event.stopPropagation();
     if (event.dataTransfer.files) {
-      const fileArray = Array.from(event.dataTransfer.files).map(file =>
+      const fileArray = Array.from(event.dataTransfer.files).map((file) =>
         URL.createObjectURL(file)
       );
 
-      setSelectedImages(prevImages => prevImages.concat(fileArray));
-      Array.from(event.dataTransfer.files).map(file =>
+      setSelectedImages((prevImages) => prevImages.concat(fileArray));
+      Array.from(event.dataTransfer.files).map((file) =>
         URL.revokeObjectURL(file)
       );
     }
 
     let imageFile = event.dataTransfer.files;
-    setPet(prevState => ({
+    setPet((prevState) => ({
       ...prevState,
-      petPhotos: [...prevState.petPhotos, ...imageFile],
+      photoUrl: [...prevState.photoUrl, ...imageFile],
     }));
     setCounter(counter + imageFile.length);
   };
 
-  const handleInputChange = event => {
+  const handleInputChange = (event) => {
     if (event.target.files) {
-      const fileArray = Array.from(event.target.files).map(file =>
+      const fileArray = Array.from(event.target.files).map((file) =>
         URL.createObjectURL(file)
       );
 
-      setSelectedImages(prevImages => prevImages.concat(fileArray));
-      Array.from(event.target.files).map(file => URL.revokeObjectURL(file));
+      setSelectedImages((prevImages) => prevImages.concat(fileArray));
+      Array.from(event.target.files).map((file) => URL.revokeObjectURL(file));
     }
 
     let imageFile = event.target.files;
-    setPet(prevState => ({
+    setPet((prevState) => ({
       ...prevState,
-      petPhotos: [...prevState.petPhotos, ...imageFile],
+      photoUrl: [...prevState.photoUrl, ...imageFile],
     }));
     setCounter(counter + event.target.files.length);
   };
 
-  const handleClick = event => {
+  const handleClick = (event) => {
     event.stopPropagation();
     fileInput.current.click();
   };
 
-  const submit = event => {
+  const submit = (event) => {
     event.preventDefault();
     console.log(pet);
-    axios
-      .post("https://jsonplaceholder.typicode.com/posts", pet)
-      .then(response => console.log(response))
-      .catch(error => console.log(error));
+    dispatch(addPets(pet));
   };
 
-  const InputChange = event => {
+  const InputChange = (event) => {
     setPet({ ...pet, [event.target.name]: event.target.value });
   };
 
@@ -133,10 +136,11 @@ function AddPet() {
               onChange={InputChange}
               className="container__dropzone--textArea"
             />
+
             <PrimaryButton children={"Add Pet"} color={"azul"} />
           </div>
         </form>
-        {selectedImages.map(photo => {
+        {selectedImages.map((photo) => {
           return (
             <img
               className="registerPets__container--photos"
@@ -151,4 +155,4 @@ function AddPet() {
   );
 }
 
-export { AddPet };
+export default AddPet;

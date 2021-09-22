@@ -11,6 +11,9 @@ import {
   AUTHENTICATED,
   LOGOUT,
   NOT_AUTHENTICATED,
+  ADD_PETS,
+  UPDATE_PROFILE,
+  BULK_REJECT_REQUESTS,
   CREATE_ADOPTION_REQUEST,
   FINISHED,
 } from "./actions";
@@ -24,11 +27,19 @@ const reducer = (state, action) => {
         status: AUTHENTICATED,
         error: "",
       };
-
-    case SET_PETS:
+    case ADD_PETS:
       return {
         ...state,
         pets: action.payload,
+      };
+    case SET_PETS:
+      return {
+        ...state,
+        pets: action.payload.pets,
+        petListInfo: {
+          count: action.payload.count,
+          page: +action.payload.page,
+        },
       };
 
     case DELETE_PET:
@@ -38,6 +49,12 @@ const reducer = (state, action) => {
       };
 
     case REGISTER_USER:
+      return {
+        ...state,
+        user: action.payload,
+        error: "",
+      };
+    case UPDATE_PROFILE:
       return {
         ...state,
         user: action.payload,
@@ -79,12 +96,14 @@ const reducer = (state, action) => {
         ),
       };
 
-    case CREATE_ADOPTION_REQUEST:
+    case BULK_REJECT_REQUESTS:
       return {
         ...state,
-        adoptionRequests: action.payload,
-        error: "",
-        errStatus: FINISHED,
+        adoptionRequests: state.adoptionRequests.map((req) =>
+          req._id !== action.payload
+            ? { ...req, responseStatus: "rejected" }
+            : req
+        ),
       };
 
     case ERROR:
@@ -96,6 +115,14 @@ const reducer = (state, action) => {
 
     default:
       return state;
+
+    case CREATE_ADOPTION_REQUEST:
+      return {
+        ...state,
+        adoptionRequests: action.payload,
+        error: "",
+        errStatus: FINISHED,
+      };
   }
 };
 

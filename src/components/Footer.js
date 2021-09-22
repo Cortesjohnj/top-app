@@ -9,9 +9,11 @@ import {
 import { Link } from "react-router-dom";
 import { Link as LinkScroll } from "react-scroll";
 import { animateScroll as ScrollToTop } from "react-scroll";
+import { useSelector } from "react-redux";
+import { AUTHENTICATED } from "../store/actions";
 
 const Footer = () => {
-  let isUser = false;
+  const status = useSelector((state) => state.status);
 
   return (
     <footer className="footer">
@@ -60,7 +62,7 @@ const Footer = () => {
         <div className="footer__wrapper--quick-links">
           <ul>
             <li className="footer__wrapper--quick-items">
-              {isUser ? (
+              {status === AUTHENTICATED ? (
                 <Link className="footer__wrapper--navLinks" to="/foundations">
                   FOUNDATIONS
                 </Link>
@@ -74,14 +76,7 @@ const Footer = () => {
               )}
             </li>
             <li className="footer__wrapper--quick-items">
-              {isUser ? (
-                <Link
-                  className="footer__wrapper--navLinks"
-                  to="/foundations/:id/pets"
-                >
-                  PETS
-                </Link>
-              ) : (
+              {status === AUTHENTICATED ? null : (
                 <LinkScroll
                   className="footer__wrapper--navLinks"
                   to="info"
@@ -93,7 +88,7 @@ const Footer = () => {
               )}
             </li>
             <li className="footer__wrapper--quick-items">
-              {isUser ? (
+              {status === AUTHENTICATED ? (
                 <Link className="footer__wrapper--navLinks" to="/donate">
                   DONATE
                 </Link>
