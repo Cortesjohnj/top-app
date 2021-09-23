@@ -1,3 +1,6 @@
+html {
+  font-size: 10px;
+}
 .register {
   display: flex;
   flex-direction: column;
@@ -40,7 +43,7 @@
   justify-content: center;
   justify-items: center;
   color: var(--blue-pigment);
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   padding-top: 24px;
 }
 
@@ -49,7 +52,6 @@
   justify-content: center;
   align-items: center;
   color: var(--blue-pigment);
-  font-size: 1rem;
   padding-top: 5px;
   font-size: 1.5rem;
 }
@@ -73,6 +75,7 @@
   border-bottom-style: groove;
   border-color: var(--pale-silver);
   margin-top: 8px;
+  font-size: 1.35rem;
   padding-bottom: 14px;
   color:var(--blue-pigment)
 }
@@ -90,7 +93,7 @@
 }
 .register__container--form--options--label{
   padding-right: 20px;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
 }
 
 .register__container--form--options--input{
@@ -104,12 +107,15 @@
 .termsAndConditions {
   display: flex;
   justify-content: center;
-  align-items: center 
+  align-items: center ;
+  font-size: 1.3rem !important;
 }
 
 .termsAndConditions--input {
   margin-right: 5px; 
+  font-size: 1.3rem;
 }
+
 .termsAndConditions--link {
   color: var(--blue-pigment);
   font-weight: bold;
@@ -168,4 +174,10 @@ input[type=number] {
   border-width: 2px;
   border-image: linear-gradient(to right, var(--blue-pigment), #b814e0);
   border-image-slice: 1;
+}
+
+@media (min-width:700px ) {
+  .register__container{
+    max-width: 450px;
+  }
 }
