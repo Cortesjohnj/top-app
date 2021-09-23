@@ -6,7 +6,7 @@ html {
   flex-direction: column;
   justify-content: center;
   align-items: center;  
-  height: 100vh;
+  height: 90vh;
   background-image: url('../images/wavesForSignUp.svg');
   background-repeat: no-repeat;
   background-position: bottom;
