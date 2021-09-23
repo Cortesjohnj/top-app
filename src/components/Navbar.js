@@ -8,6 +8,7 @@ import "../assets/styles/Navbar.css";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../store/actionCreators";
 import { AUTHENTICATED, NOT_AUTHENTICATED } from "../store/actions";
+import history from "../history";
 
 function Navbar({ toggle }) {
   const dispatch = useDispatch();
@@ -21,7 +22,9 @@ function Navbar({ toggle }) {
 
   const { photoUrl, name, _id, role } = recentUser;
 
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [isMobile, setIsMobile] = useState("");
+
+  const [location, setLocation] = useState("/");
 
   useEffect(() => {
     window.addEventListener(
@@ -38,7 +41,12 @@ function Navbar({ toggle }) {
     dispatch(logOut());
   };
 
-  const pathName = window.location.pathname;
+  useEffect(() => {
+    return history.listen((location) => {
+      setLocation(location.pathname);
+    });
+  }, []);
+
   return (
     <>
       <nav className="navBar">
@@ -51,7 +59,7 @@ function Navbar({ toggle }) {
           {status === AUTHENTICATED ? (
             <Link
               className="navBar__container--profilePicWrapper1"
-              to={isMobile ? "" : `/${_id}/profile`}
+              to={!isMobile && `/${_id}/profile`}
             >
               <img
                 onClick={toggle}
@@ -65,7 +73,7 @@ function Navbar({ toggle }) {
               <FaBars onClick={toggle} />
             </div>
           )}
-          {pathName === "/" && status === NOT_AUTHENTICATED && (
+          {location === "/" && (
             <ul className="navBar__container--navMenu">
               <li
                 className="navBar__container--navItem"

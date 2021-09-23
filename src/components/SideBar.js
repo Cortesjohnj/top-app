@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Link as LinkScroll } from "react-scroll";
 import { animateScroll as ScrollToTop } from "react-scroll";
@@ -7,11 +7,14 @@ import { FaTimes } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../store/actionCreators";
 import { AUTHENTICATED, NOT_AUTHENTICATED } from "../store/actions";
+import history from "../history";
 
 function SideBar({ isOpen, toggle }) {
   const dispatch = useDispatch();
 
   const status = useSelector((state) => state.status);
+
+  const [location, setLocation] = useState("/");
 
   let recentUser = useSelector((state) => state.user);
   if (recentUser === null || recentUser === undefined) {
@@ -23,7 +26,12 @@ function SideBar({ isOpen, toggle }) {
     dispatch(logOut());
   };
 
-  const pathName = window.location.pathname;
+  useEffect(() => {
+    return history.listen((location) => {
+      setLocation(location.pathname);
+    });
+  }, []);
+
   return (
     <aside
       className={`sideBar__container 
@@ -36,7 +44,7 @@ function SideBar({ isOpen, toggle }) {
         </div>
       </div>
       <div className="sideBar__container--wrapper">
-        {pathName === "/" && status === NOT_AUTHENTICATED && (
+        {location === "/" && (
           <ul className="sideBar__container--menu">
             <li
               className="sideBar__container--link"
