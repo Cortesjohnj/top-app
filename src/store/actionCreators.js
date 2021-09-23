@@ -18,7 +18,7 @@ export const authUser = ({ email, password }) => {
         password: password,
       });
       localStorage.setItem(AUTHORIZATION, response.data.token);
-      dispatch({ type: LOGIN_USER, payload: response.data.user });
+      dispatch({ type: LOGIN_USER, payload: response.data });
       history.push("/");
     } catch (e) {
       dispatch({ type: ERROR, payload: e.response.data.error });
@@ -45,7 +45,7 @@ export const logOut = () => {
   return { type: LOGOUT };
 };
 
-export const listPets = foundationId => {
+export const listPets = (foundationId) => {
   return async function (dispatch) {
     try {
       let response = await axios.get(`/foundations/${foundationId}/pets`);
@@ -57,7 +57,7 @@ export const listPets = foundationId => {
   };
 };
 
-export const deletePet = petId => {
+export const deletePet = (petId) => {
   return async function (dispatch) {
     try {
       await axios.delete(`/pets/${petId}`);

@@ -4,6 +4,10 @@
   font-family: "Muli", sans-serif;
 }
 
+.general-foundations {
+  min-height: 100vh;
+}
+
 .link-foundations {
   color: inherit;
   text-decoration: inherit;
@@ -61,5 +65,17 @@
   font-size: x-large;
   margin: 15px;
   display: flex;
+  justify-content: center;
+}
+
+.buttons-Foundation {
+  padding: 5px;
+  margin: 5px;
+}
+
+.container-buttons-foundations {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
 }

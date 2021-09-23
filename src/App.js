@@ -7,6 +7,7 @@ import PetManagePage from "./pages/PetManagePage";
 import { Suspense, useEffect } from "react";
 import Spinner from "./components/Spinner";
 import Foundations from "./pages/Foundations";
+import Admin from "./pages/Admin";
 import history from "./history";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
@@ -42,6 +43,12 @@ function App() {
           <Route exact path="/foundations/:id/add-pet" component={AddPet} />
           <Route exact path="/pets/:id/manage" component={PetManagePage} />
           <Route exact path="/foundations" component={Foundations} />
+          <Route exact path="/admin">
+            <Admin isFoundation={true} />
+          </Route>
+          <Route exact path="/admin/users">
+            <Admin isFoundation={false} />
+          </Route>
           <Route component={NotFound} />
         </Switch>
       </Suspense>
