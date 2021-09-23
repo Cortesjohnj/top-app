@@ -15,3 +15,6 @@ export const AUTHORIZATION = "Authorization";
 export const LOGOUT = "LOGOUT";
 export const UPDATE_PROFILE = "UPDATE_PROFILE";
 export const BULK_REJECT_REQUESTS = "BULK_REJECT_REQUESTS";
+export const CREATE_ADOPTION_REQUEST = "CREATE_ADOPTION_REQUEST";
+export const INITIALIZED = "INITIALIZED";
+export const FINISHED = "FINISHED";

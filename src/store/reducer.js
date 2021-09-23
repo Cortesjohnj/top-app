@@ -14,6 +14,8 @@ import {
   ADD_PETS,
   UPDATE_PROFILE,
   BULK_REJECT_REQUESTS,
+  CREATE_ADOPTION_REQUEST,
+  FINISHED,
 } from "./actions";
 
 const reducer = (state, action) => {
@@ -109,10 +111,19 @@ const reducer = (state, action) => {
       return {
         ...state,
         error: action.payload,
+        errStatus: FINISHED,
       };
 
     default:
       return state;
+
+    case CREATE_ADOPTION_REQUEST:
+      return {
+        ...state,
+        adoptionRequests: action.payload,
+        error: "",
+        errStatus: FINISHED,
+      };
   }
 };
 
