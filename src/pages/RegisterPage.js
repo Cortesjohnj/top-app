@@ -33,43 +33,26 @@ function RegisterPage() {
           onSubmit={handleSubmit(onSubmit)}
           className="register__container--form"
         >
-          {errors?.firstName?.type === "required" && (
+          {errors?.name?.type === "required" && (
             <p className="register__container--form--errors">
-              *First name is required
+              *A name is required
             </p>
           )}
-          {errors?.firstName?.type === "maxLength" && (
+          {errors?.name?.type === "maxLength" && (
             <p className="register__container--form--errors">
-              *First name cannot exceed 20 characters
+              *A name cannot exceed 20 characters
             </p>
           )}
           <input
             type="text"
-            name="firstName"
-            placeholder="First name"
+            name="name"
+            placeholder="Name"
             className="form__field"
-            {...register("firstName", {
+            {...register("name", {
               required: true,
               maxLength: 20,
             })}
           />
-
-          {errors?.lastName?.type === "maxLength" && (
-            <p className="register__container--form--errors">
-              *First name cannot exceed 20 characters
-            </p>
-          )}
-          <input
-            type="text"
-            placeholder="Last name"
-            name="lastName"
-            className="form__field"
-            {...register("lastName", {
-              required: false,
-              maxLength: 20,
-            })}
-          />
-
           {errors?.email?.type === "required" && (
             <p className="register__container--form--errors">
               *Email is required
@@ -193,4 +176,4 @@ function RegisterPage() {
   );
 }
 
-export { RegisterPage };
+export default RegisterPage;

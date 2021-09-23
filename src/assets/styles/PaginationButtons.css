@@ -1,0 +1,27 @@
+.list-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+.list-buttons button {
+  margin: 0 15px;
+  width: 100px;
+  height: 40px;
+  font-family: "Muli", sans-serif;
+  font-size: 1.6rem;
+  font-weight: bold;
+  background-color: var(--blue-pigment);
+  color: white;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.list-buttons button:disabled {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  cursor: default;
+}

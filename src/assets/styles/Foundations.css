@@ -52,7 +52,7 @@
 }
 
 .title-foundations {
-  font-size: 35pt;
+  font-size: 40pt;
   font-weight: bold;
   text-align: center;
   color: #3e2f90;
@@ -71,6 +71,20 @@
 .buttons-Foundation {
   padding: 5px;
   margin: 5px;
+  background-color: var(--blue-pigment);
+  border: none;
+  border-radius: 15px;
+  color: white;
+  cursor: pointer;
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: "Muli", sans-serif;
+  height: 50px;
+  letter-spacing: 1px;
+}
+
+.buttons-Foundation:disabled {
+  opacity: 0.3;
 }
 
 .container-buttons-foundations {

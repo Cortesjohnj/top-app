@@ -3,13 +3,10 @@ import { withRouter } from "react-router-dom";
 import { FaMinus } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import { deletePet } from "../store/actionCreators";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import CardImage from "./CardImage";
 import CardModal from "./CardModal";
-
-//Testing with Mock Data
-import MockData from "../MockData";
 
 import "../assets/styles/PetCard.css";
 
@@ -26,9 +23,8 @@ const PetCard = (props) => {
   } = props;
   const dispatch = useDispatch();
 
-  //Using Mock Data to test the number box
-  const requests = MockData.adoptionRegistry.filter(
-    (item) => item.pet_id === _id
+  const requests = useSelector((state) => state.foundationRequests).filter(
+    (item) => item.petId._id === _id
   );
 
   const [isOpen, setIsOpen] = useState(false);

@@ -1,5 +1,6 @@
 import FoundationsMenu from "../components/FoundationsMenu";
 import "../assets/styles/Foundations.css";
+import "../assets/styles/LoginPage.css";
 
 const Foundations = () => {
   return (

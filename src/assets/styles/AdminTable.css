@@ -1,5 +1,6 @@
 * {
-  font-size: medium;
+  font-size: large;
+  font-family: "Muli", sans-serif;
 }
 
 .AdminTable__photos {
@@ -36,8 +37,21 @@
 }
 
 .AdminTable__bottomButtons {
-  padding: 5px;
-  margin: 5px;
+  padding: 3px;
+  margin: 3px;
+  background-color: var(--blue-pigment);
+  border: none;
+  border-radius: 15px;
+  color: white;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: bold;
+  height: 50px;
+  letter-spacing: 1px;
+}
+
+.AdminTable__bottomButtons:disabled {
+  opacity: 0.3;
 }
 
 .AdminTable__bottomDiv {
