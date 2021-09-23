@@ -57,7 +57,6 @@ export const listPets = (foundationId, page) => {
       let response = await axios.get(
         `/foundations/${foundationId}/pets?page=${page}`
       );
-      //setFilteredPets(response.data);
       dispatch({ type: SET_PETS, payload: response.data });
     } catch (e) {
       dispatch({ type: ERROR, payload: e.response.data.error });

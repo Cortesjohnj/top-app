@@ -49,7 +49,7 @@ const PetCard = (props) => {
 
   return (
     <>
-      <div className="overflow--hidden">
+      <div className="overflow--hidden" data-testid="petCard">
         {isFoundation && requests.length > 0 && (
           <div className="card-list-number">
             <p>{requests.length}</p>

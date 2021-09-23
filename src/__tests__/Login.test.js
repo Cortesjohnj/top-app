@@ -18,8 +18,7 @@ test("allows user to login", async () => {
   //prepare
   axios.post.mockResolvedValueOnce({
     data: {
-      token:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTQzNTU2Y2RkNTgwNGRlMjY5NzM5MzMiLCJpYXQiOjE2MzIwMDA2MDl9.G3ukPNIzoiVXVx0xO_bIv9SZiJDZCno4sNa7gk4kvmw",
+      token: "12345",
       user: {
         email: "found@gmail.com",
         name: "foundationDiego",
