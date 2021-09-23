@@ -1,4 +1,3 @@
-//import MockData from "../MockData"
 import "../assets/styles/AdminTable.css";
 import Table from "../components/Table";
 import { useEffect, useState } from "react";
@@ -100,10 +99,9 @@ const Admin = (isF) => {
   const [arrData, setData] = useState([]);
   const [arrCheck, setArrCheck] = useState([]);
   const [page, setPage] = useState(1);
-  const tempUrl = isF.isFoundation
+  const url = isF.isFoundation
     ? customAxios.defaults.baseURL + "/admin?page="
     : customAxios.defaults.baseURL + "/admin/users?page=";
-  const [url, setUrl] = useState(tempUrl);
   const [disablePrev, setDisablePrev] = useState(true);
   const [disableNext, setDisableNext] = useState(false);
 

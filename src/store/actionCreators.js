@@ -18,7 +18,7 @@ export const authUser = ({ email, password }) => {
         password: password,
       });
       localStorage.setItem(AUTHORIZATION, response.data.token);
-      dispatch({ type: LOGIN_USER, payload: response.data.user });
+      dispatch({ type: LOGIN_USER, payload: response.data });
       history.push("/");
     } catch (e) {
       dispatch({ type: ERROR, payload: e.response.data.error });

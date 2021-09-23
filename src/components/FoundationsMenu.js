@@ -46,9 +46,7 @@ const FoundationsMenu = () => {
   const [disablePrev, setDisablePrev] = useState(true);
   const [disableNext, setDisableNext] = useState(false);
   const [page, setPage] = useState(1);
-  const [route, setRoute] = useState(
-    customAxios.defaults.baseURL + "/foundations?page="
-  );
+  const route = customAxios.defaults.baseURL + "/foundations?page=";
 
   useEffect(() => {
     customAxios
