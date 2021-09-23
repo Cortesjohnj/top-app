@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 import { loadUser, logOut } from "./store/actionCreators";
 import { AUTHORIZATION } from "./store/actions";
 import PrivateRoute from "./pages/PrivateRoute";
-import AdoptionPetRequest from "./pages/AdoptionPetRequest";
 
 const LoginPage = lazy(() => import("./pages/LoginPage"));
 const PetListPage = lazy(() => import("./pages/PetListPage"));
@@ -20,6 +19,7 @@ const SideBar = lazy(() => import("./components/SideBar"));
 const Navbar = lazy(() => import("./components/Navbar"));
 const Footer = lazy(() => import("./components/Footer"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const AdoptionPetRequest = lazy(() => import("./pages/AdoptionPetRequest"));
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
