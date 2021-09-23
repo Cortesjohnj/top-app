@@ -14,6 +14,7 @@ import {
   ADD_PETS,
   UPDATE_PROFILE,
   BULK_REJECT_REQUESTS,
+  CREATE_ADOPTION_REQUEST,
 } from "./actions";
 import history from "../history";
 
@@ -25,7 +26,7 @@ export const authUser = ({ email, password }) => {
         password: password,
       });
       localStorage.setItem(AUTHORIZATION, response.data.token);
-      dispatch({ type: LOGIN_USER, payload: response.data.user });
+      dispatch({ type: LOGIN_USER, payload: response.data });
       history.push("/");
     } catch (e) {
       dispatch({ type: ERROR, payload: e.response.data.error });
@@ -190,6 +191,30 @@ export const updateUserProfile = ({
       dispatch({ type: UPDATE_PROFILE, payload: response.data });
 
       // history.go(0);
+    } catch (e) {
+      dispatch({ type: ERROR, payload: e.response.data.error });
+    }
+  };
+};
+
+export const createAdoption = ({
+  petId,
+  userId,
+  description,
+  phoneNumber,
+  address,
+}) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.post(`/pets/${petId}/request`, {
+        petId: petId,
+        userId: userId,
+        description: description,
+        phoneNumber: phoneNumber,
+        address: address,
+      });
+
+      dispatch({ type: CREATE_ADOPTION_REQUEST, payload: response.data });
     } catch (e) {
       dispatch({ type: ERROR, payload: e.response.data.error });
     }
