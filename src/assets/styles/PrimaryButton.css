@@ -2,8 +2,6 @@ html {
   font-size: 10px;
 }
 
-
-
 .registerForm{
   background-color: var(--blue-pigment);
   border: none;
@@ -25,6 +23,20 @@ html {
   color: white;
   cursor: pointer;
   font-size: 1.5rem;
+  font-weight: bold;
+  height: 45px;
+  letter-spacing: 1px;
+  margin: 18px 0;
+  width: 90%;
+}
+
+.updateUser{
+  background-color: var(--blue-pigment);
+  border: none;
+  border-radius: 25px;
+  color: white;
+  cursor: pointer;
+  font-size: 1.6rem;
   font-weight: bold;
   height: 45px;
   letter-spacing: 1px;
@@ -82,6 +94,18 @@ html {
 
 @media (min-width: 1024px) {
   .addPets{
+    width: 60%
+  } 
+}
+
+@media (min-width: 800px) {
+  .updateUser{
+    width: 70%
+  } 
+}
+
+@media (min-width: 1024px) {
+  .updateUser{
     width: 60%
   } 
 }
