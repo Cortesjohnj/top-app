@@ -133,6 +133,11 @@ html {
   padding-top: 15px;
 }
 
+.buttomForm{
+  display: flex;
+  justify-content: center;
+}
+
 #fileUpload {
   border: hidden;
   outline:none;

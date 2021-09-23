@@ -2,10 +2,7 @@ html {
   font-size: 10px;
 }
 
-.buttomForm{
-  display: flex;
-  justify-content: center;
-}
+
 
 .registerForm{
   background-color: var(--blue-pigment);
@@ -19,19 +16,20 @@ html {
   letter-spacing: 1px;
   margin: 18px 0;
   width: 70%;
-  /* max-width: 80%; */
 }
 
-@media (min-width: 768px) {
-  .registerForm{
-    width: 60%
-  } 
-}
-
-@media (min-width: 1024px) {
-  .registerForm{
-    width: 50%
-  } 
+.addPets{
+  background-color: var(--blue-pigment);
+  border: none;
+  border-radius: 25px;
+  color: white;
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: bold;
+  height: 45px;
+  letter-spacing: 1px;
+  margin: 18px 0;
+  width: 90%;
 }
 
 .primaryButton{
@@ -62,4 +60,28 @@ html {
 
 #submitButton {
   width: 80%;
+}
+
+@media (min-width: 768px) {
+  .registerForm{
+    width: 60%
+  } 
+}
+
+@media (min-width: 1024px) {
+  .registerForm{
+    width: 50%
+  } 
+}
+
+@media (min-width: 768px) {
+  .addPets{
+    width: 70%
+  } 
+}
+
+@media (min-width: 1024px) {
+  .addPets{
+    width: 60%
+  } 
 }
