@@ -1,0 +1,214 @@
+.petFormContainer {
+  margin: 30px 30px;
+  min-width: 100vh;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
+  position: relative;
+  border-radius: 10px;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.petFormContainer2 {
+  margin: 30px 30px;
+  min-width: 100vh;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
+  position: relative;
+  border-radius: 10px;
+  min-height: 100vh;
+  display: grid;
+}
+
+@media (max-width: 768px) {
+  .petFormContainer {
+    margin: 30px 30px;
+    min-width: 30vh;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
+    position: relative;
+    border-radius: 10px;
+    min-height: 100vh;
+    grid-template-columns: 1fr;
+  }
+  .petFormContainer2 {
+    margin: 30px 30px;
+    min-width: 30vh;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
+    position: relative;
+    border-radius: 10px;
+    min-height: 100vh;
+  }
+
+  .petForm__successContainer--success {
+    font-size: 12px;
+  }
+  .petFormContainer__content--left {
+    display: none;
+  }
+}
+
+.petFormContainer__content--left--hide {
+  display: none;
+}
+
+.petFormContainer__content--left {
+  background: var(--blue-pigment);
+  border-radius: 10px 0 0 10px;
+  position: relative;
+}
+
+.petFormContainer__img {
+  width: 80%;
+  height: 80%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.petform__successContainer--img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  height: 300px;
+}
+
+.petform__successContainer--success {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  margin: 0 60px;
+  margin-top: 80px;
+  color: black;
+  text-align: center;
+}
+
+.petform__successContainer {
+  border-radius: 0 10px 10px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background: var(--beau-blue);
+}
+
+.petform__rightContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 10px 10px 0;
+  position: relative;
+  background: var(--beau-blue);
+}
+
+.petform__rightContainerForm {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.petform__rightContainerForm h1 {
+  font-size: 2.5rem;
+  text-align: center;
+  align-items: center;
+  width: 80%;
+  margin-bottom: 2.7rem;
+  color: black;
+}
+
+.petform__rightContainerForm--inputs {
+  margin-bottom: 2rem;
+  width: 80%;
+}
+
+.petform__rightContainerForm--inputs p {
+  font-size: 1rem;
+  margin-top: 0.7rem;
+  color: #f00e0e;
+}
+
+.petform__rightContainerForm--label {
+  display: inline-block;
+  font-size: 1.2rem;
+  margin-bottom: 6px;
+  color: black;
+}
+
+.petform__rightContainerForm--input {
+  display: block;
+  padding-left: 10px;
+  outline: none;
+  border-radius: 2px;
+  height: 40px;
+  width: 100%;
+  border: none;
+}
+
+.petform__rightContainerForm--textarea {
+  display: block;
+  padding-left: 10px;
+  outline: none;
+  border-radius: 2px;
+  height: 100%;
+  width: 100%;
+  border: none;
+  font-family: sans-serif;
+}
+
+.petform__rightContainerForm--input::placeholder,
+.petform__rightContainerForm--textarea::placeholder {
+  color: black;
+  font-family: sans-serif;
+  font-size: 12px;
+  position: absolute;
+  padding: 1px 0;
+  top: 0px;
+}
+
+.petform__rightContainerForm--button {
+  width: 30%;
+  height: 50px;
+  margin-top: 50px;
+  border-radius: 60px;
+  background: var(--warm-black);
+  outline: none;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.petform__rightContainerForm--button:hover {
+  cursor: pointer;
+  background: var(--aero);
+  transition: all 0.4s ease-out;
+  background: black;
+}
+
+.petform__successContainer--button {
+  cursor: pointer;
+  width: 190px;
+  height: 70px;
+  margin-bottom: 80px;
+  border-radius: 200px;
+  background: var(--warm-black);
+  outline: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  transition: all 1s ease-out;
+}
+
+.petform__successContainer--button:hover {
+  cursor: pointer;
+  background: black;
+  color: white;
+  transition: all 1s ease-out;
+}

@@ -19,6 +19,7 @@ const SideBar = lazy(() => import("./components/SideBar"));
 const Navbar = lazy(() => import("./components/Navbar"));
 const Footer = lazy(() => import("./components/Footer"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const AdoptionPetRequest = lazy(() => import("./pages/AdoptionPetRequest"));
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -52,7 +53,11 @@ function App() {
             component={PetListPage}
           />
           <PrivateRoute exact path="/:id/profile" component={UserProfile} />
-          <Route exact path="/pets/:id/request" />
+          <PrivateRoute
+            exact
+            path="/pets/:id/request"
+            component={AdoptionPetRequest}
+          />
           <Route exact path="/foundations/:id/add-pet" component={AddPet} />
           <PrivateRoute
             exact
