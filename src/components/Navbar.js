@@ -38,6 +38,7 @@ function Navbar({ toggle }) {
     dispatch(logOut());
   };
 
+  const pathName = window.location.pathname;
   return (
     <>
       <nav className="navBar">
@@ -64,34 +65,36 @@ function Navbar({ toggle }) {
               <FaBars onClick={toggle} />
             </div>
           )}
-          <ul className="navBar__container--navMenu">
-            <li
-              className="navBar__container--navItem"
-              onClick={() => ScrollToTop.scrollToTop()}
-            >
-              <div className="navBar__container--navLinks">ABOUT</div>
-            </li>
-            <li className="navBar__container--navItem">
-              <LinkScroll
-                className="navBar__container--navLinks"
-                to="info"
-                smooth={true}
-                duration={1000}
+          {pathName === "/" && status === NOT_AUTHENTICATED && (
+            <ul className="navBar__container--navMenu">
+              <li
+                className="navBar__container--navItem"
+                onClick={() => ScrollToTop.scrollToTop()}
               >
-                INFO
-              </LinkScroll>
-            </li>
-            <li className="navBar__container--navItem">
-              <LinkScroll
-                className="navBar__container--navLinks"
-                to="helpUs"
-                smooth={true}
-                duration={1000}
-              >
-                HELP US
-              </LinkScroll>
-            </li>
-          </ul>
+                <div className="navBar__container--navLinks">ABOUT</div>
+              </li>
+              <li className="navBar__container--navItem">
+                <LinkScroll
+                  className="navBar__container--navLinks"
+                  to="info"
+                  smooth={true}
+                  duration={1000}
+                >
+                  INFO
+                </LinkScroll>
+              </li>
+              <li className="navBar__container--navItem">
+                <LinkScroll
+                  className="navBar__container--navLinks"
+                  to="helpUs"
+                  smooth={true}
+                  duration={1000}
+                >
+                  HELP US
+                </LinkScroll>
+              </li>
+            </ul>
+          )}
 
           <ul className="navBar__container--navMenu2">
             <li

@@ -23,6 +23,7 @@ function SideBar({ isOpen, toggle }) {
     dispatch(logOut());
   };
 
+  const pathName = window.location.pathname;
   return (
     <aside
       className={`sideBar__container 
@@ -35,32 +36,35 @@ function SideBar({ isOpen, toggle }) {
         </div>
       </div>
       <div className="sideBar__container--wrapper">
-        <ul className="sideBar__container--menu">
-          <li
-            className="sideBar__container--link"
-            onClick={() => ScrollToTop.scrollToTop()}
-          >
-            ABOUT
-          </li>
-          <LinkScroll
-            onClick={toggle}
-            smooth={true}
-            duration={1000}
-            className="sideBar__container--link"
-            to="info"
-          >
-            INFO
-          </LinkScroll>
-          <LinkScroll
-            onClick={toggle}
-            smooth={true}
-            duration={1000}
-            className="sideBar__container--link"
-            to="helpUs"
-          >
-            HELP US
-          </LinkScroll>
-        </ul>
+        {pathName === "/" && status === NOT_AUTHENTICATED && (
+          <ul className="sideBar__container--menu">
+            <li
+              className="sideBar__container--link"
+              onClick={() => ScrollToTop.scrollToTop()}
+            >
+              ABOUT
+            </li>
+            <LinkScroll
+              onClick={toggle}
+              smooth={true}
+              duration={1000}
+              className="sideBar__container--link"
+              to="info"
+            >
+              INFO
+            </LinkScroll>
+            <LinkScroll
+              onClick={toggle}
+              smooth={true}
+              duration={1000}
+              className="sideBar__container--link"
+              to="helpUs"
+            >
+              HELP US
+            </LinkScroll>
+          </ul>
+        )}
+
         <div className="sideBar__container--btnWrap">
           {status === AUTHENTICATED && (
             <Link className="sideBar__container--route" to={`/${_id}/profile`}>
