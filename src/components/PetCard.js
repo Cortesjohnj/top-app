@@ -82,7 +82,11 @@ const PetCard = (props) => {
                 className: "delete-pets-container__icon",
               }}
             >
-              <div className="delete-pets-container" onClick={handleOpenModal}>
+              <div
+                className="delete-pets-container"
+                onClick={handleOpenModal}
+                data-testid="deletePetButton"
+              >
                 {" "}
                 <FaMinus />
               </div>
