@@ -112,7 +112,7 @@ function Navbar({ toggle }) {
                   : "navBar__container--navItem2"
               }
             >
-              <Link className="navBar__container--navLinks2" to="login">
+              <Link className="navBar__container--navLinks2" to="/login">
                 LOG IN
               </Link>
             </li>{" "}
@@ -137,7 +137,7 @@ function Navbar({ toggle }) {
                   : "navBar__container--navMenu2--hide"
               }
             >
-              <Link className="navBar__container--navLinks2" to="foundations">
+              <Link className="navBar__container--navLinks2" to="/foundations">
                 FOUNDATIONS
               </Link>
             </li>
@@ -150,7 +150,7 @@ function Navbar({ toggle }) {
             >
               <Link
                 className="navBar__container--navLinks2 navBar__container--donate"
-                to="donate"
+                to="/donate"
               >
                 DONATE
               </Link>
@@ -185,7 +185,7 @@ function Navbar({ toggle }) {
                 />
               </Link>
             ) : (
-              <Link className="navBar__container--navBtnLink" to="signup">
+              <Link className="navBar__container--navBtnLink" to="/signup">
                 SIGN UP
               </Link>
             )}

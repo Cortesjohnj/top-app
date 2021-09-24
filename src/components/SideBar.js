@@ -82,7 +82,7 @@ function SideBar({ isOpen, toggle }) {
         </div>
         <div className="sideBar__container--btnWrap">
           {status === AUTHENTICATED && role === "user" ? (
-            <Link className="sideBar__container--route" to="foundations">
+            <Link className="sideBar__container--route" to="/foundations">
               FOUNDATIONS
             </Link>
           ) : (
@@ -98,7 +98,7 @@ function SideBar({ isOpen, toggle }) {
         </div>
         <div className="sideBar__container--btnWrap">
           {status === NOT_AUTHENTICATED || role === "user" ? (
-            <Link className="sideBar__container--route" to="donate">
+            <Link className="sideBar__container--route" to="/donate">
               DONATE
             </Link>
           ) : (
@@ -126,14 +126,14 @@ function SideBar({ isOpen, toggle }) {
               </Link>
             )
           ) : (
-            <Link className="sideBar__container--route" to="login">
+            <Link className="sideBar__container--route" to="/login">
               LOG IN
             </Link>
           )}
         </div>
         <div className="sideBar__container--btnWrap">
           {status === NOT_AUTHENTICATED && (
-            <Link className="sideBar__container--route" to="signup">
+            <Link className="sideBar__container--route" to="/signup">
               SIGN UP
             </Link>
           )}
