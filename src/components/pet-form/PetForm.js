@@ -46,7 +46,11 @@ const PetForm = () => {
 
   return (
     <>
-      <div className={isSubmitted ? "petFormContainer2" : "petFormContainer"}>
+      <div
+        className={
+          isSubmitted ? "petFormContainer" : "petFormContainer petFormGrid"
+        }
+      >
         {!isSubmitted ? (
           <>
             <div className="petFormContainer__content--left">
