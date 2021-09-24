@@ -78,23 +78,8 @@ html {
   .registerForm{
     width: 60%
   } 
-}
-
-@media (min-width: 1024px) {
-  .registerForm{
-    width: 50%
-  } 
-}
-
-@media (min-width: 768px) {
   .addPets{
     width: 70%
-  } 
-}
-
-@media (min-width: 1024px) {
-  .addPets{
-    width: 60%
   } 
 }
 
@@ -105,6 +90,12 @@ html {
 }
 
 @media (min-width: 1024px) {
+  .registerForm{
+    width: 50%
+  } 
+  .addPets{
+    width: 60%
+  }
   .updateUser{
     width: 60%
   } 
