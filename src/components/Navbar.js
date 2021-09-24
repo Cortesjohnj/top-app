@@ -24,7 +24,7 @@ function Navbar({ toggle }) {
 
   const [isMobile, setIsMobile] = useState("");
 
-  const [location, setLocation] = useState("/");
+  const [location, setLocation] = useState(history.location.pathname);
 
   useEffect(() => {
     window.addEventListener(
@@ -45,7 +45,7 @@ function Navbar({ toggle }) {
     return history.listen((location) => {
       setLocation(location.pathname);
     });
-  }, []);
+  }, [location]);
 
   return (
     <>
