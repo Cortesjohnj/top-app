@@ -73,7 +73,6 @@ function AddPet() {
 
   const submit = (event) => {
     event.preventDefault();
-    console.log(pet);
     dispatch(addPets(pet));
   };
 

@@ -149,11 +149,11 @@ export const listFoundationRequests = (foundationId) => {
   };
 };
 
-export const registerUser = ({ firstName, email, password, role }) => {
+export const registerUser = ({ name, email, password, role }) => {
   return async function (dispatch) {
     try {
       const response = await axios.post("/signup", {
-        name: firstName,
+        name: name,
         email: email,
         password: password,
         role: role,

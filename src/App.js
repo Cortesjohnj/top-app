@@ -1,6 +1,7 @@
 import { Router, Switch, Route } from "react-router-dom";
 import { Suspense, lazy, useEffect, useState } from "react";
 import Spinner from "./components/Spinner";
+import Admin from "./pages/Admin";
 import history from "./history";
 import { useDispatch } from "react-redux";
 import { loadUser, logOut } from "./store/actionCreators";
@@ -65,6 +66,12 @@ function App() {
             component={PetManagePage}
           />
           <Route exact path="/foundations" component={Foundations} />
+          <Route exact path="/admin">
+            <Admin isFoundation={true} />
+          </Route>
+          <Route exact path="/admin/users">
+            <Admin isFoundation={false} />
+          </Route>
           <Route component={NotFound} />
         </Switch>
         <Footer />
