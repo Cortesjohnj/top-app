@@ -73,3 +73,15 @@ test("renders PetListPage component", async () => {
   );
   await waitFor(() => expect(screen.getByText(/friend/i)).toBeInTheDocument());
 });
+
+test("PetListPage redirects to login if not authenticated", async () => {
+  history.push("/foundations/613fecc4e485559caa864add/pets");
+  render(
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+  await waitFor(() =>
+    expect(screen.queryByText(/new friend/i)).not.toBeInTheDocument()
+  );
+});
