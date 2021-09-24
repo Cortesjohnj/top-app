@@ -1,8 +1,3 @@
-* {
-  font-size: large;
-  font-family: "Muli", sans-serif;
-}
-
 .AdminTable__photos {
   display: block;
   margin-left: auto;
@@ -15,6 +10,7 @@
   display: flex;
   justify-content: center;
   padding-top: 10px;
+  font-size: large;
 }
 
 .AdminTable__td {
@@ -22,18 +18,21 @@
   border-right: 1px solid black;
   border-top: 1px solid black;
   display: table-cell;
+  font-size: large;
 }
 
 .AdminTable__table {
   border-left: 1px solid black;
   border-bottom: 1px solid black;
   border-top: 1px solid black;
+  font-size: large;
 }
 
 .AdminTable__check {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  font-size: large;
 }
 
 .AdminTable__bottomButtons {
@@ -57,4 +56,8 @@
 .AdminTable__bottomDiv {
   display: flex;
   justify-content: center;
+}
+
+.AdminTable_General {
+  min-height: 100vh;
 }

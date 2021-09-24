@@ -123,7 +123,7 @@ const Admin = (isF) => {
   }
 
   return (
-    <div>
+    <div className="AdminTable_General">
       <div className="AdminTable__divTable">
         <Table
           columns={columns}
