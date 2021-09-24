@@ -1,0 +1,74 @@
+html {
+  font-size: 10px;
+}
+
+.request-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  margin: 10px auto;
+  padding: 10px 5px 10px 10px;
+  background-color: var(--soft-blue);
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.16);
+}
+
+.request-container__name {
+  margin-bottom: 5px;
+  color: var(--blue-pigment);
+}
+
+.request-container__text {
+  font-size: 1.2rem;
+  padding-bottom: 5px;
+  text-align: justify;
+}
+
+.request-container__buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.request-container__buttons button {
+  width: 70px;
+  margin: 0 5px;
+  padding: 3px;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+}
+
+.request-container__buttons .button-accept {
+  background-color: var(--blue-pigment);
+  color: var(--soft-blue);
+}
+
+.request-container__buttons .button-reject {
+  background-color: red;
+  color: var(--soft-blue);
+}
+
+.request-container__lower-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.request-container__lower-text p {
+  font-size: 1.4rem;
+}
+
+.request-container__lower-text span {
+  font-weight: bold;
+}
+
+.request-container__lower-text .status-green {
+  color: green;
+}
+
+.request-container__lower-text .status-red {
+  color: red;
+}
