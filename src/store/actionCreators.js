@@ -26,6 +26,8 @@ export const authUser = ({ email, password }) => {
         password: password,
       });
       localStorage.setItem(AUTHORIZATION, response.data.token);
+      axios.defaults.headers.common["Authorization"] =
+        localStorage.getItem(AUTHORIZATION);
       dispatch({ type: LOGIN_USER, payload: response.data });
       history.push("/");
     } catch (e) {
