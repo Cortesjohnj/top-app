@@ -56,7 +56,7 @@ const FoundationsMenu = () => {
         console.log(error);
         setFoundations(null);
       });
-  }, []);
+  }, [page, route]);
 
   if (foundations === null) {
     return <NotFound></NotFound>;
@@ -64,6 +64,7 @@ const FoundationsMenu = () => {
 
   return (
     <>
+      <h1 className="title-foundations"> Foundations </h1>
       <div className="container-foundations ">
         {foundations.map((foundation) => (
           <FoundationsImage
