@@ -12,12 +12,12 @@
 }
 
 .sideBar__container--show {
-  opacity: 100%;
+  opacity: 1;
   top: 0;
 }
 
 .sideBar__container--hide {
-  opacity: 0%;
+  opacity: 0;
   top: -100%;
 }
 

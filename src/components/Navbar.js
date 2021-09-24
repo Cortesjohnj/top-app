@@ -137,7 +137,7 @@ function Navbar({ toggle }) {
                   : "navBar__container--navMenu2--hide"
               }
             >
-              <Link className="navBar__container--navLinks2" to="/foundations">
+              <Link className="navBar__container--navLinks2" to="foundations">
                 FOUNDATIONS
               </Link>
             </li>
@@ -185,7 +185,7 @@ function Navbar({ toggle }) {
                 />
               </Link>
             ) : (
-              <Link className="navBar__container--navBtnLink" to="/signup">
+              <Link className="navBar__container--navBtnLink" to="signup">
                 SIGN UP
               </Link>
             )}
