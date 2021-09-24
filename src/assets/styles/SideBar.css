@@ -18,7 +18,7 @@
 
 .sideBar__container--hide {
   opacity: 0;
-  top: -100%;
+  top: -200%;
 }
 
 .sideBar__container--closeIcon {
