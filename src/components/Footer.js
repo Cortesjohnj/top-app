@@ -69,7 +69,7 @@ const Footer = () => {
             <li className="footer__wrapper--quick-items">
               {status === AUTHENTICATED ? (
                 role === "user" ? (
-                  <Link className="footer__wrapper--navLinks" to="/foundations">
+                  <Link className="footer__wrapper--navLinks" to="foundations">
                     FOUNDATIONS
                   </Link>
                 ) : (
@@ -104,7 +104,7 @@ const Footer = () => {
             <li className="footer__wrapper--quick-items">
               {status === AUTHENTICATED ? (
                 role === "user" ? (
-                  <Link className="footer__wrapper--navLinks" to="/donate">
+                  <Link className="footer__wrapper--navLinks" to="donate">
                     DONATE
                   </Link>
                 ) : (
