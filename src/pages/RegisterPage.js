@@ -164,7 +164,10 @@ function RegisterPage() {
             </a>
           </label>
           <div className="buttomForm">
-            <PrimaryButton children={"Register"} color={"registerForm"} />
+            <PrimaryButton
+              children={"Register"}
+              color={"primaryButton registerForm"}
+            />
           </div>
         </form>
         <h4 className="register__container--Endtitle">

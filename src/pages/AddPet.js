@@ -138,7 +138,10 @@ function AddPet() {
             />
 
             <div className="addButton">
-              <PrimaryButton children={"Add Pet"} color={"addPets"} />
+              <PrimaryButton
+                children={"Add Pet"}
+                color={"primaryButton addPets"}
+              />
             </div>
           </div>
         </form>

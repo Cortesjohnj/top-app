@@ -116,7 +116,10 @@ function Profile() {
             onChange={onChange}
             required={phoneNumber ? true : false}
           />
-          <PrimaryButton children={"Update profile"} color={"updateUser"} />
+          <PrimaryButton
+            children={"Update profile"}
+            color={"primaryButton updateUser"}
+          />
         </form>
       </div>
     </section>

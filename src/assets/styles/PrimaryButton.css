@@ -2,76 +2,33 @@ html {
   font-size: 10px;
 }
 
-.registerForm{
-  background-color: var(--blue-pigment);
-  border: none;
-  border-radius: 25px;
-  color: white;
-  cursor: pointer;
-  font-size: 1.5rem;
-  font-weight: bold;
-  height: 40px;
-  letter-spacing: 1px;
-  margin: 18px 0;
-  width: 70%;
-}
-
-.addPets{
-  background-color: var(--blue-pigment);
-  border: none;
-  border-radius: 25px;
-  color: white;
-  cursor: pointer;
-  font-size: 1.5rem;
-  font-weight: bold;
-  height: 45px;
-  letter-spacing: 1px;
-  margin: 18px 0;
-  width: 90%;
-}
-
-.updateUser{
-  background-color: var(--blue-pigment);
-  border: none;
-  border-radius: 25px;
-  color: white;
-  cursor: pointer;
-  font-size: 1.6rem;
-  font-weight: bold;
-  height: 45px;
-  letter-spacing: 1px;
-  margin: 18px 0;
-  width: 90%;
-}
-
 .primaryButton{
   background-color: var(--blue-pigment);
   border: none;
   border-radius: 25px;
   color: white;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 1.5rem;
   font-weight: bold;
   height: 50px;
   letter-spacing: 1px;
-  margin: 10px 0;
+  margin: 18px 0;
 }
 
-.azul {  
-  background-color: var(--aero);
-  border: none;
-  border-radius: 25px;
-  color: white;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  height: 50px;
-  letter-spacing: 1px;
-  margin: 10px 0;  
+.registerForm{
+  height: 40px;
+  width: 70%;
 }
 
-#submitButton {
-  width: 80%;
+.addPets{
+  height: 45px;
+  width: 90%;
+}
+
+.updateUser{
+  font-size: 1.6rem;
+  height: 45px;  
+  width: 90%;
 }
 
 @media (min-width: 768px) {
