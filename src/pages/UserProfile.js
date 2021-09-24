@@ -7,7 +7,7 @@ import { updateUserProfile } from "../store/actionCreators";
 
 function Profile() {
   const { name, email, address, phoneNumber, _id, role } = useSelector(
-    (state) => state.user
+    state => state.user
   );
   const dispatch = useDispatch();
 
@@ -25,32 +25,32 @@ function Profile() {
     URL.revokeObjectURL(updateProfile);
   };
 
-  const setImage = (newImage) => {
+  const setImage = newImage => {
     if (updateProfile) {
       cleanup();
     }
-    setUpdateProfile((prevState) => ({
+    setUpdateProfile(prevState => ({
       ...prevState,
       photoUrl: newImage,
     }));
   };
 
-  const handlePhoto = (event) => {
+  const handlePhoto = event => {
     const newImage = event.target.files[0];
     if (newImage) {
       setImage(URL.createObjectURL(newImage));
     }
   };
 
-  const onChange = (event) => {
+  const onChange = event => {
     event.preventDefault();
-    setUpdateProfile((prevState) => ({
+    setUpdateProfile(prevState => ({
       ...prevState,
       [event.target.name]: event.target.value,
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = event => {
     event.preventDefault();
     dispatch(updateUserProfile(updateProfile));
   };
@@ -118,8 +118,7 @@ function Profile() {
           />
           <PrimaryButton
             children={"Update profile"}
-            color={"primaryButton"}
-            id="submitButton"
+            color={"primaryButton updateUser"}
           />
         </form>
       </div>

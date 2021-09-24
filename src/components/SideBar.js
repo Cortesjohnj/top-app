@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Link as LinkScroll } from "react-scroll";
 import { animateScroll as ScrollToTop } from "react-scroll";
@@ -6,22 +6,31 @@ import "../assets/styles/SideBar.css";
 import { FaTimes } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../store/actionCreators";
-import { AUTHENTICATED } from "../store/actions";
+import { AUTHENTICATED, NOT_AUTHENTICATED } from "../store/actions";
+import history from "../history";
 
 function SideBar({ isOpen, toggle }) {
   const dispatch = useDispatch();
 
   const status = useSelector((state) => state.status);
 
+  const [location, setLocation] = useState("/");
+
   let recentUser = useSelector((state) => state.user);
   if (recentUser === null || recentUser === undefined) {
     recentUser = {};
   }
-  const { name, _id } = recentUser;
+  const { _id, role } = recentUser;
 
   const handleLogOut = () => {
     dispatch(logOut());
   };
+
+  useEffect(() => {
+    return history.listen((location) => {
+      setLocation(location.pathname);
+    });
+  }, []);
 
   return (
     <aside
@@ -35,51 +44,87 @@ function SideBar({ isOpen, toggle }) {
         </div>
       </div>
       <div className="sideBar__container--wrapper">
-        <ul className="sideBar__container--menu">
-          <li
-            className="sideBar__container--link"
-            onClick={() => ScrollToTop.scrollToTop()}
-          >
-            ABOUT
-          </li>
-          <LinkScroll
-            onClick={toggle}
-            smooth={true}
-            duration={1000}
-            className="sideBar__container--link"
-            to="info"
-          >
-            INFO
-          </LinkScroll>
-          <LinkScroll
-            onClick={toggle}
-            smooth={true}
-            duration={1000}
-            className="sideBar__container--link"
-            to="helpUs"
-          >
-            HELP US
-          </LinkScroll>
-        </ul>
+        {location === "/" && (
+          <ul className="sideBar__container--menu">
+            <li
+              className="sideBar__container--link"
+              onClick={() => ScrollToTop.scrollToTop()}
+            >
+              ABOUT
+            </li>
+            <LinkScroll
+              onClick={toggle}
+              smooth={true}
+              duration={1000}
+              className="sideBar__container--link"
+              to="info"
+            >
+              INFO
+            </LinkScroll>
+            <LinkScroll
+              onClick={toggle}
+              smooth={true}
+              duration={1000}
+              className="sideBar__container--link"
+              to="helpUs"
+            >
+              HELP US
+            </LinkScroll>
+          </ul>
+        )}
+
         <div className="sideBar__container--btnWrap">
           {status === AUTHENTICATED && (
-            <Link className="sideBar__container--route" to={`/${_id}/${name}`}>
+            <Link className="sideBar__container--route" to={`/${_id}/profile`}>
               PROFILE
             </Link>
           )}
         </div>
         <div className="sideBar__container--btnWrap">
-          {status === AUTHENTICATED && (
+          {status === AUTHENTICATED && role === "user" ? (
             <Link className="sideBar__container--route" to="/foundations">
               FOUNDATIONS
             </Link>
+          ) : (
+            status === AUTHENTICATED && (
+              <Link
+                className="sideBar__container--route"
+                to={`/foundations/${_id}/pets`}
+              >
+                PETS
+              </Link>
+            )
           )}
         </div>
         <div className="sideBar__container--btnWrap">
-          {status === AUTHENTICATED ? (
+          {status === NOT_AUTHENTICATED || role === "user" ? (
             <Link className="sideBar__container--route" to="/donate">
               DONATE
             </Link>
+          ) : (
+            (status === AUTHENTICATED || role === "foundation") && (
+              <Link
+                className="sideBar__container--route"
+                to="/"
+                onClick={handleLogOut}
+              >
+                LOG OUT
+              </Link>
+            )
+          )}
+        </div>
+
+        <div className="sideBar__container--btnWrap">
+          {status === AUTHENTICATED ? (
+            role === "user" && (
+              <Link
+                className="sideBar__container--route"
+                to="/"
+                onClick={handleLogOut}
+              >
+                LOG OUT
+              </Link>
+            )
           ) : (
             <Link className="sideBar__container--route" to="/login">
               LOG IN
@@ -87,15 +132,7 @@ function SideBar({ isOpen, toggle }) {
           )}
         </div>
         <div className="sideBar__container--btnWrap">
-          {status === AUTHENTICATED ? (
-            <Link
-              className="sideBar__container--route"
-              to="/"
-              onClick={handleLogOut}
-            >
-              LOG OUT
-            </Link>
-          ) : (
+          {status === NOT_AUTHENTICATED && (
             <Link className="sideBar__container--route" to="/signup">
               SIGN UP
             </Link>

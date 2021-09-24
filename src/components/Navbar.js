@@ -7,7 +7,8 @@ import { animateScroll as ScrollToTop } from "react-scroll";
 import "../assets/styles/Navbar.css";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../store/actionCreators";
-import { AUTHENTICATED } from "../store/actions";
+import { AUTHENTICATED, NOT_AUTHENTICATED } from "../store/actions";
+import history from "../history";
 
 function Navbar({ toggle }) {
   const dispatch = useDispatch();
@@ -19,9 +20,11 @@ function Navbar({ toggle }) {
 
   const status = useSelector((state) => state.status);
 
-  const { photoUrl, name, _id } = recentUser;
+  const { photoUrl, name, _id, role } = recentUser;
 
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [isMobile, setIsMobile] = useState("");
+
+  const [location, setLocation] = useState("/");
 
   useEffect(() => {
     window.addEventListener(
@@ -38,6 +41,12 @@ function Navbar({ toggle }) {
     dispatch(logOut());
   };
 
+  useEffect(() => {
+    return history.listen((location) => {
+      setLocation(location.pathname);
+    });
+  }, []);
+
   return (
     <>
       <nav className="navBar">
@@ -50,7 +59,7 @@ function Navbar({ toggle }) {
           {status === AUTHENTICATED ? (
             <Link
               className="navBar__container--profilePicWrapper1"
-              to={isMobile ? "" : `/${_id}/${name}`}
+              to={!isMobile && `/${_id}/profile`}
             >
               <img
                 onClick={toggle}
@@ -64,34 +73,36 @@ function Navbar({ toggle }) {
               <FaBars onClick={toggle} />
             </div>
           )}
-          <ul className="navBar__container--navMenu">
-            <li
-              className="navBar__container--navItem"
-              onClick={() => ScrollToTop.scrollToTop()}
-            >
-              <div className="navBar__container--navLinks">ABOUT</div>
-            </li>
-            <li className="navBar__container--navItem">
-              <LinkScroll
-                className="navBar__container--navLinks"
-                to="info"
-                smooth={true}
-                duration={1000}
+          {location === "/" && (
+            <ul className="navBar__container--navMenu">
+              <li
+                className="navBar__container--navItem"
+                onClick={() => ScrollToTop.scrollToTop()}
               >
-                INFO
-              </LinkScroll>
-            </li>
-            <li className="navBar__container--navItem">
-              <LinkScroll
-                className="navBar__container--navLinks"
-                to="helpUs"
-                smooth={true}
-                duration={1000}
-              >
-                HELP US
-              </LinkScroll>
-            </li>
-          </ul>
+                <div className="navBar__container--navLinks">ABOUT</div>
+              </li>
+              <li className="navBar__container--navItem">
+                <LinkScroll
+                  className="navBar__container--navLinks"
+                  to="info"
+                  smooth={true}
+                  duration={1000}
+                >
+                  INFO
+                </LinkScroll>
+              </li>
+              <li className="navBar__container--navItem">
+                <LinkScroll
+                  className="navBar__container--navLinks"
+                  to="helpUs"
+                  smooth={true}
+                  duration={1000}
+                >
+                  HELP US
+                </LinkScroll>
+              </li>
+            </ul>
+          )}
 
           <ul className="navBar__container--navMenu2">
             <li
@@ -107,7 +118,21 @@ function Navbar({ toggle }) {
             </li>{" "}
             <li
               className={
-                status === AUTHENTICATED
+                status === AUTHENTICATED && role === "foundation"
+                  ? "navBar__container--navItem2"
+                  : "navBar__container--navMenu2--hide"
+              }
+            >
+              <Link
+                className="navBar__container--navLinks2"
+                to={`/foundations/${_id}/pets`}
+              >
+                PETS
+              </Link>
+            </li>
+            <li
+              className={
+                status === AUTHENTICATED && role === "user"
                   ? "navBar__container--navItem2"
                   : "navBar__container--navMenu2--hide"
               }
@@ -118,7 +143,7 @@ function Navbar({ toggle }) {
             </li>
             <li
               className={
-                status === AUTHENTICATED
+                status === NOT_AUTHENTICATED || role === "user"
                   ? "navBar__container--navItem2"
                   : "navBar__container--navMenu2--hide"
               }
@@ -151,7 +176,7 @@ function Navbar({ toggle }) {
             {status === AUTHENTICATED ? (
               <Link
                 className="navBar__container--profilePicWrapper"
-                to={`/${_id}/${name}`}
+                to={`/${_id}/profile`}
               >
                 <img
                   className="navBar__container--profilePic"
