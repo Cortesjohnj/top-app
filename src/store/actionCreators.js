@@ -26,6 +26,8 @@ export const authUser = ({ email, password }) => {
         password: password,
       });
       localStorage.setItem(AUTHORIZATION, response.data.token);
+      axios.defaults.headers.common["Authorization"] =
+        localStorage.getItem(AUTHORIZATION);
       dispatch({ type: LOGIN_USER, payload: response.data });
       history.push("/");
     } catch (e) {
@@ -37,6 +39,8 @@ export const authUser = ({ email, password }) => {
 export const loadUser = () => {
   return async function (dispatch) {
     try {
+      axios.defaults.headers.common["Authorization"] =
+        localStorage.getItem(AUTHORIZATION);
       const response = await axios.get("/me");
       dispatch({ type: LOGIN_USER, payload: response.data });
     } catch (e) {
@@ -148,11 +152,11 @@ export const listFoundationRequests = (foundationId) => {
   };
 };
 
-export const registerUser = ({ firstName, email, password, role }) => {
+export const registerUser = ({ name, email, password, role }) => {
   return async function (dispatch) {
     try {
       const response = await axios.post("/signup", {
-        name: firstName,
+        name: name,
         email: email,
         password: password,
         role: role,
