@@ -68,6 +68,7 @@ function RegisterPage() {
             placeholder="Email"
             name="email"
             className="form__field"
+            data-testid="email"
             {...register("email", {
               required: true,
               pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
@@ -90,6 +91,7 @@ function RegisterPage() {
             placeholder="Password"
             name="password"
             className="form__field"
+            data-testid="password"
             {...register("password", {
               required: true,
               pattern: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/,
