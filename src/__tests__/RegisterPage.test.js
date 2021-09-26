@@ -1,20 +1,18 @@
-import { render, screen, waitFor, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import history from "../history";
 import axios from "../axios";
-import createStore from "../store/store";
+import createStoreApp from "../store/store";
 import RegisterPage from "../pages/RegisterPage";
 import { act } from "react-dom/test-utils";
 
 jest.mock("../axios");
-const mockOnSubmit = jest.fn();
-console.log(mockOnSubmit);
 
 let store;
 beforeEach(() => {
   localStorage.clear();
-  store = createStore();
+  store = createStoreApp();
 });
 
 test("Signup", async () => {
@@ -36,13 +34,13 @@ test("Signup", async () => {
   render(
     <Provider store={store}>
       <MemoryRouter>
-        <RegisterPage onSubmit={mockOnSubmit} />
+        <RegisterPage />
       </MemoryRouter>
     </Provider>
   );
 
   //validations
-  await waitFor(() => screen.getByText(/Sign up to continue/i));
+  await act(async () => screen.getByText(/Sign up to continue/i));
   await act(async () => {
     fireEvent.click(screen.getByText("Register"));
   });
