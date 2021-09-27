@@ -14,7 +14,7 @@ function SideBar({ isOpen, toggle }) {
 
   const status = useSelector((state) => state.status);
 
-  const [location, setLocation] = useState("/");
+  const [location, setLocation] = useState(history.location.pathname);
 
   let recentUser = useSelector((state) => state.user);
   if (recentUser === null || recentUser === undefined) {
@@ -30,7 +30,7 @@ function SideBar({ isOpen, toggle }) {
     return history.listen((location) => {
       setLocation(location.pathname);
     });
-  }, []);
+  }, [location]);
 
   return (
     <aside

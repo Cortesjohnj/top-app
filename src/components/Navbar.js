@@ -24,7 +24,7 @@ function Navbar({ toggle }) {
 
   const [isMobile, setIsMobile] = useState("");
 
-  const [location, setLocation] = useState("/");
+  const [location, setLocation] = useState(history.location.pathname);
 
   useEffect(() => {
     window.addEventListener(
@@ -45,7 +45,7 @@ function Navbar({ toggle }) {
     return history.listen((location) => {
       setLocation(location.pathname);
     });
-  }, []);
+  }, [location]);
 
   return (
     <>
@@ -112,7 +112,7 @@ function Navbar({ toggle }) {
                   : "navBar__container--navItem2"
               }
             >
-              <Link className="navBar__container--navLinks2" to="login">
+              <Link className="navBar__container--navLinks2" to="/login">
                 LOG IN
               </Link>
             </li>{" "}
@@ -150,7 +150,7 @@ function Navbar({ toggle }) {
             >
               <Link
                 className="navBar__container--navLinks2 navBar__container--donate"
-                to="donate"
+                to="/donate"
               >
                 DONATE
               </Link>

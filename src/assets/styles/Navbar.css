@@ -80,7 +80,7 @@
     position: absolute;
     top: 0;
     right: 0;
-    opacity: 100%;
+    opacity: 1;
     transform: translate(-100%, 60%);
     font-size: 32px;
     cursor: pointer;

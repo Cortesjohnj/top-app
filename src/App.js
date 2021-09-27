@@ -1,7 +1,6 @@
 import { Router, Switch, Route } from "react-router-dom";
 import { Suspense, lazy, useEffect, useState } from "react";
 import Spinner from "./components/Spinner";
-import Admin from "./pages/Admin";
 import history from "./history";
 import { useDispatch } from "react-redux";
 import { loadUser, logOut } from "./store/actionCreators";
@@ -21,6 +20,7 @@ const Navbar = lazy(() => import("./components/Navbar"));
 const Footer = lazy(() => import("./components/Footer"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const AdoptionPetRequest = lazy(() => import("./pages/AdoptionPetRequest"));
+const Admin = lazy(() => import("./pages/Admin"));
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
