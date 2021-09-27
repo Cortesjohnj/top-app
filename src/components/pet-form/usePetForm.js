@@ -17,7 +17,7 @@ const usePetForm = (submitForm, validateInfo) => {
     setValues({
       ...values,
       [name]: value,
-      petId: petId,
+      petId,
     });
   };
 

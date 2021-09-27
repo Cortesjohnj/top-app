@@ -5,7 +5,7 @@ import Dog from "../assets/images/Dog swimming-01.svg";
 import "../assets/styles/AboutSection.css";
 
 const AboutSection = () => {
-  const activeUser = useSelector((state) => state.isUser);
+  const activeUser = useSelector((state) => state.user);
   return (
     <>
       <div className="aboutContainer">
@@ -25,10 +25,16 @@ const AboutSection = () => {
             {activeUser ? (
               <Link
                 className="aboutContainer__wrapper--btnWrap"
-                to="/foundations"
+                to={
+                  activeUser.role === "user" || activeUser.role === "admin"
+                    ? "/foundations"
+                    : `/foundations/${activeUser._id}/pets`
+                }
               >
                 <button className="aboutContainer__wrapper--button">
-                  ADOPT ME
+                  {activeUser.role === "user" || activeUser.role === "admin"
+                    ? "FOUNDATIONS"
+                    : "PETS"}
                 </button>
               </Link>
             ) : (

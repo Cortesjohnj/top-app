@@ -20,6 +20,7 @@ const Navbar = lazy(() => import("./components/Navbar"));
 const Footer = lazy(() => import("./components/Footer"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const AdoptionPetRequest = lazy(() => import("./pages/AdoptionPetRequest"));
+const Admin = lazy(() => import("./pages/Admin"));
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -65,6 +66,12 @@ function App() {
             component={PetManagePage}
           />
           <Route exact path="/foundations" component={Foundations} />
+          <Route exact path="/admin">
+            <Admin isFoundation={true} />
+          </Route>
+          <Route exact path="/admin/users">
+            <Admin isFoundation={false} />
+          </Route>
           <Route component={NotFound} />
         </Switch>
         <Footer />

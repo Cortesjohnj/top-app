@@ -1,9 +1,11 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Dog2 from "../assets/images/undraw_good_doggy_4wfq.svg";
 import "../assets/styles/HelpUs.css";
 
 const HelpUsSection = () => {
+  const activeUser = useSelector((state) => state.user);
   return (
     <>
       <div className="joinUsContainer" id="helpUs">
@@ -28,11 +30,28 @@ const HelpUsSection = () => {
               If you aren't interested in adopting a pet, you can help the
               foundations maintain their herd with a donation.
             </p>
-            <Link className="joinUsContainer__wrapper--btnWrap" to="/donate">
-              <button className="joinUsContainer__wrapper--button">
-                DONATE
-              </button>
-            </Link>
+            {activeUser ? (
+              <Link
+                className="joinUsContainer__wrapper--btnWrap"
+                to={
+                  activeUser.role === "foundation"
+                    ? `/foundations/${activeUser._id}/pets`
+                    : "/donate"
+                }
+              >
+                <button className="joinUsContainer__wrapper--button">
+                  {activeUser.role === "user" || activeUser.role === "admin"
+                    ? "DONATE"
+                    : "PETS"}
+                </button>
+              </Link>
+            ) : (
+              <Link className="joinUsContainer__wrapper--btnWrap" to="/donate">
+                <button className="joinUsContainer__wrapper--button">
+                  DONATE
+                </button>
+              </Link>
+            )}
           </div>
         </div>
       </div>

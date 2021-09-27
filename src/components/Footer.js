@@ -10,10 +10,15 @@ import { Link } from "react-router-dom";
 import { Link as LinkScroll } from "react-scroll";
 import { animateScroll as ScrollToTop } from "react-scroll";
 import { useSelector } from "react-redux";
-import { AUTHENTICATED } from "../store/actions";
+import { AUTHENTICATED, NOT_AUTHENTICATED } from "../store/actions";
 
 const Footer = () => {
   const status = useSelector((state) => state.status);
+  let recentUser = useSelector((state) => state.user);
+  if (recentUser === null || recentUser === undefined) {
+    recentUser = {};
+  }
+  const { role, _id } = recentUser;
 
   return (
     <footer className="footer">
@@ -63,9 +68,18 @@ const Footer = () => {
           <ul>
             <li className="footer__wrapper--quick-items">
               {status === AUTHENTICATED ? (
-                <Link className="footer__wrapper--navLinks" to="/foundations">
-                  FOUNDATIONS
-                </Link>
+                role === "user" ? (
+                  <Link className="footer__wrapper--navLinks" to="/foundations">
+                    FOUNDATIONS
+                  </Link>
+                ) : (
+                  <Link
+                    className="navBar__container--navLinks2"
+                    to={`/foundations/${_id}/pets`}
+                  >
+                    PETS
+                  </Link>
+                )
               ) : (
                 <div
                   className="footer__wrapper--navLinks"
@@ -89,18 +103,29 @@ const Footer = () => {
             </li>
             <li className="footer__wrapper--quick-items">
               {status === AUTHENTICATED ? (
-                <Link className="footer__wrapper--navLinks" to="/donate">
-                  DONATE
-                </Link>
+                role === "user" ? (
+                  <Link className="footer__wrapper--navLinks" to="/donate">
+                    DONATE
+                  </Link>
+                ) : (
+                  <Link
+                    className="footer__wrapper--navLinks"
+                    to={`/${_id}/profile`}
+                  >
+                    PROFILE
+                  </Link>
+                )
               ) : (
-                <LinkScroll
-                  className="footer__wrapper--navLinks"
-                  to="helpUs"
-                  smooth={true}
-                  duration={1000}
-                >
-                  HELP US
-                </LinkScroll>
+                status === NOT_AUTHENTICATED && (
+                  <LinkScroll
+                    className="footer__wrapper--navLinks"
+                    to="helpUs"
+                    smooth={true}
+                    duration={1000}
+                  >
+                    HELP US
+                  </LinkScroll>
+                )
               )}
             </li>
           </ul>

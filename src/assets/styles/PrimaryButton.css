@@ -1,29 +1,59 @@
+html {
+  font-size: 10px;
+}
+
 .primaryButton{
   background-color: var(--blue-pigment);
   border: none;
   border-radius: 25px;
   color: white;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 1.5rem;
   font-weight: bold;
   height: 50px;
   letter-spacing: 1px;
-  margin: 10px 0;
+  margin: 18px 0;
 }
 
-.azul {  
-  background-color: var(--aero);
-  border: none;
-  border-radius: 25px;
-  color: white;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  height: 50px;
-  letter-spacing: 1px;
-  margin: 10px 0;  
+.registerForm{
+  height: 40px;
+  width: 70%;
 }
 
-#submitButton {
-  width: 80%;
+.addPets{
+  height: 45px;
+  width: 90%;
+}
+
+.updateUser{
+  font-size: 1.6rem;
+  height: 45px;  
+  width: 90%;
+}
+
+@media (min-width: 768px) {
+  .registerForm{
+    width: 60%
+  } 
+  .addPets{
+    width: 70%
+  } 
+}
+
+@media (min-width: 800px) {
+  .updateUser{
+    width: 70%
+  } 
+}
+
+@media (min-width: 1024px) {
+  .registerForm{
+    width: 50%
+  } 
+  .addPets{
+    width: 60%
+  }
+  .updateUser{
+    width: 60%
+  } 
 }
