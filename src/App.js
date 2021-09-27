@@ -23,6 +23,7 @@ const AdoptionPetRequest = lazy(() => import("./pages/AdoptionPetRequest"));
 const Admin = lazy(() => import("./pages/Admin"));
 
 function App() {
+  /* 
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => {
@@ -75,6 +76,22 @@ function App() {
           <Route component={NotFound} />
         </Switch>
         <Footer />
+      </Suspense>
+    </Router>
+  );
+  */
+  return (
+    <Router history={history}>
+      <Suspense fallback={<Spinner />}>
+        <Switch>
+          <Route exact path="/foundations" component={Foundations} />
+          <Route exact path="/admin">
+            <Admin isFoundation={true} />
+          </Route>
+          <Route exact path="/admin/users">
+            <Admin isFoundation={false} />
+          </Route>
+        </Switch>
       </Suspense>
     </Router>
   );

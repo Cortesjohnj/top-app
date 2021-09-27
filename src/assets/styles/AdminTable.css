@@ -2,7 +2,6 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-
   height: 100px;
   border-radius: 5%;
 }
@@ -15,17 +14,26 @@
 
 .AdminTable__td {
   padding: 3px;
-  border-right: 1px solid black;
   border-top: 1px solid black;
+  border-right: 1px solid black;
   display: table-cell;
   font-size: large;
+  text-align: center;
+}
+.AdminTable__td:last-child {
+  border-right: 0;
+}
+
+.AdminTable__th {
+  border-right: 1px solid black;
+}
+.AdminTable__th:last-child {
+  border-right: 0;
 }
 
 .AdminTable__table {
-  border-left: 1px solid black;
-  border-bottom: 1px solid black;
-  border-top: 1px solid black;
-  font-size: large;
+  border: 1px solid black;
+  border-spacing: 0;
 }
 
 .AdminTable__check {
@@ -42,9 +50,7 @@
   border: none;
   border-radius: 15px;
   color: white;
-  cursor: pointer;
-  font-size: 1.2rem;
-  font-weight: bold;
+  font-size: 1.4rem;
   height: 50px;
   letter-spacing: 1px;
 }
@@ -60,4 +66,7 @@
 
 .AdminTable_General {
   min-height: 100vh;
+  background-image: url("../images/wave-addpet.svg");
+  background-repeat: no-repeat;
+  background-position: bottom;
 }
