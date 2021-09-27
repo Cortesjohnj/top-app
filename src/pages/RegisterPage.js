@@ -32,6 +32,7 @@ function RegisterPage() {
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="register__container--form"
+          data-testid="form"
         >
           {errors?.name?.type === "required" && (
             <p className="register__container--form--errors">

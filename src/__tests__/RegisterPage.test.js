@@ -5,6 +5,7 @@ import history from "../history";
 import axios from "../axios";
 import createStoreApp from "../store/store";
 import RegisterPage from "../pages/RegisterPage";
+import App from "../App";
 
 jest.mock("../axios");
 
@@ -40,7 +41,7 @@ it("should signup with valid credentials", async () => {
   );
 
   // validations
-  await waitFor(() => screen.getByText(/Sign up to continue/i));
+  await waitFor(() => screen.getAllByText(/Sign up to continue/i));
 
   fireEvent.change(screen.getByTestId("name"), {
     target: { name: "name", value: "Diego" },
@@ -54,16 +55,13 @@ it("should signup with valid credentials", async () => {
   fireEvent.change(screen.getByTestId("confirmPassword"), {
     target: { name: "confirmPassword", value: "Test1234" },
   });
-  fireEvent.change(screen.getByRole("radio", { name: /user/i }), {
-    target: { name: "user", value: "user" },
-  });
-  fireEvent.change(screen.getByRole("checkbox"), {
-    target: { name: "terms", value: true },
-  });
+  fireEvent.click(screen.getByRole("radio", { name: /user/i }));
+
+  fireEvent.click(screen.getByRole("checkbox"));
 
   const spy = jest.spyOn(history, "push");
 
-  fireEvent.click(screen.getByTestId("submitButton"));
+  fireEvent.submit(screen.getByTestId("form"));
 
   // expect(submit).toBeTruthy();
 
