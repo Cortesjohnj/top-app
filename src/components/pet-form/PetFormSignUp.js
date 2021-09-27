@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import usePetForm from "./usePetForm";
 import validateInfo from "./validateInfo";
 
@@ -8,10 +9,20 @@ const PetFormSignUp = ({ submitForm }) => {
     validateInfo
   );
 
+  const statePet = useSelector((state) => state.selectedPet);
+  const [pet, setPet] = useState({
+    name: "",
+    photoUrl: "",
+  });
+
+  useEffect(() => {
+    setPet(statePet);
+  }, [statePet]);
+
   return (
     <div className="petform__rightContainer">
       <form className="petform__rightContainerForm" onSubmit={handleSubmit}>
-        <h1>You're one step closer to be with your dream companion</h1>
+        <h1>{`You're one step closer to be with your dream companion ${pet.name}`}</h1>
 
         <div className="petform__rightContainerForm--inputs">
           <label
