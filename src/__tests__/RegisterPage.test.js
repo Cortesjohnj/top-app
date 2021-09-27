@@ -14,13 +14,13 @@ beforeEach(() => {
   store = createStoreApp();
 });
 
-test("Signup with valid credentials", async () => {
+it("should signup with valid credentials", async () => {
   // prepare;
   axios.post.mockResolvedValueOnce({
     data: {
       user: {
-        name: "Diegodev",
-        email: "Diegodev@gmail.com",
+        name: "Diego",
+        email: "diegodev@gmail.com",
         password: "Test1234",
         _id: "123123123",
         role: "user",
@@ -43,10 +43,10 @@ test("Signup with valid credentials", async () => {
   await waitFor(() => screen.getByText(/Sign up to continue/i));
 
   fireEvent.change(screen.getByTestId("name"), {
-    target: { name: "name", value: "Diegodev" },
+    target: { name: "name", value: "Diego" },
   });
   fireEvent.change(screen.getByTestId("email"), {
-    target: { name: "email", value: "Diegodev@gmail.com" },
+    target: { name: "email", value: "diegodev@gmail.com" },
   });
   fireEvent.change(screen.getByTestId("password"), {
     target: { name: "password", value: "Test1234" },
@@ -54,22 +54,23 @@ test("Signup with valid credentials", async () => {
   fireEvent.change(screen.getByTestId("confirmPassword"), {
     target: { name: "confirmPassword", value: "Test1234" },
   });
-  fireEvent.change(screen.getByTestId("user"), {
-    target: { name: "user", value: true },
+  fireEvent.change(screen.getByRole("radio", { name: /user/i }), {
+    target: { name: "user", value: "user" },
   });
-  fireEvent.change(screen.getByTestId("terms"), {
+  fireEvent.change(screen.getByRole("checkbox"), {
     target: { name: "terms", value: true },
   });
 
   const spy = jest.spyOn(history, "push");
-  const submit = fireEvent.click(screen.getByTestId("submitButton"));
 
-  expect(submit).toBeTruthy();
+  fireEvent.click(screen.getByTestId("submitButton"));
 
-  // await waitFor(() => expect(spy).toHaveBeenCalledWith("/login"));
+  // expect(submit).toBeTruthy();
+
+  await waitFor(() => expect(spy).toHaveBeenCalledWith("/login"));
 });
 
-test("shows error when user enters an invalid email", async () => {
+it("should show error when user enters an invalid email", async () => {
   history.push("/signup");
 
   // execution
@@ -93,7 +94,7 @@ test("shows error when user enters an invalid email", async () => {
   });
 });
 
-test("shows error when user enters an invalid password", async () => {
+it("should show error when user enters an invalid password", async () => {
   history.push("/signup");
 
   // execution
