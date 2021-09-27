@@ -48,6 +48,7 @@ function RegisterPage() {
             name="name"
             placeholder="Name"
             className="form__field"
+            data-testid="name"
             {...register("name", {
               required: true,
               maxLength: 20,
@@ -107,6 +108,7 @@ function RegisterPage() {
             placeholder="Confirm password"
             name="confirmPassword"
             className="form__field"
+            data-testid="confirmPassword"
             {...register("confirmPassword", {
               required: true,
               validate: value =>
@@ -126,6 +128,7 @@ function RegisterPage() {
                 type="radio"
                 name="user"
                 value="user"
+                data-testid="user"
                 className="register__container--form--options--input"
                 {...register("role", {
                   required: true,
@@ -138,6 +141,7 @@ function RegisterPage() {
                 type="radio"
                 name="foundation"
                 value="foundation"
+                data-testid="foundation"
                 className="register__container--form--options--input"
                 {...register("role", {
                   required: true,
@@ -155,6 +159,7 @@ function RegisterPage() {
               type="checkbox"
               name="terms"
               className="termsAndConditions--input"
+              data-testid="terms"
               {...register("terms", {
                 required: true,
               })}
@@ -169,6 +174,7 @@ function RegisterPage() {
             <PrimaryButton
               children={"Register"}
               color={"primaryButton registerForm"}
+              data-testid="submitButton"
             />
           </div>
         </form>

@@ -22,6 +22,4 @@ test("renders signup page", async () => {
   await waitFor(() =>
     expect(screen.getByText(/Sign up to continue/i)).toBeInTheDocument()
   );
-  // const titleElement = screen.getByText(/Sign up to continue/i);
-  // expect(titleElement).toBeInTheDocument();
 });
