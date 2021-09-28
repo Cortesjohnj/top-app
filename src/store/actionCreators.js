@@ -188,9 +188,9 @@ export const updateUserProfile = ({
       formData.append("_id", _id);
       formData.append("name", name);
       formData.append("role", role);
-      formData.append("address", address);
+      address && formData.append("address", address);
       formData.append("email", email);
-      formData.append("phoneNumber", phoneNumber);
+      phoneNumber && formData.append("phoneNumber", phoneNumber);
       formData.append("photoUrl", photoUrl);
       const response = await axios.put(`/${_id}/profile`, formData);
       dispatch({ type: UPDATE_PROFILE, payload: response.data });

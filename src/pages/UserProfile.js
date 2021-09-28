@@ -6,18 +6,17 @@ import { PrimaryButton } from "../components/PrimaryButton";
 import { updateUserProfile } from "../store/actionCreators";
 
 function Profile() {
-  const { name, email, address, phoneNumber, _id, role } = useSelector(
-    state => state.user
-  );
+  const { name, email, address, phoneNumber, _id, role, photoUrl } =
+    useSelector(state => state.user);
   const dispatch = useDispatch();
 
   const [updateProfile, setUpdateProfile] = useState({
     _id: _id,
     name: name,
     email: email,
-    address: "",
-    phoneNumber: "",
-    photoUrl: null,
+    address: address,
+    phoneNumber: phoneNumber,
+    photoUrl: photoUrl,
     role: role,
     imageFile: null,
   });
@@ -110,6 +109,7 @@ function Profile() {
             className="userProfile__container--inputs"
             onChange={onChange}
             required={address ? true : false}
+            value={updateProfile.address}
           />
           <input
             type="number"
@@ -118,6 +118,7 @@ function Profile() {
             className="userProfile__container--inputs"
             onChange={onChange}
             required={phoneNumber ? true : false}
+            value={updateProfile.phoneNumber}
           />
           <PrimaryButton
             children={"Update profile"}
