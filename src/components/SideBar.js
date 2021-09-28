@@ -37,6 +37,7 @@ function SideBar({ isOpen, toggle }) {
       className={`sideBar__container 
       ${isOpen ? "sideBar__container--show" : "sideBar__container--hide"}`}
       onClick={toggle}
+      data-testid="sideBar"
     >
       <div className="sideBar__container--icon" onClick={toggle}>
         <div className="sideBar__container--closeIcon">

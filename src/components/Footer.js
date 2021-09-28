@@ -21,7 +21,7 @@ const Footer = () => {
   const { role, _id } = recentUser;
 
   return (
-    <footer className="footer">
+    <footer className="footer" data-testid="footer">
       <div className="footer__wrapper">
         <div className="footer__wrapper--social-links">
           <ul>
