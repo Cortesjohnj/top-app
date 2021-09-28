@@ -4,7 +4,6 @@ import { Provider } from "react-redux";
 import history from "../history";
 import createStoreApp from "../store/store";
 import App from "../App";
-import Home from "../pages/Home";
 
 jest.mock("../axios");
 
