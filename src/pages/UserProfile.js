@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import "../assets/styles/UserProfile.css";
@@ -22,8 +22,6 @@ function Profile() {
     imageFile: null,
   });
 
-  useEffect(() => {}, []);
-
   const cleanup = () => {
     URL.revokeObjectURL(updateProfile);
   };
@@ -35,7 +33,7 @@ function Profile() {
     setUpdateProfile(prevState => ({
       ...prevState,
       photoUrl: URL.createObjectURL(newImage),
-      imageFIle: newImage,
+      imageFile: newImage,
     }));
   };
 
