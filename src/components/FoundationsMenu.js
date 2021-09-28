@@ -75,10 +75,8 @@ const FoundationsMenu = () => {
             photo_url={foundation.photoUrl}
             id={foundation._id}
             key={foundation._id}
-          >
-            {" "}
-          </FoundationsImage>
-        ))}{" "}
+          ></FoundationsImage>
+        ))}
       </div>
       <div className="container-buttons-foundations">
         <input

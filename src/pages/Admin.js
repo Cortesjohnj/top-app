@@ -4,97 +4,6 @@ import { useEffect, useState } from "react";
 import customAxios from "../axios";
 import NotFound from "./NotFound";
 
-function eliminate(arrData, arrCheck, setData, setArrCheck, URL) {
-  var deleteID = [];
-  for (let i = 0; i < arrCheck.length; i++) {
-    if (arrCheck[i]) {
-      deleteID.push(arrData[i].id);
-    }
-  }
-  if (deleteID.length > 0) {
-    customAxios({
-      url: URL,
-      method: "delete",
-      data: { _id: deleteID },
-    }).catch((error) => {
-      console.log(error);
-    });
-    var newData = [];
-    var newCheck = [];
-    for (let i = 0; i < arrCheck.length; i++) {
-      if (!arrCheck[i]) {
-        newData.push(arrData[i]);
-        newCheck.push(false);
-      }
-    }
-    setData(newData);
-    setArrCheck(newCheck);
-  }
-}
-
-function handleData(data) {
-  return data.map((user) => ({
-    id: user._id,
-    name: user.name,
-    email: user.email,
-    address: user.address,
-    phone: user.phoneNumber,
-    photo: user.photoUrl,
-    check: "check",
-  }));
-}
-
-function nextPage(
-  url,
-  page,
-  setPage,
-  setData,
-  setArrCheck,
-  setDisableNext,
-  setDisablePrev
-) {
-  setNewData(url + (page + 1), setData, setArrCheck, true, setDisableNext);
-  setPage(page + 1);
-  setDisablePrev(false);
-}
-
-function previousPage(
-  url,
-  page,
-  setPage,
-  setData,
-  setArrCheck,
-  setDisablePrev,
-  setDisableNext
-) {
-  setNewData(url + (page - 1), setData, setArrCheck);
-  if (page - 1 === 1) setDisablePrev(true);
-  setPage(page - 1);
-  setDisableNext(false);
-}
-
-function setNewData(url, setData, setArrCheck, isNext, setDisableNext) {
-  customAxios
-    .get(url)
-    .then((response) => {
-      setData(handleData(response.data));
-      setArrCheck(
-        response.data.map(() => {
-          return false;
-        })
-      );
-      if (isNext) {
-        if (response.data.length < 5) {
-          setDisableNext(true);
-        }
-      }
-    })
-    .catch((error) => {
-      setData(null);
-      setArrCheck(null);
-    });
-}
-
 const Admin = (isF) => {
   const [arrData, setData] = useState([]);
   const [arrCheck, setArrCheck] = useState([]);
@@ -104,7 +13,91 @@ const Admin = (isF) => {
     : customAxios.defaults.baseURL + "/admin/users?page=";
   const [disablePrev, setDisablePrev] = useState(true);
   const [disableNext, setDisableNext] = useState(false);
+  const [searchAll, setSearchAll] = useState(true);
+  const [searchText, setSearchText] = useState("");
 
+  function updateSearch(e) {
+    setSearchText(e);
+  }
+
+  function nextPage() {
+    if (searchAll) setNewData(url + (page + 1), true);
+    else {
+    }
+    setPage(page + 1);
+    setDisablePrev(false);
+  }
+
+  function setNewData(thisUrl, isNext) {
+    customAxios
+      .get(thisUrl)
+      .then((response) => {
+        setData(handleData(response.data));
+        setArrCheck(
+          response.data.map(() => {
+            return false;
+          })
+        );
+        if (isNext) {
+          if (response.data.length < 5) {
+            setDisableNext(true);
+          }
+        }
+      })
+      .catch((error) => {
+        setData(null);
+        setArrCheck(null);
+      });
+  }
+
+  function previousPage() {
+    setNewData(url + (page - 1), false);
+    if (page - 1 === 1) setDisablePrev(true);
+    setPage(page - 1);
+    setDisableNext(false);
+  }
+
+  function eliminate() {
+    var deleteID = [];
+    for (let i = 0; i < arrCheck.length; i++) {
+      if (arrCheck[i]) {
+        deleteID.push(arrData[i].id);
+      }
+    }
+    if (deleteID.length > 0) {
+      customAxios({
+        url: url + page,
+        method: "delete",
+        data: { _id: deleteID },
+      }).catch((error) => {
+        console.log(error);
+      });
+      var newData = [];
+      var newCheck = [];
+      for (let i = 0; i < arrCheck.length; i++) {
+        if (!arrCheck[i]) {
+          newData.push(arrData[i]);
+          newCheck.push(false);
+        }
+      }
+      setData(newData);
+      setArrCheck(newCheck);
+    }
+  }
+
+  function requestSearch() {}
+
+  function handleData(data) {
+    return data.map((user) => ({
+      id: user._id,
+      name: user.name,
+      email: user.email,
+      address: user.address,
+      phone: user.phoneNumber,
+      photo: user.photoUrl,
+      check: "check",
+    }));
+  }
   const columns = [
     { Header: "ID", accessor: "id" },
     { Header: "Name", accessor: "name" },
@@ -133,47 +126,47 @@ const Admin = (isF) => {
         />
       </div>
       <div className="AdminTable__bottomDiv">
+        <select className="AdminTable__bottomButtons">
+          <option value="_id">Id</option>
+          <option value="email">Email</option>
+          <option value="name">Name</option>
+        </select>
+        <input
+          type="text"
+          className="AdminTable__bottomButtons"
+          value={searchText}
+          onChange={updateSearch}
+        />
+        <input
+          type="submit"
+          value="Search"
+          className="AdminTable__bottomButtons"
+        />
+        <input
+          type="submit"
+          value="List All"
+          className="AdminTable__bottomButtons"
+          disabled={searchAll}
+        />
         <input
           type="submit"
           value="Previous"
           className="AdminTable__bottomButtons"
-          onClick={() =>
-            previousPage(
-              url,
-              page,
-              setPage,
-              setData,
-              setArrCheck,
-              setDisablePrev,
-              setDisableNext
-            )
-          }
+          onClick={() => previousPage()}
           disabled={disablePrev}
         />
         <input
           type="submit"
           value="Next"
           className="AdminTable__bottomButtons"
-          onClick={() =>
-            nextPage(
-              url,
-              page,
-              setPage,
-              setData,
-              setArrCheck,
-              setDisableNext,
-              setDisablePrev
-            )
-          }
+          onClick={() => nextPage()}
           disabled={disableNext}
         />
         <input
           type="submit"
           className="AdminTable__bottomButtons"
           value="Delete"
-          onClick={() =>
-            eliminate(arrData, arrCheck, setData, setArrCheck, url + page)
-          }
+          onClick={() => eliminate()}
         />
       </div>
     </div>
