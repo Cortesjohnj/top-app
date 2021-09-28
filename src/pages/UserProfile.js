@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import "../assets/styles/UserProfile.css";
@@ -13,13 +13,16 @@ function Profile() {
 
   const [updateProfile, setUpdateProfile] = useState({
     _id: _id,
-    name: "",
+    name: name,
     email: email,
     address: "",
     phoneNumber: "",
     photoUrl: null,
     role: role,
+    imageFile: null,
   });
+
+  useEffect(() => {}, []);
 
   const cleanup = () => {
     URL.revokeObjectURL(updateProfile);
@@ -31,14 +34,15 @@ function Profile() {
     }
     setUpdateProfile(prevState => ({
       ...prevState,
-      photoUrl: newImage,
+      photoUrl: URL.createObjectURL(newImage),
+      imageFIle: newImage,
     }));
   };
 
   const handlePhoto = event => {
     const newImage = event.target.files[0];
     if (newImage) {
-      setImage(URL.createObjectURL(newImage));
+      setImage(newImage);
     }
   };
 
@@ -90,7 +94,8 @@ function Profile() {
             placeholder={name || "Name"}
             className="userProfile__container--inputs"
             onChange={onChange}
-            required
+            required={name ? true : false}
+            value={updateProfile.name}
           />
           <input
             type="email"
