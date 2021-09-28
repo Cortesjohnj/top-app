@@ -14,6 +14,10 @@ beforeEach(() => {
   store = createStore();
 });
 
+const data = {
+  foundationId: "613fecc4e485559caa864add",
+};
+
 it("should render addPets page", async () => {
   axios.get.mockResolvedValueOnce({
     data: {
@@ -28,7 +32,7 @@ it("should render addPets page", async () => {
   });
 
   localStorage.setItem(AUTHORIZATION, "123355");
-  history.push("/foundations/613fecc4e485559caa864add/add-pet");
+  history.push(`/foundations/${data.foundationId}/add-pet`);
 
   render(
     <Provider store={store}>

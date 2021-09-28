@@ -84,7 +84,7 @@ function AddPet() {
     <section className="registerPets">
       <div className="registerPets__container">
         <h2 className="registerPets__container--title">Add Pet's</h2>
-        <form onSubmit={submit}>
+        <form onSubmit={submit} data-testid="form">
           <div
             className="container__dropzone"
             onDragOver={handleOndragOver}
@@ -116,6 +116,7 @@ function AddPet() {
               name="petName"
               id="name"
               placeholder="Pet's name"
+              data-testid="name"
               onChange={InputChange}
               className="container__dropzone--input"
             />
@@ -124,6 +125,7 @@ function AddPet() {
               name="petAge"
               id="age"
               placeholder="Pet's age (Months)"
+              data-testid="age"
               onChange={InputChange}
               className="container__dropzone--input"
             />
@@ -132,6 +134,7 @@ function AddPet() {
               name="petDescription"
               id="description"
               placeholder="Write a pet's description"
+              data-testid="description"
               onChange={InputChange}
               className="container__dropzone--textArea"
             />
