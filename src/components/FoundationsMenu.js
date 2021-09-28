@@ -96,6 +96,7 @@ const FoundationsMenu = () => {
               setDisablePrev
             );
           }}
+          data-testid="previousButton"
         />
         <input
           type="submit"
@@ -112,6 +113,7 @@ const FoundationsMenu = () => {
               setDisablePrev
             );
           }}
+          data-testid="nextButton"
         />
       </div>
     </>
