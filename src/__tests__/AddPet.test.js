@@ -6,6 +6,8 @@ import axios from "../axios";
 import createStoreApp from "../store/store";
 import { AUTHORIZATION } from "../store/actions";
 import App from "../App";
+import { addPets } from "../store/actionCreators";
+import AddPet from "../pages/AddPet";
 
 jest.mock("../axios");
 
@@ -152,4 +154,87 @@ it("should add a pet with valid data", async () => {
   await waitFor(() =>
     expect(spy).toHaveBeenCalledWith(`/foundations/${data.foundationId}/pets`)
   );
+});
+
+it("shouldn't add a pet is there is a missing value", async () => {
+  axios.get.mockResolvedValueOnce({
+    data: {
+      address: "",
+      email: "foundationt@test.com",
+      name: "Fundacion Mascoticas",
+      phoneNumber: "",
+      photoUrl: null,
+      role: "foundation",
+      _id: "613fecc4e485559caa864add",
+    },
+  });
+
+  axios.post.mockResolvedValueOnce({
+    data: {
+      error: "Pet validation failed: description: A description is required",
+    },
+  });
+
+  localStorage.setItem(AUTHORIZATION, "123355");
+  history.push(`/foundations/${data.foundationId}/add-pet`);
+
+  //execution
+  render(
+    <Provider store={store}>
+      <MemoryRouter>
+        <AddPet />
+      </MemoryRouter>
+    </Provider>
+  );
+
+  // validations
+  await waitFor(() => screen.getByText(/Add Pet's/i));
+  fireEvent.change(screen.getByTestId("name"), {
+    target: { name: "petName", value: "Perrito" },
+  });
+  fireEvent.change(screen.getByTestId("age"), {
+    target: { name: "petAge", value: 12 },
+  });
+  const spy = jest.spyOn(history, "push");
+  fireEvent.submit(screen.getByTestId("form"));
+
+  await waitFor(() =>
+    expect(spy).not.toHaveBeenCalledWith(
+      `/foundations/${data.foundationId}/pets`
+    )
+  );
+});
+
+it("should display an error namePet when the onBlur action triggered", async () => {
+  axios.get.mockResolvedValueOnce({
+    data: {
+      address: "",
+      email: "foundationt@test.com",
+      name: "Fundacion Mascoticas",
+      phoneNumber: "",
+      photoUrl: null,
+      role: "foundation",
+      _id: "613fecc4e485559caa864add",
+    },
+  });
+
+  localStorage.setItem(AUTHORIZATION, "123355");
+  history.push(`/foundations/${data.foundationId}/add-pet`);
+
+  //execution
+  const container = render(
+    <Provider store={store}>
+      <MemoryRouter>
+        <AddPet />
+      </MemoryRouter>
+    </Provider>
+  );
+
+  // validations
+  await waitFor(() => screen.getByText(/Add Pet's/i));
+  container.getByTestId("name").focus();
+  expect(document.activeElement).toBe(container.getByTestId("name"));
+  container.getByTestId("age").focus();
+  expect(document.activeElement).toBe(container.getByTestId("age"));
+  await waitFor(() => screen.getByText(/Please enter a name for your pet/i));
 });
