@@ -6,6 +6,7 @@ import createStoreApp from "../store/store";
 import App from "../App";
 
 jest.mock("../axios");
+jest.setTimeout(60000);
 
 let store;
 beforeEach(() => {

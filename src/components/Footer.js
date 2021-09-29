@@ -21,7 +21,7 @@ const Footer = () => {
   const { role, _id } = recentUser;
 
   return (
-    <footer className="footer" data-testid="footer">
+    <footer className="footer" data-testid="footer" data-testid="footer">
       <div className="footer__wrapper">
         <div className="footer__wrapper--social-links">
           <ul>
@@ -30,6 +30,7 @@ const Footer = () => {
                 href="https://www.facebook.com/"
                 target="_blank"
                 rel="noreferrer"
+                data-testid="facebook"
               >
                 <FaFacebook />
               </a>
@@ -39,6 +40,7 @@ const Footer = () => {
                 href="https://www.twitter.com/"
                 target="_blank"
                 rel="noreferrer"
+                data-testid="twitter"
               >
                 <FaTwitterSquare />
               </a>
@@ -48,6 +50,7 @@ const Footer = () => {
                 href="https://www.instagram.com/"
                 target="_blank"
                 rel="noreferrer"
+                data-testid="instagram"
               >
                 <FaInstagram />
               </a>
@@ -57,6 +60,7 @@ const Footer = () => {
                 href="https://www.linkedin.com/"
                 target="_blank"
                 rel="noreferrer"
+                data-testid="linkedin"
               >
                 <FaLinkedin />
               </a>
