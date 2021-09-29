@@ -60,7 +60,11 @@ function Profile() {
     <section className="userProfile">
       <div className="userProfile__container">
         <h2 className="userProfile__container--title">Hello {name}!</h2>
-        <form className="userProfile__container--form" onSubmit={handleSubmit}>
+        <form
+          className="userProfile__container--form"
+          onSubmit={handleSubmit}
+          data-testid="form"
+        >
           <i className="userProfile__container--image">
             {!!updateProfile.photoUrl ? (
               <img
@@ -93,6 +97,7 @@ function Profile() {
             onChange={onChange}
             required={name ? true : false}
             value={updateProfile.name}
+            data-testid="name"
           />
           <input
             type="email"
@@ -110,6 +115,7 @@ function Profile() {
             onChange={onChange}
             required={address ? true : false}
             value={updateProfile.address}
+            data-testid="address"
           />
           <input
             type="number"
@@ -119,6 +125,7 @@ function Profile() {
             onChange={onChange}
             required={phoneNumber ? true : false}
             value={updateProfile.phoneNumber}
+            data-testid="phoneNumber"
           />
           <PrimaryButton
             children={"Update profile"}
