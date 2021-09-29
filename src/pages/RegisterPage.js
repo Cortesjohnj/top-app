@@ -40,7 +40,7 @@ function RegisterPage() {
           )}
           {errors?.name?.type === "maxLength" && (
             <p className="register__container--form--errors">
-              *A name cannot exceed 20 characters
+              *A name cannot exceed 40 characters
             </p>
           )}
           <input
@@ -50,7 +50,7 @@ function RegisterPage() {
             className="form__field"
             {...register("name", {
               required: true,
-              maxLength: 20,
+              maxLength: 40,
             })}
           />
           {errors?.email?.type === "required" && (
