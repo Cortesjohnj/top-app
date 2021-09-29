@@ -100,6 +100,11 @@ function RegisterPage() {
               *You must confirm the password
             </p>
           )}
+          {errors?.confirmPassword && (
+            <p className="register__container--form--errors">
+              {errors.confirmPassword.message}
+            </p>
+          )}
           <input
             type="password"
             placeholder="Confirm password"
