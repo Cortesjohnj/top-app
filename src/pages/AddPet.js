@@ -123,6 +123,7 @@ function AddPet() {
               type="number"
               name="petAge"
               id="age"
+              min="0"
               placeholder="Pet's age (Months)"
               onChange={InputChange}
               className="container__dropzone--input"
