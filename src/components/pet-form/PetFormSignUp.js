@@ -20,7 +20,7 @@ const PetFormSignUp = ({ submitForm }) => {
   }, [statePet]);
 
   return (
-    <div className="petform__rightContainer">
+    <div className="petform__rightContainer" data-testid="petForm">
       <form className="petform__rightContainerForm" onSubmit={handleSubmit}>
         <h1>{`You're one step closer to be with your dream companion ${pet.name}`}</h1>
 
