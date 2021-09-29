@@ -11,13 +11,13 @@ function Profile() {
   const dispatch = useDispatch();
 
   const [updateProfile, setUpdateProfile] = useState({
-    _id: _id,
-    name: name,
-    email: email,
-    address: address,
-    phoneNumber: phoneNumber,
-    photoUrl: photoUrl,
-    role: role,
+    _id,
+    name,
+    email,
+    address,
+    phoneNumber,
+    photoUrl,
+    role,
     imageFile: null,
   });
 
