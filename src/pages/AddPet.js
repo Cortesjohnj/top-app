@@ -16,7 +16,14 @@ function AddPet() {
     petDescription: "",
     photoUrl: [],
     foundationId: foundationId,
+    error: {
+      petName: false,
+      petAge: false,
+      petDescription: false,
+    },
   });
+
+  const [errorForm, setErrorForm] = useState(false);
   const [counter, setCounter] = useState(0);
   const [selectedImages, setSelectedImages] = useState([]);
 
@@ -72,8 +79,20 @@ function AddPet() {
   };
 
   const submit = event => {
+    if (pet.petName === "" || pet.petAge === "" || pet.petDescription === "") {
+      setErrorForm(true);
+    }
     event.preventDefault();
     dispatch(addPets(pet));
+  };
+
+  const validator = event => {
+    const validate = /^\s*$/.test(event.target.value);
+    setPet(prevState => ({
+      ...prevState,
+      error: { ...prevState.error, [event.target.name]: validate },
+    }));
+    setErrorForm(false);
   };
 
   const InputChange = event => {
@@ -84,7 +103,7 @@ function AddPet() {
     <section className="registerPets">
       <div className="registerPets__container">
         <h2 className="registerPets__container--title">Add Pet's</h2>
-        <form onSubmit={submit}>
+        <form onSubmit={submit} data-testid="form">
           <div
             className="container__dropzone"
             onDragOver={handleOndragOver}
@@ -111,32 +130,57 @@ function AddPet() {
               className="container__dropzone--input"
               onChange={handleInputChange}
             />
+            {pet.error.petName && (
+              <span className="container__dropzone--inputsErrors">
+                *Please enter a name for your pet
+              </span>
+            )}
             <input
               type="text"
               name="petName"
               id="name"
               placeholder="Pet's name"
+              data-testid="name"
               onChange={InputChange}
+              onBlur={validator}
               className="container__dropzone--input"
             />
+            {pet.error.petAge && (
+              <span className="container__dropzone--inputsErrors">
+                *Please enter an age for your pet
+              </span>
+            )}
             <input
               type="number"
               name="petAge"
               id="age"
               min="0"
               placeholder="Pet's age (Months)"
+              data-testid="age"
               onChange={InputChange}
+              onBlur={validator}
               className="container__dropzone--input"
             />
+            {pet.error.petDescription && (
+              <span className="container__dropzone--inputsErrors">
+                *Please enter a description for your pet
+              </span>
+            )}
             <textarea
               rows="7"
               name="petDescription"
               id="description"
               placeholder="Write a pet's description"
+              data-testid="description"
               onChange={InputChange}
+              onBlur={validator}
               className="container__dropzone--textArea"
             />
-
+            {errorForm && (
+              <span className="container__dropzone--inputsErrors">
+                *Please fill in all the fields of the form
+              </span>
+            )}
             <div className="addButton">
               <PrimaryButton
                 children={"Add Pet"}
