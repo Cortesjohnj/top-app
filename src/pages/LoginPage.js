@@ -75,7 +75,7 @@ const LoginPage = (props) => {
         </form>
         {!!error && <span>{error}</span>}
         <p className="login__container--register">
-          Don't you have an account? <Link to="/signup">Register</Link>
+          Don't you have an account? <Link to="/signup">Sign Up</Link>
         </p>
       </section>
     </section>
