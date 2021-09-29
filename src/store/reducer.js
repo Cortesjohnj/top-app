@@ -21,10 +21,11 @@ import {
 const reducer = (state, action) => {
   switch (action.type) {
     case LOGIN_USER:
-      const { _id, name, email, role } = action.payload;
+      const { _id, name, email, role, address, photoUrl, phoneNumber } =
+        action.payload;
       return {
         ...state,
-        user: { _id, name, email, role },
+        user: { _id, name, email, role, address, photoUrl, phoneNumber },
         status: AUTHENTICATED,
         error: "",
       };
@@ -46,7 +47,7 @@ const reducer = (state, action) => {
     case DELETE_PET:
       return {
         ...state,
-        pets: state.pets.filter((pet) => pet._id !== action.payload),
+        pets: state.pets.filter(pet => pet._id !== action.payload),
       };
 
     case REGISTER_USER:
@@ -90,7 +91,7 @@ const reducer = (state, action) => {
     case UPDATE_REQUEST:
       return {
         ...state,
-        adoptionRequests: state.adoptionRequests.map((req) =>
+        adoptionRequests: state.adoptionRequests.map(req =>
           req._id === action.payload._id
             ? { ...req, responseStatus: action.payload.responseStatus }
             : req
@@ -100,7 +101,7 @@ const reducer = (state, action) => {
     case BULK_REJECT_REQUESTS:
       return {
         ...state,
-        adoptionRequests: state.adoptionRequests.map((req) =>
+        adoptionRequests: state.adoptionRequests.map(req =>
           req._id !== action.payload
             ? { ...req, responseStatus: "rejected" }
             : req
