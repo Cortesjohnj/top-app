@@ -14,19 +14,7 @@ jest.mock("../axios");
 let store;
 beforeEach(() => {
   localStorage.clear();
-  const initialState = {
-    user: {
-      name: "Fulanito de Tales1",
-      email: "pepito@test.com",
-      address: "Cra 1234",
-      phoneNumber: "33333331",
-      role: "user",
-      photoUrl: "null",
-      _id: "6143ca1239b66c9025ba67e7",
-    },
-  };
-
-  store = createStoreApp(initialState);
+  store = createStoreApp();
 });
 
 const data = {
@@ -48,15 +36,13 @@ it("should allow users to update their profile", async () => {
 
   axios.put.mockResolvedValueOnce({
     data: {
-      user: {
-        name: "Fulanito de test",
-        email: "pepito@test.com",
-        address: "Cra 123",
-        phoneNumber: "33333331",
-        role: "user",
-        photoUrl: "null",
-        _id: "6143ca1239b66c9025ba67e7",
-      },
+      name: "Fulanito de test",
+      email: "pepito@test.com",
+      address: "Cra 123",
+      phoneNumber: "33333331",
+      role: "user",
+      photoUrl: "null",
+      _id: "6143ca1239b66c9025ba67e7",
     },
   });
 
@@ -67,7 +53,7 @@ it("should allow users to update their profile", async () => {
   render(
     <Provider store={store}>
       <MemoryRouter>
-        <UserProfile />
+        <App />
       </MemoryRouter>
     </Provider>
   );
@@ -81,8 +67,7 @@ it("should allow users to update their profile", async () => {
 
   fireEvent.submit(screen.getByTestId("form"));
 
-  console.log(store);
-  // await waitFor(() =>
-  //   expect(screen.getByText(/Hello Fulanito de test!/i)).toBeInTheDocument()
-  // );
+  await waitFor(() =>
+    expect(screen.getByText(/Hello Fulanito de test!/i)).toBeInTheDocument()
+  );
 });
