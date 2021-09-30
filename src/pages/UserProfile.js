@@ -52,6 +52,7 @@ function Profile() {
   };
 
   const handleSubmit = event => {
+    console.log(updateProfile);
     event.preventDefault();
     dispatch(updateUserProfile(updateProfile));
   };
@@ -85,9 +86,11 @@ function Profile() {
           <input
             type="file"
             id="imageUpload"
+            name="imageUpload"
             accept="image/*"
             hidden
             onChange={handlePhoto}
+            data-testid="imageUpload"
           />
           <input
             id="name"
