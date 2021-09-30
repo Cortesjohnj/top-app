@@ -176,6 +176,7 @@ const Admin = (isF) => {
           onClick={() =>
             eliminate(arrData, arrCheck, setData, setArrCheck, url + page)
           }
+          data-testid="deleteButton"
         />
       </div>
     </div>
