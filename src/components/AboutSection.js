@@ -1,11 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import Dog from "../assets/images/Dog swimming-01.svg";
+import Lottie from "react-lottie";
+import Dog from "../assets/images/23919-error-doggy.json";
+
 import "../assets/styles/AboutSection.css";
 
 const AboutSection = () => {
   const activeUser = useSelector((state) => state.user);
+
+  const [pauseAnim, setPauseAnim] = useState(false);
+
+  const toggleAnim = () => {
+    setPauseAnim(!pauseAnim);
+  };
+
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: Dog,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
   return (
     <>
       <div className="aboutContainer">
@@ -46,14 +63,11 @@ const AboutSection = () => {
             )}
           </div>
 
-          <div className="aboutContainer__wrapper--imgWrap">
-            <object
-              className="aboutContainer__wrapper--img"
-              type="image/svg+xml"
-              data={Dog}
-            >
-              svg-animation
-            </object>
+          <div
+            className="aboutContainer__wrapper--imgWrap"
+            onClick={toggleAnim}
+          >
+            <Lottie options={defaultOptions} isPaused={pauseAnim} />
           </div>
         </div>
       </div>

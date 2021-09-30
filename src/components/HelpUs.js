@@ -1,23 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import Dog2 from "../assets/images/undraw_good_doggy_4wfq.svg";
+import Lottie from "react-lottie";
+import Dog2 from "../assets/images/lf30_editor_wo8nkm2h.json";
 import "../assets/styles/HelpUs.css";
 
 const HelpUsSection = () => {
   const activeUser = useSelector((state) => state.user);
+
+  const [pauseAnim, setPauseAnim] = useState(false);
+
+  const toggleAnim = () => {
+    setPauseAnim(!pauseAnim);
+  };
+
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: Dog2,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+
   return (
     <>
       <div className="joinUsContainer" id="helpUs">
         <div className="joinUsContainer__wrapper">
-          <div className="joinUsContainer__wrapper--imgWrap">
-            <object
+          <div
+            className="joinUsContainer__wrapper--imgWrap"
+            onClick={toggleAnim}
+          >
+            <Lottie
               className="joinUsContainer__wrapper--img"
-              type="image/svg+xml"
-              data={Dog2}
-            >
-              svg-animation
-            </object>
+              options={defaultOptions}
+              isPaused={pauseAnim}
+            />
           </div>
           <div className="joinUsContainer__wrapper--textWrapper">
             <div className="joinUsContainer__wrapper--topLine">
