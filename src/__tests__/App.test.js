@@ -45,3 +45,16 @@ it("should render userProfile page", async () => {
     expect(screen.getByText(/Change profile picture/i)).toBeInTheDocument()
   );
 });
+
+test("renders login component", async () => {
+  history.push("/login");
+  render(
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+
+  await waitFor(() =>
+    expect(screen.getAllByText(/Login/i)[0]).toBeInTheDocument()
+  );
+});
