@@ -2,7 +2,7 @@ import "../assets/styles/AdminTable.css";
 import Table from "../components/Table";
 import { useEffect, useState } from "react";
 import customAxios from "../axios";
-import NotFound from "./NotFound";
+import Home from "../pages/Home";
 
 function eliminate(arrData, arrCheck, setData, setArrCheck, URL) {
   var deleteID = [];
@@ -119,7 +119,7 @@ const Admin = (isF) => {
   }, [url]);
 
   if (arrData === null) {
-    return <NotFound></NotFound>;
+    return <Home />;
   }
 
   return (

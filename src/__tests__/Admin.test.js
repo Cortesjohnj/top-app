@@ -126,7 +126,7 @@ test("Page lists not found page", async () => {
   );
 
   await waitFor(() => {
-    expect(screen.getByTestId("notFoundPage")).toBeInTheDocument();
+    expect(screen.getByTestId("Home")).toBeInTheDocument();
     expect(screen.queryByTestId("nextButton")).toBeNull();
   });
 });

@@ -1,7 +1,7 @@
 import FoundationsImage from "../components/FoundationsImage";
 import customAxios from "../axios";
 import { useState, useEffect } from "react";
-import NotFound from "../pages/NotFound";
+import Home from "../pages/Home";
 
 function NextPage(
   route,
@@ -64,7 +64,7 @@ const FoundationsMenu = () => {
   }, [page, route]);
 
   if (foundations === null) {
-    return <NotFound></NotFound>;
+    return <Home />;
   }
 
   return (

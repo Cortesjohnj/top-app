@@ -5,7 +5,7 @@ import Dog3 from "../assets/images/Error Naughty Dog.svg";
 
 const NotFound = () => {
   return (
-    <div className="notFound__container" data-testid="notFoundPage">
+    <div className="notFound__container">
       <div className="notFound__container--wrapper">
         <div className="notFound__container--imageWrapper">
           <object
