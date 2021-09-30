@@ -149,6 +149,7 @@ const Admin = (isF) => {
             )
           }
           disabled={disablePrev}
+          data-testid="previousButton"
         />
         <input
           type="submit"
@@ -165,6 +166,7 @@ const Admin = (isF) => {
               setDisablePrev
             )
           }
+          data-testid="nextButton"
           disabled={disableNext}
         />
         <input

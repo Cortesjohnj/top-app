@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor, fireEvent } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import history from "../history";
@@ -9,7 +9,7 @@ import Foundations from "../pages/Foundations";
 
 jest.mock("../axios");
 
-foundationsData = [
+let foundationsData = [
   {
     _id: "613a2c7cfd818ebfd9e05029",
     email: "dbraganca0@un.org",
@@ -58,7 +58,7 @@ beforeEach(() => {
   store = createStore();
 });
 
-test("Page is listing all foundations", async () => {
+test("Page is correctly listing 5 foundations", async () => {
   axios.get.mockResolvedValueOnce({
     data: foundationsData,
   });
@@ -80,5 +80,68 @@ test("Page is listing all foundations", async () => {
     expect(screen.getByTestId("nextButton")).toBeInTheDocument();
     expect(screen.getByTestId("previousButton")).toBeInTheDocument();
     expect(screen.getAllByTestId("foundationsCard").length).toBe(5);
+  });
+});
+
+test("Page lists not found page", async () => {
+  axios.get.mockResolvedValueOnce({
+    data: null,
+  });
+
+  history.push("/foundations");
+  //execution
+  render(
+    <Provider store={store}>
+      <MemoryRouter>
+        <Foundations />
+      </MemoryRouter>
+    </Provider>
+  );
+
+  await waitFor(() => {
+    expect(screen.getByTestId("notFoundPage")).toBeInTheDocument();
+    expect(screen.queryByTestId("nextButton")).toBeNull();
+  });
+});
+
+test("Page is correctly listing 2 foundations", async () => {
+  axios.get.mockResolvedValueOnce({
+    data: [
+      {
+        _id: "123",
+        email: "lol@un.org",
+        name: "Riph",
+        address: "00",
+        phoneNumber: "62766666",
+        photoUrl: "http://dummyimage.com",
+      },
+      {
+        _id: "1234",
+        email: "lol1@un.org",
+        name: "Riph",
+        address: "00",
+        phoneNumber: "62766666",
+        photoUrl: "http://dummyimage.com",
+      },
+    ],
+  });
+
+  localStorage.setItem(AUTHORIZATION, "12345");
+  history.push("/foundations");
+
+  //execution
+  render(
+    <Provider store={store}>
+      <MemoryRouter>
+        <Foundations />
+      </MemoryRouter>
+    </Provider>
+  );
+
+  // validations
+  await waitFor(() => {
+    expect(screen.getByTestId("nextButton")).toBeInTheDocument();
+    expect(screen.getByTestId("previousButton")).toBeInTheDocument();
+    expect(screen.getAllByTestId("foundationsCard").length).toBe(2);
   });
 });

@@ -51,7 +51,12 @@ const FoundationsMenu = () => {
   useEffect(() => {
     customAxios
       .get(route + page)
-      .then((response) => setFoundations(response.data))
+      .then((response) => {
+        setFoundations(response.data);
+        if (response.data && response.data.length < 5) {
+          setDisableNext(true);
+        }
+      })
       .catch((error) => {
         console.log(error);
         setFoundations(null);

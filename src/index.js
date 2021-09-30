@@ -3,11 +3,11 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import App from "./App";
 import "./assets/styles/GeneralStyles.css";
-import { store } from "./store/store";
+import createStore from "./store/store";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
+    <Provider store={createStore()}>
       <App />
     </Provider>
   </React.StrictMode>,
