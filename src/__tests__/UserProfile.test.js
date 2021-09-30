@@ -72,7 +72,7 @@ it("should allow users to update their profile updating only one field", async (
   );
 });
 
-it("should allow users to update their profile changing all fields", async () => {
+it("should allow users to update their profile if updates all fields", async () => {
   axios.get.mockResolvedValueOnce({
     data: {
       _id: "6143ca1239b66c9025ba67e7",
@@ -92,9 +92,7 @@ it("should allow users to update their profile changing all fields", async () =>
       address: "Cra nueva",
       phoneNumber: "123",
       role: "user",
-      photoUrl:
-        "blob:http://localhost:3000/5540301a-a6fe-4857-bf88-3dec5f5bf518",
-      _id: "6143ca1239b66c9025ba67e7",
+      photoUrl: "",
     },
   });
 
@@ -132,6 +130,52 @@ it("should allow users to update their profile changing all fields", async () =>
   fireEvent.submit(screen.getByTestId("form"));
 
   await waitFor(() =>
-    expect(screen.getByText(/Hello Fulanito de test!/i)).toBeInTheDocument()
+    expect(screen.getByText(/Fulanito de test/i)).toBeInTheDocument()
+  );
+});
+it("should not show error if user click on update profile withouth changing any input", async () => {
+  axios.get.mockResolvedValueOnce({
+    data: {
+      _id: "6143ca1239b66c9025ba67e7",
+      name: "Fulanito de Tal",
+      email: "pepito@test.com",
+      address: "Cra 123",
+      phoneNumber: "33333331",
+      role: "user",
+      photoUrl: null,
+    },
+  });
+
+  axios.put.mockResolvedValueOnce({
+    data: {
+      address: "Cra 123",
+      email: "pepito@test.com",
+      name: "Fulanito de Tal",
+      phoneNumber: "33333331",
+      photoUrl: "null",
+      role: "user",
+      _id: "6143ca1239b66c9025ba67e7",
+    },
+  });
+
+  localStorage.setItem(AUTHORIZATION, "123355");
+  history.push(`/${data.userId}/profile`);
+
+  //execution
+  render(
+    <Provider store={store}>
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    </Provider>
+  );
+
+  // validations
+  await waitFor(() => screen.getByText(/Change profile picture/i));
+
+  fireEvent.submit(screen.getByTestId("form"));
+
+  await waitFor(() =>
+    expect(screen.getByText(/Fulanito de Tal/i)).toBeInTheDocument()
   );
 });

@@ -52,7 +52,6 @@ function Profile() {
   };
 
   const handleSubmit = event => {
-    console.log(updateProfile);
     event.preventDefault();
     dispatch(updateUserProfile(updateProfile));
   };
