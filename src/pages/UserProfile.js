@@ -90,6 +90,7 @@ function Profile() {
             onChange={handlePhoto}
           />
           <input
+            id="name"
             type="text"
             name="name"
             placeholder={name || "Name"}
@@ -100,6 +101,7 @@ function Profile() {
             data-testid="name"
           />
           <input
+            id="email"
             type="email"
             name="email"
             placeholder="Email"
@@ -108,6 +110,7 @@ function Profile() {
             className="userProfile__container--inputs"
           />
           <input
+            id="address"
             type="text"
             name="address"
             placeholder={address || "Address"}
@@ -118,6 +121,7 @@ function Profile() {
             data-testid="address"
           />
           <input
+            id="phoneNumber"
             type="number"
             name="phoneNumber"
             placeholder={phoneNumber || "Phone Number"}
