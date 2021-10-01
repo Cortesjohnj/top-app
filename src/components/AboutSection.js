@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import Lottie from "react-lottie";
+import { Player } from "@lottiefiles/react-lottie-player";
 import Dog from "../assets/images/23919-error-doggy.json";
 
 import "../assets/styles/AboutSection.css";
@@ -9,20 +9,6 @@ import "../assets/styles/AboutSection.css";
 const AboutSection = () => {
   const activeUser = useSelector((state) => state.user);
 
-  const [pauseAnim, setPauseAnim] = useState(false);
-
-  const toggleAnim = () => {
-    setPauseAnim(!pauseAnim);
-  };
-
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: Dog,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
   return (
     <>
       <div className="aboutContainer">
@@ -43,15 +29,20 @@ const AboutSection = () => {
               <Link
                 className="aboutContainer__wrapper--btnWrap"
                 to={
-                  activeUser.role === "user" || activeUser.role === "admin"
+                  activeUser.role === "user"
                     ? "/foundations"
-                    : `/foundations/${activeUser._id}/pets`
+                    : activeUser.role === "foundation"
+                    ? `/foundations/${activeUser._id}/pets`
+                    : activeUser.role === "admin" &&
+                      `/${activeUser._id}/profile`
                 }
               >
                 <button className="aboutContainer__wrapper--button">
-                  {activeUser.role === "user" || activeUser.role === "admin"
+                  {activeUser.role === "user"
                     ? "FOUNDATIONS"
-                    : "PETS"}
+                    : activeUser.role === "foundation"
+                    ? "PETS"
+                    : activeUser.role === "admin" && "PROFILE"}
                 </button>
               </Link>
             ) : (
@@ -63,11 +54,8 @@ const AboutSection = () => {
             )}
           </div>
 
-          <div
-            className="aboutContainer__wrapper--imgWrap"
-            onClick={toggleAnim}
-          >
-            <Lottie options={defaultOptions} isPaused={pauseAnim} />
+          <div className="aboutContainer__wrapper--imgWrap">
+            <Player autoplay loop src={Dog} />
           </div>
         </div>
       </div>

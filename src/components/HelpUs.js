@@ -1,41 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import Lottie from "react-lottie";
+import { Player } from "@lottiefiles/react-lottie-player";
 import Dog2 from "../assets/images/lf30_editor_wo8nkm2h.json";
 import "../assets/styles/HelpUs.css";
 
 const HelpUsSection = () => {
   const activeUser = useSelector((state) => state.user);
 
-  const [pauseAnim, setPauseAnim] = useState(false);
-
-  const toggleAnim = () => {
-    setPauseAnim(!pauseAnim);
-  };
-
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: Dog2,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
-
   return (
     <>
       <div className="joinUsContainer" id="helpUs">
         <div className="joinUsContainer__wrapper">
-          <div
-            className="joinUsContainer__wrapper--imgWrap"
-            onClick={toggleAnim}
-          >
-            <Lottie
-              className="joinUsContainer__wrapper--img"
-              options={defaultOptions}
-              isPaused={pauseAnim}
-            />
+          <div className="joinUsContainer__wrapper--imgWrap">
+            <Player autoplay loop src={Dog2} />
           </div>
           <div className="joinUsContainer__wrapper--textWrapper">
             <div className="joinUsContainer__wrapper--topLine">

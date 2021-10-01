@@ -37,7 +37,6 @@ const Slider = ({ slides }) => {
             {index === current && (
               <img src={slide.image} alt={slide.name} className="slider__img" />
             )}
-            {console.log(slide.image)}
           </div>
         );
       })}

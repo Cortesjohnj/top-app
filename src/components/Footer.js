@@ -84,12 +84,14 @@ const Footer = () => {
                     FOUNDATIONS
                   </Link>
                 ) : (
-                  <Link
-                    className="navBar__container--navLinks2"
-                    to={`/foundations/${_id}/pets`}
-                  >
-                    PETS
-                  </Link>
+                  role === "foundation" && (
+                    <Link
+                      className="navBar__container--navLinks2"
+                      to={`/foundations/${_id}/pets`}
+                    >
+                      PETS
+                    </Link>
+                  )
                 )
               ) : status === NOT_AUTHENTICATED && location === "/" ? (
                 <div
@@ -105,6 +107,11 @@ const Footer = () => {
                     HOME
                   </Link>
                 )
+              )}
+              {status === AUTHENTICATED && role === "admin" && (
+                <Link className="footer__wrapper--navLinks" to="/">
+                  HOME
+                </Link>
               )}
             </li>
             <li className="footer__wrapper--quick-items">

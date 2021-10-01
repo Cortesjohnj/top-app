@@ -132,6 +132,17 @@ function Navbar({ toggle }) {
             </li>
             <li
               className={
+                status === AUTHENTICATED && role === "admin"
+                  ? "navBar__container--navItem2"
+                  : "navBar__container--navMenu2--hide"
+              }
+            >
+              <Link className="navBar__container--navLinks2" to="/admin">
+                FOUNDATIONS
+              </Link>
+            </li>
+            <li
+              className={
                 status === AUTHENTICATED && role === "user"
                   ? "navBar__container--navItem2"
                   : "navBar__container--navMenu2--hide"
@@ -139,6 +150,17 @@ function Navbar({ toggle }) {
             >
               <Link className="navBar__container--navLinks2" to="/foundations">
                 FOUNDATIONS
+              </Link>
+            </li>
+            <li
+              className={
+                status === AUTHENTICATED && role === "admin"
+                  ? "navBar__container--navItem2"
+                  : "navBar__container--navMenu2--hide"
+              }
+            >
+              <Link className="navBar__container--navLinks2" to="/admin/users">
+                USERS
               </Link>
             </li>
             <li

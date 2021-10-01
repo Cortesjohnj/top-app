@@ -61,7 +61,6 @@
 .aboutContainer__wrapper--imgWrap {
   max-width: 600px;
   transition: all 0.2s ease-in-out;
-  cursor: pointer;
 }
 
 .aboutContainer__wrapper--img {
