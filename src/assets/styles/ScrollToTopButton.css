@@ -13,23 +13,20 @@
   cursor: pointer;
   box-shadow: 0 0 15px -7px var(--blue-pigment),
     inset 0 0 10px -3px var(--blue-pigment);
-  transition: 0.1s;
 }
 
 .arrowIcon {
-  color: black;
+  color: white;
   font-size: 40px;
 }
 
 @media (max-width: 360px) {
   .backToTop {
-    display: block;
     width: 40px;
     height: 40px;
     bottom: 20px;
     right: 32px;
     font-size: 22px;
-    transition: all 0.2s ease-in-out;
   }
   .arrowIcon {
     font-size: 30px;
@@ -38,5 +35,4 @@
 
 .hide {
   display: none;
-  transition: all 0.2s ease-in-out;
 }
