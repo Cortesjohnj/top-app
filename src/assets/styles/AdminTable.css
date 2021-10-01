@@ -50,10 +50,11 @@
   background-color: var(--pale-silver);
   border: none;
   border-radius: 15px;
-  font-size: 1.4rem;
-  height: 50px;
+  font-size: large;
+  height: 40px;
   letter-spacing: 1px;
   color: black;
+  text-align: center;
 }
 
 .AdminTable__bottomButtons:disabled {

@@ -23,7 +23,6 @@ const AdoptionPetRequest = lazy(() => import("./pages/AdoptionPetRequest"));
 const Admin = lazy(() => import("./pages/Admin"));
 
 function App() {
-  /* 
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => {
@@ -79,7 +78,8 @@ function App() {
       </Suspense>
     </Router>
   );
-  */
+
+  /*
   return (
     <Router history={history}>
       <Suspense fallback={<Spinner />}>
@@ -95,6 +95,7 @@ function App() {
       </Suspense>
     </Router>
   );
+  */
 }
 
 export default App;

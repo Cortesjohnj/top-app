@@ -66,10 +66,8 @@
   border: none;
   border-radius: 15px;
   color: white;
-  cursor: pointer;
-  font-size: 2rem;
-  height: 50px;
-  letter-spacing: 1px;
+  font-size: large;
+  height: 40px;
 }
 
 .buttons-Foundation:disabled {

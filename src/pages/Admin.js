@@ -13,17 +13,21 @@ const Admin = (isF) => {
     : customAxios.defaults.baseURL + "/admin/users?page=";
   const [disablePrev, setDisablePrev] = useState(true);
   const [disableNext, setDisableNext] = useState(false);
-  const [searchAll, setSearchAll] = useState(true);
+  const [getAll, setGetAll] = useState(true);
   const [searchText, setSearchText] = useState("");
+  const [typeSearch, setTypeSearch] = useState("_id");
 
   function updateSearch(e) {
-    setSearchText(e);
+    setSearchText(e.target.value);
+  }
+
+  function typeSearchF(e) {
+    setTypeSearch(e.target.value);
   }
 
   function nextPage() {
-    if (searchAll) setNewData(url + (page + 1), true);
-    else {
-    }
+    if (getAll) setNewData(url + (page + 1), true);
+    else requestSearch(page + 1);
     setPage(page + 1);
     setDisablePrev(false);
   }
@@ -51,7 +55,8 @@ const Admin = (isF) => {
   }
 
   function previousPage() {
-    setNewData(url + (page - 1), false);
+    if (getAll) setNewData(url + (page - 1), false);
+    else requestSearch(page - 1);
     if (page - 1 === 1) setDisablePrev(true);
     setPage(page - 1);
     setDisableNext(false);
@@ -85,7 +90,31 @@ const Admin = (isF) => {
     }
   }
 
-  function requestSearch() {}
+  function requestSearch(nPage) {
+    if (searchText !== "") {
+      customAxios({
+        url: customAxios.defaults.baseURL + "/adminSearch?page=" + nPage,
+        method: "post",
+        data: {
+          isUser: !isF.isFoundation,
+          field: typeSearch,
+          value: searchText.trim(),
+        },
+      })
+        .then((response) => {
+          setData(handleData(response.data));
+          setArrCheck(
+            response.data.map(() => {
+              return false;
+            })
+          );
+          setGetAll(false);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }
 
   function handleData(data) {
     return data.map((user) => ({
@@ -98,6 +127,18 @@ const Admin = (isF) => {
       check: "check",
     }));
   }
+
+  function backHome() {
+    setNewData(url + 1, setData, setArrCheck);
+    setGetAll(true);
+  }
+
+  function handleKeypress(e) {
+    if (e.keyCode === 13) {
+      requestSearch(page);
+    }
+  }
+
   const columns = [
     { Header: "ID", accessor: "id" },
     { Header: "Name", accessor: "name" },
@@ -116,7 +157,7 @@ const Admin = (isF) => {
   }
 
   return (
-    <div className="AdminTable_General">
+    <div className="AdminTable_General" onKeyUp={handleKeypress}>
       <div className="AdminTable__divTable">
         <Table
           columns={columns}
@@ -126,7 +167,7 @@ const Admin = (isF) => {
         />
       </div>
       <div className="AdminTable__bottomDiv">
-        <select className="AdminTable__bottomButtons">
+        <select className="AdminTable__bottomButtons" onChange={typeSearchF}>
           <option value="_id">Id</option>
           <option value="email">Email</option>
           <option value="name">Name</option>
@@ -136,17 +177,21 @@ const Admin = (isF) => {
           className="AdminTable__bottomButtons"
           value={searchText}
           onChange={updateSearch}
+          onSubmit={() => handleKeypress()}
         />
         <input
           type="submit"
           value="Search"
           className="AdminTable__bottomButtons"
+          onClick={() => requestSearch(page)}
+          onKeyPress={() => handleKeypress()}
         />
         <input
           type="submit"
           value="List All"
           className="AdminTable__bottomButtons"
-          disabled={searchAll}
+          onClick={() => backHome()}
+          disabled={getAll}
         />
         <input
           type="submit"
