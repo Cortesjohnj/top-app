@@ -8,7 +8,7 @@
 }
 
 .slider__img {
-  width: 800px;
+  max-width: 500px;
   height: 100%;
   border-radius: 50px;
 }

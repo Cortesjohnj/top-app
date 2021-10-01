@@ -9,6 +9,7 @@ const Whastapp = () => {
       rel="noreferrer"
       className="whatsappfloat"
       target="_blank"
+      aria-label="whastapp"
     >
       {" "}
       <IoLogoWhatsapp className="whatsappfloat__IoLogoWhatsapp" />
