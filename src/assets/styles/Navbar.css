@@ -1,6 +1,6 @@
 .navBar {
   background: #3e2f90;
-  min-height: 8vh;
+  max-height: 7vh;
   margin: auto;
   display: flex;
   justify-content: center;

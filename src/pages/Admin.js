@@ -31,8 +31,7 @@ const Admin = (isF) => {
     setPage(page + 1);
     setDisablePrev(false);
   }
-
-  function setNewData(thisUrl, isNext) {
+  const setNewData = (thisUrl, isNext) => {
     customAxios
       .get(thisUrl)
       .then((response) => {
@@ -52,7 +51,7 @@ const Admin = (isF) => {
         setData(null);
         setArrCheck(null);
       });
-  }
+  };
 
   function previousPage() {
     if (getAll) setNewData(url + (page - 1), false);
@@ -149,8 +148,8 @@ const Admin = (isF) => {
     { Header: "Delete", accessor: "check" },
   ];
   useEffect(() => {
-    setNewData(url + 1, setData, setArrCheck);
-  }, [url]);
+    setNewData(url + 1, false);
+  });
 
   if (arrData === null) {
     return <Home />;
