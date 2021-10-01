@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useParams } from "react-router";
+import { useParams, useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import { FaPlusCircle } from "react-icons/fa";
 import { IconContext } from "react-icons";
@@ -19,11 +19,13 @@ const PetListPage = () => {
   const dispatch = useDispatch();
   const { pets, petListInfo } = useSelector(state => state);
   const { user } = useSelector(state => state);
+  const initPage =
+    useLocation().search.slice(useLocation().search.indexOf("=") + 1) || 1;
 
   useEffect(() => {
-    dispatch(listPets(foundationId, 1));
+    dispatch(listPets(foundationId, initPage));
     dispatch(listFoundationRequests(foundationId));
-  }, [foundationId, dispatch]);
+  }, [foundationId, dispatch, initPage]);
 
   const isFoundation = user.role === "foundation" && user._id === foundationId;
 
