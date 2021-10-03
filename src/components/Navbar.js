@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { FaBars } from "react-icons/fa";
 import { MdPets } from "react-icons/md";
+import profileDog from "../assets/images/DogProfile.svg";
 import { Link } from "react-router-dom";
 import { Link as LinkScroll } from "react-scroll";
 import { animateScroll as ScrollToTop } from "react-scroll";
@@ -21,6 +22,7 @@ function Navbar({ toggle }) {
   const status = useSelector((state) => state.status);
 
   const { photoUrl, name, _id, role } = recentUser;
+  console.log(photoUrl);
 
   const [isMobile, setIsMobile] = useState("");
 
@@ -64,7 +66,7 @@ function Navbar({ toggle }) {
               <img
                 onClick={toggle}
                 className="navBar__container--profilePic1"
-                src={photoUrl}
+                src={photoUrl === undefined ? profileDog : photoUrl}
                 alt={name}
               />
             </Link>
@@ -202,7 +204,7 @@ function Navbar({ toggle }) {
               >
                 <img
                   className="navBar__container--profilePic"
-                  src={photoUrl}
+                  src={photoUrl === undefined ? profileDog : photoUrl}
                   alt={name}
                 />
               </Link>

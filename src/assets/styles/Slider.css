@@ -48,9 +48,9 @@
   transform: scale(1.08);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .slider__img {
-    width: 270px;
+    width: 200px;
     transition: all 0.2s ease-in-out;
   }
 }
