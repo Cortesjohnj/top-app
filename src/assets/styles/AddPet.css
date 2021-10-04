@@ -84,6 +84,12 @@ html {
   justify-content: flex-start;  
 }
 
+.container__dropzone--inputsErrors{
+  color: red;
+  font-size: 1.3rem;
+  padding-top: 15px;
+}
+
 .container__dropzone--input, .container__dropzone--textArea {    
   border: none;
   outline: none;
