@@ -18,7 +18,7 @@ const AdoptionRequest = ({ request, handleReject, handleApprove }) => {
 
   return (
     <>
-      <div className="request-container">
+      <div className="request-container" data-testid="requestCard">
         <h2 className="request-container__name">{request.userId.name}</h2>
         <div className="request-container__text">{request.description}</div>
         <div className="request-container__lower-text">
