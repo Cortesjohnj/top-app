@@ -6,7 +6,6 @@ import axios from "../axios";
 import createStoreApp from "../store/store";
 import { AUTHORIZATION } from "../store/actions";
 import App from "../App";
-import { addPets } from "../store/actionCreators";
 import AddPet from "../pages/AddPet";
 
 jest.mock("../axios");
