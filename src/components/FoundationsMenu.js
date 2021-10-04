@@ -1,7 +1,7 @@
 import FoundationsImage from "../components/FoundationsImage";
 import customAxios from "../axios";
 import { useState, useEffect } from "react";
-import NotFound from "../pages/NotFound";
+import Home from "../pages/Home";
 
 function NextPage(
   route,
@@ -51,7 +51,12 @@ const FoundationsMenu = () => {
   useEffect(() => {
     customAxios
       .get(route + page)
-      .then((response) => setFoundations(response.data))
+      .then((response) => {
+        setFoundations(response.data);
+        if (response.data && response.data.length < 5) {
+          setDisableNext(true);
+        }
+      })
       .catch((error) => {
         console.log(error);
         setFoundations(null);
@@ -59,7 +64,7 @@ const FoundationsMenu = () => {
   }, [page, route]);
 
   if (foundations === null) {
-    return <NotFound></NotFound>;
+    return <Home />;
   }
 
   return (
@@ -96,6 +101,7 @@ const FoundationsMenu = () => {
               setDisablePrev
             );
           }}
+          data-testid="previousButton"
         />
         <input
           type="submit"
@@ -112,6 +118,7 @@ const FoundationsMenu = () => {
               setDisablePrev
             );
           }}
+          data-testid="nextButton"
         />
       </div>
     </>

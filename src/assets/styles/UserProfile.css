@@ -2,23 +2,22 @@ html {
   font-size: 10px;
 }
 .userProfile {
-  padding:15px;
+  padding: 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 90vh;
-  background-image: url('../images/wave-profileUser.svg');
+  background-image: url("../images/wave-profileUser.svg");
   background-repeat: no-repeat;
   background-position: bottom;
-
 }
 
 .userProfile__container--title {
   font-size: 3rem;
   text-align: center;
   margin-bottom: 15px;
-  color: var(--blue-pigment)
+  color: var(--blue-pigment);
 }
 
 .userProfile__container {
@@ -32,7 +31,7 @@ html {
   padding: 30px 8px 40px;
 }
 
-.userProfile__container--form{
+.userProfile__container--form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -40,12 +39,10 @@ html {
   width: 100%;
 }
 
-
-.userProfile__container--profileImg{
+.userProfile__container--profileImg {
   width: 18rem;
   height: 18rem;
   border-radius: 50%;
-
 }
 
 .userProfile__container--avatar {
@@ -54,17 +51,18 @@ html {
   margin-bottom: 15px;
 }
 
-.updateProfilePic{
+.updateProfilePic {
   font-size: 1.7rem;
   font-weight: 700;
   margin-bottom: 10px;
   padding: 5px;
   background-color: var(--alice-blue);
   color: var(--blue-pigment);
+  cursor: pointer;
 }
 
 .userProfile__container--inputs {
-  font-size: 1.9rem;  
+  font-size: 1.9rem;
   border: none;
   background: var(--alice-blue);
   padding: 12px;
@@ -76,9 +74,9 @@ html {
   width: 100%;
 }
 
-@media (min-width:800px) {
+@media (min-width: 800px) {
   .userProfile__container--inputs {
-    font-size: 1.9rem; 
+    font-size: 1.9rem;
     border: none;
     background: var(--alice-blue);
     padding: 12px;
