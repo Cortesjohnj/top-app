@@ -14,6 +14,18 @@ beforeEach(() => {
   store = createStore();
 });
 
+test("renders signup page", async () => {
+  history.push("/signup");
+  render(
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+  await waitFor(() =>
+    expect(screen.getByText(/Sign up to continue/i)).toBeInTheDocument()
+  );
+});
+
 test("renders login component", async () => {
   history.push("/login");
   render(

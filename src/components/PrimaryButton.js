@@ -3,7 +3,7 @@ import "../assets/styles/PrimaryButton.css";
 
 function PrimaryButton({ children, color, id }) {
   return (
-    <button type="submit" className={color} id={id}>
+    <button type="submit" className={color} id={id} data-testid="submitButton">
       {children}
     </button>
   );
