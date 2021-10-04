@@ -15,6 +15,7 @@ beforeEach(() => {
   localStorage.clear();
   store = createStore();
 });
+//foundationt _id
 const data = {
   foundationInfo: {
     _id: "613fecc4e485559caa864add",
@@ -96,6 +97,7 @@ const data = {
 };
 
 test("The page is listing all the pets for the foundation", async () => {
+  //mock pet list response
   axios.get.mockResolvedValueOnce({
     data: data.petsList,
   });
@@ -239,6 +241,7 @@ test("A message is displayed when there are no pets for users", async () => {
     },
   });
 
+  //mock foundation requests response
   axios.get.mockResolvedValueOnce({
     data: data.requestsInfo,
   });
