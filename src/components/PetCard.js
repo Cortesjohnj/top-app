@@ -49,7 +49,7 @@ const PetCard = (props) => {
 
   return (
     <>
-      <div className="overflow--hidden">
+      <div className="overflow--hidden" data-testid="petCard">
         {isFoundation && requests.length > 0 && (
           <div className="card-list-number">
             <p>{requests.length}</p>
@@ -82,7 +82,11 @@ const PetCard = (props) => {
                 className: "delete-pets-container__icon",
               }}
             >
-              <div className="delete-pets-container" onClick={handleOpenModal}>
+              <div
+                className="delete-pets-container"
+                onClick={handleOpenModal}
+                data-testid="deletePetButton"
+              >
                 {" "}
                 <FaMinus />
               </div>

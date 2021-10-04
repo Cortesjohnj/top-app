@@ -57,11 +57,11 @@ const PetListPage = () => {
             />
           ))
         ) : isFoundation ? (
-          <h1 className="no-pets-message">
+          <h1 className="no-pets-message" data-testid="noPetsFoundation">
             You don't have any pets registered
           </h1>
         ) : (
-          <h1 className="no-pets-message">
+          <h1 className="no-pets-message" data-testid="noPetsUser">
             No pets available for this foundation
           </h1>
         )}
@@ -82,7 +82,7 @@ const PetListPage = () => {
           }}
         >
           <Link to={`/foundations/${foundationId}/add-pet`}>
-            <div className="add-pets-container">
+            <div className="add-pets-container" data-testid="addPetButton">
               {" "}
               <FaPlusCircle />
             </div>
