@@ -1,6 +1,5 @@
 .petFormContainer {
   margin: 30px 30px;
-  min-width: 100vh;
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
   position: relative;
   border-radius: 10px;
@@ -10,6 +9,13 @@
 
 .petFormGrid {
   grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 568) {
+  .petform__rightContainerForm--button {
+    margin-top: 0;
+    margin-bottom: 50px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -22,7 +28,7 @@
     min-height: 100vh;
   }
   .petFormGrid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 
   .petForm__successContainer--success {
@@ -30,6 +36,12 @@
   }
   .petFormContainer__content--left {
     display: none;
+  }
+  .petform__rightContainerForm h1 {
+    font-size: 1rem;
+  }
+  .petform__rightContainerForm--button {
+    width: 60%;
   }
 }
 
@@ -94,8 +106,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 90%;
-  height: 100%;
+  min-width: 100%;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -103,11 +115,12 @@
 }
 
 .petform__rightContainerForm h1 {
-  font-size: 2.5rem;
+  font-size: 18px;
   text-align: center;
   align-items: center;
   width: 80%;
   margin-bottom: 2.7rem;
+  margin-top: 2.7rem;
   color: black;
 }
 
@@ -144,7 +157,7 @@
   padding-left: 10px;
   outline: none;
   border-radius: 2px;
-  height: 100%;
+  min-height: 10vh;
   width: 100%;
   border: none;
   font-family: sans-serif;
@@ -161,15 +174,14 @@
 }
 
 .petform__rightContainerForm--button {
-  width: 30%;
+  min-width: 20%;
   height: 50px;
-  margin-top: 50px;
+  margin-top: 10px;
   border-radius: 60px;
   background: var(--warm-black);
   outline: none;
   border: none;
   color: #fff;
-  font-size: 1rem;
 }
 
 .petform__rightContainerForm--button:hover {
