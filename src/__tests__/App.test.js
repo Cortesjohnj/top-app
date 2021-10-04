@@ -218,3 +218,35 @@ test("PetManagePage redirects to login if not authenticated", async () => {
     expect(screen.queryByTestId("petManagePage")).not.toBeInTheDocument()
   );
 });
+
+test("renders navBar component", async () => {
+  history.push("/");
+  render(
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+  await waitFor(() => expect(screen.getByTestId("navBar")).toBeInTheDocument());
+});
+
+test("renders sideBar component", async () => {
+  history.push("/");
+  render(
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+  await waitFor(() =>
+    expect(screen.getByTestId("sideBar")).toBeInTheDocument()
+  );
+});
+
+test("renders footer component", async () => {
+  history.push("/");
+  render(
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+  await waitFor(() => expect(screen.getByTestId("footer")).toBeInTheDocument());
+});
