@@ -4,7 +4,7 @@ import "../assets/styles/LoginPage.css";
 import { useSelector, useDispatch } from "react-redux";
 import { authUser } from "../store/actionCreators";
 
-const LoginPage = (props) => {
+const LoginPage = () => {
   const form = useRef(null);
   const dispatch = useDispatch();
 
@@ -47,7 +47,11 @@ const LoginPage = (props) => {
       <section className="login__container">
         <h2>Login</h2>
         {formState.isInvalid && <span>*Invalid Email</span>}
-        <form className="login__container--form" ref={form}>
+        <form
+          className="login__container--form"
+          ref={form}
+          data-testid="loginForm"
+        >
           <input
             name="email"
             className="input"
@@ -55,6 +59,7 @@ const LoginPage = (props) => {
             placeholder="Email"
             onChange={handleChange}
             onBlur={handleVerifyEmail}
+            data-testid="email"
           />
           <input
             name="password"
@@ -62,6 +67,7 @@ const LoginPage = (props) => {
             type="password"
             placeholder="Password"
             onChange={handleChange}
+            data-testid="password"
           />
 
           <button
@@ -69,13 +75,14 @@ const LoginPage = (props) => {
             className="button"
             onClick={handleSubmit}
             disabled={formState.isInvalid}
+            data-testid="loginButton"
           >
             Login
           </button>
         </form>
         {!!error && <span>{error}</span>}
         <p className="login__container--register">
-          Don't you have an account? <Link to="/signup">Register</Link>
+          Don't you have an account? <Link to="/signup">Sign Up</Link>
         </p>
       </section>
     </section>

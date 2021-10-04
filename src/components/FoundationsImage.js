@@ -7,7 +7,7 @@ const FoundationsImage = (props) => {
       to={"/foundations/" + props.id + "/pets"}
       className="link-foundations"
     >
-      <figure className="photo-foundations">
+      <figure className="photo-foundations" data-testid="foundationsCard">
         <img className="image-foundations" src={props.photo_url} alt="pet" />
         <h2 className="subtitle-foundations"> {props.name} </h2>
         <h2 className="text-foundations">
