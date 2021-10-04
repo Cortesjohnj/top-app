@@ -91,7 +91,7 @@ export const addPets = ({
   };
 };
 
-export const deletePet = (petId) => {
+export const deletePet = petId => {
   return async function (dispatch) {
     try {
       await axios.delete(`/pets/${petId}`);
@@ -103,7 +103,7 @@ export const deletePet = (petId) => {
   };
 };
 
-export const selectPet = (petId) => {
+export const selectPet = petId => {
   return async function (dispatch) {
     try {
       let response = await axios.get(`/pets/${petId}`);
@@ -141,7 +141,7 @@ export const bulkReject = (petId, _id) => {
   };
 };
 
-export const listFoundationRequests = (foundationId) => {
+export const listFoundationRequests = foundationId => {
   return async function (dispatch) {
     try {
       let response = await axios.get(`/foundations/${foundationId}/requests`);
@@ -178,19 +178,20 @@ export const updateUserProfile = ({
   email,
   phoneNumber,
   photoUrl,
+  imageFile,
 }) => {
   return async function (dispatch) {
     try {
-      const response = await axios.put(`/${_id}/profile`, {
-        _id,
-        name,
-        role,
-        address,
-        email,
-        phoneNumber,
-        photoUrl,
-      });
-
+      const formData = new FormData();
+      formData.append("image", imageFile);
+      formData.append("_id", _id);
+      formData.append("name", name);
+      formData.append("role", role);
+      address && formData.append("address", address);
+      formData.append("email", email);
+      phoneNumber && formData.append("phoneNumber", phoneNumber);
+      formData.append("photoUrl", photoUrl);
+      const response = await axios.put(`/${_id}/profile`, formData);
       dispatch({ type: UPDATE_PROFILE, payload: response.data });
 
       // history.go(0);

@@ -8,7 +8,7 @@ html {
   flex-direction: column;
   justify-content: center;
   padding: 0px 30px;
-  min-height: 100vh;
+  min-height: calc(100vh - 80px - 20vh);
 }
 
 .login__container {
