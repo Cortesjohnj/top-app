@@ -6,12 +6,12 @@ import Whastapp from "../components/Whastapp";
 
 function Home() {
   return (
-    <>
+    <div data-testid="Home">
       <AboutSection />
       <Info />
       <HelpUsSection />
       <Whastapp />
-    </>
+    </div>
   );
 }
 

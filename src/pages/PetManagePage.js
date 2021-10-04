@@ -29,7 +29,7 @@ const PetManagePage = () => {
   };
 
   return (
-    <div className="background-container">
+    <div className="background-container" data-testid="petManagePage">
       {!!pet.photoUrl ? (
         <>
           <section className="pet-info">

@@ -52,6 +52,7 @@ function Table({ columns, data, state, setState }) {
                         className="AdminTable__check"
                         checked={state[i]}
                         onChange={() => handleChange(i)}
+                        data-testid="checkBox"
                       />
                     </td>
                   );
