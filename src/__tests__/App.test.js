@@ -14,6 +14,36 @@ beforeEach(() => {
   store = createStore();
 });
 
+const data = {
+  foundationId: "613fecc4e485559caa864add",
+};
+
+it("should render addPets page", async () => {
+  axios.get.mockResolvedValueOnce({
+    data: {
+      address: "",
+      email: "foundationt@test.com",
+      name: "Fundacion Mascoticas",
+      phoneNumber: "",
+      photoUrl: null,
+      role: "foundation",
+      _id: "613fecc4e485559caa864add",
+    },
+  });
+
+  localStorage.setItem(AUTHORIZATION, "123355");
+  history.push(`/foundations/${data.foundationId}/add-pet`);
+
+  render(
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+
+  await waitFor(() =>
+    expect(screen.getByText(/Add pet's/i)).toBeInTheDocument()
+  );
+});
 test("renders signup page", async () => {
   history.push("/signup");
   render(
