@@ -15,6 +15,7 @@ import {
   UPDATE_PROFILE,
   BULK_REJECT_REQUESTS,
   CREATE_ADOPTION_REQUEST,
+  LIST_USER_REQUESTS,
 } from "./actions";
 import history from "../history";
 
@@ -219,6 +220,17 @@ export const createAdoption = ({
       });
 
       dispatch({ type: CREATE_ADOPTION_REQUEST, payload: response.data });
+    } catch (e) {
+      dispatch({ type: ERROR, payload: e.response.data.error });
+    }
+  };
+};
+
+export const listUserRequests = userId => {
+  return async function (dispatch) {
+    try {
+      let response = await axios.get(`${userId}/requests`);
+      dispatch({ type: LIST_USER_REQUESTS, payload: response.data });
     } catch (e) {
       dispatch({ type: ERROR, payload: e.response.data.error });
     }
