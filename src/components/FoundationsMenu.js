@@ -1,45 +1,7 @@
 import FoundationsImage from "../components/FoundationsImage";
 import customAxios from "../axios";
 import { useState, useEffect } from "react";
-import NotFound from "../pages/NotFound";
-
-function NextPage(
-  route,
-  page,
-  setPage,
-  setFoundations,
-  setDisableNext,
-  setDisablePrev
-) {
-  customAxios
-    .get(route + (page + 1))
-    .then((response) => {
-      setFoundations(response.data);
-      if (response.data.length < 5) {
-        setDisableNext(true);
-      }
-    })
-    .catch((error) => setFoundations(null));
-  setPage(page + 1);
-  setDisablePrev(false);
-}
-
-function PreviousPage(
-  route,
-  page,
-  setPage,
-  setFoundations,
-  setDisableNext,
-  setDisablePrev
-) {
-  customAxios
-    .get(route + (page - 1))
-    .then((response) => setFoundations(response.data))
-    .catch((error) => setFoundations(null));
-  if (page - 1 === 1) setDisablePrev(true);
-  setPage(page - 1);
-  setDisableNext(false);
-}
+import Home from "../pages/Home";
 
 const FoundationsMenu = () => {
   const [foundations, setFoundations] = useState([]);
@@ -48,10 +10,39 @@ const FoundationsMenu = () => {
   const [page, setPage] = useState(1);
   const route = customAxios.defaults.baseURL + "/foundations?page=";
 
+  function NextPage(route, page) {
+    customAxios
+      .get(route + (page + 1))
+      .then((response) => {
+        setFoundations(response.data);
+        if (response.data.length < 5) {
+          setDisableNext(true);
+        }
+      })
+      .catch((error) => setFoundations(null));
+    setPage(page + 1);
+    setDisablePrev(false);
+  }
+
+  function PreviousPage(route, page) {
+    customAxios
+      .get(route + (page - 1))
+      .then((response) => setFoundations(response.data))
+      .catch((error) => setFoundations(null));
+    if (page - 1 === 1) setDisablePrev(true);
+    setPage(page - 1);
+    setDisableNext(false);
+  }
+
   useEffect(() => {
     customAxios
       .get(route + page)
-      .then((response) => setFoundations(response.data))
+      .then((response) => {
+        setFoundations(response.data);
+        if (response.data && response.data.length < 5) {
+          setDisableNext(true);
+        }
+      })
       .catch((error) => {
         console.log(error);
         setFoundations(null);
@@ -59,7 +50,7 @@ const FoundationsMenu = () => {
   }, [page, route]);
 
   if (foundations === null) {
-    return <NotFound></NotFound>;
+    return <Home />;
   }
 
   return (
@@ -75,10 +66,8 @@ const FoundationsMenu = () => {
             photo_url={foundation.photoUrl}
             id={foundation._id}
             key={foundation._id}
-          >
-            {" "}
-          </FoundationsImage>
-        ))}{" "}
+          ></FoundationsImage>
+        ))}
       </div>
       <div className="container-buttons-foundations">
         <input
@@ -87,15 +76,9 @@ const FoundationsMenu = () => {
           className="buttons-Foundation"
           disabled={disablePrev}
           onClick={() => {
-            PreviousPage(
-              route,
-              page,
-              setPage,
-              setFoundations,
-              setDisableNext,
-              setDisablePrev
-            );
+            PreviousPage(route, page);
           }}
+          data-testid="previousButton"
         />
         <input
           type="submit"
@@ -103,15 +86,9 @@ const FoundationsMenu = () => {
           className="buttons-Foundation"
           disabled={disableNext}
           onClick={() => {
-            NextPage(
-              route,
-              page,
-              setPage,
-              setFoundations,
-              setDisableNext,
-              setDisablePrev
-            );
+            NextPage(route, page);
           }}
+          data-testid="nextButton"
         />
       </div>
     </>

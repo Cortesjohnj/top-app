@@ -37,6 +37,7 @@ function SideBar({ isOpen, toggle }) {
       className={`sideBar__container 
       ${isOpen ? "sideBar__container--show" : "sideBar__container--hide"}`}
       onClick={toggle}
+      data-testid="sideBar"
     >
       <div className="sideBar__container--icon" onClick={toggle}>
         <div className="sideBar__container--closeIcon">
@@ -79,14 +80,22 @@ function SideBar({ isOpen, toggle }) {
 
         <div className="sideBar__container--btnWrap">
           {status === AUTHENTICATED && (
-            <Link className="sideBar__container--route" to={`/${_id}/profile`}>
+            <Link
+              className="sideBar__container--route"
+              to={`/${_id}/profile`}
+              data-testid="profile2"
+            >
               PROFILE
             </Link>
           )}
         </div>
         <div className="sideBar__container--btnWrap">
           {status === AUTHENTICATED && role === "user" ? (
-            <Link className="sideBar__container--route" to="/foundations">
+            <Link
+              className="sideBar__container--route"
+              to="/foundations"
+              data-testid="foundations2"
+            >
               FOUNDATIONS
             </Link>
           ) : (
@@ -95,6 +104,7 @@ function SideBar({ isOpen, toggle }) {
               <Link
                 className="sideBar__container--route"
                 to={`/foundations/${_id}/pets`}
+                data-testid="pets2"
               >
                 PETS
               </Link>
@@ -108,7 +118,7 @@ function SideBar({ isOpen, toggle }) {
         </div>
         <div className="sideBar__container--btnWrap">
           {status === NOT_AUTHENTICATED ? (
-            <Link className="sideBar__container--route" to="/donate">
+            <Link className="sideBar__container--route" to="/donate" data-testid="donate2">
               DONATE
             </Link>
           ) : (
@@ -117,6 +127,7 @@ function SideBar({ isOpen, toggle }) {
                 className="sideBar__container--route"
                 to="/"
                 onClick={handleLogOut}
+                data-testid="logout2"
               >
                 LOG OUT
               </Link>
@@ -130,7 +141,7 @@ function SideBar({ isOpen, toggle }) {
               FOUNDATIONS
             </Link>
           ) : status === NOT_AUTHENTICATED ? (
-            <Link className="sideBar__container--route" to="/login">
+            <Link className="sideBar__container--route" to="/login" data-testid="login2">
               LOG IN
             </Link>
           ) : (
@@ -144,7 +155,11 @@ function SideBar({ isOpen, toggle }) {
         </div>
         <div className="sideBar__container--btnWrap">
           {status === NOT_AUTHENTICATED && (
-            <Link className="sideBar__container--route" to="/signup">
+            <Link
+              className="sideBar__container--route"
+              to="/signup"
+              data-testid="signup2"
+            >
               SIGN UP
             </Link>
           )}

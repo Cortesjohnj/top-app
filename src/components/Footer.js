@@ -32,7 +32,7 @@ const Footer = () => {
   }, [location]);
 
   return (
-    <footer className="footer">
+    <footer className="footer" data-testid="footer">
       <div className="footer__wrapper">
         <div className="footer__wrapper--social-links">
           <ul>
@@ -42,6 +42,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Facebook"
+                data-testid="facebook"
               >
                 <FaFacebook />
               </a>
@@ -52,6 +53,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="twitter"
+                data-testid="twitter"
               >
                 <FaTwitterSquare />
               </a>
@@ -62,6 +64,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="instagram"
+                data-testid="instagram"
               >
                 <FaInstagram />
               </a>
@@ -72,6 +75,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="LinkedIn"
+                data-testid="linkedin"
               >
                 <FaLinkedin />
               </a>

@@ -51,9 +51,9 @@ function Navbar({ toggle }) {
 
   return (
     <>
-      <nav className="navBar">
+      <nav className="navBar" data-testid="navBar">
         <div className="navBar__container">
-          <Link className="navBar__container--logo" to="/">
+          <Link className="navBar__container--logo" to="/" data-testid="adogta">
             <MdPets className="navBar__container--pet" />
             ADOGTA
           </Link>
@@ -89,6 +89,7 @@ function Navbar({ toggle }) {
                   to="info"
                   smooth={true}
                   duration={1000}
+                  data-testid="info"
                 >
                   INFO
                 </LinkScroll>
@@ -114,7 +115,11 @@ function Navbar({ toggle }) {
                   : "navBar__container--navItem2"
               }
             >
-              <Link className="navBar__container--navLinks2" to="/login">
+              <Link
+                className="navBar__container--navLinks2"
+                to="/login"
+                data-testid="login"
+              >
                 LOG IN
               </Link>
             </li>{" "}
@@ -128,6 +133,7 @@ function Navbar({ toggle }) {
               <Link
                 className="navBar__container--navLinks2"
                 to={`/foundations/${_id}/pets`}
+                data-testid="pets"
               >
                 PETS
               </Link>
@@ -150,7 +156,11 @@ function Navbar({ toggle }) {
                   : "navBar__container--navMenu2--hide"
               }
             >
-              <Link className="navBar__container--navLinks2" to="/foundations">
+              <Link
+                className="navBar__container--navLinks2"
+                to="/foundations"
+                data-testid="foundations"
+              >
                 FOUNDATIONS
               </Link>
             </li>
@@ -175,6 +185,7 @@ function Navbar({ toggle }) {
               <Link
                 className="navBar__container--navLinks2 navBar__container--donate"
                 to="/donate"
+                data-testid="donate"
               >
                 DONATE
               </Link>
@@ -209,7 +220,11 @@ function Navbar({ toggle }) {
                 />
               </Link>
             ) : (
-              <Link className="navBar__container--navBtnLink" to="/signup">
+              <Link
+                className="navBar__container--navBtnLink"
+                to="/signup"
+                data-testid="signup"
+              >
                 SIGN UP
               </Link>
             )}

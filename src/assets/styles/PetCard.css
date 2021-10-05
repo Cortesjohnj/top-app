@@ -115,7 +115,7 @@ html {
   position: absolute;
   top: calc(100% - 55px);
   left: calc(100% - 65px);
-  z-index: 10;
+  z-index: 2;
   width: 50px;
   height: 45px;
   vertical-align: middle;

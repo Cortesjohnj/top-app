@@ -32,6 +32,7 @@ function RegisterPage() {
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="register__container--form"
+          data-testid="form"
         >
           {errors?.name?.type === "required" && (
             <p className="register__container--form--errors">
@@ -48,6 +49,7 @@ function RegisterPage() {
             name="name"
             placeholder="Name"
             className="form__field"
+            data-testid="name"
             {...register("name", {
               required: true,
               maxLength: 40,
@@ -68,6 +70,7 @@ function RegisterPage() {
             placeholder="Email"
             name="email"
             className="form__field"
+            data-testid="email"
             {...register("email", {
               required: true,
               pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
@@ -90,6 +93,7 @@ function RegisterPage() {
             placeholder="Password"
             name="password"
             className="form__field"
+            data-testid="password"
             {...register("password", {
               required: true,
               pattern: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/,
@@ -110,6 +114,7 @@ function RegisterPage() {
             placeholder="Confirm password"
             name="confirmPassword"
             className="form__field"
+            data-testid="confirmPassword"
             {...register("confirmPassword", {
               required: true,
               validate: value =>
@@ -129,6 +134,7 @@ function RegisterPage() {
                 type="radio"
                 name="user"
                 value="user"
+                data-testid="user"
                 className="register__container--form--options--input"
                 {...register("role", {
                   required: true,
@@ -141,6 +147,7 @@ function RegisterPage() {
                 type="radio"
                 name="foundation"
                 value="foundation"
+                data-testid="foundation"
                 className="register__container--form--options--input"
                 {...register("role", {
                   required: true,
@@ -158,6 +165,7 @@ function RegisterPage() {
               type="checkbox"
               name="terms"
               className="termsAndConditions--input"
+              data-testid="terms"
               {...register("terms", {
                 required: true,
               })}
@@ -172,6 +180,7 @@ function RegisterPage() {
             <PrimaryButton
               children={"Register"}
               color={"primaryButton registerForm"}
+              data-testid="submitButton"
             />
           </div>
         </form>

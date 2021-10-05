@@ -5,7 +5,7 @@ import Dog4 from "../../assets/images/54287-dogito.json";
 
 const PetFormSuccess = () => {
   return (
-    <div className="petform__successContainer">
+    <div className="petform__successContainer" data-testid="success">
       <h1 className="petform__successContainer--success">
         We have received your request!
       </h1>
@@ -15,7 +15,7 @@ const PetFormSuccess = () => {
         loop
         src={Dog4}
       />
-      <Link to="/">
+      <Link to="/" data-testid="successButton">
         <button className="petform__successContainer--button">
           RETURN TO HOME
         </button>
