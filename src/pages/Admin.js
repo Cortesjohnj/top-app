@@ -198,6 +198,7 @@ const Admin = (isF) => {
           className="AdminTable__bottomButtons"
           onClick={() => previousPage()}
           disabled={disablePrev}
+          data-testid="previousButton"
         />
         <input
           type="submit"

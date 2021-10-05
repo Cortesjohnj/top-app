@@ -20,8 +20,12 @@ const PetFormSignUp = ({ submitForm }) => {
   }, [statePet]);
 
   return (
-    <div className="petform__rightContainer">
-      <form className="petform__rightContainerForm" onSubmit={handleSubmit}>
+    <div className="petform__rightContainer" data-testid="petForm">
+      <form
+        className="petform__rightContainerForm"
+        onSubmit={handleSubmit}
+        data-testid="petFormSubmit"
+      >
         <h1>{`You're one step closer to be with your dream companion ${pet.name}`}</h1>
 
         <div className="petform__rightContainerForm--inputs">
@@ -39,6 +43,7 @@ const PetFormSignUp = ({ submitForm }) => {
             placeholder="Enter your address"
             value={values.address}
             onChange={handleChange}
+            data-testid="address"
           />
           {errors.address && <p>{errors.address}</p>}
         </div>
@@ -57,6 +62,7 @@ const PetFormSignUp = ({ submitForm }) => {
             placeholder="Enter your phone number"
             value={values.phoneNumber}
             onChange={handleChange}
+            data-testid="phoneNumber"
           />
           {errors.phoneNumber && <p>{errors.phoneNumber}</p>}
         </div>
@@ -76,8 +82,11 @@ const PetFormSignUp = ({ submitForm }) => {
             placeholder="Enter a complete description"
             value={values.description}
             onChange={handleChange}
+            data-testid="description"
           />
-          {errors.description && <p>{errors.description}</p>}
+          {errors.description && (
+            <p data-testid="errors">{errors.description}</p>
+          )}
         </div>
         <button className="petform__rightContainerForm--button" type="submit">
           ADOPT ME

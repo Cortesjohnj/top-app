@@ -59,7 +59,11 @@ function App() {
             path="/pets/:id/request"
             component={AdoptionPetRequest}
           />
-          <Route exact path="/foundations/:id/add-pet" component={AddPet} />
+          <PrivateRoute
+            exact
+            path="/foundations/:id/add-pet"
+            component={AddPet}
+          />
           <PrivateRoute
             exact
             path="/pets/:id/manage"
