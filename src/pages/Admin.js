@@ -1,6 +1,6 @@
 import "../assets/styles/AdminTable.css";
 import Table from "../components/Table";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import customAxios from "../axios";
 import Home from "../pages/Home";
 
@@ -26,15 +26,18 @@ const Admin = (isF) => {
   }
 
   function nextPage() {
+    console.log("next page");
     if (getAll) setNewData(url + (page + 1), true);
     else requestSearch(page + 1);
     setPage(page + 1);
     setDisablePrev(false);
   }
-  const setNewData = (thisUrl, isNext) => {
+  const setNewData = useCallback((thisUrl, isNext) => {
     customAxios
       .get(thisUrl)
       .then((response) => {
+        console.log("setting data");
+        console.log(response.data);
         setData(handleData(response.data));
         setArrCheck(
           response.data.map(() => {
@@ -51,7 +54,7 @@ const Admin = (isF) => {
         setData(null);
         setArrCheck(null);
       });
-  };
+  }, []);
 
   function previousPage() {
     if (getAll) setNewData(url + (page - 1), false);
@@ -149,7 +152,7 @@ const Admin = (isF) => {
   ];
   useEffect(() => {
     setNewData(url + 1, false);
-  });
+  }, [setNewData, url]);
 
   if (arrData === null) {
     return <Home />;
