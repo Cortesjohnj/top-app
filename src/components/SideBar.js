@@ -129,10 +129,15 @@ function SideBar({ isOpen, toggle }) {
             <Link className="sideBar__container--route" to="/admin">
               FOUNDATIONS
             </Link>
+          ) : status === NOT_AUTHENTICATED ? (
+            <Link className="sideBar__container--route" to="/login">
+              LOG IN
+            </Link>
           ) : (
-            status === NOT_AUTHENTICATED && (
-              <Link className="sideBar__container--route" to="/login">
-                LOG IN
+            status === AUTHENTICATED &&
+            role === "user" && (
+              <Link className="sideBar__container--route" to="/donate">
+                DONATE
               </Link>
             )
           )}
