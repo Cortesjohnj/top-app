@@ -13,7 +13,7 @@ function AuthVerified() {
 
   useEffect(() => {
     dispatch(verifiedEmail(token));
-  }, []);
+  }, [token, dispatch]);
 
   const emailWasVerified = () => {
     MySwal.fire({

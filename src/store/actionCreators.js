@@ -15,7 +15,6 @@ import {
   UPDATE_PROFILE,
   BULK_REJECT_REQUESTS,
   CREATE_ADOPTION_REQUEST,
-  VERIFIED_EMAIL,
 } from "./actions";
 import history from "../history";
 
