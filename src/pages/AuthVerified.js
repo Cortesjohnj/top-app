@@ -15,7 +15,7 @@ function AuthVerified() {
   const emailWasVerified = () => {
     MySwal.fire({
       title: <strong>Your email was successfully verified!</strong>,
-      html: `<i>Redirecting to home...</i>`,
+      html: `<i>Redirected to home...</i>`,
       icon: "success",
     }).then(history.push("/"));
 
