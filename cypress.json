@@ -1,0 +1,7 @@
+{
+  "baseUrl": "http://localhost:3000",
+  "env": {
+    "userToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTQzY2ExMjM5YjY2YzkwMjViYTY3ZTciLCJpYXQiOjE2MzMwMjIxNzB9.6FEb62ftwVA97H_9oNXEQVu3kAe_JgfI04qj7UTBeFE",
+    "foundationToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTNmZWNjNGU0ODU1NTljYWE4NjRhZGQiLCJpYXQiOjE2MzMwMjg4NDJ9.JYfdX98k1jxElKaLKz1rDzVEA04FS8W0ZFGf3TYYmto"
+  }
+}
