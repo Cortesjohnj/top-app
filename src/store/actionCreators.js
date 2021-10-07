@@ -15,9 +15,24 @@ import {
   UPDATE_PROFILE,
   BULK_REJECT_REQUESTS,
   CREATE_ADOPTION_REQUEST,
+  VERIFIED_EMAIL,
 } from "./actions";
 import history from "../history";
 
+export const verifiedEmail = () => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.post("/login", {});
+      localStorage.setItem(VERIFIED_EMAIL, response.data.token);
+      axios.defaults.headers.common["Authorization"] =
+        localStorage.getItem(AUTHORIZATION);
+      dispatch({ type: LOGIN_USER, payload: response.data });
+      history.push("/");
+    } catch (e) {
+      dispatch({ type: ERROR, payload: e.response.data.error });
+    }
+  };
+};
 export const authUser = ({ email, password }) => {
   return async function (dispatch) {
     try {
@@ -163,7 +178,7 @@ export const registerUser = ({ name, email, password, role }) => {
       });
 
       dispatch({ type: REGISTER_USER, payload: response.data.user });
-      history.push("/login");
+      history.push("/");
     } catch (e) {
       dispatch({ type: ERROR, payload: e.response.data.error });
     }

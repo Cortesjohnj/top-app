@@ -16,6 +16,7 @@ import {
   BULK_REJECT_REQUESTS,
   CREATE_ADOPTION_REQUEST,
   FINISHED,
+  VERIFIED_EMAIL,
 } from "./actions";
 
 const reducer = (state, action) => {
@@ -28,6 +29,11 @@ const reducer = (state, action) => {
         user: { _id, name, email, role, address, photoUrl, phoneNumber },
         status: AUTHENTICATED,
         error: "",
+      };
+    case VERIFIED_EMAIL:
+      return {
+        ...state,
+        active: action.payload,
       };
     case ADD_PETS:
       return {

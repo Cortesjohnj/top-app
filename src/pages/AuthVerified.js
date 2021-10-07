@@ -1,40 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import axios from "../axios";
 import history from "../history";
-import { authUser } from "../store/actionCreators";
+import { authUser, verifiedEmail } from "../store/actionCreators";
 
 function AuthVerified() {
   const MySwal = withReactContent(Swal);
   const dispatch = useDispatch();
   const { token } = useParams();
-  // const {email, }
+  // const { active } = useSelector(state => state.user);
+
+  // const [userVerified, setUserVerified] = useState( false );
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8080/verified/${token}`)
+      .then(resp => resp.json())
+      .then(data => {
+        console.log(data);
+      });
+    // setUserVerified(prevState => ({
+    //   ...prevState,
+    //   active: true,
+    // }));
+  }, [token]);
 
   const emailWasVerified = () => {
     MySwal.fire({
       title: <strong>Your email was successfully verified!</strong>,
       html: `<i>Redirected to home...</i>`,
       icon: "success",
-    }).then(history.push("/"));
-
-    // dispatch(
-    //   authUser({
-    //     email: formState.values.email || "",
-    //     password: formState.values.password || "",
-    //   })
-    // );
-  };
-
-  const emailWasNotVerified = () =>
-    MySwal.fire({
-      title: <strong>Oops...!</strong>,
-      html: <i>Something went wrong, try again later!</i>,
-      icon: "error",
+    }).then(function () {
+      dispatch(verifiedEmail());
     });
-
-  return <div>{token ? emailWasVerified() : emailWasNotVerified()}</div>;
+  };
+  return <div>{emailWasVerified()}</div>;
 }
 
 export default AuthVerified;
