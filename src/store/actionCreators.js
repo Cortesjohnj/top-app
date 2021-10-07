@@ -19,14 +19,16 @@ import {
 } from "./actions";
 import history from "../history";
 
-export const verifiedEmail = () => {
+export const verifiedEmail = token => {
   return async function (dispatch) {
     try {
-      const response = await axios.post("/login", {});
-      localStorage.setItem(VERIFIED_EMAIL, response.data.token);
+      const response = await axios.get(`/verified/${token}`);
+      console.log("response: ", response);
+      console.log("response.data: ", response.data);
+      localStorage.setItem(AUTHORIZATION, response.data.token);
       axios.defaults.headers.common["Authorization"] =
         localStorage.getItem(AUTHORIZATION);
-      dispatch({ type: LOGIN_USER, payload: response.data });
+      dispatch({ type: LOGIN_USER, payload: response.data.user });
       history.push("/");
     } catch (e) {
       dispatch({ type: ERROR, payload: e.response.data.error });
