@@ -7,6 +7,7 @@ import { loadUser, logOut } from "./store/actionCreators";
 import { AUTHORIZATION } from "./store/actions";
 import PrivateRoute from "./pages/PrivateRoute";
 
+const AuthVerified = lazy(() => import("./pages/AuthVerified"));
 const LoginPage = lazy(() => import("./pages/LoginPage"));
 const PetListPage = lazy(() => import("./pages/PetListPage"));
 const RegisterPage = lazy(() => import("./pages/RegisterPage"));
@@ -53,6 +54,7 @@ function App() {
             path="/foundations/:id/pets"
             component={PetListPage}
           />
+          <Route exact path="/verified/:token" component={AuthVerified} />
           <PrivateRoute exact path="/:id/profile" component={UserProfile} />
           <PrivateRoute
             exact

@@ -5,6 +5,10 @@ import "../assets/styles/RegisterForm.css";
 import { PrimaryButton } from "../components/PrimaryButton";
 import { useSelector, useDispatch } from "react-redux";
 import { registerUser } from "../store/actionCreators";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
 
 function RegisterPage() {
   const error = useSelector(state => state.error);
@@ -20,9 +24,17 @@ function RegisterPage() {
   const password = useRef({});
   password.current = watch("password", "");
 
+  const emailVerificationMessage = () =>
+    MySwal.fire({
+      title: <strong>Please verify your email!</strong>,
+      html: <i>Check your inbox!</i>,
+      icon: "success",
+    });
+
   const onSubmit = (data, e) => {
     e.preventDefault();
     dispatch(registerUser(data));
+    emailVerificationMessage();
   };
 
   return (
