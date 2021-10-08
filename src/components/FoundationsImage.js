@@ -12,9 +12,9 @@ const FoundationsImage = (props) => {
         <h2 className="subtitle-foundations"> {props.name} </h2>
         <h2 className="text-foundations">
           {" "}
-          <b>Address</b>: {props.address} <br />
-          <b>Email</b>: {props.email} <br />
-          <b>Phone</b>: {props.phone}{" "}
+          {props.address} <br />
+          {props.email} <br />
+          {props.phone}{" "}
         </h2>
       </figure>
     </Link>
