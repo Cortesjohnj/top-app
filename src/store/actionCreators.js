@@ -22,8 +22,7 @@ export const verifiedEmail = token => {
   return async function (dispatch) {
     try {
       const response = await axios.get(`/verified/${token}`);
-      console.log("response: ", response);
-      console.log("response.data: ", response.data);
+
       localStorage.setItem(AUTHORIZATION, response.data.token);
       axios.defaults.headers.common["Authorization"] =
         localStorage.getItem(AUTHORIZATION);
