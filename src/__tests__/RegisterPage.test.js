@@ -5,7 +5,6 @@ import history from "../history";
 import axios from "../axios";
 import createStoreApp from "../store/store";
 import RegisterPage from "../pages/RegisterPage";
-import App from "../App";
 
 jest.mock("../axios");
 
