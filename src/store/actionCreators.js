@@ -17,6 +17,8 @@ import {
   CREATE_ADOPTION_REQUEST,
 } from "./actions";
 import history from "../history";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 export const verifiedEmail = token => {
   return async function (dispatch) {
@@ -169,6 +171,23 @@ export const listFoundationRequests = foundationId => {
 
 export const registerUser = ({ name, email, password, role }) => {
   return async function (dispatch) {
+    const MySwal = withReactContent(Swal);
+
+    const emailVerificationMessage = () => {
+      MySwal.fire({
+        title: <strong>Please verify your email!</strong>,
+        html: <i>Check your inbox!</i>,
+        icon: "success",
+      });
+    };
+
+    const emailVerificationMessageError = () => {
+      MySwal.fire({
+        title: <strong>Oops...!</strong>,
+        html: <i>Email is already taken!</i>,
+        icon: "error",
+      });
+    };
     try {
       const response = await axios.post("/signup", {
         name: name,
@@ -179,8 +198,10 @@ export const registerUser = ({ name, email, password, role }) => {
 
       dispatch({ type: REGISTER_USER, payload: response.data.user });
       history.push("/");
+      emailVerificationMessage();
     } catch (e) {
       dispatch({ type: ERROR, payload: e.response.data.error });
+      emailVerificationMessageError();
     }
   };
 };

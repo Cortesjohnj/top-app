@@ -3,16 +3,10 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import "../assets/styles/RegisterForm.css";
 import { PrimaryButton } from "../components/PrimaryButton";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { registerUser } from "../store/actionCreators";
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
-
-const MySwal = withReactContent(Swal);
 
 function RegisterPage() {
-  const error = useSelector(state => state.error);
-
   const {
     register,
     formState: { errors },
@@ -24,17 +18,9 @@ function RegisterPage() {
   const password = useRef({});
   password.current = watch("password", "");
 
-  const emailVerificationMessage = () =>
-    MySwal.fire({
-      title: <strong>Please verify your email!</strong>,
-      html: <i>Check your inbox!</i>,
-      icon: "success",
-    });
-
   const onSubmit = (data, e) => {
     e.preventDefault();
     dispatch(registerUser(data));
-    emailVerificationMessage();
   };
 
   return (
@@ -199,9 +185,6 @@ function RegisterPage() {
         <h4 className="register__container--Endtitle">
           Already a member? <Link to="/login">Sign in </Link>
         </h4>
-        {!!error && (
-          <span className="register__container--handleError">{error}</span>
-        )}
       </div>
     </section>
   );
