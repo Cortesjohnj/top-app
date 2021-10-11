@@ -16,6 +16,7 @@ import {
   BULK_REJECT_REQUESTS,
   CREATE_ADOPTION_REQUEST,
   FINISHED,
+  LIST_USER_REQUESTS,
 } from "./actions";
 
 const reducer = (state, action) => {
@@ -115,9 +116,6 @@ const reducer = (state, action) => {
         errStatus: FINISHED,
       };
 
-    default:
-      return state;
-
     case CREATE_ADOPTION_REQUEST:
       return {
         ...state,
@@ -125,6 +123,15 @@ const reducer = (state, action) => {
         error: "",
         errStatus: FINISHED,
       };
+
+    case LIST_USER_REQUESTS:
+      return {
+        ...state,
+        userRequests: action.payload,
+      };
+
+    default:
+      return state;
   }
 };
 
