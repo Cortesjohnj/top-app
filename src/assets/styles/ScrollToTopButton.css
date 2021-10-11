@@ -1,0 +1,38 @@
+.backToTop {
+  position: fixed;
+  bottom: 30px;
+  left: 40px;
+  z-index: 998;
+  background-color: rgba(8, 59, 114, 0.38823529411764707);
+  height: 60px;
+  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 15px -7px var(--blue-pigment),
+    inset 0 0 10px -3px var(--blue-pigment);
+}
+
+.arrowIcon {
+  color: white;
+  font-size: 40px;
+}
+
+@media (max-width: 360px) {
+  .backToTop {
+    width: 40px;
+    height: 40px;
+    bottom: 20px;
+    right: 32px;
+    font-size: 22px;
+  }
+  .arrowIcon {
+    font-size: 30px;
+  }
+}
+
+.hide {
+  display: none;
+}

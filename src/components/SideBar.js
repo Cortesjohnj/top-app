@@ -53,24 +53,28 @@ function SideBar({ isOpen, toggle }) {
             >
               ABOUT
             </li>
-            <LinkScroll
-              onClick={toggle}
-              smooth={true}
-              duration={1000}
-              className="sideBar__container--link"
-              to="info"
-            >
-              INFO
-            </LinkScroll>
-            <LinkScroll
-              onClick={toggle}
-              smooth={true}
-              duration={1000}
-              className="sideBar__container--link"
-              to="helpUs"
-            >
-              HELP US
-            </LinkScroll>
+            <li>
+              <LinkScroll
+                onClick={toggle}
+                smooth={true}
+                duration={1000}
+                className="sideBar__container--link"
+                to="info"
+              >
+                INFO
+              </LinkScroll>
+            </li>
+            <li>
+              <LinkScroll
+                onClick={toggle}
+                smooth={true}
+                duration={1000}
+                className="sideBar__container--link"
+                to="helpUs"
+              >
+                HELP US
+              </LinkScroll>
+            </li>
           </ul>
         )}
 
@@ -95,7 +99,8 @@ function SideBar({ isOpen, toggle }) {
               FOUNDATIONS
             </Link>
           ) : (
-            status === AUTHENTICATED && (
+            status === AUTHENTICATED &&
+            role === "foundation" && (
               <Link
                 className="sideBar__container--route"
                 to={`/foundations/${_id}/pets`}
@@ -105,14 +110,15 @@ function SideBar({ isOpen, toggle }) {
               </Link>
             )
           )}
+          {status === AUTHENTICATED && role === "admin" && (
+            <Link className="sideBar__container--route" to="/admin/users">
+              USERS
+            </Link>
+          )}
         </div>
         <div className="sideBar__container--btnWrap">
-          {status === NOT_AUTHENTICATED || role === "user" ? (
-            <Link
-              className="sideBar__container--route"
-              to="/donate"
-              data-testid="donate2"
-            >
+          {status === NOT_AUTHENTICATED ? (
+            <Link className="sideBar__container--route" to="/donate" data-testid="donate2">
               DONATE
             </Link>
           ) : (
@@ -130,25 +136,21 @@ function SideBar({ isOpen, toggle }) {
         </div>
 
         <div className="sideBar__container--btnWrap">
-          {status === AUTHENTICATED ? (
-            role === "user" && (
-              <Link
-                className="sideBar__container--route"
-                to="/"
-                onClick={handleLogOut}
-                data-testid="logout2"
-              >
-                LOG OUT
-              </Link>
-            )
-          ) : (
-            <Link
-              className="sideBar__container--route"
-              to="/login"
-              data-testid="login2"
-            >
+          {status === AUTHENTICATED && role === "admin" ? (
+            <Link className="sideBar__container--route" to="/admin">
+              FOUNDATIONS
+            </Link>
+          ) : status === NOT_AUTHENTICATED ? (
+            <Link className="sideBar__container--route" to="/login" data-testid="login2">
               LOG IN
             </Link>
+          ) : (
+            status === AUTHENTICATED &&
+            role === "user" && (
+              <Link className="sideBar__container--route" to="/donate">
+                DONATE
+              </Link>
+            )
           )}
         </div>
         <div className="sideBar__container--btnWrap">

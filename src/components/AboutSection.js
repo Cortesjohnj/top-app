@@ -1,11 +1,14 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import Dog from "../assets/images/Dog swimming-01.svg";
+import { Player } from "@lottiefiles/react-lottie-player";
+import Dog from "../assets/images/23919-error-doggy.json";
+
 import "../assets/styles/AboutSection.css";
 
 const AboutSection = () => {
   const activeUser = useSelector((state) => state.user);
+
   return (
     <>
       <div className="aboutContainer">
@@ -26,15 +29,20 @@ const AboutSection = () => {
               <Link
                 className="aboutContainer__wrapper--btnWrap"
                 to={
-                  activeUser.role === "user" || activeUser.role === "admin"
+                  activeUser.role === "user"
                     ? "/foundations"
-                    : `/foundations/${activeUser._id}/pets`
+                    : activeUser.role === "foundation"
+                    ? `/foundations/${activeUser._id}/pets`
+                    : activeUser.role === "admin" &&
+                      `/${activeUser._id}/profile`
                 }
               >
                 <button className="aboutContainer__wrapper--button">
-                  {activeUser.role === "user" || activeUser.role === "admin"
+                  {activeUser.role === "user"
                     ? "FOUNDATIONS"
-                    : "PETS"}
+                    : activeUser.role === "foundation"
+                    ? "PETS"
+                    : activeUser.role === "admin" && "PROFILE"}
                 </button>
               </Link>
             ) : (
@@ -47,13 +55,7 @@ const AboutSection = () => {
           </div>
 
           <div className="aboutContainer__wrapper--imgWrap">
-            <object
-              className="aboutContainer__wrapper--img"
-              type="image/svg+xml"
-              data={Dog}
-            >
-              svg-animation
-            </object>
+            <Player autoplay loop src={Dog} />
           </div>
         </div>
       </div>

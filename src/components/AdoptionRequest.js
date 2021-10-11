@@ -19,24 +19,30 @@ const AdoptionRequest = ({ request, handleReject, handleApprove }) => {
   return (
     <>
       <div className="request-container" data-testid="requestCard">
-        <h2 className="request-container__name">{request.userId.name}</h2>
+        {!!request.userId.name ? (
+          <h2 className="request-container__name">{request.userId.name}</h2>
+        ) : (
+          <h2 className="request-container__name">{request.petId.name}</h2>
+        )}
         <div className="request-container__text">{request.description}</div>
         <div className="request-container__lower-text">
           <p>
             STATUS:{" "}
             <span className={classStatus}>{request.responseStatus}</span>
           </p>
-          <div className="request-container__buttons">
-            <button className="button-accept" onClick={handleOpenModal}>
-              Approve
-            </button>
-            <button
-              className="button-reject"
-              onClick={handleReject(request._id)}
-            >
-              Reject
-            </button>
-          </div>
+          {handleApprove && (
+            <div className="request-container__buttons">
+              <button className="button-accept" onClick={handleOpenModal}>
+                Approve
+              </button>
+              <button
+                className="button-reject"
+                onClick={handleReject(request._id)}
+              >
+                Reject
+              </button>
+            </div>
+          )}
         </div>
       </div>
       {modalIsOpen && (

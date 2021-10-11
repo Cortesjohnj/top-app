@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { FaCloudUploadAlt } from "react-icons/fa";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import "../assets/styles/AddPet.css";
 import { PrimaryButton } from "../components/PrimaryButton";
@@ -9,6 +9,8 @@ import { addPets } from "../store/actionCreators";
 function AddPet() {
   const { id: foundationId } = useParams();
   const dispatch = useDispatch();
+
+  const error = useSelector(state => state.error);
 
   const [pet, setPet] = useState({
     petName: "",
@@ -23,7 +25,6 @@ function AddPet() {
     },
   });
 
-  const [errorForm, setErrorForm] = useState(false);
   const [counter, setCounter] = useState(0);
   const [selectedImages, setSelectedImages] = useState([]);
 
@@ -79,9 +80,6 @@ function AddPet() {
   };
 
   const submit = event => {
-    if (pet.petName === "" || pet.petAge === "" || pet.petDescription === "") {
-      setErrorForm(true);
-    }
     event.preventDefault();
     dispatch(addPets(pet));
   };
@@ -92,7 +90,6 @@ function AddPet() {
       ...prevState,
       error: { ...prevState.error, [event.target.name]: validate },
     }));
-    setErrorForm(false);
   };
 
   const InputChange = event => {
@@ -176,10 +173,8 @@ function AddPet() {
               onBlur={validator}
               className="container__dropzone--textArea"
             />
-            {errorForm && (
-              <span className="container__dropzone--inputsErrors">
-                *Please fill in all the fields of the form
-              </span>
+            {!!error && (
+              <span className="container__dropzone--inputsErrors">{error}</span>
             )}
             <div className="addButton">
               <PrimaryButton

@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import "../assets/styles/UserProfile.css";
 import { PrimaryButton } from "../components/PrimaryButton";
-import { updateUserProfile } from "../store/actionCreators";
+import { listUserRequests, updateUserProfile } from "../store/actionCreators";
+import AdoptionRequest from "../components/AdoptionRequest";
 
 function Profile() {
   const { name, email, address, phoneNumber, _id, role, photoUrl } =
@@ -20,6 +21,12 @@ function Profile() {
     role,
     imageFile: null,
   });
+
+  useEffect(() => {
+    dispatch(listUserRequests(_id));
+  }, [_id, dispatch]);
+
+  const requests = useSelector(state => state.userRequests) || [];
 
   const cleanup = () => {
     URL.revokeObjectURL(updateProfile);
@@ -139,6 +146,21 @@ function Profile() {
           />
         </form>
       </div>
+      {requests.length > 0 && (
+        <>
+          <h2 className="request-title">Adoption Requests</h2>
+          <section className="requests-list">
+            {requests.map(req => (
+              <AdoptionRequest
+                key={req._id}
+                request={req}
+                handleReject={null}
+                handleApprove={null}
+              ></AdoptionRequest>
+            ))}
+          </section>
+        </>
+      )}
     </section>
   );
 }
