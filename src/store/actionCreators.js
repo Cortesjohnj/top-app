@@ -77,12 +77,17 @@ export const addPets = ({
 }) => {
   return async function (dispatch) {
     try {
-      let response = await axios.post(`/foundations/${foundationId}/pets`, {
-        name: petName,
-        age: petAge,
-        description: petDescription,
+      const formData = new FormData();
+      formData.append("name", petName);
+      formData.append("age", petAge);
+      formData.append("description", petDescription);
+      photoUrl.forEach(image => {
+        formData.append("photoUrl", image);
       });
-
+      const response = await axios.post(
+        `/foundations/${foundationId}/pets`,
+        formData
+      );
       dispatch({ type: ADD_PETS, payload: response.data });
       history.push(`/foundations/${foundationId}/pets`);
     } catch (e) {
