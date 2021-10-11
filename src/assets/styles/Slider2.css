@@ -1,6 +1,6 @@
 .slider {
   position: absolute;
-  height: 100vh;
+  min-height: 71.2280701754386vh;
   width: 100%;
   display: flex;
   align-items: center;

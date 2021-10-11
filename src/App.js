@@ -6,6 +6,8 @@ import { useDispatch } from "react-redux";
 import { loadUser, logOut } from "./store/actionCreators";
 import { AUTHORIZATION } from "./store/actions";
 import PrivateRoute from "./pages/PrivateRoute";
+import ScrollToTop from "./components/ScrollToTop";
+import ScrollToTopButton from "./components/ScrollToTopButton";
 
 const LoginPage = lazy(() => import("./pages/LoginPage"));
 const PetListPage = lazy(() => import("./pages/PetListPage"));
@@ -42,6 +44,8 @@ function App() {
   return (
     <Router history={history}>
       <Suspense fallback={<Spinner />}>
+        <ScrollToTop />
+        <ScrollToTopButton />
         <SideBar isOpen={isOpen} toggle={toggle} />
         <Navbar toggle={toggle} />
         <Switch>
