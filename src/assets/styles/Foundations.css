@@ -1,5 +1,8 @@
 .general-foundations {
   min-height: 100vh;
+  background-image: url("../images/wave-addpet.svg");
+  background-repeat: no-repeat;
+  background-position: bottom;
 }
 
 .link-foundations {
@@ -18,7 +21,7 @@
   margin: 10px 10px;
   width: 300px;
   position: relative;
-  background-color: #e8eef2;
+  background-color: var(--alice-blue);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.16);
   border-radius: 10px;
 }
@@ -26,6 +29,7 @@
 .text-foundations {
   margin: 5px;
   font-size: 14pt;
+  text-align: center;
 }
 
 .subtitle-foundations {
@@ -34,7 +38,8 @@
   margin-bottom: -5px;
   font-size: 18pt;
   font-weight: bold;
-  color: #3e2f90;
+  color: var(--blue-pigment);
+  text-align: center;
 }
 
 .image-foundations {
@@ -49,17 +54,9 @@
   font-size: 40pt;
   font-weight: bold;
   text-align: center;
-  color: #3e2f90;
+  color: var(--blue-pigment);
   margin-top: 10px;
   margin-bottom: 20px;
-}
-
-.error-foundations {
-  color: red;
-  font-size: x-large;
-  margin: 15px;
-  display: flex;
-  justify-content: center;
 }
 
 .buttons-Foundation {
@@ -69,12 +66,8 @@
   border: none;
   border-radius: 15px;
   color: white;
-  cursor: pointer;
-  font-size: 2rem;
-  font-weight: bold;
-  font-family: "Muli", sans-serif;
-  height: 50px;
-  letter-spacing: 1px;
+  font-size: large;
+  height: 40px;
 }
 
 .buttons-Foundation:disabled {

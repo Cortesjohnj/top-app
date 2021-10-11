@@ -22,7 +22,9 @@ function Table({ columns, data, state, setState }) {
         {headerGroups.map((headerGroup) => (
           <tr {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map((column) => (
-              <th {...column.getHeaderProps()}>{column.render("Header")}</th>
+              <th className="AdminTable__th" {...column.getHeaderProps()}>
+                {column.render("Header")}
+              </th>
             ))}
           </tr>
         ))}
@@ -44,7 +46,8 @@ function Table({ columns, data, state, setState }) {
                       ></img>
                     </td>
                   );
-                } else if (str.startsWith("check")) {
+                }
+                if (str.startsWith("check")) {
                   return (
                     <td {...cell.getCellProps()} className="AdminTable__td">
                       <input
@@ -52,6 +55,7 @@ function Table({ columns, data, state, setState }) {
                         className="AdminTable__check"
                         checked={state[i]}
                         onChange={() => handleChange(i)}
+                        data-testid="checkBox"
                       />
                     </td>
                   );

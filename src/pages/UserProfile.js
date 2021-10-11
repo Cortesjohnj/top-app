@@ -60,7 +60,11 @@ function Profile() {
     <section className="userProfile">
       <div className="userProfile__container">
         <h2 className="userProfile__container--title">Hello {name}!</h2>
-        <form className="userProfile__container--form" onSubmit={handleSubmit}>
+        <form
+          className="userProfile__container--form"
+          onSubmit={handleSubmit}
+          data-testid="form"
+        >
           <i className="userProfile__container--image">
             {!!updateProfile.photoUrl ? (
               <img
@@ -81,11 +85,14 @@ function Profile() {
           <input
             type="file"
             id="imageUpload"
+            name="imageUpload"
             accept="image/*"
             hidden
             onChange={handlePhoto}
+            data-testid="imageUpload"
           />
           <input
+            id="name"
             type="text"
             name="name"
             placeholder={name || "Name"}
@@ -93,8 +100,10 @@ function Profile() {
             onChange={onChange}
             required={name ? true : false}
             value={updateProfile.name}
+            data-testid="name"
           />
           <input
+            id="email"
             type="email"
             name="email"
             placeholder="Email"
@@ -103,6 +112,7 @@ function Profile() {
             className="userProfile__container--inputs"
           />
           <input
+            id="address"
             type="text"
             name="address"
             placeholder={address || "Address"}
@@ -110,8 +120,10 @@ function Profile() {
             onChange={onChange}
             required={address ? true : false}
             value={updateProfile.address}
+            data-testid="address"
           />
           <input
+            id="phoneNumber"
             type="number"
             name="phoneNumber"
             placeholder={phoneNumber || "Phone Number"}
@@ -119,6 +131,7 @@ function Profile() {
             onChange={onChange}
             required={phoneNumber ? true : false}
             value={updateProfile.phoneNumber}
+            data-testid="phoneNumber"
           />
           <PrimaryButton
             children={"Update profile"}
