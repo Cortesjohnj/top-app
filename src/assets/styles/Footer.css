@@ -36,6 +36,7 @@
 
 .footer__wrapper--quick-links {
   width: 410px;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;

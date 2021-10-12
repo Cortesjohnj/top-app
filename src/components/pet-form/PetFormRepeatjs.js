@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import beWare from "../../assets/images/NoDog.svg";
+import { Player } from "@lottiefiles/react-lottie-player";
+import beWare from "../../assets/images/29407-warning-icon.json";
 
 function PetFormRepeat() {
   return (
@@ -8,13 +9,12 @@ function PetFormRepeat() {
       <h1 className="petform__successContainer--success">
         You have already sent a request to adopt this pet
       </h1>
-      <object
+      <Player
         className="petform__successContainer--img"
-        type="image/svg+xml"
-        data={beWare}
-      >
-        svg-animation
-      </object>
+        autoplay
+        loop
+        src={beWare}
+      />
       <Link to="/">
         <button className="petform__successContainer--button">
           RETURN TO HOME
