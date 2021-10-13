@@ -20,6 +20,8 @@
     "react-table": "^7.7.0",
     "redux": "^4.1.1",
     "redux-thunk": "^2.3.0",
+    "sweetalert2": "^11.1.7",
+    "sweetalert2-react-content": "^4.1.1",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
