@@ -138,6 +138,10 @@ html {
   justify-content: center;
 }
 
+.swal2-popup {
+  font-size: 1.6rem !important;
+}
+
 #fileUpload {
   border: hidden;
   outline:none;
@@ -186,3 +190,4 @@ input[type=number] {
     max-width: 450px;
   }
 }
+
