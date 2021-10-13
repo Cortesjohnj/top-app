@@ -11,6 +11,14 @@
   background-color: rgba(0, 0, 0, 0.7);
 }
 
-.card-image__container img {
+.card-image img {
   display: inline-block;
+  width: 90%;
+}
+
+@media (min-width: 1025px) {
+  .card-image img {
+    display: inline-block;
+    width: 70%;
+  }
 }
