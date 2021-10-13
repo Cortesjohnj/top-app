@@ -15,6 +15,7 @@ import {
   UPDATE_PROFILE,
   BULK_REJECT_REQUESTS,
   CREATE_ADOPTION_REQUEST,
+  LIST_USER_REQUESTS,
 } from "./actions";
 import history from "../history";
 import Swal from "sweetalert2";
@@ -94,12 +95,17 @@ export const addPets = ({
 }) => {
   return async function (dispatch) {
     try {
-      let response = await axios.post(`/foundations/${foundationId}/pets`, {
-        name: petName,
-        age: petAge,
-        description: petDescription,
+      const formData = new FormData();
+      formData.append("name", petName);
+      formData.append("age", petAge);
+      formData.append("description", petDescription);
+      photoUrl.forEach(image => {
+        formData.append("photoUrl", image);
       });
-
+      const response = await axios.post(
+        `/foundations/${foundationId}/pets`,
+        formData
+      );
       dispatch({ type: ADD_PETS, payload: response.data });
       history.push(`/foundations/${foundationId}/pets`);
     } catch (e) {
@@ -255,6 +261,17 @@ export const createAdoption = ({
       });
 
       dispatch({ type: CREATE_ADOPTION_REQUEST, payload: response.data });
+    } catch (e) {
+      dispatch({ type: ERROR, payload: e.response.data.error });
+    }
+  };
+};
+
+export const listUserRequests = userId => {
+  return async function (dispatch) {
+    try {
+      let response = await axios.get(`${userId}/requests`);
+      dispatch({ type: LIST_USER_REQUESTS, payload: response.data });
     } catch (e) {
       dispatch({ type: ERROR, payload: e.response.data.error });
     }

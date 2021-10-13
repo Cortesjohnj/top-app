@@ -67,6 +67,7 @@
   padding-bottom: 60px;
   margin: 0 44px;
   transition: all 0.2s ease-in-out;
+  cursor: pointer;
 }
 
 .joinUsContainer__wrapper--img {

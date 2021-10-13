@@ -11,6 +11,9 @@ import { Link as LinkScroll } from "react-scroll";
 import { animateScroll as ScrollToTop } from "react-scroll";
 import { useSelector } from "react-redux";
 import { AUTHENTICATED, NOT_AUTHENTICATED } from "../store/actions";
+import { useState } from "react";
+import history from "../history";
+import { useEffect } from "react";
 
 const Footer = () => {
   const status = useSelector((state) => state.status);
@@ -19,6 +22,14 @@ const Footer = () => {
     recentUser = {};
   }
   const { role, _id } = recentUser;
+
+  const [location, setLocation] = useState(history.location.pathname);
+
+  useEffect(() => {
+    return history.listen((location) => {
+      setLocation(location.pathname);
+    });
+  }, [location]);
 
   return (
     <footer className="footer" data-testid="footer">
@@ -30,6 +41,7 @@ const Footer = () => {
                 href="https://www.facebook.com/"
                 target="_blank"
                 rel="noreferrer"
+                aria-label="Facebook"
                 data-testid="facebook"
               >
                 <FaFacebook />
@@ -40,6 +52,7 @@ const Footer = () => {
                 href="https://www.twitter.com/"
                 target="_blank"
                 rel="noreferrer"
+                aria-label="twitter"
                 data-testid="twitter"
               >
                 <FaTwitterSquare />
@@ -50,6 +63,7 @@ const Footer = () => {
                 href="https://www.instagram.com/"
                 target="_blank"
                 rel="noreferrer"
+                aria-label="instagram"
                 data-testid="instagram"
               >
                 <FaInstagram />
@@ -60,6 +74,7 @@ const Footer = () => {
                 href="https://www.linkedin.com/"
                 target="_blank"
                 rel="noreferrer"
+                aria-label="LinkedIn"
                 data-testid="linkedin"
               >
                 <FaLinkedin />
@@ -77,24 +92,38 @@ const Footer = () => {
                     FOUNDATIONS
                   </Link>
                 ) : (
-                  <Link
-                    className="navBar__container--navLinks2"
-                    to={`/foundations/${_id}/pets`}
-                  >
-                    PETS
-                  </Link>
+                  role === "foundation" && (
+                    <Link
+                      className="navBar__container--navLinks2"
+                      to={`/foundations/${_id}/pets`}
+                    >
+                      PETS
+                    </Link>
+                  )
                 )
-              ) : (
+              ) : status === NOT_AUTHENTICATED && location === "/" ? (
                 <div
                   className="footer__wrapper--navLinks"
                   onClick={() => ScrollToTop.scrollToTop()}
                 >
                   ABOUT
                 </div>
+              ) : (
+                status === NOT_AUTHENTICATED &&
+                location !== "/" && (
+                  <Link className="footer__wrapper--navLinks" to="/">
+                    HOME
+                  </Link>
+                )
+              )}
+              {status === AUTHENTICATED && role === "admin" && (
+                <Link className="footer__wrapper--navLinks" to="/">
+                  HOME
+                </Link>
               )}
             </li>
             <li className="footer__wrapper--quick-items">
-              {status === AUTHENTICATED ? null : (
+              {status === NOT_AUTHENTICATED && location === "/" && (
                 <LinkScroll
                   className="footer__wrapper--navLinks"
                   to="info"
@@ -119,16 +148,21 @@ const Footer = () => {
                     PROFILE
                   </Link>
                 )
+              ) : status === NOT_AUTHENTICATED && location === "/" ? (
+                <LinkScroll
+                  className="footer__wrapper--navLinks"
+                  to="helpUs"
+                  smooth={true}
+                  duration={1000}
+                >
+                  HELP US
+                </LinkScroll>
               ) : (
-                status === NOT_AUTHENTICATED && (
-                  <LinkScroll
-                    className="footer__wrapper--navLinks"
-                    to="helpUs"
-                    smooth={true}
-                    duration={1000}
-                  >
-                    HELP US
-                  </LinkScroll>
+                status === NOT_AUTHENTICATED &&
+                location !== "/" && (
+                  <Link className="footer__wrapper--navLinks" to="/donate">
+                    DONATE
+                  </Link>
                 )
               )}
             </li>
