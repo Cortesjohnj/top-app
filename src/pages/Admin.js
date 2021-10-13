@@ -133,6 +133,7 @@ const Admin = (isF) => {
   function backHome() {
     setNewData(url + 1, setData, setArrCheck);
     setGetAll(true);
+    setSearchText("");
   }
 
   function handleKeypress(e) {
@@ -190,7 +191,7 @@ const Admin = (isF) => {
         />
         <input
           type="submit"
-          value="List All"
+          value="Reset"
           className="AdminTable__bottomButtons"
           onClick={() => backHome()}
           disabled={getAll}
