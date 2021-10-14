@@ -176,21 +176,6 @@ function Navbar({ toggle }) {
             </li>
             <li
               className={
-                status === NOT_AUTHENTICATED || role === "user"
-                  ? "navBar__container--navItem2"
-                  : "navBar__container--navMenu2--hide"
-              }
-            >
-              <Link
-                className="navBar__container--navLinks2 navBar__container--donate"
-                to="/donate"
-                data-testid="donate"
-              >
-                DONATE
-              </Link>
-            </li>
-            <li
-              className={
                 status === AUTHENTICATED
                   ? "navBar__container--navItem2"
                   : "navBar__container--navMenu2--hide"

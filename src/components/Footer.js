@@ -16,8 +16,8 @@ import history from "../history";
 import { useEffect } from "react";
 
 const Footer = () => {
-  const status = useSelector((state) => state.status);
-  let recentUser = useSelector((state) => state.user);
+  const status = useSelector(state => state.status);
+  let recentUser = useSelector(state => state.user);
   if (recentUser === null || recentUser === undefined) {
     recentUser = {};
   }
@@ -26,7 +26,7 @@ const Footer = () => {
   const [location, setLocation] = useState(history.location.pathname);
 
   useEffect(() => {
-    return history.listen((location) => {
+    return history.listen(location => {
       setLocation(location.pathname);
     });
   }, [location]);
@@ -136,33 +136,23 @@ const Footer = () => {
             </li>
             <li className="footer__wrapper--quick-items">
               {status === AUTHENTICATED ? (
-                role === "user" ? (
-                  <Link className="footer__wrapper--navLinks" to="/donate">
-                    DONATE
-                  </Link>
-                ) : (
-                  <Link
-                    className="footer__wrapper--navLinks"
-                    to={`/${_id}/profile`}
-                  >
-                    PROFILE
-                  </Link>
-                )
-              ) : status === NOT_AUTHENTICATED && location === "/" ? (
-                <LinkScroll
+                <Link
                   className="footer__wrapper--navLinks"
-                  to="helpUs"
-                  smooth={true}
-                  duration={1000}
+                  to={`/${_id}/profile`}
                 >
-                  HELP US
-                </LinkScroll>
+                  PROFILE
+                </Link>
               ) : (
                 status === NOT_AUTHENTICATED &&
-                location !== "/" && (
-                  <Link className="footer__wrapper--navLinks" to="/donate">
-                    DONATE
-                  </Link>
+                location === "/" && (
+                  <LinkScroll
+                    className="footer__wrapper--navLinks"
+                    to="helpUs"
+                    smooth={true}
+                    duration={1000}
+                  >
+                    HELP US
+                  </LinkScroll>
                 )
               )}
             </li>

@@ -12,11 +12,11 @@ import history from "../history";
 function SideBar({ isOpen, toggle }) {
   const dispatch = useDispatch();
 
-  const status = useSelector((state) => state.status);
+  const status = useSelector(state => state.status);
 
   const [location, setLocation] = useState(history.location.pathname);
 
-  let recentUser = useSelector((state) => state.user);
+  let recentUser = useSelector(state => state.user);
   if (recentUser === null || recentUser === undefined) {
     recentUser = {};
   }
@@ -27,7 +27,7 @@ function SideBar({ isOpen, toggle }) {
   };
 
   useEffect(() => {
-    return history.listen((location) => {
+    return history.listen(location => {
       setLocation(location.pathname);
     });
   }, [location]);
@@ -117,12 +117,8 @@ function SideBar({ isOpen, toggle }) {
           )}
         </div>
         <div className="sideBar__container--btnWrap">
-          {status === NOT_AUTHENTICATED ? (
-            <Link className="sideBar__container--route" to="/donate" data-testid="donate2">
-              DONATE
-            </Link>
-          ) : (
-            (status === AUTHENTICATED || role === "foundation") && (
+          {status === AUTHENTICATED ||
+            (role === "foundation" && (
               <Link
                 className="sideBar__container--route"
                 to="/"
@@ -131,8 +127,7 @@ function SideBar({ isOpen, toggle }) {
               >
                 LOG OUT
               </Link>
-            )
-          )}
+            ))}
         </div>
 
         <div className="sideBar__container--btnWrap">
@@ -140,15 +135,14 @@ function SideBar({ isOpen, toggle }) {
             <Link className="sideBar__container--route" to="/admin">
               FOUNDATIONS
             </Link>
-          ) : status === NOT_AUTHENTICATED ? (
-            <Link className="sideBar__container--route" to="/login" data-testid="login2">
-              LOG IN
-            </Link>
           ) : (
-            status === AUTHENTICATED &&
-            role === "user" && (
-              <Link className="sideBar__container--route" to="/donate">
-                DONATE
+            status === NOT_AUTHENTICATED && (
+              <Link
+                className="sideBar__container--route"
+                to="/login"
+                data-testid="login2"
+              >
+                LOG IN
               </Link>
             )
           )}
