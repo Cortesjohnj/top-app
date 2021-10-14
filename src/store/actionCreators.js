@@ -279,30 +279,30 @@ export const listUserRequests = userId => {
 };
 
 export const createPayment = (values, foundationId, user) => {
-  const data = {
-    "card[number]": values.cardNumber,
-    "card[exp_year]": values.expYear,
-    "card[exp_month]": values.expMonth,
-    "card[cvc]": values.cvc,
-    name: user.name,
-    last_name: "",
-    email: user.email,
-    default: true,
-    city: "Bogota",
-    address: user.address || "",
-    phone: user.phoneNumber || "",
-    cell_phone: "",
-    doc_type: "CC",
-    doc_number: values.idNumber,
-    value: values.amount,
-    currency: "COP",
-    dues: values.dues,
-    ip: "0.0.0.0",
-    use_default_card_customer: true,
-    foundationId,
-  };
   return async function (dispatch) {
     try {
+      const data = {
+        "card[number]": values.cardNumber,
+        "card[exp_year]": values.expYear,
+        "card[exp_month]": values.expMonth,
+        "card[cvc]": values.cvc,
+        name: user.name,
+        last_name: "",
+        email: user.email,
+        default: true,
+        city: "Bogota",
+        address: user.address || "",
+        phone: user.phoneNumber || "",
+        cell_phone: "",
+        doc_type: "CC",
+        doc_number: values.idNumber,
+        value: values.amount,
+        currency: "COP",
+        dues: values.dues,
+        ip: "0.0.0.0",
+        use_default_card_customer: true,
+        foundationId,
+      };
       const response = await axios.post(`/donate/payment`, data);
 
       dispatch({ type: CREATE_ADOPTION_REQUEST, payload: response.data });
