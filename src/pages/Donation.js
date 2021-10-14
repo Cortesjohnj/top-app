@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 
 import DonationForm from "../components/DonationForm";
-import Slider2 from "../components/slider2/Slider2";
 import { createPayment } from "../store/actionCreators";
 
 import "../assets/styles/Donation.css";
