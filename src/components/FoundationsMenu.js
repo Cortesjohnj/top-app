@@ -9,13 +9,14 @@ const FoundationsMenu = () => {
   const [disableNext, setDisableNext] = useState(false);
   const [page, setPage] = useState(1);
   const route = customAxios.defaults.baseURL + "/foundations?page=";
+  const foundationsPerPage = 10;
 
   function NextPage(route, page) {
     customAxios
       .get(route + (page + 1))
       .then((response) => {
         setFoundations(response.data);
-        if (response.data.length < 5) {
+        if (response.data.length < foundationsPerPage) {
           setDisableNext(true);
         }
       })
@@ -39,7 +40,7 @@ const FoundationsMenu = () => {
       .get(route + page)
       .then((response) => {
         setFoundations(response.data);
-        if (response.data && response.data.length < 5) {
+        if (response.data && response.data.length < foundationsPerPage) {
           setDisableNext(true);
         }
       })
