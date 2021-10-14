@@ -11,7 +11,11 @@
   grid-template-columns: 1fr 1fr;
 }
 
-@media (max-width: 568) {
+.petFormContainer__content--left {
+  display: flex;  
+}
+
+@media (max-width: 568px) {
   .petform__rightContainerForm--button {
     margin-top: 0;
     margin-bottom: 50px;
@@ -37,9 +41,7 @@
   .petFormContainer__content--left {
     display: none;
   }
-  .petform__rightContainerForm h1 {
-    font-size: 1rem;
-  }
+
   .petform__rightContainerForm--button {
     width: 60%;
   }
@@ -255,4 +257,20 @@
   font-size: 1rem;
   margin-top: 0.7rem;
   color: #f00e0e;
+}
+
+
+.petFormContainer__content--left--text{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  font-size: 2rem;
+  font-weight: 500;
+  padding: 0 20px;
+}
+
+.petform__rightContainerForm--text {
+  margin-bottom: 15px;
 }

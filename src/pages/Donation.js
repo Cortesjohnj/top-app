@@ -1,29 +1,72 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
-
 import DonationForm from "../components/DonationForm";
-import { createPayment } from "../store/actionCreators";
 
 import "../assets/styles/Donation.css";
+import axios from "../axios";
+import withReactContent from "sweetalert2-react-content";
+import Swal from "sweetalert2";
 
 const Donation = () => {
-  const { id: foundationId } = useParams();
-  const { user } = useSelector(state => state);
-  const dispatch = useDispatch();
+  const MySwal = withReactContent(Swal);
 
-  function submitForm(values) {
-    dispatch(createPayment(values, foundationId, user));
+  const donationSuccessful = () => {
+    MySwal.fire({
+      title: <strong>Thanks for your donation!</strong>,
+      icon: "success",
+    });
+  };
+  const donationError = () => {
+    MySwal.fire({
+      title: <strong>Oops...!</strong>,
+      html: <i>Something went wrong, please try again later!</i>,
+      icon: "error",
+    });
+  };
+  async function submitForm(values, foundationId, user) {
+    try {
+      const data = {
+        "card[number]": values.cardNumber,
+        "card[exp_year]": values.expYear,
+        "card[exp_month]": values.expMonth,
+        "card[cvc]": values.cvc,
+        name: user.name,
+        last_name: "",
+        email: user.email,
+        default: true,
+        city: "Bogota",
+        address: user.address || "",
+        phone: user.phoneNumber || "",
+        cell_phone: "",
+        doc_type: "CC",
+        doc_number: values.idNumber,
+        value: values.amount,
+        currency: "COP",
+        dues: values.dues,
+        ip: "0.0.0.0",
+        use_default_card_customer: true,
+        foundationId,
+      };
+      console.log(data);
+      await axios.post(`/donate/payment`, data);
+
+      donationSuccessful();
+    } catch (e) {
+      console.log(e);
+      donationError();
+    }
   }
 
   return (
-    <>
-      <div className={"petFormContainer petFormGrid"}>
-        <>
-          <div className="petFormContainer__content--left"></div>
-          <DonationForm submitForm={submitForm} />
-        </>
+    <div className={"petFormContainer petFormGrid"}>
+      <div className="petFormContainer__content--left">
+        <h2 className="petFormContainer__content--left--text">
+          Thank you for your generous gift to Adogta foundation. We are thrilled
+          to have your support. Through your donation we have been able to help
+          the most needed pets, and continue working towards. You truly make the
+          difference for us, and we are extremely grateful!
+        </h2>
       </div>
-    </>
+      <DonationForm submitForm={submitForm} />
+    </div>
   );
 };
 

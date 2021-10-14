@@ -1,7 +1,12 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router";
 import validateDonation from "./ValidateDonation";
 
 const DonationForm = ({ submitForm }) => {
+  const { id: foundationId } = useParams();
+  const { user } = useSelector(state => state);
+
   const [values, setValues] = useState({
     idNumber: "",
     cardNumber: "",
@@ -21,7 +26,8 @@ const DonationForm = ({ submitForm }) => {
     e.preventDefault();
     const errorsMsg = validateDonation(values);
     setErrors({ ...errorsMsg });
-    Object.keys(errorsMsg).length === 0 && submitForm(values);
+    Object.keys(errorsMsg).length === 0 &&
+      submitForm(values, foundationId, user);
   };
 
   return (
@@ -31,7 +37,7 @@ const DonationForm = ({ submitForm }) => {
         onSubmit={handleSubmit}
         data-testid="petFormSubmit"
       >
-        <h2>Donation Info</h2>
+        <h2 className="petform__rightContainerForm--text">Donation Info</h2>
 
         <div className="petform__rightContainerForm--inputs">
           <label
