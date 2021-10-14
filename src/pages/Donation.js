@@ -1,38 +1,26 @@
-import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router";
 
 import DonationForm from "../components/DonationForm";
 import Slider2 from "../components/slider2/Slider2";
-import { createAdoption } from "../store/actionCreators";
+import { createPayment } from "../store/actionCreators";
 
 import "../assets/styles/Donation.css";
 
 const Donation = () => {
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
+  const { id: foundationId } = useParams();
+  const { user } = useSelector(state => state);
   const dispatch = useDispatch();
 
   function submitForm(values) {
-    setIsSubmitted(true);
-    dispatch(createAdoption(values));
+    dispatch(createPayment(values, foundationId, user));
   }
 
-  const { error, errStatus } = useSelector(state => ({
-    error: state.error,
-    errStatus: state.errStatus,
-  }));
-  const [err, setError] = useState(error);
-
-  useEffect(() => {
-    setError(error);
-  }, [error]);
   return (
     <>
       <div className={"petFormContainer petFormGrid"}>
         <>
-          <div className="petFormContainer__content--left">
-            <Slider2 />
-          </div>
+          <div className="petFormContainer__content--left"></div>
           <DonationForm submitForm={submitForm} />
         </>
       </div>

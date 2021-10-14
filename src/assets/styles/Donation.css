@@ -251,3 +251,8 @@
   width: 50%;
   padding: auto;
 }
+.donationForm__numberInputs p {
+  font-size: 1rem;
+  margin-top: 0.7rem;
+  color: #f00e0e;
+}

@@ -83,7 +83,11 @@ function App() {
           <Route exact path="/admin/users">
             <Admin isFoundation={false} />
           </Route>
-          <PrivateRoute exact path="/donate" component={Donation} />
+          <PrivateRoute
+            exact
+            path="/foundations/:id/donate"
+            component={Donation}
+          />
           <Route component={NotFound} />
         </Switch>
         <Footer />

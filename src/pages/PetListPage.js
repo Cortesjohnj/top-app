@@ -86,7 +86,7 @@ const PetListPage = () => {
           handlePreviousPage={handlePreviousPage}
         />
       )}
-      {isFoundation && (
+      {isFoundation ? (
         <IconContext.Provider
           value={{
             color: "var(--blue-pigment)",
@@ -100,6 +100,13 @@ const PetListPage = () => {
             </div>
           </Link>
         </IconContext.Provider>
+      ) : (
+        <Link
+          to={`/foundations/${foundationId}/donate`}
+          className="add-pets-container donate-button"
+        >
+          Donate
+        </Link>
       )}
     </div>
   );

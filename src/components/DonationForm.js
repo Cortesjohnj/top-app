@@ -1,8 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
+import validateDonation from "./ValidateDonation";
 
-const DonationForm = () => {
-  const [values, setValues] = useState({});
+const DonationForm = ({ submitForm }) => {
+  const [values, setValues] = useState({
+    idNumber: "",
+    cardNumber: "",
+    expYear: "",
+    expMonth: "",
+    cvc: "",
+    amount: "",
+    dues: "",
+  });
+  const [errors, setErrors] = useState({});
 
   const handleChange = e => {
     setValues(values => ({ ...values, [e.target.name]: e.target.value }));
@@ -10,7 +19,9 @@ const DonationForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(values);
+    const errorsMsg = validateDonation(values);
+    setErrors({ ...errorsMsg });
+    Object.keys(errorsMsg).length === 0 && submitForm(values);
   };
 
   return (
@@ -25,9 +36,9 @@ const DonationForm = () => {
         <div className="petform__rightContainerForm--inputs">
           <label
             className="petform__rightContainerForm--label"
-            htmlFor="address"
+            htmlFor="idNumber"
           >
-            Id Number
+            Identification Number
           </label>
           <input
             type="text"
@@ -37,11 +48,12 @@ const DonationForm = () => {
             onChange={handleChange}
             data-testid="address"
           />
+          {errors.idNumber && <p data-testid="errors">{errors.idNumber}</p>}
         </div>
         <div className="petform__rightContainerForm--inputs">
           <label
             className="petform__rightContainerForm--label"
-            htmlFor="phoneNumber"
+            htmlFor="cardNumber"
           >
             Card Number
           </label>
@@ -53,17 +65,15 @@ const DonationForm = () => {
             onChange={handleChange}
             data-testid="phoneNumber"
           />
+          {errors.cardNumber && <p data-testid="errors">{errors.cardNumber}</p>}
         </div>
         <div className="donationForm__numberInputs">
           <div className="donationForm__numberInputs--field">
-            <label
-              className="petform__rightContainerForm--label"
-              htmlFor="textarea"
-            >
+            <label className="petform__rightContainerForm--label">
               Expiration Date
             </label>
             <div>
-              <select name="expireMM" id="expireMM">
+              <select name="expMonth" id="expireMM" onChange={handleChange}>
                 <option value="">Month</option>
                 <option value="01">Jan</option>
                 <option value="02">Feb</option>
@@ -79,24 +89,22 @@ const DonationForm = () => {
                 <option value="12">Dec</option>
               </select>
               <span> / </span>
-              <select name="expireYY" id="expireYY">
+              <select name="expYear" id="expireYY" onChange={handleChange}>
                 <option value="">Year</option>
-                <option value="21">2021</option>
-                <option value="22">2022</option>
-                <option value="23">2023</option>
-                <option value="24">2024</option>
-                <option value="25">2025</option>
-                <option value="26">2026</option>
-                <option value="27">2027</option>
-                <option value="28">2028</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+                <option value="2026">2026</option>
+                <option value="2027">2027</option>
+                <option value="2028">2028</option>
               </select>
             </div>
+            {errors.expDate && <p data-testid="errors">{errors.expDate}</p>}
           </div>
           <div className="donationForm__numberInputs--field">
-            <label
-              className="petform__rightContainerForm--label"
-              htmlFor="textarea"
-            >
+            <label className="petform__rightContainerForm--label" htmlFor="cvc">
               CVC Number
             </label>
             <input
@@ -107,13 +115,14 @@ const DonationForm = () => {
               onChange={handleChange}
               data-testid="description"
             />
+            {errors.cvc && <p data-testid="errors">{errors.cvc}</p>}
           </div>
         </div>
         <div className="donationForm__numberInputs">
           <div className="donationForm__numberInputs--field">
             <label
               className="petform__rightContainerForm--label"
-              htmlFor="textarea"
+              htmlFor="amount"
             >
               Donation amount
             </label>
@@ -125,11 +134,12 @@ const DonationForm = () => {
               onChange={handleChange}
               data-testid="description"
             />
+            {errors.amount && <p data-testid="errors">{errors.amount}</p>}
           </div>
           <div className="donationForm__numberInputs--field">
             <label
               className="petform__rightContainerForm--label"
-              htmlFor="textarea"
+              htmlFor="dues"
             >
               Dues
             </label>
@@ -141,6 +151,7 @@ const DonationForm = () => {
               onChange={handleChange}
               data-testid="description"
             />
+            {errors.dues && <p data-testid="errors">{errors.dues}</p>}
           </div>
         </div>
         <button className="petform__rightContainerForm--button" type="submit">
