@@ -59,10 +59,11 @@ const Donation = () => {
     <div className={"petFormContainer petFormGrid"}>
       <div className="petFormContainer__content--left">
         <h2 className="petFormContainer__content--left--text">
-          Thank you for your generous gift to Adogta foundation. We are thrilled
-          to have your support. Through your donation we have been able to help
-          the most needed pets, and continue working towards. You truly make the
-          difference for us, and we are extremely grateful!
+          Thank you for your generous gift to an Adogta foundation. We are
+          thrilled to have your support. Through your donation, we have been
+          able to help the most needed pets, and continue working towards
+          creating meaningful connections. You truly make a difference for us,
+          and we are extremely grateful!
         </h2>
       </div>
       <DonationForm submitForm={submitForm} />
