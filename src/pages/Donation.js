@@ -1,3 +1,4 @@
+import { useState } from "react";
 import DonationForm from "../components/DonationForm";
 
 import "../assets/styles/Donation.css";
@@ -7,6 +8,7 @@ import Swal from "sweetalert2";
 
 const Donation = () => {
   const MySwal = withReactContent(Swal);
+  const [loading, setLoading] = useState(false);
 
   const donationSuccessful = () => {
     MySwal.fire({
@@ -23,6 +25,7 @@ const Donation = () => {
   };
   async function submitForm(values, foundationId, user) {
     try {
+      setLoading(true);
       const data = {
         "card[number]": values.cardNumber,
         "card[exp_year]": values.expYear,
@@ -45,11 +48,12 @@ const Donation = () => {
         use_default_card_customer: true,
         foundationId,
       };
-      console.log(data);
       await axios.post(`/donate/payment`, data);
+      setLoading(false);
 
       donationSuccessful();
     } catch (e) {
+      setLoading(false);
       console.log(e);
       donationError();
     }
@@ -66,7 +70,7 @@ const Donation = () => {
           and we are extremely grateful!
         </h2>
       </div>
-      <DonationForm submitForm={submitForm} />
+      <DonationForm submitForm={submitForm} loading={loading} />
     </div>
   );
 };
