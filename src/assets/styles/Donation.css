@@ -11,6 +11,10 @@
   grid-template-columns: 1fr 1fr;
 }
 
+.swal2-popup {
+  font-size: 1.6rem !important;
+}
+
 .petFormContainer__content--left {
   display: flex;  
 }
