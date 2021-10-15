@@ -12,11 +12,11 @@ import history from "../history";
 function SideBar({ isOpen, toggle }) {
   const dispatch = useDispatch();
 
-  const status = useSelector(state => state.status);
+  const status = useSelector((state) => state.status);
 
   const [location, setLocation] = useState(history.location.pathname);
 
-  let recentUser = useSelector(state => state.user);
+  let recentUser = useSelector((state) => state.user);
   if (recentUser === null || recentUser === undefined) {
     recentUser = {};
   }
@@ -27,7 +27,7 @@ function SideBar({ isOpen, toggle }) {
   };
 
   useEffect(() => {
-    return history.listen(location => {
+    return history.listen((location) => {
       setLocation(location.pathname);
     });
   }, [location]);
@@ -117,17 +117,16 @@ function SideBar({ isOpen, toggle }) {
           )}
         </div>
         <div className="sideBar__container--btnWrap">
-          {status === AUTHENTICATED ||
-            (role === "foundation" && (
-              <Link
-                className="sideBar__container--route"
-                to="/"
-                onClick={handleLogOut}
-                data-testid="logout2"
-              >
-                LOG OUT
-              </Link>
-            ))}
+          {status === AUTHENTICATED && (
+            <Link
+              className="sideBar__container--route"
+              to="/"
+              onClick={handleLogOut}
+              data-testid="logout2"
+            >
+              LOG OUT
+            </Link>
+          )}
         </div>
 
         <div className="sideBar__container--btnWrap">

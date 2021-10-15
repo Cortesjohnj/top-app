@@ -16,8 +16,8 @@ import history from "../history";
 import { useEffect } from "react";
 
 const Footer = () => {
-  const status = useSelector(state => state.status);
-  let recentUser = useSelector(state => state.user);
+  const status = useSelector((state) => state.status);
+  let recentUser = useSelector((state) => state.user);
   if (recentUser === null || recentUser === undefined) {
     recentUser = {};
   }
@@ -26,7 +26,7 @@ const Footer = () => {
   const [location, setLocation] = useState(history.location.pathname);
 
   useEffect(() => {
-    return history.listen(location => {
+    return history.listen((location) => {
       setLocation(location.pathname);
     });
   }, [location]);
@@ -101,19 +101,15 @@ const Footer = () => {
                     </Link>
                   )
                 )
-              ) : status === NOT_AUTHENTICATED && location === "/" ? (
-                <div
-                  className="footer__wrapper--navLinks"
-                  onClick={() => ScrollToTop.scrollToTop()}
-                >
-                  ABOUT
-                </div>
               ) : (
                 status === NOT_AUTHENTICATED &&
-                location !== "/" && (
-                  <Link className="footer__wrapper--navLinks" to="/">
-                    HOME
-                  </Link>
+                location === "/" && (
+                  <div
+                    className="footer__wrapper--navLinks"
+                    onClick={() => ScrollToTop.scrollToTop()}
+                  >
+                    ABOUT
+                  </div>
                 )
               )}
               {status === AUTHENTICATED && role === "admin" && (
@@ -123,7 +119,7 @@ const Footer = () => {
               )}
             </li>
             <li className="footer__wrapper--quick-items">
-              {status === NOT_AUTHENTICATED && location === "/" && (
+              {status === NOT_AUTHENTICATED && location === "/" ? (
                 <LinkScroll
                   className="footer__wrapper--navLinks"
                   to="info"
@@ -132,6 +128,13 @@ const Footer = () => {
                 >
                   INFO
                 </LinkScroll>
+              ) : (
+                status === NOT_AUTHENTICATED &&
+                location !== "/" && (
+                  <Link className="footer__wrapper--navLinks" to="/">
+                    HOME
+                  </Link>
+                )
               )}
             </li>
             <li className="footer__wrapper--quick-items">
