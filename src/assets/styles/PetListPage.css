@@ -35,3 +35,19 @@ html {
   border-radius: 100%;
   border: 5px solid var(--soft-blue);
 }
+
+.donate-button {
+  width: 100px;
+  background-color: var(--blue-pigment);
+  border: none;
+  border-radius: 25px;
+  color: white;
+  cursor: pointer;
+  font-size: 2rem;
+  font-weight: bold;
+  height: 50px;
+  letter-spacing: 1px;
+  margin: 18px 0;
+  border: 5px solid var(--soft-blue);
+  text-decoration: none;
+}

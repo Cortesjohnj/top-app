@@ -5,7 +5,6 @@ import history from "../history";
 import axios from "../axios";
 import createStoreApp from "../store/store";
 import RegisterPage from "../pages/RegisterPage";
-import App from "../App";
 
 jest.mock("../axios");
 
@@ -61,7 +60,7 @@ it("should signup with valid credentials", async () => {
 
   const spy = jest.spyOn(history, "push");
   fireEvent.submit(screen.getByTestId("form"));
-  await waitFor(() => expect(spy).toHaveBeenCalledWith("/login"));
+  await waitFor(() => expect(spy).toHaveBeenCalledWith("/"));
 });
 
 it("should show error when user enters an invalid email", async () => {

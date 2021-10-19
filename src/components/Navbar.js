@@ -8,7 +8,7 @@ import { animateScroll as ScrollToTop } from "react-scroll";
 import "../assets/styles/Navbar.css";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../store/actionCreators";
-import { AUTHENTICATED, NOT_AUTHENTICATED } from "../store/actions";
+import { AUTHENTICATED } from "../store/actions";
 import history from "../history";
 
 function Navbar({ toggle }) {
@@ -22,7 +22,6 @@ function Navbar({ toggle }) {
   const status = useSelector((state) => state.status);
 
   const { photoUrl, name, _id, role } = recentUser;
-  console.log(photoUrl);
 
   const [isMobile, setIsMobile] = useState("");
 
@@ -173,21 +172,6 @@ function Navbar({ toggle }) {
             >
               <Link className="navBar__container--navLinks2" to="/admin/users">
                 USERS
-              </Link>
-            </li>
-            <li
-              className={
-                status === NOT_AUTHENTICATED || role === "user"
-                  ? "navBar__container--navItem2"
-                  : "navBar__container--navMenu2--hide"
-              }
-            >
-              <Link
-                className="navBar__container--navLinks2 navBar__container--donate"
-                to="/donate"
-                data-testid="donate"
-              >
-                DONATE
               </Link>
             </li>
             <li

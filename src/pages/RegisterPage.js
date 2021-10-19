@@ -3,12 +3,10 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import "../assets/styles/RegisterForm.css";
 import { PrimaryButton } from "../components/PrimaryButton";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { registerUser } from "../store/actionCreators";
 
 function RegisterPage() {
-  const error = useSelector(state => state.error);
-
   const {
     register,
     formState: { errors },
@@ -187,9 +185,6 @@ function RegisterPage() {
         <h4 className="register__container--Endtitle">
           Already a member? <Link to="/login">Sign in </Link>
         </h4>
-        {!!error && (
-          <span className="register__container--handleError">{error}</span>
-        )}
       </div>
     </section>
   );
