@@ -14,15 +14,14 @@ import history from "../history";
 function Navbar({ toggle }) {
   const dispatch = useDispatch();
 
-  let recentUser = useSelector((state) => state.user);
+  let recentUser = useSelector(state => state.user);
   if (recentUser === null || recentUser === undefined) {
     recentUser = {};
   }
 
-  const status = useSelector((state) => state.status);
+  const status = useSelector(state => state.status);
 
   const { photoUrl, name, _id, role } = recentUser;
-  console.log(photoUrl);
 
   const [isMobile, setIsMobile] = useState("");
 
@@ -44,7 +43,7 @@ function Navbar({ toggle }) {
   };
 
   useEffect(() => {
-    return history.listen((location) => {
+    return history.listen(location => {
       setLocation(location.pathname);
     });
   }, [location]);
@@ -173,21 +172,6 @@ function Navbar({ toggle }) {
             >
               <Link className="navBar__container--navLinks2" to="/admin/users">
                 USERS
-              </Link>
-            </li>
-            <li
-              className={
-                status === NOT_AUTHENTICATED || role === "user"
-                  ? "navBar__container--navItem2"
-                  : "navBar__container--navMenu2--hide"
-              }
-            >
-              <Link
-                className="navBar__container--navLinks2 navBar__container--donate"
-                to="/donate"
-                data-testid="donate"
-              >
-                DONATE
               </Link>
             </li>
             <li

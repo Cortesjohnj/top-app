@@ -69,6 +69,9 @@ const reducer = (state, action) => {
         user: null,
         status: NOT_AUTHENTICATED,
         error: "",
+        pets: [],
+        petListInfo: {},
+        foundationRequests: [],
       };
 
     case SELECT_PET:

@@ -19,14 +19,17 @@ const PetListPage = () => {
   const dispatch = useDispatch();
   const { pets, petListInfo } = useSelector(state => state);
   const { user } = useSelector(state => state);
+  const loading = petListInfo.page ? false : true;
   const initPage =
     useLocation().search.slice(useLocation().search.indexOf("=") + 1) || 1;
 
+  //initial loading for pets and requests
   useEffect(() => {
     dispatch(listPets(foundationId, initPage));
     dispatch(listFoundationRequests(foundationId));
   }, [foundationId, dispatch, initPage]);
 
+  //checking the role and the id to show or hide some buttons and select som redirects
   const isFoundation = user.role === "foundation" && user._id === foundationId;
 
   isFoundation ? (redirectUrl = "/manage") : (redirectUrl = "/request");
@@ -58,26 +61,30 @@ const PetListPage = () => {
 
   return (
     <div className="background-container">
-      <CardList title="Are you looking for a new friend?">
-        {pets.length > 0 ? (
-          pets.map(item => (
-            <PetCard
-              key={item._id}
-              {...item}
-              redirectUrl={redirectUrl}
-              isFoundation={isFoundation}
-            />
-          ))
-        ) : isFoundation ? (
-          <h1 className="no-pets-message" data-testid="noPetsFoundation">
-            You don't have any pets registered
-          </h1>
-        ) : (
-          <h1 className="no-pets-message" data-testid="noPetsUser">
-            No pets available for this foundation
-          </h1>
-        )}
-      </CardList>
+      {!loading && (
+        <>
+          <CardList title="Are you looking for a new friend?">
+            {pets.length > 0 ? (
+              pets.map(item => (
+                <PetCard
+                  key={item._id}
+                  {...item}
+                  redirectUrl={redirectUrl}
+                  isFoundation={isFoundation}
+                />
+              ))
+            ) : isFoundation ? (
+              <h1 className="no-pets-message" data-testid="noPetsFoundation">
+                You don't have any pets registered
+              </h1>
+            ) : (
+              <h1 className="no-pets-message" data-testid="noPetsUser">
+                No pets available for this foundation
+              </h1>
+            )}
+          </CardList>
+        </>
+      )}
       {petListInfo.count > 10 && (
         <PaginationButtons
           previousButton={previousButton}
@@ -86,7 +93,7 @@ const PetListPage = () => {
           handlePreviousPage={handlePreviousPage}
         />
       )}
-      {isFoundation && (
+      {isFoundation ? (
         <IconContext.Provider
           value={{
             color: "var(--blue-pigment)",
@@ -100,6 +107,13 @@ const PetListPage = () => {
             </div>
           </Link>
         </IconContext.Provider>
+      ) : (
+        <Link
+          to={`/foundations/${foundationId}/donate`}
+          className="add-pets-container donate-button"
+        >
+          Donate
+        </Link>
       )}
     </div>
   );

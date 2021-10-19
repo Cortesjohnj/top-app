@@ -24,6 +24,7 @@ const Footer = lazy(() => import("./components/Footer"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const AdoptionPetRequest = lazy(() => import("./pages/AdoptionPetRequest"));
 const Admin = lazy(() => import("./pages/Admin"));
+const Donation = lazy(() => import("./pages/Donation"));
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -82,6 +83,11 @@ function App() {
           <Route exact path="/admin/users">
             <Admin isFoundation={false} />
           </Route>
+          <PrivateRoute
+            exact
+            path="/foundations/:id/donate"
+            component={Donation}
+          />
           <Route component={NotFound} />
         </Switch>
         <Footer />

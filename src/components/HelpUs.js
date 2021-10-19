@@ -32,7 +32,7 @@ const HelpUsSection = () => {
                 to={
                   activeUser.role === "foundation"
                     ? `/foundations/${activeUser._id}/pets`
-                    : "/donate"
+                    : "/foundations"
                 }
               >
                 <button className="joinUsContainer__wrapper--button">
@@ -42,7 +42,7 @@ const HelpUsSection = () => {
                 </button>
               </Link>
             ) : (
-              <Link className="joinUsContainer__wrapper--btnWrap" to="/donate">
+              <Link className="joinUsContainer__wrapper--btnWrap" to="/login">
                 <button className="joinUsContainer__wrapper--button">
                   DONATE
                 </button>
