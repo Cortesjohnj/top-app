@@ -9,10 +9,7 @@ const Slider2 = () => {
   const dispatch = useDispatch();
   const { id: petId } = useParams();
   const statePet = useSelector((state) => state.selectedPet);
-  const [pet, setPet] = useState({
-    name: "",
-    photoUrl: "",
-  });
+  const [pet, setPet] = useState([]);
 
   useEffect(() => {
     dispatch(selectPet(petId));
@@ -23,14 +20,13 @@ const Slider2 = () => {
   }, [statePet]);
 
   const [current, setCurrent] = useState(0);
-  const length = pet.length;
 
   const nextSlide = () => {
-    setCurrent(current === length - 1 ? 0 : current + 1);
+    setCurrent(current === pet.photoUrl.length - 1 ? 0 : current + 1);
   };
 
   const prevSlide = () => {
-    setCurrent(current === 0 ? length - 1 : current - 1);
+    setCurrent(current === 0 ? pet.photoUrl.length - 1 : current - 1);
   };
 
   if (!Array.isArray(pet.photoUrl) || pet.photoUrl.length <= 0) {
@@ -38,23 +34,23 @@ const Slider2 = () => {
   }
 
   return (
-    <section className="slider">
+    <section className="slider2">
       <FaArrowAltCircleLeft
-        className="slider__left-arrow"
+        className="slider__left-arrow2"
         onClick={prevSlide}
       />
       <FaArrowAltCircleRight
-        className="slider__right-arrow"
+        className="slider__right-arrow2"
         onClick={nextSlide}
       />
       {pet.photoUrl.map((photo, index) => {
         return (
           <div
-            className={index === current ? "slider__active" : "slider__slide"}
+            className={index === current ? "slider__active2" : "slider__slide2"}
             key={index}
           >
             {index === current && (
-              <img src={photo} alt={pet.name} className="slider__img" />
+              <img src={photo} alt={pet.name} className="slider__img2" />
             )}
           </div>
         );
