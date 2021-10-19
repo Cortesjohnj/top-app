@@ -8,18 +8,18 @@ import { animateScroll as ScrollToTop } from "react-scroll";
 import "../assets/styles/Navbar.css";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../store/actionCreators";
-import { AUTHENTICATED, NOT_AUTHENTICATED } from "../store/actions";
+import { AUTHENTICATED } from "../store/actions";
 import history from "../history";
 
 function Navbar({ toggle }) {
   const dispatch = useDispatch();
 
-  let recentUser = useSelector(state => state.user);
+  let recentUser = useSelector((state) => state.user);
   if (recentUser === null || recentUser === undefined) {
     recentUser = {};
   }
 
-  const status = useSelector(state => state.status);
+  const status = useSelector((state) => state.status);
 
   const { photoUrl, name, _id, role } = recentUser;
 
@@ -43,7 +43,7 @@ function Navbar({ toggle }) {
   };
 
   useEffect(() => {
-    return history.listen(location => {
+    return history.listen((location) => {
       setLocation(location.pathname);
     });
   }, [location]);
