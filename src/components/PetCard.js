@@ -10,7 +10,7 @@ import CardModal from "./CardModal";
 
 import "../assets/styles/PetCard.css";
 
-const PetCard = (props) => {
+const PetCard = props => {
   const {
     _id,
     name,
@@ -23,8 +23,8 @@ const PetCard = (props) => {
   } = props;
   const dispatch = useDispatch();
 
-  const requests = useSelector((state) => state.foundationRequests).filter(
-    (item) => item.petId._id === _id
+  const requests = useSelector(state => state.foundationRequests).filter(
+    item => item.petId._id === _id
   );
 
   const [isOpen, setIsOpen] = useState(false);
@@ -43,7 +43,7 @@ const PetCard = (props) => {
     !adopted && props.history.push(`/pets/${_id}${redirectUrl}`);
   };
 
-  const handleDeletePet = async (_id) => {
+  const handleDeletePet = async _id => {
     dispatch(deletePet(_id));
   };
 
@@ -96,7 +96,7 @@ const PetCard = (props) => {
       </div>
 
       {isOpen && (
-        <CardImage photo_url={photoUrl} handleOpenImage={handleOpenImage} />
+        <CardImage photo_url={photoUrl[0]} handleOpenImage={handleOpenImage} />
       )}
       {modalIsOpen && (
         <CardModal
