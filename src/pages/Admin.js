@@ -26,7 +26,6 @@ const Admin = (isF) => {
   }
 
   function nextPage() {
-    console.log("next page");
     if (getAll) setNewData(url + (page + 1), true);
     else requestSearch(page + 1);
     setPage(page + 1);
@@ -36,8 +35,6 @@ const Admin = (isF) => {
     customAxios
       .get(thisUrl)
       .then((response) => {
-        console.log("setting data");
-        console.log(response.data);
         setData(handleData(response.data));
         setArrCheck(
           response.data.map(() => {
@@ -111,6 +108,9 @@ const Admin = (isF) => {
             })
           );
           setGetAll(false);
+          if (response.data.length < 5) {
+            setDisableNext(true);
+          }
         })
         .catch((error) => {
           console.log(error);
@@ -131,6 +131,7 @@ const Admin = (isF) => {
   }
 
   function backHome() {
+    setDisableNext(false)
     setNewData(url + 1, setData, setArrCheck);
     setGetAll(true);
     setSearchText("");
