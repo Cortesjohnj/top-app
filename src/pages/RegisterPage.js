@@ -176,14 +176,14 @@ function RegisterPage() {
           </label>
           <div className="buttomForm">
             <PrimaryButton
-              children={"Register"}
+              children={"Sign up"}
               color={"primaryButton registerForm"}
               data-testid="submitButton"
             />
           </div>
         </form>
         <h4 className="register__container--Endtitle">
-          Already a member? <Link to="/login">Sign in </Link>
+          Already a member? <Link to="/login">Log in </Link>
         </h4>
       </div>
     </section>
