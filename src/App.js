@@ -76,13 +76,13 @@ function App() {
             path="/pets/:id/manage"
             component={PetManagePage}
           />
-          <Route exact path="/foundations" component={Foundations} />
-          <Route exact path="/admin">
+          <PrivateRoute exact path="/foundations" component={Foundations} />
+          <PrivateRoute exact path="/admin">
             <Admin isFoundation={true} />
-          </Route>
-          <Route exact path="/admin/users">
+          </PrivateRoute>
+          <PrivateRoute exact path="/admin/users">
             <Admin isFoundation={false} />
-          </Route>
+          </PrivateRoute>
           <PrivateRoute
             exact
             path="/foundations/:id/donate"
