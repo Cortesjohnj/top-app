@@ -1,16 +1,20 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import "../assets/styles/AddPet.css";
 import { PrimaryButton } from "../components/PrimaryButton";
-import { addPets } from "../store/actionCreators";
+import { addPets, resetError } from "../store/actionCreators";
 
 function AddPet() {
   const { id: foundationId } = useParams();
   const dispatch = useDispatch();
 
-  const error = useSelector(state => state.error);
+  const error = useSelector((state) => state.error);
+
+  useEffect(() => {
+    dispatch(resetError());
+  }, [dispatch]);
 
   const [pet, setPet] = useState({
     petName: "",
@@ -30,69 +34,69 @@ function AddPet() {
 
   const fileInput = useRef(null);
 
-  const handleOndragOver = event => {
+  const handleOndragOver = (event) => {
     event.preventDefault();
   };
 
-  const handleOndrop = event => {
+  const handleOndrop = (event) => {
     event.preventDefault();
     event.stopPropagation();
     if (event.dataTransfer.files) {
-      const fileArray = Array.from(event.dataTransfer.files).map(file =>
-        URL.createObjectURL(file)
+      const fileArray = Array.from(event.dataTransfer.files).map((file) =>
+        URL.createObjectURL(file),
       );
 
-      setSelectedImages(prevImages => prevImages.concat(fileArray));
-      Array.from(event.dataTransfer.files).map(file =>
-        URL.revokeObjectURL(file)
+      setSelectedImages((prevImages) => prevImages.concat(fileArray));
+      Array.from(event.dataTransfer.files).map((file) =>
+        URL.revokeObjectURL(file),
       );
     }
 
     let imageFile = event.dataTransfer.files;
-    setPet(prevState => ({
+    setPet((prevState) => ({
       ...prevState,
       photoUrl: [...prevState.photoUrl, ...imageFile],
     }));
     setCounter(counter + imageFile.length);
   };
 
-  const handleInputChange = event => {
+  const handleInputChange = (event) => {
     if (event.target.files) {
-      const fileArray = Array.from(event.target.files).map(file =>
-        URL.createObjectURL(file)
+      const fileArray = Array.from(event.target.files).map((file) =>
+        URL.createObjectURL(file),
       );
 
-      setSelectedImages(prevImages => prevImages.concat(fileArray));
-      Array.from(event.target.files).map(file => URL.revokeObjectURL(file));
+      setSelectedImages((prevImages) => prevImages.concat(fileArray));
+      Array.from(event.target.files).map((file) => URL.revokeObjectURL(file));
     }
 
     let imageFile = event.target.files;
-    setPet(prevState => ({
+    setPet((prevState) => ({
       ...prevState,
       photoUrl: [...prevState.photoUrl, ...imageFile],
     }));
     setCounter(counter + event.target.files.length);
   };
 
-  const handleClick = event => {
+  const handleClick = (event) => {
     event.stopPropagation();
     fileInput.current.click();
   };
 
-  const submit = event => {
+  const submit = (event) => {
     event.preventDefault();
     dispatch(addPets(pet));
   };
 
-  const validator = event => {
+  const validator = (event) => {
     const validate = /^\s*$/.test(event.target.value);
-    setPet(prevState => ({
+    setPet((prevState) => ({
       ...prevState,
       error: { ...prevState.error, [event.target.name]: validate },
     }));
   };
 
-  const InputChange = event => {
+  const InputChange = (event) => {
     setPet({ ...pet, [event.target.name]: event.target.value });
   };
 
@@ -184,7 +188,7 @@ function AddPet() {
             </div>
           </div>
         </form>
-        {selectedImages.map(photo => {
+        {selectedImages.map((photo) => {
           return (
             <img
               className="registerPets__container--photos"
