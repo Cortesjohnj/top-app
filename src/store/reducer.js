@@ -17,6 +17,7 @@ import {
   CREATE_ADOPTION_REQUEST,
   FINISHED,
   LIST_USER_REQUESTS,
+  RESET_ERROR,
 } from "./actions";
 
 const reducer = (state, action) => {
@@ -28,6 +29,11 @@ const reducer = (state, action) => {
         ...state,
         user: { _id, name, email, role, address, photoUrl, phoneNumber },
         status: AUTHENTICATED,
+        error: "",
+      };
+    case RESET_ERROR:
+      return {
+        ...state,
         error: "",
       };
     case ADD_PETS:
@@ -48,7 +54,7 @@ const reducer = (state, action) => {
     case DELETE_PET:
       return {
         ...state,
-        pets: state.pets.filter(pet => pet._id !== action.payload),
+        pets: state.pets.filter((pet) => pet._id !== action.payload),
       };
 
     case REGISTER_USER:
@@ -95,20 +101,20 @@ const reducer = (state, action) => {
     case UPDATE_REQUEST:
       return {
         ...state,
-        adoptionRequests: state.adoptionRequests.map(req =>
+        adoptionRequests: state.adoptionRequests.map((req) =>
           req._id === action.payload._id
             ? { ...req, responseStatus: action.payload.responseStatus }
-            : req
+            : req,
         ),
       };
 
     case BULK_REJECT_REQUESTS:
       return {
         ...state,
-        adoptionRequests: state.adoptionRequests.map(req =>
+        adoptionRequests: state.adoptionRequests.map((req) =>
           req._id !== action.payload
             ? { ...req, responseStatus: "rejected" }
-            : req
+            : req,
         ),
       };
 

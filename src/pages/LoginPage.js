@@ -1,8 +1,8 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../assets/styles/LoginPage.css";
 import { useSelector, useDispatch } from "react-redux";
-import { authUser } from "../store/actionCreators";
+import { authUser, resetError } from "../store/actionCreators";
 
 const LoginPage = () => {
   const form = useRef(null);
@@ -12,6 +12,10 @@ const LoginPage = () => {
     isInvalid: false,
     values: {},
   });
+
+  useEffect(() => {
+    dispatch(resetError());
+  }, [dispatch]);
 
   const error = useSelector((state) => state.error);
 
@@ -24,7 +28,7 @@ const LoginPage = () => {
 
   const handleVerifyEmail = (event) => {
     const check = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(
-      event.target.value
+      event.target.value,
     );
     setFormState((formState) => ({
       ...formState,
@@ -38,7 +42,7 @@ const LoginPage = () => {
       authUser({
         email: formState.values.email || "",
         password: formState.values.password || "",
-      })
+      }),
     );
   };
 

@@ -16,12 +16,19 @@ import {
   BULK_REJECT_REQUESTS,
   CREATE_ADOPTION_REQUEST,
   LIST_USER_REQUESTS,
+  RESET_ERROR,
 } from "./actions";
 import history from "../history";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
-export const verifiedEmail = token => {
+export const resetError = () => {
+  return {
+    type: RESET_ERROR,
+  };
+};
+
+export const verifiedEmail = (token) => {
   return async function (dispatch) {
     try {
       const response = await axios.get(`/verified/${token}`);
@@ -77,7 +84,7 @@ export const listPets = (foundationId, page) => {
   return async function (dispatch) {
     try {
       let response = await axios.get(
-        `/foundations/${foundationId}/pets?page=${page}`
+        `/foundations/${foundationId}/pets?page=${page}`,
       );
       dispatch({ type: SET_PETS, payload: response.data });
     } catch (e) {
@@ -99,12 +106,12 @@ export const addPets = ({
       formData.append("name", petName);
       formData.append("age", petAge);
       formData.append("description", petDescription);
-      photoUrl.forEach(image => {
+      photoUrl.forEach((image) => {
         formData.append("photoUrl", image);
       });
       const response = await axios.post(
         `/foundations/${foundationId}/pets`,
-        formData
+        formData,
       );
       dispatch({ type: ADD_PETS, payload: response.data });
       history.push(`/foundations/${foundationId}/pets`);
@@ -114,7 +121,7 @@ export const addPets = ({
   };
 };
 
-export const deletePet = petId => {
+export const deletePet = (petId) => {
   return async function (dispatch) {
     try {
       await axios.delete(`/pets/${petId}`);
@@ -126,7 +133,7 @@ export const deletePet = petId => {
   };
 };
 
-export const selectPet = petId => {
+export const selectPet = (petId) => {
   return async function (dispatch) {
     try {
       let response = await axios.get(`/pets/${petId}`);
@@ -164,7 +171,7 @@ export const bulkReject = (petId, _id) => {
   };
 };
 
-export const listFoundationRequests = foundationId => {
+export const listFoundationRequests = (foundationId) => {
   return async function (dispatch) {
     try {
       let response = await axios.get(`/foundations/${foundationId}/requests`);
@@ -267,7 +274,7 @@ export const createAdoption = ({
   };
 };
 
-export const listUserRequests = userId => {
+export const listUserRequests = (userId) => {
   return async function (dispatch) {
     try {
       let response = await axios.get(`${userId}/requests`);
