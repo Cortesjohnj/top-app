@@ -3,6 +3,8 @@ import Table from "../components/Table";
 import { useEffect, useState, useCallback } from "react";
 import customAxios from "../axios";
 import Home from "../pages/Home";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 const Admin = (isF) => {
   const [arrData, setData] = useState([]);
@@ -15,7 +17,8 @@ const Admin = (isF) => {
   const [disableNext, setDisableNext] = useState(false);
   const [getAll, setGetAll] = useState(true);
   const [searchText, setSearchText] = useState("");
-  const [typeSearch, setTypeSearch] = useState("_id");
+  const [typeSearch, setTypeSearch] = useState("email");
+  const MySwal = withReactContent(Swal);
 
   function updateSearch(e) {
     setSearchText(e.target.value);
@@ -61,7 +64,7 @@ const Admin = (isF) => {
     setDisableNext(false);
   }
 
-  function eliminate() {
+  async function eliminate() {
     var deleteID = [];
     for (let i = 0; i < arrCheck.length; i++) {
       if (arrCheck[i]) {
@@ -69,23 +72,44 @@ const Admin = (isF) => {
       }
     }
     if (deleteID.length > 0) {
-      customAxios({
-        url: url + page,
-        method: "delete",
-        data: { _id: deleteID },
-      }).catch((error) => {
-        console.log(error);
-      });
-      var newData = [];
-      var newCheck = [];
-      for (let i = 0; i < arrCheck.length; i++) {
-        if (!arrCheck[i]) {
-          newData.push(arrData[i]);
-          newCheck.push(false);
-        }
+      let message = ""
+      if (isF.isFoundation){
+        if (deleteID.length === 1)
+          message = " foundation"
+        else
+          message = " foundations"
       }
-      setData(newData);
-      setArrCheck(newCheck);
+      else{
+        if (deleteID.length === 1)
+          message = " user"
+        else
+          message = " users"
+      }
+      const answer = await MySwal.fire({
+        title: <strong>Are you sure you want to delete {deleteID.length} {message} ?</strong>,
+        type: "warning",
+        showConfirmButton: true,
+        showCancelButton: true
+      })
+      if (answer.isConfirmed){
+        customAxios({
+          url: url + page,
+          method: "delete",
+          data: { _id: deleteID },
+        }).catch((error) => {
+          console.log(error);
+        });
+        var newData = [];
+        var newCheck = [];
+        for (let i = 0; i < arrCheck.length; i++) {
+          if (!arrCheck[i]) {
+            newData.push(arrData[i]);
+            newCheck.push(false);
+          }
+        }
+        setData(newData);
+        setArrCheck(newCheck);
+      }
     }
   }
 
@@ -132,7 +156,7 @@ const Admin = (isF) => {
 
   function backHome() {
     setDisableNext(false)
-    setNewData(url + 1, setData, setArrCheck);
+    setNewData(url + 1, true);
     setGetAll(true);
     setSearchText("");
   }
@@ -144,7 +168,6 @@ const Admin = (isF) => {
   }
 
   const columns = [
-    { Header: "ID", accessor: "id" },
     { Header: "Name", accessor: "name" },
     { Header: "Email", accessor: "email" },
     { Header: "Address", accessor: "address" },
@@ -153,7 +176,10 @@ const Admin = (isF) => {
     { Header: "Delete", accessor: "check" },
   ];
   useEffect(() => {
-    setNewData(url + 1, false);
+    setDisableNext(false);
+    setDisablePrev(true);
+    setNewData(url + 1, true);
+    setPage(1);
   }, [setNewData, url]);
 
   if (arrData === null) {
@@ -172,7 +198,6 @@ const Admin = (isF) => {
       </div>
       <div className="AdminTable__bottomDiv">
         <select className="AdminTable__bottomButtons" onChange={typeSearchF}>
-          <option value="_id">Id</option>
           <option value="email">Email</option>
           <option value="name">Name</option>
         </select>
