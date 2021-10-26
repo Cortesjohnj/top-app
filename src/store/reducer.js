@@ -18,6 +18,7 @@ import {
   FINISHED,
   LIST_USER_REQUESTS,
   RESET_ERROR,
+  SET_FOUNDATION,
 } from "./actions";
 
 const reducer = (state, action) => {
@@ -137,6 +138,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         userRequests: action.payload,
+      };
+
+    case SET_FOUNDATION:
+      return {
+        ...state,
+        foundation: action.payload,
       };
 
     default:

@@ -20,3 +20,4 @@ export const INITIALIZED = "INITIALIZED";
 export const FINISHED = "FINISHED";
 export const LIST_USER_REQUESTS = "LIST_USER_REQUESTS";
 export const RESET_ERROR = "RESET_ERROR";
+export const SET_FOUNDATION = "SET_FOUNDATION";

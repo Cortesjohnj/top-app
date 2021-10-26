@@ -17,6 +17,7 @@ import {
   CREATE_ADOPTION_REQUEST,
   LIST_USER_REQUESTS,
   RESET_ERROR,
+  SET_FOUNDATION,
 } from "./actions";
 import history from "../history";
 import Swal from "sweetalert2";
@@ -282,5 +283,12 @@ export const listUserRequests = (userId) => {
     } catch (e) {
       dispatch({ type: ERROR, payload: e.response.data.error });
     }
+  };
+};
+
+export const setFoundation = (payload) => {
+  return {
+    type: SET_FOUNDATION,
+    payload,
   };
 };

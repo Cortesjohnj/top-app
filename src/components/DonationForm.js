@@ -6,7 +6,7 @@ import Spinner from "../components/Spinner";
 
 const DonationForm = ({ submitForm, loading }) => {
   const { id: foundationId } = useParams();
-  const { user } = useSelector(state => state);
+  const { user, foundation } = useSelector((state) => state);
 
   const [values, setValues] = useState({
     idNumber: "",
@@ -19,11 +19,11 @@ const DonationForm = ({ submitForm, loading }) => {
   });
   const [errors, setErrors] = useState({});
 
-  const handleChange = e => {
-    setValues(values => ({ ...values, [e.target.name]: e.target.value }));
+  const handleChange = (e) => {
+    setValues((values) => ({ ...values, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const errorsMsg = validateDonation(values);
     setErrors({ ...errorsMsg });
@@ -40,6 +40,9 @@ const DonationForm = ({ submitForm, loading }) => {
             onSubmit={handleSubmit}
             data-testid="petFormSubmit"
           >
+            <h1 className="petform__rightContainerForm--title">
+              {foundation.name}
+            </h1>
             <h2 className="petform__rightContainerForm--text">Donation Info</h2>
 
             <div className="petform__rightContainerForm--inputs">
