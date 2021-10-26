@@ -5,10 +5,12 @@ import "../assets/styles/Donation.css";
 import axios from "../axios";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
+import { useSelector } from "react-redux";
 
 const Donation = () => {
   const MySwal = withReactContent(Swal);
   const [loading, setLoading] = useState(false);
+  const { foundation } = useSelector((state) => state);
 
   const donationSuccessful = () => {
     MySwal.fire({
@@ -62,6 +64,11 @@ const Donation = () => {
   return (
     <div className={"petFormContainer petFormGrid"}>
       <div className="petFormContainer__content--left">
+        <img
+          className="petFormContainer__content--left--img"
+          src={foundation.photo_url}
+          alt={foundation.name}
+        />
         <h2 className="petFormContainer__content--left--text">
           Thank you for your generous gift to an Adogta foundation. We are
           thrilled to have your support. Through your donation, we have been

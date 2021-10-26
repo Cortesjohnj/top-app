@@ -15,6 +15,7 @@ const initialState = {
   error: "",
   status: LOADING,
   errStatus: INITIALIZED,
+  foundation: {},
 };
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -22,6 +23,6 @@ export default function createStoreApp() {
   return createStore(
     reducer,
     initialState,
-    composeEnhancers(applyMiddleware(thunk))
+    composeEnhancers(applyMiddleware(thunk)),
   );
 }
